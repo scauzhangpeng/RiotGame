@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/colorMainBg"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/activity_toolbar"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="#8e8f90"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:text="为了确保账号的安全性，请绑定手机号码"/>
+
+    <LinearLayout
+        android:background="@drawable/bg_white_cornor"
+        android:layout_marginRight="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="42dp">
+
+        <org.scau.riotgame.widget.ClearEditText
+            android:background="@null"
+            android:id="@+id/cet_phone"
+            android:inputType="number"
+            android:maxLength="11"
+            android:textColorHint="#a9a9a9"
+            android:hint="请输入手机号码"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textSize="15sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/tv_send_verify_code"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="发送验证码"
+            android:paddingRight="3dp"
+            android:paddingLeft="3dp"
+            android:textColor="@android:color/white"
+            android:enabled="false"
+            android:background="@drawable/btn_bg_gold_selector"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+    <org.scau.riotgame.widget.ClearEditText
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="14dp"
+        android:id="@+id/cet_verify_code"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textSize="15sp"
+        android:textColorHint="#a9a9a9"
+        android:hint="请输入短信验证码"
+        android:background="@drawable/bg_white_cornor"
+        android:maxLength="6"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        />
+
+    <Button
+        android:layout_marginTop="28dp"
+        android:enabled="false"
+        android:id="@+id/btn_bind_phone"
+        style="@style/btn_gold"
+        android:text="绑定"/>
+
+</LinearLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:fitsSystemWindows="true"
+                android:layout_width="match_parent"
+                android:layout_height="68dp">
+
+    <FrameLayout
+        android:id="@+id/fl_icon"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp">
+
+        <ImageView
+            android:id="@+id/iv_header"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/ic_launcher"/>
+
+        <TextView
+            android:id="@+id/tv_is_own"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="已拥有"
+            android:layout_gravity="bottom"
+            android:textSize="12sp"
+            android:layout_marginTop="38dp"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:textColor="@android:color/white"
+            android:background="@color/colorMainGold"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/fl_icon"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:id="@+id/tv_hero_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="齐天大圣"
+            android:includeFontPadding="false"
+            android:textSize="16sp"
+            android:textColor="@color/colorMainText"/>
+
+        <TextView
+            android:id="@+id/tv_hero_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="孙悟空"
+            android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorSubText"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:id="@+id/tv_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="齐天大圣"
+            android:textSize="16sp"
+            android:includeFontPadding="false"
+            android:textColor="@color/colorMainText"/>
+
+        <TextView
+            android:id="@+id/tv_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="孙悟空"
+            android:textSize="12sp"
+            android:includeFontPadding="false"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorSubText"/>
+    </LinearLayout>
+
+</RelativeLayout>

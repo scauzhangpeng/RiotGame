@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorMainBg"
+              xmlns:nt_view="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical">
+
+    <include layout="@layout/activity_toolbar"/>
+
+    <org.scau.riotgame.widget.SettingItemView
+        android:id="@+id/stv_bind_area"
+        style="@style/setting_item"
+        nt_view:left_tip="绑定大区"
+        nt_view:right_tip="皮尔特沃夫"
+        android:layout_marginTop="25dp"/>
+
+
+    <org.scau.riotgame.widget.SettingItemView
+        android:id="@+id/stv_bind_phone"
+        style="@style/setting_item"
+        nt_view:left_tip="绑定手机号码"
+        nt_view:right_tip=""
+        nt_view:line_bottom_visible="GONE"/>
+
+    <org.scau.riotgame.widget.SettingItemView
+        android:id="@+id/stv_msg_setting"
+        style="@style/setting_item"
+        nt_view:left_tip="消息推送设置"
+        nt_view:right_tip=""
+        android:layout_marginTop="25dp"/>
+
+    <org.scau.riotgame.widget.SettingItemView
+        android:id="@+id/stv_save_data"
+        style="@style/setting_item"
+        nt_view:left_tip="省流量"
+        nt_view:right_tip="资讯图片自动下载设置"/>
+
+    <org.scau.riotgame.widget.SettingItemView
+        android:id="@+id/stv_clear_cache"
+        style="@style/setting_item"
+        nt_view:left_tip="清空缓存"
+        nt_view:right_tip="30.00MB"/>
+
+    <org.scau.riotgame.widget.SettingItemView
+        android:id="@+id/stv_secret_setting"
+        style="@style/setting_item"
+        nt_view:left_tip="隐私设置"
+        nt_view:right_tip=""
+        nt_view:line_bottom_visible="GONE"/>
+
+    <org.scau.riotgame.widget.SettingItemView
+        android:id="@+id/stv_about_riot"
+        style="@style/setting_item"
+        nt_view:left_tip="关于掌盟"
+        nt_view:right_tip=""
+        android:layout_marginTop="25dp"/>
+
+    <org.scau.riotgame.widget.SettingItemView
+        android:id="@+id/stv_feed_back"
+        style="@style/setting_item"
+        nt_view:left_tip="意见反馈"
+        nt_view:right_tip="官方反馈QQ群:385410609"
+        nt_view:line_bottom_visible="GONE"/>
+
+    <Button
+        android:id="@+id/btn_login_out"
+        style="@style/btn_red"
+        android:text="退出登录"
+        android:layout_marginTop="40dp"/>
+
+</LinearLayout>

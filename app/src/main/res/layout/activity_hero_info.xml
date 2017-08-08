@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/colorMainBg"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/activity_toolbar"/>
+
+    <LinearLayout
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <TextView
+            android:id="@+id/tv_prop"
+            android:text="物品资料"
+            android:drawableTop="@drawable/prop"
+            style="@style/hero_mid_tag"/>
+
+        <TextView
+            android:id="@+id/tv_mastery"
+            style="@style/hero_mid_tag"
+            android:drawableTop="@drawable/mastery"
+            android:text="天赋模拟"/>
+
+        <TextView
+            android:id="@+id/tv_rune"
+            style="@style/hero_mid_tag"
+            android:drawableTop="@drawable/rune"
+            android:text="符文模拟"/>
+
+        <TextView
+            android:id="@+id/tv_universe"
+            style="@style/hero_mid_tag"
+            android:drawableTop="@drawable/universe"
+            android:text="英雄联盟宇宙"/>
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/rg_hero"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <RadioButton
+            android:id="@+id/rbtn_hero_free"
+            android:checked="true"
+            android:text="本周限免"
+            style="@style/page_tab"/>
+
+        <RadioButton
+            android:id="@+id/rbtn_hero_owner"
+            style="@style/page_tab"
+            android:text="我的英雄"/>
+
+        <RadioButton
+            android:id="@+id/rbtn_hero_all"
+            style="@style/page_tab"
+            android:text="全部英雄"/>
+    </RadioGroup>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_hero"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

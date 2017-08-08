@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:switch_view="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:background="@color/colorMainBg"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/activity_toolbar"/>
+
+    <org.scau.riotgame.widget.SettingSwitchView
+        android:layout_marginTop="25dp"
+        style="@style/switch_item"
+        android:layout_height="40dp"
+        switch_view:check="true"
+        switch_view:main_text="接收新消息通知"
+        switch_view:sub_text=""
+        switch_view:line_visible="GONE"/>
+
+    <org.scau.riotgame.widget.SettingSwitchView
+        android:layout_marginTop="25dp"
+        style="@style/switch_item"
+        switch_view:check="true"
+        switch_view:main_text="游戏相关提醒"
+        switch_view:sub_text="MVP、对战助手、段位衰减提醒"/>
+
+    <org.scau.riotgame.widget.SettingSwitchView
+        style="@style/switch_item"
+        switch_view:check="true"
+        switch_view:main_text="好友消息提醒"
+        switch_view:sub_text="对好友消息的收取进行提醒"/>
+
+    <org.scau.riotgame.widget.SettingSwitchView
+        style="@style/switch_item"
+        switch_view:check="true"
+        switch_view:main_text="专栏订阅提醒"
+        switch_view:sub_text="订阅专栏更新时的提醒"
+        switch_view:line_visible="GONE"/>
+
+    <org.scau.riotgame.widget.SettingSwitchView
+        android:layout_marginTop="25dp"
+        style="@style/switch_item"
+        switch_view:check="true"
+        switch_view:main_text="好友动态更新"
+        switch_view:sub_text="动态有内容更新时显示红点提示"
+        switch_view:line_visible="GONE"/>
+
+    <org.scau.riotgame.widget.SettingSwitchView
+        android:layout_marginTop="25dp"
+        style="@style/switch_item"
+        switch_view:check="true"
+        switch_view:main_text="掌盟好友提醒"
+        switch_view:sub_text="登录游戏时，向你推荐掌盟好友"
+        switch_view:line_visible="GONE"/>
+
+    <org.scau.riotgame.widget.SettingSwitchView
+        android:layout_marginTop="25dp"
+        android:layout_height="40dp"
+        style="@style/switch_item"
+        switch_view:check="false"
+        switch_view:main_text="声音"
+        switch_view:sub_text=""/>
+
+    <org.scau.riotgame.widget.SettingSwitchView
+        style="@style/switch_item"
+        android:layout_height="40dp"
+        switch_view:check="true"
+        switch_view:main_text="振动"
+        switch_view:sub_text=""
+        switch_view:line_visible="GONE"/>
+
+
+</LinearLayout>

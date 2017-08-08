@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorMain">#000000</color>
+    <color name="colorMainText">#333333</color>
+    <color name="colorSubText">#999999</color>
+    <color name="colorMainBg">#eeeff0</color>
+    <color name="colorMainGold">#d3bf8d</color>
+
+    <color name="btn_red_normal">#ff5255</color>
+    <color name="btn_red_press">#ff5280</color>
+    <color name="btn_blue_normal">#4487c2</color>
+    <color name="btn_blue_press">#4487c9</color>
+    <color name="btn_gold_disable">#c9c9c9</color>
+    <color name="btn_gold_normal">@color/colorMainGold</color>
+    <color name="btn_gold_press">@color/btn_gold_disable</color>
+</resources>

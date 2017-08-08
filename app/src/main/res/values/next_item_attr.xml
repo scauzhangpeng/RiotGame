@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="nt_view">
+        <attr name="left_tip" format="string"/>
+        <attr name="right_tip" format="string"/>
+        <attr name="line_bottom_visible" format="enum">
+            <enum name="VISIBLE" value="0"/>
+            <enum name="GONE" value="4"/>
+            <enum name="INVISIBLE" value="8"/>
+        </attr>
+    </declare-styleable>
+</resources>
