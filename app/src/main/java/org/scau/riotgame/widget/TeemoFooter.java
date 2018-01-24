@@ -98,9 +98,9 @@ public class TeemoFooter extends LinearLayout implements RefreshFooter {
     public int onFinish(RefreshLayout layout, boolean success) {
         mAnimationDrawable.stop();
         if (success) {
-            mTextView.setText("success");
+            mTextView.setText("加载完成");
         } else {
-            mTextView.setText("fail");
+            mTextView.setText("加载失败");
         }
         return 500;
     }

@@ -15,7 +15,6 @@ public abstract class MvpFragment<V, P extends BasePresenter<V>> extends BaseFra
 
 
     protected P mPresenter;
-    protected View mView;
 
     /**
      * 布局
@@ -28,6 +27,7 @@ public abstract class MvpFragment<V, P extends BasePresenter<V>> extends BaseFra
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
 //        mView = inflater.inflate(R.layout.fragment_base_topbar, null);
 //        //init top bar
 //        mFlTopBar = (FrameLayout) mView.findViewById(R.id.f_fl_topbar);

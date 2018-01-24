@@ -13,13 +13,14 @@ import android.widget.ImageView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.xyz.basiclib.mvp.MvpFragment;
+import com.xyz.basiclib.recyclerview.BasicAdapter;
+import com.xyz.basiclib.recyclerview.BasicViewHolder;
 
 import org.scau.riotgame.R;
-import org.scau.riotgame.base.BaseRecyclerAdapter;
-import org.scau.riotgame.base.SmartViewHolder;
+import org.scau.riotgame.base.ButterKnifeFragment;
 import org.scau.riotgame.utils.ImageLoadUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -28,19 +29,20 @@ import butterknife.BindView;
  * Created by ZP on 2017/7/27.
  */
 
-public class FreeHeroFragment extends MvpFragment<HeroContract.FreeView, HeroContract.FreePresenter> implements AdapterView.OnItemClickListener, HeroContract.FreeView {
+public class FreeHeroFragment extends ButterKnifeFragment<HeroContract.FreeView, HeroContract.FreePresenter> implements AdapterView.OnItemClickListener, HeroContract.FreeView {
 
     @BindView(R.id.rv_hero_free)
     RecyclerView mRvHeroFree;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
 
-    private BaseRecyclerAdapter<Hero> mAdapter;
+    private BasicAdapter<Hero> mAdapter;
     private List<Hero> mHeros;
 
 
     @Override
     protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.initViewsAndEvents(inflater, container, savedInstanceState);
         initFreeHeros();
     }
 
@@ -50,16 +52,17 @@ public class FreeHeroFragment extends MvpFragment<HeroContract.FreeView, HeroCon
     }
 
     private void initFreeHeros() {
+        mHeros = new ArrayList<>();
         mRvHeroFree.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRvHeroFree.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-        mAdapter = new BaseRecyclerAdapter<Hero>(mHeros, R.layout.item_hero, this) {
+        mAdapter = new BasicAdapter<Hero>(R.layout.item_hero, mHeros, getActivity()) {
             @Override
-            protected void onBindViewHolder(SmartViewHolder holder, Hero hero, int position) {
-                holder.text(R.id.tv_hero_name, hero.getName());
-                holder.text(R.id.tv_hero_nickname, hero.getNickName());
-                holder.text(R.id.tv_rate, hero.getRate() + "");
-                holder.text(R.id.tv_tag, hero.getTag());
-                ImageView imageView = (ImageView) holder.findViewById(R.id.iv_header);
+            protected void bindData(BasicViewHolder holder, Hero hero, int position) {
+                holder.setText(R.id.tv_hero_name, hero.getName());
+                holder.setText(R.id.tv_hero_nickname, hero.getNickName());
+                holder.setText(R.id.tv_rate, hero.getRate() + "");
+                holder.setText(R.id.tv_tag, hero.getTag());
+                ImageView imageView = (ImageView) holder.getView(R.id.iv_header);
                 ImageLoadUtil.loadCircleImage(getActivity(), hero.getUrl(), imageView);
             }
         };
@@ -84,6 +87,7 @@ public class FreeHeroFragment extends MvpFragment<HeroContract.FreeView, HeroCon
 
     @Override
     public void showFreeHeros(List<Hero> heros) {
+        mRefreshLayout.finishRefresh();
         mHeros.clear();
         mHeros.addAll(heros);
         mAdapter.notifyDataSetChanged();

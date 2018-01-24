@@ -22,7 +22,7 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     private TextView mTvTitle;
     private ImageView mIvLeft;
 
-    private View mView;
+    protected View mView;
 
 //    private Unbinder unbinder;
 

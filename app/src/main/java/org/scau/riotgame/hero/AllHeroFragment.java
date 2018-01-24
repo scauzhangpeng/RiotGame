@@ -8,12 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.xyz.basiclib.mvp.MvpFragment;
+import com.xyz.basiclib.recyclerview.AbstractImageLoader;
+import com.xyz.basiclib.recyclerview.BasicAdapter;
+import com.xyz.basiclib.recyclerview.BasicViewHolder;
+import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 
 import org.scau.riotgame.R;
-import org.scau.riotgame.base.MultipleTypeSupport;
-import org.scau.riotgame.base.RiotGameAdapter;
-import org.scau.riotgame.base.RiotGameViewHolder;
+import org.scau.riotgame.base.ButterKnifeFragment;
 import org.scau.riotgame.utils.ImageLoadUtil;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ import butterknife.BindView;
  * Created by ZP on 2017/7/27.
  */
 
-public class AllHeroFragment extends MvpFragment<HeroContract.View, HeroContract.Presenter> implements HeroContract.View {
+public class AllHeroFragment extends ButterKnifeFragment<HeroContract.View, HeroContract.Presenter> implements HeroContract.View {
 
     @BindView(R.id.rv_hero_all)
     RecyclerView mRvHeroAll;
@@ -33,7 +34,7 @@ public class AllHeroFragment extends MvpFragment<HeroContract.View, HeroContract
     SmartRefreshLayout mRefreshLayout;
 
     private List<Hero> mHeros;
-    private RiotGameAdapter<Hero> mAdapter;
+    private BasicAdapter<Hero> mAdapter;
 
     @Override
     protected HeroContract.Presenter initPresenter() {
@@ -48,15 +49,16 @@ public class AllHeroFragment extends MvpFragment<HeroContract.View, HeroContract
 
     @Override
     protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.initViewsAndEvents(inflater, container, savedInstanceState);
         mHeros = new ArrayList<>();
         mRvHeroAll.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        mAdapter = new RiotGameAdapter<Hero>(mHeros, getActivity(), mMultipleTypeSupport) {
+        mAdapter = new BasicAdapter<Hero>(mHeros, getActivity(), mMultipleTypeSupport) {
 
             @Override
-            protected void bindData(RiotGameViewHolder holder, Hero hero, int position) {
+            protected void bindData(BasicViewHolder holder, Hero hero, int position) {
                 if (position != 0) {
                     holder.setText(R.id.tv_hero_name, hero.getName())
-                            .setImagePath(R.id.iv_header, new RiotGameViewHolder.ImageLoader(hero.getUrl()) {
+                            .setImagePath(R.id.iv_header, new AbstractImageLoader(hero.getUrl()) {
                                 @Override
                                 public void loadImage(ImageView imageView, String path) {
                                     ImageLoadUtil.loadCircleImage(getContext(), path, imageView);

@@ -94,9 +94,9 @@ public class TeemoHeader extends LinearLayout implements RefreshHeader {
     public int onFinish(RefreshLayout layout, boolean success) {
         mAnimationDrawable.stop();
         if (success) {
-            mTextView.setText("success");
+            mTextView.setText("刷新完成");
         } else {
-            mTextView.setText("fail");
+            mTextView.setText("刷新失败");
         }
         return 500;
     }

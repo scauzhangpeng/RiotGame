@@ -5,12 +5,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
-import com.xyz.basiclib.mvp.MvpFragment;
-
 import org.scau.riotgame.R;
+import org.scau.riotgame.base.ButterKnifeFragment;
 import org.scau.riotgame.hero.HeroInfoActivity;
 import org.scau.riotgame.search.UserNearbyActivity;
 import org.scau.riotgame.search.UserSearchActivity;
@@ -28,20 +26,19 @@ import butterknife.OnClick;
  * </p>
  */
 
-public class DiscoveryFragment extends MvpFragment<DiscoveryContract.View, DiscoveryContract.Presenter> implements DiscoveryContract.View {
+public class DiscoveryFragment extends ButterKnifeFragment<DiscoveryContract.View, DiscoveryContract.Presenter> implements DiscoveryContract.View {
 
     private static final String TAG = "DiscoveryFragment";
     @BindView(R.id.rv_club)
     RecyclerView mRvClub;
 
 
-    private View mView;
     private ClubAdapter mAdapter;
     private List<Club.ClubsBean> mClubs;
 
-
     @Override
     protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.initViewsAndEvents(inflater, container, savedInstanceState);
         initViewClub();
     }
 
@@ -68,7 +65,7 @@ public class DiscoveryFragment extends MvpFragment<DiscoveryContract.View, Disco
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
-        Log.d(TAG, "setUserVisibleHint: ");
+        Log.d(TAG, "setUserVisibleHint: " + isVisibleToUser);
         if (isVisibleToUser) {
             mPresenter.getClubs();
         }

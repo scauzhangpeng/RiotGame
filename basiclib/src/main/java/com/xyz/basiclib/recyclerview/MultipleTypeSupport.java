@@ -1,4 +1,4 @@
-package org.scau.riotgame.base;
+package com.xyz.basiclib.recyclerview;
 
 /**
  * Created by ZP on 2017/8/8.
