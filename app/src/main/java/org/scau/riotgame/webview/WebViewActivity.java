@@ -11,7 +11,7 @@ import org.scau.riotgame.R;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 
 public class WebViewActivity extends AppCompatActivity {
 
-    @Bind(R.id.ll_root)
+    @BindView(R.id.ll_root)
     LinearLayout mLlRoot;
 
     private WebView mWebView;

@@ -21,31 +21,31 @@ import org.scau.riotgame.favorite.FavoriteActivity;
 import org.scau.riotgame.mall.UserOrderActivity;
 import org.scau.riotgame.setting.SettingActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
-    @Bind(R.id.tabcontent)
+    @BindView(R.id.tabcontent)
     FrameLayout mTabcontent;
-    @Bind(R.id.rbtn_news)
+    @BindView(R.id.rbtn_news)
     RadioButton mRbtnNews;
-    @Bind(R.id.rbtn_friends)
+    @BindView(R.id.rbtn_friends)
     RadioButton mRbtnFriends;
-    @Bind(R.id.rbtn_mall)
+    @BindView(R.id.rbtn_mall)
     RadioButton mRbtnMall;
-    @Bind(R.id.rbtn_discovery)
+    @BindView(R.id.rbtn_discovery)
     RadioButton mRbtnDiscovery;
-    @Bind(R.id.rbtn_me)
+    @BindView(R.id.rbtn_me)
     RadioButton mRbtnMe;
-    @Bind(R.id.rg_main)
+    @BindView(R.id.rg_main)
     RadioGroup mRgMain;
-    @Bind(R.id.drawerLayout)
+    @BindView(R.id.drawerLayout)
     DrawerLayout mDrawerLayout;
-    @Bind(R.id.ll_main_content)
+    @BindView(R.id.ll_main_content)
     LinearLayout mLlMainContent;
-    @Bind(R.id.nav_view)
+    @BindView(R.id.nav_view)
     LinearLayout mNavView;
 
     private Fragment mNewsFragment;

@@ -1,31 +1,25 @@
 package org.scau.riotgame.home;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.xyz.basiclib.mvp.MvpFragment;
 
 import org.scau.riotgame.R;
-import org.scau.riotgame.base.BaseFragment;
 import org.scau.riotgame.hero.HeroInfoActivity;
-import org.scau.riotgame.http.HttpCallback;
-import org.scau.riotgame.http.RequestManager;
 import org.scau.riotgame.search.UserNearbyActivity;
 import org.scau.riotgame.search.UserSearchActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import butterknife.BindView;
 import butterknife.OnClick;
-import retrofit2.Response;
 
 /**
  * Created by ZP on 2017/7/27.
@@ -34,27 +28,26 @@ import retrofit2.Response;
  * </p>
  */
 
-public class DiscoveryFragment extends BaseFragment {
+public class DiscoveryFragment extends MvpFragment<DiscoveryContract.View, DiscoveryContract.Presenter> implements DiscoveryContract.View {
 
     private static final String TAG = "DiscoveryFragment";
-
-    @Bind(R.id.tv_fan_club)
-    TextView mTvFanClub;
-    @Bind(R.id.rv_club)
+    @BindView(R.id.rv_club)
     RecyclerView mRvClub;
+
 
     private View mView;
     private ClubAdapter mAdapter;
     private List<Club.ClubsBean> mClubs;
 
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_discovery, null);
-        ButterKnife.bind(this, mView);
+    protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         initViewClub();
-        return mView;
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_discovery;
     }
 
     private void initViewClub() {
@@ -77,26 +70,7 @@ public class DiscoveryFragment extends BaseFragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         Log.d(TAG, "setUserVisibleHint: ");
         if (isVisibleToUser) {
-            RequestManager.getInstance().getClubInfo("android", 9718, new HttpCallback<Club>() {
-                @Override
-                public void doOnSuccess(Response<Club> response) {
-                    Club club = response.body();
-                    List<Club.ClubsBean> clubs = club.getClubs();
-                    mClubs.clear();
-                    mClubs.addAll(clubs);
-                    mAdapter.notifyDataSetChanged();
-                }
-
-                @Override
-                public void doOnError(Response<Club> response, String statusCode, String message) {
-                    Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
-                }
-
-                @Override
-                public void doOnFailure(int httpCode, String message) {
-                    Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
-                }
-            });
+            mPresenter.getClubs();
         }
     }
 
@@ -116,8 +90,14 @@ public class DiscoveryFragment extends BaseFragment {
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
+    protected DiscoveryContract.Presenter initPresenter() {
+        return new DiscoveryPresenter();
+    }
+
+    @Override
+    public void showClubs(List<Club.ClubsBean> clubs) {
+        mClubs.clear();
+        mClubs.addAll(clubs);
+        mAdapter.notifyDataSetChanged();
     }
 }

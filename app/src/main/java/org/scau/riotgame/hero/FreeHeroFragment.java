@@ -1,8 +1,6 @@
 package org.scau.riotgame.hero;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,58 +12,46 @@ import android.widget.ImageView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.xyz.basiclib.mvp.MvpFragment;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.base.BaseRecyclerAdapter;
 import org.scau.riotgame.base.SmartViewHolder;
 import org.scau.riotgame.utils.ImageLoadUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import butterknife.BindView;
 
 /**
  * Created by ZP on 2017/7/27.
  */
 
-public class FreeHeroFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class FreeHeroFragment extends MvpFragment<HeroContract.FreeView, HeroContract.FreePresenter> implements AdapterView.OnItemClickListener, HeroContract.FreeView {
 
-    @Bind(R.id.rv_hero_free)
+    @BindView(R.id.rv_hero_free)
     RecyclerView mRvHeroFree;
-    @Bind(R.id.refreshLayout)
+    @BindView(R.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
 
-    private View mView;
     private BaseRecyclerAdapter<Hero> mAdapter;
     private List<Hero> mHeros;
 
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_hero_free, null);
-        ButterKnife.bind(this, mView);
-        initViewAndEvents();
-        return mView;
+    protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        initFreeHeros();
     }
 
-    private void initViewAndEvents() {
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_hero_free;
+    }
+
+    private void initFreeHeros() {
         mRvHeroFree.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRvHeroFree.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-        mHeros = new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
-            Hero hero = new Hero();
-            hero.setUrl("http://ossweb-img.qq.com/images/lol/web201310/skin/small62000.jpg");
-            hero.setName("齐天大圣" + i);
-            hero.setNickName("孙悟空" + i);
-            hero.setTag("战士");
-            hero.setRate(55);
-            mHeros.add(hero);
-        }
         mAdapter = new BaseRecyclerAdapter<Hero>(mHeros, R.layout.item_hero, this) {
             @Override
             protected void onBindViewHolder(SmartViewHolder holder, Hero hero, int position) {
@@ -81,26 +67,25 @@ public class FreeHeroFragment extends Fragment implements AdapterView.OnItemClic
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                mRefreshLayout.finishRefresh(5000);
-            }
-        });
-
-        mRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
-            @Override
-            public void onLoadmore(RefreshLayout refreshlayout) {
-                mRefreshLayout.finishLoadmore(5000);
+                mPresenter.getFreeHeros();
             }
         });
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
+    protected HeroContract.FreePresenter initPresenter() {
+        return new FreeHeroPresenter();
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         System.out.println(position);
+    }
+
+    @Override
+    public void showFreeHeros(List<Hero> heros) {
+        mHeros.clear();
+        mHeros.addAll(heros);
+        mAdapter.notifyDataSetChanged();
     }
 }
