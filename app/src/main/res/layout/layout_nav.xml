@@ -1,86 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              android:id="@+id/nav_view"
+              android:layout_width="290dp"
+              android:layout_height="match_parent"
               android:layout_gravity="start"
               android:background="@drawable/slide_menu_bg"
-              android:id="@+id/nav_view"
-              android:layout_width="270dp"
-              android:layout_height="match_parent">
+              android:clickable="true"
+              android:orientation="vertical">
+
 
     <RelativeLayout
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="25dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp">
 
-        <ImageView
-            android:id="@+id/iv_header"
+        <FrameLayout
+            android:id="@+id/fl_header"
+            android:layout_marginTop="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/tab_friend_checked"/>
+            android:background="@drawable/head_round_golden_big"
+            android:padding="6dp">
+
+            <ImageView
+                android:id="@+id/iv_header"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"/>
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_qq_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/fl_header">
+
+            <TextView
+                android:id="@+id/tv_id_qq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_header"
+                android:text="青年4"
+                android:includeFontPadding="false"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/tv_sex"
+                android:text="♂"
+                android:includeFontPadding="false"
+                android:layout_marginLeft="8dp"
+                android:textSize="12sp"
+                android:textColor="@android:color/white"
+                android:layout_gravity="center"
+                android:background="#36c4df"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
 
         <TextView
-            android:id="@+id/tv_id_qq"
+            android:id="@+id/tv_motto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="青年4"
-            android:layout_marginTop="5dp"
-            android:textColor="@android:color/white"
-            android:layout_below="@id/iv_header"/>
-
-        <TextView
-            android:id="@+id/tv_id_riot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ID:河婆墟邓紫棋"
-            android:layout_below="@id/tv_id_qq"
+            android:text=""
+            android:layout_below="@id/ll_qq_id"
+            android:layout_marginTop="6dp"
+            android:textSize="16sp"
             android:textColor="@color/colorSubText"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/card_selector"
-            android:layout_alignParentRight="true"/>
+        <TextView
+            android:layout_width="59dp"
+            android:layout_height="59dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="31dp"
+            android:drawableTop="@drawable/card_selector"
+            android:text="我的名片"
+            android:gravity="center"
+            android:layout_marginTop="46dp"
+            android:drawablePadding="5dp"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"/>
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_marginTop="40dp"
+    <LinearLayout
+        android:layout_marginLeft="25dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            style="@style/menu_mid_layout">
+
+            <TextView
+                android:text="与我相关"
+                android:drawableTop="@drawable/menu_my_messages"
+                style="@style/menu_mid"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_marginLeft="25dp"
+            style="@style/menu_mid_layout">
+
+            <TextView
+                android:text="活动中心"
+                android:drawableTop="@drawable/menu_act_center"
+                style="@style/menu_mid"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/tv_menu_trade"
+            android:layout_marginLeft="25dp"
+            style="@style/menu_mid_layout">
+
+            <TextView
+                android:text="我的订单"
+                android:drawableTop="@drawable/menu_trade"
+                style="@style/menu_mid"/>
+        </FrameLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="34dp">
 
         <TextView
             android:id="@+id/tv_menu_cycle"
-            android:text="我的动态"
+            style="@style/nav_menu"
             android:drawableLeft="@drawable/menu_friend_cycle"
-            style="@style/nav_menu"/>
+            android:text="我的动态"/>
 
         <TextView
             android:id="@+id/tv_menu_subscribe"
-            android:text="我的订阅"
+            style="@style/nav_menu"
             android:layout_below="@id/tv_menu_cycle"
             android:drawableLeft="@drawable/menu_subscribe"
-            style="@style/nav_menu"/>
+            android:text="我的订阅"/>
 
         <TextView
             android:id="@+id/tv_menu_favorite"
-            android:text="我的收藏"
+            style="@style/nav_menu"
             android:layout_below="@id/tv_menu_subscribe"
             android:drawableLeft="@drawable/menu_favorite"
-            style="@style/nav_menu"/>
-
-        <TextView
-            android:id="@+id/tv_menu_trade"
-            android:text="我的订单"
-            android:layout_below="@id/tv_menu_favorite"
-            android:drawableLeft="@drawable/menu_trade"
-            style="@style/nav_menu"/>
+            android:text="我的收藏"/>
 
         <TextView
             android:id="@+id/tv_menu_setting"
-            android:text="设置"
+            style="@style/nav_menu"
             android:layout_alignParentBottom="true"
             android:drawableLeft="@drawable/menu_setting"
-            style="@style/nav_menu"/>
+            android:text="设置"/>
     </RelativeLayout>
 
 
