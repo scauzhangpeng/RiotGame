@@ -94,12 +94,12 @@ public class HomeFragment extends SimpleButterKnifeFragment implements RadioGrou
         mRgMainTab.setOnCheckedChangeListener(this);
 
         mPages = new SparseArray<>();
-        mPages.put(0, new ColumnListFragment());
-//        mPages.put(1, new NewVersionFragment());
-//        mPages.put(2, new HeroCommunityFragment());
-//        mPages.put(3, new VideoFragment());
-//        mPages.put(4, new MatchFragment());
-//        mPages.put(5, new ColumnListFragment());
+        mPages.put(0, new NewsFragment());
+        mPages.put(1, new NewVersionFragment());
+        mPages.put(2, new HeroCommunityFragment());
+        mPages.put(3, new VideoFragment());
+        mPages.put(4, new MatchFragment());
+        mPages.put(5, new ColumnListFragment());
         mAdapter = new HeroPageAdapter(getActivity().getSupportFragmentManager(), mPages);
         mVpMain.setAdapter(mAdapter);
         mVpMain.addOnPageChangeListener(mOnPageChangeListener);

@@ -6,4 +6,6 @@
     <string name="tab_main_mall">商店</string>
     <string name="tab_main_discovery">发现</string>
     <string name="tab_main_me">我的</string>
+
+    <string name="article_pv">%s万阅</string>
 </resources>

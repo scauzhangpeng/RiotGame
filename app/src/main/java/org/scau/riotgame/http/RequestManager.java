@@ -1,7 +1,9 @@
 package org.scau.riotgame.http;
 
 import org.scau.riotgame.home.Club;
+import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.bean.PageColumnList;
+import org.scau.riotgame.home.bean.PageResponse;
 
 import retrofit2.Call;
 
@@ -26,6 +28,12 @@ public class RequestManager {
         }
 
         return mInstance;
+    }
+
+    public Call getNews(int id, int page, String plat, int version, HttpCallback<PageResponse<News>> callback) {
+        Call<PageResponse<News>> call = mApiService.getNews(id, page, plat, version);
+        call.enqueue(callback);
+        return call;
     }
 
 

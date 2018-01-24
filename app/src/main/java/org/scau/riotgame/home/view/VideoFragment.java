@@ -6,11 +6,13 @@ import android.view.ViewGroup;
 
 import com.xyz.basiclib.mvp.MvpFragment;
 
+import org.scau.riotgame.R;
 import org.scau.riotgame.home.bean.HotAuthor;
 import org.scau.riotgame.home.bean.HotEnter;
 import org.scau.riotgame.home.bean.HotMatch;
 import org.scau.riotgame.home.bean.HotWpv;
 import org.scau.riotgame.home.contract.VideoContract;
+import org.scau.riotgame.home.presenter.VideoPresenter;
 
 import java.util.List;
 
@@ -52,11 +54,11 @@ public class VideoFragment extends MvpFragment<VideoContract.View, VideoContract
 
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.fragment_news;
     }
 
     @Override
     protected VideoContract.Presenter initPresenter() {
-        return null;
+        return new VideoPresenter();
     }
 }

@@ -6,9 +6,11 @@ import android.view.ViewGroup;
 
 import com.xyz.basiclib.mvp.MvpFragment;
 
+import org.scau.riotgame.R;
 import org.scau.riotgame.home.bean.Feature;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.contract.MatchContract;
+import org.scau.riotgame.home.presenter.MatchPresenter;
 
 import java.util.List;
 
@@ -44,11 +46,11 @@ public class MatchFragment extends MvpFragment<MatchContract.View, MatchContract
 
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.fragment_news;
     }
 
     @Override
     protected MatchContract.Presenter initPresenter() {
-        return null;
+        return new MatchPresenter();
     }
 }

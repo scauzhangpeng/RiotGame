@@ -6,9 +6,11 @@ import android.view.ViewGroup;
 
 import com.xyz.basiclib.mvp.MvpFragment;
 
+import org.scau.riotgame.R;
 import org.scau.riotgame.home.bean.Card;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.contract.HeroCommunityContract;
+import org.scau.riotgame.home.presenter.HeroCommunityPresenter;
 
 import java.util.List;
 
@@ -44,11 +46,11 @@ public class HeroCommunityFragment extends MvpFragment<HeroCommunityContract.Vie
 
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.fragment_news;
     }
 
     @Override
     protected HeroCommunityContract.Presenter initPresenter() {
-        return null;
+        return new HeroCommunityPresenter();
     }
 }

@@ -26,4 +26,8 @@ public class ImageLoadUtil {
             }
         });
     }
+
+    public static void loadImage(Context context, String url, ImageView imageView) {
+        Glide.with(context).load(url).into(imageView);
+    }
 }
