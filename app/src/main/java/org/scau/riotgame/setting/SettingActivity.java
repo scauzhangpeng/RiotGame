@@ -9,7 +9,7 @@ import org.scau.riotgame.base.BaseActivity;
 import org.scau.riotgame.webview.WebViewActivity;
 import org.scau.riotgame.widget.SettingItemView;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -22,21 +22,21 @@ import butterknife.OnClick;
 
 public class SettingActivity extends BaseActivity {
 
-    @BindView(R.id.stv_bind_area)
+    @Bind(R.id.stv_bind_area)
     SettingItemView mStvBindArea;
-    @BindView(R.id.stv_bind_phone)
+    @Bind(R.id.stv_bind_phone)
     SettingItemView mStvBindPhone;
-    @BindView(R.id.stv_msg_setting)
+    @Bind(R.id.stv_msg_setting)
     SettingItemView mStvMsgSetting;
-    @BindView(R.id.stv_save_data)
+    @Bind(R.id.stv_save_data)
     SettingItemView mStvSaveData;
-    @BindView(R.id.stv_clear_cache)
+    @Bind(R.id.stv_clear_cache)
     SettingItemView mStvClearCache;
-    @BindView(R.id.stv_secret_setting)
+    @Bind(R.id.stv_secret_setting)
     SettingItemView mStvSecretSetting;
-    @BindView(R.id.stv_about_riot)
+    @Bind(R.id.stv_about_riot)
     SettingItemView mStvAboutRiot;
-    @BindView(R.id.stv_feed_back)
+    @Bind(R.id.stv_feed_back)
     SettingItemView mStvFeedBack;
 
     @Override

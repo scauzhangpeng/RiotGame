@@ -8,29 +8,29 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.xyz.basiclib.mvp.MvpButterKnifeFragment;
 import com.xyz.basiclib.recyclerview.AbstractImageLoader;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.BasicViewHolder;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 
 import org.scau.riotgame.R;
-import org.scau.riotgame.base.ButterKnifeFragment;
 import org.scau.riotgame.utils.ImageLoadUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
+import butterknife.Bind;
 
 /**
  * Created by ZP on 2017/7/27.
  */
 
-public class AllHeroFragment extends ButterKnifeFragment<HeroContract.View, HeroContract.Presenter> implements HeroContract.View {
+public class AllHeroFragment extends MvpButterKnifeFragment<HeroContract.View, HeroContract.Presenter> implements HeroContract.View {
 
-    @BindView(R.id.rv_hero_all)
+    @Bind(R.id.rv_hero_all)
     RecyclerView mRvHeroAll;
-    @BindView(R.id.refreshLayout)
+    @Bind(R.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
 
     private List<Hero> mHeros;

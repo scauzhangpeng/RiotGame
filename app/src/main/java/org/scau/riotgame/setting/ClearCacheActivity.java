@@ -8,7 +8,7 @@ import org.scau.riotgame.R;
 import org.scau.riotgame.base.BaseActivity;
 import org.scau.riotgame.widget.SettingSwitchView;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -17,15 +17,15 @@ import butterknife.ButterKnife;
 
 public class ClearCacheActivity extends BaseActivity {
 
-    @BindView(R.id.switch_game_cache)
+    @Bind(R.id.switch_game_cache)
     SettingSwitchView mSwitchGameCache;
-    @BindView(R.id.switch_picture_cache)
+    @Bind(R.id.switch_picture_cache)
     SettingSwitchView mSwitchPictureCache;
-    @BindView(R.id.switch_app_cache)
+    @Bind(R.id.switch_app_cache)
     SettingSwitchView mSwitchAppCache;
-    @BindView(R.id.switch_video_cache)
+    @Bind(R.id.switch_video_cache)
     SettingSwitchView mSwitchVideoCache;
-    @BindView(R.id.btn_confirm_clear)
+    @Bind(R.id.btn_confirm_clear)
     Button mBtnConfirmClear;
 
     @Override

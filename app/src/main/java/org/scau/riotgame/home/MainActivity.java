@@ -18,34 +18,35 @@ import android.widget.RadioGroup;
 import org.scau.riotgame.R;
 import org.scau.riotgame.base.BaseActivity;
 import org.scau.riotgame.favorite.FavoriteActivity;
+import org.scau.riotgame.home.view.HomeFragment;
 import org.scau.riotgame.mall.UserOrderActivity;
 import org.scau.riotgame.setting.SettingActivity;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
-    @BindView(R.id.tabcontent)
+    @Bind(R.id.tabcontent)
     FrameLayout mTabcontent;
-    @BindView(R.id.rbtn_news)
+    @Bind(R.id.rbtn_news)
     RadioButton mRbtnNews;
-    @BindView(R.id.rbtn_friends)
+    @Bind(R.id.rbtn_friends)
     RadioButton mRbtnFriends;
-    @BindView(R.id.rbtn_mall)
+    @Bind(R.id.rbtn_mall)
     RadioButton mRbtnMall;
-    @BindView(R.id.rbtn_discovery)
+    @Bind(R.id.rbtn_discovery)
     RadioButton mRbtnDiscovery;
-    @BindView(R.id.rbtn_me)
+    @Bind(R.id.rbtn_me)
     RadioButton mRbtnMe;
-    @BindView(R.id.rg_main)
+    @Bind(R.id.rg_main)
     RadioGroup mRgMain;
-    @BindView(R.id.drawerLayout)
+    @Bind(R.id.drawerLayout)
     DrawerLayout mDrawerLayout;
-    @BindView(R.id.ll_main_content)
+    @Bind(R.id.ll_main_content)
     LinearLayout mLlMainContent;
-    @BindView(R.id.nav_view)
+    @Bind(R.id.nav_view)
     LinearLayout mNavView;
 
     private Fragment mNewsFragment;
@@ -100,7 +101,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         switch (i) {
             case 0:
                 if (mNewsFragment == null) {
-                    mNewsFragment = new NewsFragment();
+                    mNewsFragment = new HomeFragment();
                     transaction.add(R.id.tabcontent, mNewsFragment);
                 } else {
                     transaction.show(mNewsFragment);

@@ -4,10 +4,6 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="16sp"
-        android:text="news"/>
+    <include layout="@layout/fragment_hero_free"/>
 
 </LinearLayout>

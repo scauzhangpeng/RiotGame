@@ -11,7 +11,7 @@ import android.widget.RadioGroup;
 import org.scau.riotgame.R;
 import org.scau.riotgame.base.BaseActivity;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -21,15 +21,15 @@ import butterknife.ButterKnife;
 public class HeroInfoActivity extends BaseActivity {
 
 
-    @BindView(R.id.rbtn_hero_free)
+    @Bind(R.id.rbtn_hero_free)
     RadioButton mRbtnHeroFree;
-    @BindView(R.id.rbtn_hero_owner)
+    @Bind(R.id.rbtn_hero_owner)
     RadioButton mRbtnHeroOwner;
-    @BindView(R.id.rbtn_hero_all)
+    @Bind(R.id.rbtn_hero_all)
     RadioButton mRbtnHeroAll;
-    @BindView(R.id.rg_hero)
+    @Bind(R.id.rg_hero)
     RadioGroup mRgHero;
-    @BindView(R.id.vp_hero)
+    @Bind(R.id.vp_hero)
     ViewPager mVpHero;
 
 

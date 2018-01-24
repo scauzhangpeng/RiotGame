@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:scrollbars="none">
+
+        <RadioGroup
+            android:id="@+id/rg_main_tab"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/rbtn_last"
+                style="@style/tab_indicator"
+                android:text="最新"
+                android:checked="true"/>
+
+            <RadioButton
+                android:id="@+id/rbtn_new_version"
+                style="@style/tab_indicator"
+                android:text="新版本"/>
+
+            <RadioButton
+                android:id="@+id/rbtn_hero"
+                style="@style/tab_indicator"
+                android:text="英雄圈"/>
+
+            <RadioButton
+                android:id="@+id/rbtn_video"
+                style="@style/tab_indicator"
+                android:text="视频"/>
+
+            <RadioButton
+                android:id="@+id/rbtn_match"
+                style="@style/tab_indicator"
+                android:text="赛事"/>
+
+            <RadioButton
+                android:id="@+id/rbtn_column"
+                style="@style/tab_indicator"
+                android:text="专栏"/>
+        </RadioGroup>
+    </HorizontalScrollView>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

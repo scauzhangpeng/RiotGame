@@ -1,6 +1,7 @@
 package org.scau.riotgame.http;
 
 import org.scau.riotgame.home.Club;
+import org.scau.riotgame.home.bean.PageColumnList;
 
 import retrofit2.Call;
 
@@ -30,6 +31,12 @@ public class RequestManager {
 
     public Call getClubInfo(String plat, int version, HttpCallback<Club> callback) {
         Call<Club> call = mApiService.getClubInfo(plat, version);
+        call.enqueue(callback);
+        return call;
+    }
+
+    public Call getColumnList(int page, String plat, int version, HttpCallback<PageColumnList> callback) {
+        Call<PageColumnList> call = mApiService.getColumnList(page, plat, version);
         call.enqueue(callback);
         return call;
     }

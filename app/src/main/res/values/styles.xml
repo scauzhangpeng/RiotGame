@@ -120,4 +120,24 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">53dp</item>
     </style>
+
+    <style name="tab_indicator">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginLeft">14dp</item>
+        <item name="android:layout_marginRight">14dp</item>
+        <item name="android:drawableBottom">@drawable/rbtn_page_tab_selector</item>
+        <item name="android:textColor">@color/rbtn_page_tab_color</item>
+    </style>
+
+    <style name="RecyclerView_item">
+        <item name="android:background">@android:color/white</item>
+        <item name="android:layout_marginBottom">@dimen/item_vertical_margin</item>
+        <item name="android:layout_marginTop">@dimen/item_vertical_margin</item>
+        <item name="android:layout_marginRight">@dimen/item_horizontal_margin</item>
+        <item name="android:layout_marginLeft">@dimen/item_horizontal_margin</item>
+    </style>
 </resources>

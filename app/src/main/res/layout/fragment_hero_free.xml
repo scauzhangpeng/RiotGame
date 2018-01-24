@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/refreshLayout"
+    android:background="@color/mainBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:srlEnablePreviewInEditMode="true">
@@ -15,7 +16,7 @@
         android:id="@+id/rv_hero_free"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fff"
+        android:background="@color/mainBackground"
         android:overScrollMode="never"/>
 
     <org.scau.riotgame.widget.TeemoFooter

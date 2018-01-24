@@ -7,8 +7,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.xyz.basiclib.mvp.MvpButterKnifeFragment;
+
 import org.scau.riotgame.R;
-import org.scau.riotgame.base.ButterKnifeFragment;
 import org.scau.riotgame.hero.HeroInfoActivity;
 import org.scau.riotgame.search.UserNearbyActivity;
 import org.scau.riotgame.search.UserSearchActivity;
@@ -16,7 +17,7 @@ import org.scau.riotgame.search.UserSearchActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
@@ -26,10 +27,10 @@ import butterknife.OnClick;
  * </p>
  */
 
-public class DiscoveryFragment extends ButterKnifeFragment<DiscoveryContract.View, DiscoveryContract.Presenter> implements DiscoveryContract.View {
+public class DiscoveryFragment extends MvpButterKnifeFragment<DiscoveryContract.View, DiscoveryContract.Presenter> implements DiscoveryContract.View {
 
     private static final String TAG = "DiscoveryFragment";
-    @BindView(R.id.rv_club)
+    @Bind(R.id.rv_club)
     RecyclerView mRvClub;
 
 
