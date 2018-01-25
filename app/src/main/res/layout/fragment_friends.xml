@@ -1,13 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <TextView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="16sp"
-        android:text="friends"/>
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/status_bar_height"
+        android:background="@drawable/title_bg"
+        app:navigationIcon="@drawable/nav_back_selector"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <RadioButton
+                android:checked="true"
+                android:id="@+id/rbtn_friends"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="好友"
+                android:button="@null"
+                android:textSize="18sp"
+                android:drawableBottom="@drawable/rbtn_page_tab_selector"
+                android:textColor="@color/colorMainGold"/>
+
+            <RadioButton
+                android:layout_marginLeft="20dp"
+                android:id="@+id/rbtn_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="消息"
+                android:button="@null"
+                android:textSize="18sp"
+                android:drawableBottom="@drawable/rbtn_page_tab_selector"
+                android:textColor="@color/colorMainGold"/>
+        </RadioGroup>
+    </android.support.v7.widget.Toolbar>
 
 </LinearLayout>

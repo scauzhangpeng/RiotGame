@@ -1,27 +1,64 @@
 package org.scau.riotgame.home;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+
+import com.xyz.basiclib.mvp.SimpleButterKnifeFragment;
 
 import org.scau.riotgame.R;
+
+import butterknife.Bind;
 
 /**
  * Created by ZP on 2017/7/27.
  */
 
-public class FriendsFragment extends Fragment {
+public class FriendsFragment extends SimpleButterKnifeFragment {
 
-    private View mView;
+    @Bind(R.id.rbtn_friends)
+    RadioButton mRbtnFriends;
+    @Bind(R.id.rbtn_message)
+    RadioButton mRbtnMessage;
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
 
-
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_friends, null);
-        return mView;
+    protected int getLayoutId() {
+        return R.layout.fragment_friends;
+    }
+
+    @Override
+    protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.initViewsAndEvents(inflater, container, savedInstanceState);
+        initTopBar();
+    }
+
+    private void initTopBar() {
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        mToolbar.setTitle("");
+        activity.setSupportActionBar(mToolbar);
+        setHasOptionsMenu(true);
+        mToolbar.setNavigationIcon(null);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.friends_add_friend, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_add_friedn) {
+            showToastLong("menu_add_friedn");
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
