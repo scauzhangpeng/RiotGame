@@ -20,4 +20,6 @@
 
     <color name="mainBackground">#eeeff0</color>
     <color name="mainItemBackground">@android:color/white</color>
+
+    <color name="bg_aphla">#80000000</color>
 </resources>

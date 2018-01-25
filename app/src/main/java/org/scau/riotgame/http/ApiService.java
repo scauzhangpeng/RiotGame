@@ -1,6 +1,7 @@
 package org.scau.riotgame.http;
 
 import org.scau.riotgame.home.Club;
+import org.scau.riotgame.home.bean.CardsResponse;
 import org.scau.riotgame.home.bean.GameCenterData;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.bean.PageColumnList;
@@ -36,4 +37,27 @@ public interface ApiService {
     @GET("php_cgi/lol_mobile/gamecenter/varcache_gamecenterindex.php")
     Call<GameCenterData> getGameCenterData(@Query("plat") String plat,
                                            @Query("version") int version);
+
+    /**
+     * 英雄圈
+     *
+     * @param page
+     * @param uuid
+     * @param area_id
+     * @param plat
+     * @param version
+     * @return
+     */
+    @GET("http://qt.qq.com/php_cgi/lol_mobile/hero_group/php/article_list.php")
+    Call<PageResponse<News>> getHeroGroup(@Query("page") int page,
+                                          @Query("uuid") String uuid,
+                                          @Query("area_id") int area_id,
+                                          @Query("plat") String plat,
+                                          @Query("version") int version);
+
+    @GET("http://qt.qq.com/php_cgi/lol_mobile/hero_group/php/cards.php")
+    Call<CardsResponse> getCardsData(@Query("uuid") String uuid,
+                                     @Query("area_id") int area_id,
+                                     @Query("plat") String plat,
+                                     @Query("version") int version);
 }

@@ -1,6 +1,7 @@
 package org.scau.riotgame.http;
 
 import org.scau.riotgame.home.Club;
+import org.scau.riotgame.home.bean.CardsResponse;
 import org.scau.riotgame.home.bean.GameCenterData;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.bean.PageColumnList;
@@ -52,6 +53,18 @@ public class RequestManager {
 
     public Call getGameCenterData(String plat, int version, HttpCallback<GameCenterData> callback) {
         Call<GameCenterData> call = mApiService.getGameCenterData(plat, version);
+        call.enqueue(callback);
+        return call;
+    }
+
+    public Call getHeroGroup(int page, String uuid, int area_id, String plat, int version, HttpCallback<PageResponse<News>> callback) {
+        Call<PageResponse<News>> call = mApiService.getHeroGroup(page, uuid, area_id, plat, version);
+        call.enqueue(callback);
+        return call;
+    }
+
+    public Call getCardsData(String uuid, int area_id, String plat, int version, HttpCallback<CardsResponse> callback) {
+        Call<CardsResponse> call = mApiService.getCardsData(uuid, area_id, plat, version);
         call.enqueue(callback);
         return call;
     }
