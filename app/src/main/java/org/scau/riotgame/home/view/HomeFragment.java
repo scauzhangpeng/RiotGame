@@ -5,11 +5,17 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.xyz.basiclib.mvp.SimpleButterKnifeFragment;
 
@@ -41,7 +47,10 @@ public class HomeFragment extends SimpleButterKnifeFragment implements RadioGrou
     RadioGroup mRgMainTab;
     @Bind(R.id.vp_main)
     ViewPager mVpMain;
-
+    @Bind(R.id.toolbar_title)
+    TextView mToolbarTitle;
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
     private SparseArray<Fragment> mPages;
 
     private FragmentPagerAdapter mAdapter;
@@ -90,7 +99,7 @@ public class HomeFragment extends SimpleButterKnifeFragment implements RadioGrou
     @Override
     protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.initViewsAndEvents(inflater, container, savedInstanceState);
-
+        initTopBar();
         mRgMainTab.setOnCheckedChangeListener(this);
 
         mPages = new SparseArray<>();
@@ -103,6 +112,30 @@ public class HomeFragment extends SimpleButterKnifeFragment implements RadioGrou
         mAdapter = new HeroPageAdapter(getActivity().getSupportFragmentManager(), mPages);
         mVpMain.setAdapter(mAdapter);
         mVpMain.addOnPageChangeListener(mOnPageChangeListener);
+    }
+
+    private void initTopBar() {
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        mToolbar.setTitle("");
+        activity.setSupportActionBar(mToolbar);
+        setHasOptionsMenu(true);
+        mToolbar.setNavigationIcon(null);
+        mToolbarTitle.setText("英雄联盟");
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_news_search) {
+            showToastLong("search");
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.news_search, menu);
+//        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
