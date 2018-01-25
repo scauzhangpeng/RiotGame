@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="288dp"
+              android:layout_height="208dp"
+              android:background="@android:color/white"
+              android:orientation="vertical"
+              android:paddingLeft="8dp"
+              android:paddingRight="8dp"
+              android:paddingTop="8dp"
+              style="@style/video_item">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="144dp">
+
+        <ImageView
+            android:id="@+id/iv_hot_wpv_appthumb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/golden_play_icon"/>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_hot_wpv_author"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/tv_hot_wpv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_hot_wpv_author"
+            android:layout_alignTop="@id/iv_hot_wpv_author"
+            android:layout_marginLeft="8dp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="@color/colorMainText"
+            android:textSize="14sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp"
+            android:layout_alignLeft="@id/tv_hot_wpv_title"
+            android:layout_below="@id/tv_hot_wpv_title">
+
+            <TextView
+                android:id="@+id/tv_hot_wpv_author"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorSubText"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/tv_hot_wpv_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorMainGold"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

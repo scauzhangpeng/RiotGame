@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:background="@android:color/white"
+                android:layout_width="288dp"
+                android:layout_height="82dp"
+                style="@style/video_item">
+
+    <ImageView
+        android:id="@+id/iv_hot_enter_logo"
+        android:layout_width="124dp"
+        android:layout_height="66dp"
+        android:layout_marginLeft="8dp"
+        android:scaleType="centerCrop"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/tv_hot_enter_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorMainText"
+        android:textSize="14sp"
+        android:layout_alignTop="@id/iv_hot_enter_logo"
+        android:layout_toRightOf="@id/iv_hot_enter_logo"
+        android:layout_marginLeft="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_hot_enter_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorSubText"
+        android:textSize="12sp"
+        android:layout_marginTop="2dp"
+        android:layout_alignLeft="@id/tv_hot_enter_name"
+        android:layout_below="@id/tv_hot_enter_name"/>
+
+    <TextView
+        android:id="@+id/tv_hot_enter_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorMainGold"
+        android:textSize="12sp"
+        android:layout_alignLeft="@id/tv_hot_enter_name"
+        android:layout_alignBottom="@id/iv_hot_enter_logo"/>
+
+</RelativeLayout>
