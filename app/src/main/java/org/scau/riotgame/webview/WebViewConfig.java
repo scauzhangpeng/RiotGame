@@ -9,9 +9,11 @@ import android.webkit.WebView;
 
 public class WebViewConfig {
 
-    public static void initWebView(WebView webView) {
+    public static WebSettings initWebView(WebView webView) {
         WebSettings webSettings = webView.getSettings();
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setBlockNetworkImage(true);
+        return webSettings;
     }
 }
