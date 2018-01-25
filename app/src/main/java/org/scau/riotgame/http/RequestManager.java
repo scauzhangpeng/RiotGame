@@ -1,6 +1,7 @@
 package org.scau.riotgame.http;
 
 import org.scau.riotgame.home.Club;
+import org.scau.riotgame.home.bean.GameCenterData;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.bean.PageColumnList;
 import org.scau.riotgame.home.bean.PageResponse;
@@ -45,6 +46,12 @@ public class RequestManager {
 
     public Call getColumnList(int page, String plat, int version, HttpCallback<PageColumnList> callback) {
         Call<PageColumnList> call = mApiService.getColumnList(page, plat, version);
+        call.enqueue(callback);
+        return call;
+    }
+
+    public Call getGameCenterData(String plat, int version, HttpCallback<GameCenterData> callback) {
+        Call<GameCenterData> call = mApiService.getGameCenterData(plat, version);
         call.enqueue(callback);
         return call;
     }

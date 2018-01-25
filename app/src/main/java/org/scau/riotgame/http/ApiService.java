@@ -1,6 +1,7 @@
 package org.scau.riotgame.http;
 
 import org.scau.riotgame.home.Club;
+import org.scau.riotgame.home.bean.GameCenterData;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.bean.PageColumnList;
 import org.scau.riotgame.home.bean.PageResponse;
@@ -31,4 +32,8 @@ public interface ApiService {
     Call<PageColumnList> getColumnList(@Query("page") int page,
                                        @Query("plat") String plat,
                                        @Query("version") int version);
+
+    @GET("php_cgi/lol_mobile/gamecenter/varcache_gamecenterindex.php")
+    Call<GameCenterData> getGameCenterData(@Query("plat") String plat,
+                                           @Query("version") int version);
 }
