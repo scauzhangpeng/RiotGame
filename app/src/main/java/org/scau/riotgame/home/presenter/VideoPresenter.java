@@ -22,7 +22,7 @@ public class VideoPresenter extends VideoContract.Presenter {
     @Override
     public void getHotAuthorList() {
 
-        WebManager.getInstance().getHostAuthors("android", 9738, new HttpCallback<PageVideoData>() {
+        WebManager.getInstance().getHostAuthors(9738, new HttpCallback<PageVideoData>() {
             @Override
             public void doOnSuccess(Response<PageVideoData> response) {
                 List<HotAuthor> hotRecAuthorList = response.body().getMsg().getHotRecAuthorList();

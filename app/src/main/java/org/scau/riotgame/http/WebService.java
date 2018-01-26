@@ -13,12 +13,10 @@ import retrofit2.http.Query;
 public interface WebService {
 
     @GET("web201310/js/videodata/LOL_APP_HOTREC_LIST.js")
-    Call<PageVideoData> getVideoData(@Query("plat") String plat,
-                                     @Query("version") int version);
+    Call<PageVideoData> getVideoData(@Query("version") int version);
 
     @GET("biz/hero/free.js")
-    Call<String> getFreeHeros(@Query("plat") String plat,
-                              @Query("version") int version);
+    Call<String> getFreeHeros(@Query("version") int version);
 
 
 }

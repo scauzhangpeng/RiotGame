@@ -15,7 +15,7 @@ public class DiscoveryPresenter extends DiscoveryContract.Presenter {
 
     @Override
     public void getClubs() {
-        RequestManager.getInstance().getClubInfo("android", 9718, new HttpCallback<Club>() {
+        RequestManager.getInstance().getClubInfo(9718, new HttpCallback<Club>() {
             @Override
             public void doOnSuccess(Response<Club> response) {
                 Club club = response.body();

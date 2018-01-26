@@ -26,7 +26,7 @@ public class NewsPresenter extends NewsContract.Presenter {
 
     @Override
     public void loadMoreNews() {
-        RequestManager.getInstance().getNews(12, mCurrentPage, "android", 9738, new HttpCallback<PageResponse<News>>() {
+        RequestManager.getInstance().getNews(12, mCurrentPage, 9738, new HttpCallback<PageResponse<News>>() {
             @Override
             public void doOnSuccess(Response<PageResponse<News>> response) {
                 if (response.body() != null) {
@@ -58,7 +58,7 @@ public class NewsPresenter extends NewsContract.Presenter {
 
     @Override
     public void refreshBannerNews() {
-        RequestManager.getInstance().getNews(13, 0, "android", 9738, new HttpCallback<PageResponse<News>>() {
+        RequestManager.getInstance().getNews(13, 0, 9738, new HttpCallback<PageResponse<News>>() {
             @Override
             public void doOnSuccess(Response<PageResponse<News>> response) {
                 if (response.body() != null) {

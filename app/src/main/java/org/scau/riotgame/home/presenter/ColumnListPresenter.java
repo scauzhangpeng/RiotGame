@@ -26,7 +26,7 @@ public class ColumnListPresenter extends ColumnContract.Presenter {
 
     @Override
     public void loadMoreNews() {
-        RequestManager.getInstance().getColumnList(mCurrentPage, "android", 9740, new HttpCallback<PageColumnList>() {
+        RequestManager.getInstance().getColumnList(mCurrentPage, 9740, new HttpCallback<PageColumnList>() {
             @Override
             public void doOnSuccess(Response<PageColumnList> response) {
                 if (response.body() != null) {

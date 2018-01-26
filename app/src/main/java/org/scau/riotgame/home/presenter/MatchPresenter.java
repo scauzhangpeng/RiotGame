@@ -21,7 +21,7 @@ public class MatchPresenter extends MatchContract.Presenter {
 
     @Override
     public void gameCenterData() {
-        RequestManager.getInstance().getGameCenterData("android", 9738, new HttpCallback<GameCenterData>() {
+        RequestManager.getInstance().getGameCenterData(9738, new HttpCallback<GameCenterData>() {
             @Override
             public void doOnSuccess(Response<GameCenterData> response) {
                 List<Feature> normal_features = response.body().getNormal_features();
@@ -56,7 +56,7 @@ public class MatchPresenter extends MatchContract.Presenter {
 
     @Override
     public void loadMoreNews() {
-        RequestManager.getInstance().getNews(73, mCurrentPage, "android", 9738, new HttpCallback<PageResponse<News>>() {
+        RequestManager.getInstance().getNews(73, mCurrentPage, 9738, new HttpCallback<PageResponse<News>>() {
             @Override
             public void doOnSuccess(Response<PageResponse<News>> response) {
                 if (response.body() != null) {

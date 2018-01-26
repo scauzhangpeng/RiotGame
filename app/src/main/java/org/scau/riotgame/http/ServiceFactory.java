@@ -46,6 +46,7 @@ public class ServiceFactory {
                 .cache(cache)
                 .addInterceptor(new CacheInterceptor())
                 .addInterceptor(loggingInterceptor)
+                .addInterceptor(new QueryParameterInterceptor())
                 //.addInterceptor(new LoggingInterceptor())
 //                .addNetworkInterceptor(new StethoInterceptor())
 //                .addInterceptor(new CommonInterceptor())

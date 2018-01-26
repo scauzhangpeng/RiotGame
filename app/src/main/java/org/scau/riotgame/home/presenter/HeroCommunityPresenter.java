@@ -27,7 +27,7 @@ public class HeroCommunityPresenter extends HeroCommunityContract.Presenter {
 
     @Override
     public void loadMoreNews() {
-        RequestManager.getInstance().getHeroGroup(mCurrentPage, "0c8a808f-61bd-4312-a9cc-a7a179b968a1", 7, "android", 9740, new HttpCallback<PageResponse<News>>() {
+        RequestManager.getInstance().getHeroGroup(mCurrentPage, "0c8a808f-61bd-4312-a9cc-a7a179b968a1", 7, 9740, new HttpCallback<PageResponse<News>>() {
             @Override
             public void doOnSuccess(Response<PageResponse<News>> response) {
                 if (response.body() != null) {
@@ -59,7 +59,7 @@ public class HeroCommunityPresenter extends HeroCommunityContract.Presenter {
 
     @Override
     public void refreshCardsData() {
-        RequestManager.getInstance().getCardsData("0c8a808f-61bd-4312-a9cc-a7a179b968a1", 7, "android", 9740, new HttpCallback<CardsResponse>() {
+        RequestManager.getInstance().getCardsData("0c8a808f-61bd-4312-a9cc-a7a179b968a1", 7, 9740, new HttpCallback<CardsResponse>() {
             @Override
             public void doOnSuccess(Response<CardsResponse> response) {
                 if (response.body() != null) {

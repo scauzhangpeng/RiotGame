@@ -28,14 +28,14 @@ public class WebManager {
         return mInstance;
     }
 
-    public Call getHostAuthors(String plat, int version, HttpCallback<PageVideoData> callback) {
-        Call<PageVideoData> call = mWebService.getVideoData(plat, version);
+    public Call getHostAuthors(int version, HttpCallback<PageVideoData> callback) {
+        Call<PageVideoData> call = mWebService.getVideoData(version);
         call.enqueue(callback);
         return call;
     }
 
-    public Call getFreeHeros(String plat, int version, HttpCallback<String> callback) {
-        Call<String> call = mWebService.getFreeHeros(plat, version);
+    public Call getFreeHeros(int version, HttpCallback<String> callback) {
+        Call<String> call = mWebService.getFreeHeros(version);
         call.enqueue(callback);
         return call;
     }

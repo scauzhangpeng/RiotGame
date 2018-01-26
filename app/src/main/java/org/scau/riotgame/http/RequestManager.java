@@ -32,39 +32,39 @@ public class RequestManager {
         return mInstance;
     }
 
-    public Call getNews(int id, int page, String plat, int version, HttpCallback<PageResponse<News>> callback) {
-        Call<PageResponse<News>> call = mApiService.getNews(id, page, plat, version);
+    public Call getNews(int id, int page, int version, HttpCallback<PageResponse<News>> callback) {
+        Call<PageResponse<News>> call = mApiService.getNews(id, page, version);
         call.enqueue(callback);
         return call;
     }
 
 
-    public Call getClubInfo(String plat, int version, HttpCallback<Club> callback) {
-        Call<Club> call = mApiService.getClubInfo(plat, version);
+    public Call getClubInfo(int version, HttpCallback<Club> callback) {
+        Call<Club> call = mApiService.getClubInfo(version);
         call.enqueue(callback);
         return call;
     }
 
-    public Call getColumnList(int page, String plat, int version, HttpCallback<PageColumnList> callback) {
-        Call<PageColumnList> call = mApiService.getColumnList(page, plat, version);
+    public Call getColumnList(int page, int version, HttpCallback<PageColumnList> callback) {
+        Call<PageColumnList> call = mApiService.getColumnList(page, version);
         call.enqueue(callback);
         return call;
     }
 
-    public Call getGameCenterData(String plat, int version, HttpCallback<GameCenterData> callback) {
-        Call<GameCenterData> call = mApiService.getGameCenterData(plat, version);
+    public Call getGameCenterData(int version, HttpCallback<GameCenterData> callback) {
+        Call<GameCenterData> call = mApiService.getGameCenterData(version);
         call.enqueue(callback);
         return call;
     }
 
-    public Call getHeroGroup(int page, String uuid, int area_id, String plat, int version, HttpCallback<PageResponse<News>> callback) {
-        Call<PageResponse<News>> call = mApiService.getHeroGroup(page, uuid, area_id, plat, version);
+    public Call getHeroGroup(int page, String uuid, int area_id, int version, HttpCallback<PageResponse<News>> callback) {
+        Call<PageResponse<News>> call = mApiService.getHeroGroup(page, uuid, area_id, version);
         call.enqueue(callback);
         return call;
     }
 
-    public Call getCardsData(String uuid, int area_id, String plat, int version, HttpCallback<CardsResponse> callback) {
-        Call<CardsResponse> call = mApiService.getCardsData(uuid, area_id, plat, version);
+    public Call getCardsData(String uuid, int area_id, int version, HttpCallback<CardsResponse> callback) {
+        Call<CardsResponse> call = mApiService.getCardsData(uuid, area_id, version);
         call.enqueue(callback);
         return call;
     }
