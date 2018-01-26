@@ -1,0 +1,32 @@
+ext {
+    var = [
+            compileSdkVersion: 25,
+            buildToolsVersion: "26.0.2",
+
+            minSdkVersion    : 15,
+            targetSdkVersion : 22,
+    ]
+
+    SupportVerison = "25.3.1"
+    RetrofitVersion = "2.3.0"
+    GlideVerison = "4.0.0"
+
+    lib = [
+            SupportV4            : "com.android.support:support-v4:$SupportVerison",
+            SupportV7            : "com.android.support:appcompat-v7:$SupportVerison",
+            RecyclerViewV7       : "com.android.support:recyclerview-v7:$SupportVerison",
+            //下拉刷新库，必须依赖V7包
+            SmartRefreshLayout   : "com.scwang.smartrefresh:SmartRefreshLayout:1.0.3",
+            //网络库Retrofit
+            Retrofit             : "com.squareup.retrofit2:retrofit:$RetrofitVersion",
+            RetrofitConverterGson: "com.squareup.retrofit2:converter-gson:$RetrofitVersion",
+            //OkHttp日志库，建议仅仅Debug开启
+            OkHttpLogging        : "com.squareup.okhttp3:logging-interceptor:3.8.0",
+            //图片加载库
+            Glide                : "com.github.bumptech.glide:glide:$GlideVerison",
+            //图片加载库的注解，必须，使用annotationProcessor
+            GlideCompiler        : "com.github.bumptech.glide:compiler:$GlideVerison",
+            //Banner库
+            Banner               : "com.youth.banner:banner:1.4.9"
+    ]
+}

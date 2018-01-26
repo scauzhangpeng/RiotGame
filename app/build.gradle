@@ -2,18 +2,25 @@ apply plugin: 'com.android.application'
 //apply plugin: 'com.jakewharton.butterknife'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "26.0.0"
+    compileSdkVersion var.compileSdkVersion
+    buildToolsVersion var.buildToolsVersion
     defaultConfig {
         applicationId "org.scau.riotgame"
-        minSdkVersion 15
-        targetSdkVersion 22
+        minSdkVersion var.minSdkVersion
+        targetSdkVersion var.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
+            // 不显示Log
+            buildConfigField "boolean", "LEO_DEBUG", "false"
+            //是否zip对齐
+            zipAlignEnabled true
+            // 缩减resource文件
+            shrinkResources true
+            //Proguard
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -27,16 +34,18 @@ dependencies {
     })
 
     testCompile 'junit:junit:4.12'
-    compile 'com.github.bumptech.glide:glide:4.0.0'
-    compile 'com.android.support:support-v4:25.3.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
-
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+    //
+    compile lib.Glide
+    annotationProcessor lib.GlideCompiler
+    //
+    compile lib.SupportV4
+    //
+    compile lib.Retrofit
+    compile lib.RetrofitConverterGson
+    debugCompile lib.OkHttpLogging
     compile project(':riot_common')
 
-    compile 'com.youth.banner:banner:1.4.9'
+    compile lib.Banner
 
 //    compile 'com.jakewharton:butterknife:8.8.1'
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
