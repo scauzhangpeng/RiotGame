@@ -1,5 +1,6 @@
 package org.scau.riotgame.http;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.gson.JsonSyntaxException;
@@ -25,7 +26,7 @@ public abstract class HttpCallback<T> implements Callback<T> {
 
 
     @Override
-    public void onResponse(Call<T> call, Response<T> response) {
+    public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
         if (response.code() == 200) {//http响应成功
             if (response.body() != null) {
                 doOnSuccess(response);

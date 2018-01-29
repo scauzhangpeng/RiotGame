@@ -1,5 +1,6 @@
 package org.scau.riotgame.setting;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.TextView;
@@ -21,6 +22,8 @@ import butterknife.OnClick;
  */
 
 public class AboutRiotGameActivity extends BaseActivity {
+
+    private static final String TAG = "AboutRiotGameActivity";
 
     @Bind(R.id.tv_version_info)
     TextView mTvVersionInfo;
@@ -44,6 +47,7 @@ public class AboutRiotGameActivity extends BaseActivity {
 
     @OnClick(R.id.btn_update_version)
     public void updateVersion() {
-
+        Intent intent = new Intent(this, DownloadService.class);
+        startService(intent);
     }
 }

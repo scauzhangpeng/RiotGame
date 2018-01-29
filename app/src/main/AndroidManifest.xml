@@ -70,6 +70,8 @@
         <activity android:name=".webview.WebViewActivity"/>
         <activity android:name=".home.MainActivity"/>
 
+        <service android:name=".setting.DownloadService"/>
+
 
         <activity
             android:name="com.tencent.tauth.AuthActivity"

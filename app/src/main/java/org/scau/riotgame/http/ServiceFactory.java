@@ -34,6 +34,15 @@ public class ServiceFactory {
         return retrofit.create(serviceClass);
     }
 
+    public static <T> T createServiceFrom(Class<T> serviceClass, String endpoint, OkHttpClient okHttpClient) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(endpoint)
+                .addConverterFactory(GsonConverterFactory.create())
+                //.addConverterFactory(ScalarsConverterFactory.create())
+                .client(okHttpClient)
+                .build();
+        return retrofit.create(serviceClass);
+    }
 
     public static OkHttpClient getLogClient() {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
@@ -53,6 +62,16 @@ public class ServiceFactory {
                 .readTimeout(45, TimeUnit.SECONDS)
                 .writeTimeout(45, TimeUnit.SECONDS)
                 .connectTimeout(10, TimeUnit.SECONDS)
+                .build();
+
+        return okHttpClient;
+    }
+
+    public static OkHttpClient getDownloadClient() {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(20, TimeUnit.SECONDS)
                 .build();
 
         return okHttpClient;
