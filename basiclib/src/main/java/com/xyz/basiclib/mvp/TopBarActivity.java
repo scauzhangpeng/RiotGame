@@ -3,7 +3,7 @@ package com.xyz.basiclib.mvp;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +15,7 @@ import com.xyz.basiclib.R;
  * Created by ZP on 2018/1/25.
  */
 
-public abstract class TopBarActivity extends AppCompatActivity {
+public abstract class TopBarActivity extends MvpButterKnifeActivity {
 
     /**
      * 顶部布局
@@ -33,9 +33,10 @@ public abstract class TopBarActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate: TopBarActivity");
         super.onCreate(savedInstanceState);
         initRootView(R.layout.activity_base_topbar);
-        setContentView(getLayoutId());
+        setContentView(getTopBarContentId());
         initTopBar(mTopView);
         initViewsAndEvents(savedInstanceState);
     }
@@ -64,9 +65,12 @@ public abstract class TopBarActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected int getLayoutId() {
+        return 0;
+    }
+
     protected abstract View getTopBarView();
 
-    protected abstract int getLayoutId();
-
-    protected abstract void initViewsAndEvents(Bundle savedInstanceState);
+    protected abstract int getTopBarContentId();
 }

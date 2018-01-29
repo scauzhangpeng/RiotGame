@@ -21,13 +21,16 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     private TextView mTvTitle;
     private ImageView mIvLeft;
     private Toolbar mToolbar;
+    protected final String TAG = this.getClass().getSimpleName();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
+        if (getLayoutId() != 0) {
+            setContentView(getLayoutId());
+            initViewsAndEvents(savedInstanceState);
+        }
 //        ButterKnife.bind(this);
-        initViewsAndEvents(savedInstanceState);
     }
 
     @Override

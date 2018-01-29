@@ -6,20 +6,35 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.xyz.basiclib.mvp.BasePresenter;
+import com.xyz.riotcommon.SimpleTopBarActivity;
+
 import org.scau.riotgame.R;
-import org.scau.riotgame.base.BaseActivity;
 
 /**
  * Created by ZP on 2017/8/3.
  */
 
-public class FavoriteActivity extends BaseActivity {
+public class FavoriteActivity extends SimpleTopBarActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favorite);
-        initTopBar(this);
+    }
+
+    @Override
+    protected BasePresenter initPresenter() {
+        return null;
+    }
+
+    @Override
+    protected void initViewsAndEvents(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected int getTopBarContentId() {
+        return R.layout.activity_favorite;
     }
 
     @Override
