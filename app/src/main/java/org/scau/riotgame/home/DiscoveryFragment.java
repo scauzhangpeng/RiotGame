@@ -1,5 +1,6 @@
 package org.scau.riotgame.home;
 
+import android.Manifest;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -67,8 +68,9 @@ public class DiscoveryFragment extends MvpButterKnifeFragment<DiscoveryContract.
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_news_search) {
-            showToastLong("search");
+        if (item.getItemId() == R.id.menu_bar_code) {
+            showToastLong("scan");
+            checkPermission(Manifest.permission.CAMERA);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -76,7 +78,7 @@ public class DiscoveryFragment extends MvpButterKnifeFragment<DiscoveryContract.
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        inflater.inflate(R.menu.news_search, menu);
+        inflater.inflate(R.menu.discovery_barcode, menu);
 //        super.onCreateOptionsMenu(menu, inflater);
     }
 

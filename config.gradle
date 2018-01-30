@@ -27,6 +27,8 @@ ext {
             //图片加载库的注解，必须，使用annotationProcessor
             GlideCompiler        : "com.github.bumptech.glide:compiler:$GlideVerison",
             //Banner库
-            Banner               : "com.youth.banner:banner:1.4.9"
+            Banner               : "com.youth.banner:banner:1.4.9",
+            //运行时权限
+            Permission           : "com.yanzhenjie:permission:2.0.0-alpha"
     ]
 }

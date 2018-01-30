@@ -16,6 +16,8 @@
 
     <uses-permission android:name="android.permission.GET_TASKS"/>
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:name=".RiotGameApplication"
         android:allowBackup="true"
@@ -67,6 +69,9 @@
         <activity
             android:name=".mall.UserOrderActivity"
             android:label="我的订单"/>
+        <activity
+            android:name=".wallpaper.WallPaperActivity"
+            android:label="壁纸" />
         <activity android:name=".webview.WebViewActivity"/>
         <activity android:name=".home.MainActivity"/>
 

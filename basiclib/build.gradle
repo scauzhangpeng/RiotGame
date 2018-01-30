@@ -13,6 +13,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            // 显式声明支持注解
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
 
     }
     buildTypes {
@@ -38,4 +44,5 @@ dependencies {
     //下拉刷新
     compile lib.SmartRefreshLayout
     compile lib.SupportV7
+    compile lib.Permission
 }

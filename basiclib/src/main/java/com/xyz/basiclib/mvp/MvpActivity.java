@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
  * Created by ZP on 2017/8/15.
  */
 
-public abstract class MvpActivity<V, P extends BasePresenter<V>> extends BaseActivity {
+public abstract class MvpActivity<V, P extends BasePresenter<V>> extends CheckPermissionActivity {
 
     protected P mPresenter;
 

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 
 /**
  * Created by ZP on 2018/1/30.
@@ -20,6 +21,8 @@ import android.view.WindowManager;
 public class DefaultDialog extends Dialog {
     private static final String TAG = "DefaultDialog";
     private Context context;
+    private Button mBtnCancel;
+    private Button mBtnOk;
 
     public DefaultDialog(@NonNull Context context) {
         super(context, R.style.DefaultDialog);
@@ -41,6 +44,8 @@ public class DefaultDialog extends Dialog {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: ");
         View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_default, null);
+        mBtnOk = (Button) dialogView.findViewById(R.id.btn_ok);
+        mBtnCancel = (Button) dialogView.findViewById(R.id.btn_cancel);
         setContentView(dialogView);
 
         Window win = getWindow();
@@ -64,5 +69,13 @@ public class DefaultDialog extends Dialog {
     protected void onStop() {
         super.onStop();
         Log.d(TAG, "onStop: ");
+    }
+
+    public void setCancelListener(View.OnClickListener listener) {
+        mBtnCancel.setOnClickListener(listener);
+    }
+
+    public void setOkListener(View.OnClickListener listener) {
+        mBtnOk.setOnClickListener(listener);
     }
 }
