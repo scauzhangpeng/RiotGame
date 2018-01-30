@@ -7,16 +7,19 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
+import com.google.gson.Gson;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
+import com.xyz.basiclib.SPUtil;
 
 import org.json.JSONObject;
 import org.scau.riotgame.R;
 import org.scau.riotgame.base.BaseActivity;
 import org.scau.riotgame.home.MainActivity;
+import org.scau.riotgame.home.bean.QQLogin;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -122,6 +125,9 @@ public class LoginActivity extends BaseActivity {
                 @Override
                 public void onComplete(Object response) {
                     System.out.println("resp2:" + response.toString());
+                    Gson gson = new Gson();
+                    QQLogin qqLogin = gson.fromJson(response.toString(), QQLogin.class);
+                    SPUtil.getInstance(LoginActivity.this).put("figureurl_qq_2", qqLogin.getFigureurl_qq_2());
                     openActivity(MainActivity.class);
                 }
 

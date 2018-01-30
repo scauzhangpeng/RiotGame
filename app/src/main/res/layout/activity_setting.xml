@@ -6,7 +6,7 @@
               xmlns:nt_view="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical">
 
-    <include layout="@layout/activity_toolbar"/>
+    <include layout="@layout/toolbar_default"/>
 
     <org.scau.riotgame.widget.SettingItemView
         android:id="@+id/stv_bind_area"

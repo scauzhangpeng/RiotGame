@@ -34,18 +34,18 @@ dependencies {
     })
 
     testCompile 'junit:junit:4.12'
-    //
+    //图片加载
     compile lib.Glide
     annotationProcessor lib.GlideCompiler
-    //
+    //V4库
     compile lib.SupportV4
-    //
+    //网络库
     compile lib.Retrofit
     compile lib.RetrofitConverterGson
     debugCompile lib.OkHttpLogging
-    compile project(':riot_common')
-
+    //轮播图
     compile lib.Banner
+    compile project(':riot_common')
 
 //    compile 'com.jakewharton:butterknife:8.8.1'
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'

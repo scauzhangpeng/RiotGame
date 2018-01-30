@@ -23,7 +23,7 @@ public abstract class SimpleTopBarActivity extends TopBarActivity {
 
     @Override
     protected View getTopBarView() {
-        return TopBarFactory.getDefaultTopBar(this, R.layout.activity_toolbar);
+        return TopBarFactory.getDefaultTopBar(this, R.layout.toolbar_default);
     }
 
     protected Toolbar initDefaultTopBar(View topView) {

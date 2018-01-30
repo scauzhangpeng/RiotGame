@@ -8,12 +8,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import com.xyz.basiclib.SPUtil;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.base.BaseActivity;
@@ -21,6 +25,7 @@ import org.scau.riotgame.favorite.FavoriteActivity;
 import org.scau.riotgame.home.view.HomeFragment;
 import org.scau.riotgame.mall.UserOrderActivity;
 import org.scau.riotgame.setting.SettingActivity;
+import org.scau.riotgame.utils.ImageLoadUtil;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -48,6 +53,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     LinearLayout mLlMainContent;
     @Bind(R.id.nav_view)
     LinearLayout mNavView;
+    @Bind(R.id.iv_header)
+    ImageView mIvHeader;
 
     private Fragment mNewsFragment;
     private Fragment mFriendsFragment;
@@ -65,6 +72,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
     private void initViewsAndEvent() {
+        initHeader();
         mRgMain.setOnCheckedChangeListener(this);
         mDrawerLayout.setScrimColor(Color.TRANSPARENT);
         mDrawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
@@ -92,6 +100,16 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             }
         });
         SetSelect(0);
+    }
+
+    private void initHeader() {
+        ImageLoadUtil.loadCircleImage(this, SPUtil.getInstance(this).getString("figureurl_qq_2", ""), mIvHeader);
+        mIvHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawerLayout.openDrawer(Gravity.LEFT | Gravity.START);
+            }
+        });
     }
 
     private void SetSelect(int i) {

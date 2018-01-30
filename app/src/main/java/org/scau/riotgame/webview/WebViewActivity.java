@@ -1,11 +1,14 @@
 package org.scau.riotgame.webview;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -101,13 +104,29 @@ public class WebViewActivity extends AppCompatActivity {
             }
             super.onPageFinished(view, url);
         }
+
+        @Override
+        public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+            Log.d(TAG, "shouldInterceptRequest: " + url);
+//            WebResourceResponse response = new WebResourceResponse("image/png","UTF-8", )
+            return super.shouldInterceptRequest(view, url);
+        }
+
+        @Override
+        public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                Log.d(TAG, "shouldInterceptRequest: " + request.getUrl());
+//                Log.d(TAG, "shouldInterceptRequest: " + request.toString());
+            }
+            return super.shouldInterceptRequest(view, request);
+        }
     };
 
     private WebChromeClient mWebChromeClient = new WebChromeClient() {
         @Override
         public void onProgressChanged(WebView view, final int newProgress) {
             super.onProgressChanged(view, newProgress);
-            Log.d(TAG, "onProgressChanged: " + newProgress);
+//            Log.d(TAG, "onProgressChanged: " + newProgress);
         }
     };
 }
