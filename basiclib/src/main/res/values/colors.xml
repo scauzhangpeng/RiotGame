@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="defaulDialog_cancel_normal">@android:color/white</color>
+    <color name="defaulDialog_cancel_press">#c9c9c9</color>
+    <color name="defaulDialog_confirm_normal">#d3bf8d</color>
+    <color name="defaulDialog_confirm_press">#A99971</color>
+    <color name="defaulDialog_content_text">#222222</color>
 </resources>
