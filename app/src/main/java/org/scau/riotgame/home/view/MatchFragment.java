@@ -96,10 +96,10 @@ public class MatchFragment extends MvpButterKnifeFragment<MatchContract.View, Ma
         mTvMenu1.setText(features.get(1).getName());
         mTvMenu2.setText(features.get(2).getName());
         mTvMenu3.setText(features.get(3).getName());
-        ImageLoadUtil.loadImage(getActivity(), features.get(0).getIconUrl(), mIvMenu0);
-        ImageLoadUtil.loadImage(getActivity(), features.get(1).getIconUrl(), mIvMenu1);
-        ImageLoadUtil.loadImage(getActivity(), features.get(2).getIconUrl(), mIvMenu2);
-        ImageLoadUtil.loadImage(getActivity(), features.get(3).getIconUrl(), mIvMenu3);
+        ImageLoadUtil.loadImage(getActivity(), features.get(0).getIconUrl(), R.drawable.default_lol_ex, mIvMenu0);
+        ImageLoadUtil.loadImage(getActivity(), features.get(1).getIconUrl(), R.drawable.default_lol_ex, mIvMenu1);
+        ImageLoadUtil.loadImage(getActivity(), features.get(2).getIconUrl(), R.drawable.default_lol_ex, mIvMenu2);
+        ImageLoadUtil.loadImage(getActivity(), features.get(3).getIconUrl(), R.drawable.default_lol_ex, mIvMenu3);
     }
 
     @Override
@@ -152,7 +152,7 @@ public class MatchFragment extends MvpButterKnifeFragment<MatchContract.View, Ma
                     holder.setImagePath(R.id.iv_article, new AbstractImageLoader(news.getImage_url_small()) {
                         @Override
                         public void loadImage(ImageView imageView, String path) {
-                            ImageLoadUtil.loadImage(getActivity(), path, imageView);
+                            ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                         }
                     });
 
@@ -175,14 +175,14 @@ public class MatchFragment extends MvpButterKnifeFragment<MatchContract.View, Ma
                     holder.setImagePath(R.id.iv_article, new AbstractImageLoader(news.getImage_url_small()) {
                         @Override
                         public void loadImage(ImageView imageView, String path) {
-                            ImageLoadUtil.loadImage(getActivity(), path, imageView);
+                            ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                         }
                     });
 
                     holder.setImagePath(R.id.iv_logo_teama, new AbstractImageLoader(news.getTeama_logo()) {
                         @Override
                         public void loadImage(ImageView imageView, String path) {
-                            ImageLoadUtil.loadImage(getActivity(), path, imageView);
+                            ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                         }
                     });
                     holder.setText(R.id.tv_name_teama, news.getTeama_name());
@@ -190,7 +190,7 @@ public class MatchFragment extends MvpButterKnifeFragment<MatchContract.View, Ma
                     holder.setImagePath(R.id.iv_logo_teamb, new AbstractImageLoader(news.getTeamb_logo()) {
                         @Override
                         public void loadImage(ImageView imageView, String path) {
-                            ImageLoadUtil.loadImage(getActivity(), path, imageView);
+                            ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                         }
                     });
                     holder.setText(R.id.tv_name_teamb, news.getTeamb_name());
@@ -206,7 +206,7 @@ public class MatchFragment extends MvpButterKnifeFragment<MatchContract.View, Ma
         mBanner.setImageLoader(new ImageLoader() {
             @Override
             public void displayImage(Context context, Object path, ImageView imageView) {
-                ImageLoadUtil.loadImage(context, path.toString(), imageView);
+                ImageLoadUtil.loadImage(context, path.toString(), R.drawable.default_lol_ex, imageView);
             }
         });
         images = new ArrayList<>();

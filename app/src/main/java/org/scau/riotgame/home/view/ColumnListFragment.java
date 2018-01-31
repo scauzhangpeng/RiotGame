@@ -77,7 +77,7 @@ public class ColumnListFragment extends MvpButterKnifeFragment<ColumnContract.Vi
                 holder.setImagePath(R.id.iv_col_logo, new AbstractImageLoader(columnList.getLogo()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
-                        ImageLoadUtil.loadCircleImage(getActivity(), path, imageView);
+                        ImageLoadUtil.loadCircleImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                     }
                 });
                 if (columnList.getCol_from() != null && !TextUtils.isEmpty(columnList.getCol_from())) {

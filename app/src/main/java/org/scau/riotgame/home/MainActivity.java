@@ -103,7 +103,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
     private void initHeader() {
-        ImageLoadUtil.loadCircleImage(this, SPUtil.getInstance(this).getString("figureurl_qq_2", ""), mIvHeader);
+        ImageLoadUtil.loadCircleImage(this, SPUtil.getInstance(this).getString("figureurl_qq_2", ""), R.drawable.default_lol_ex, mIvHeader);
         mIvHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

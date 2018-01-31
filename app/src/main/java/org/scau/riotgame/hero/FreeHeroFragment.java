@@ -63,7 +63,7 @@ public class FreeHeroFragment extends MvpButterKnifeFragment<HeroContract.FreeVi
                 holder.setText(R.id.tv_rate, hero.getRate() + "");
                 holder.setText(R.id.tv_tag, hero.getTag());
                 ImageView imageView = (ImageView) holder.getView(R.id.iv_header);
-                ImageLoadUtil.loadCircleImage(getActivity(), hero.getUrl(), imageView);
+                ImageLoadUtil.loadCircleImage(getActivity(), hero.getUrl(), R.drawable.default_lol_ex, imageView);
             }
         };
         mRvHeroFree.setAdapter(mAdapter);

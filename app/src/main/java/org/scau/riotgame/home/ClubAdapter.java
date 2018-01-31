@@ -33,7 +33,7 @@ public class ClubAdapter extends CommAdapter<Club.ClubsBean, ClubAdapter.ClubVie
     @Override
     public void onBindViewHolder(final ClubViewHolder holder, int position) {
         Club.ClubsBean club = mList.get(position);
-        ImageLoadUtil.loadCircleImage(mContext, club.getIconUrl(), holder.mImageView);
+        ImageLoadUtil.loadCircleImage(mContext, club.getIconUrl(), R.drawable.default_lol_ex, holder.mImageView);
         holder.mTextView.setText(club.getName());
         holder.itemView.setTag(position);
     }

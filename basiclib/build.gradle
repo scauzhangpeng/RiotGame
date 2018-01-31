@@ -44,5 +44,9 @@ dependencies {
     //下拉刷新
     compile lib.SmartRefreshLayout
     compile lib.SupportV7
+    //运行时权限
     compile lib.Permission
+    //图片加载
+    compile lib.Glide
+    annotationProcessor lib.GlideCompiler
 }

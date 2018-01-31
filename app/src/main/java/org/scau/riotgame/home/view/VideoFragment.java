@@ -107,7 +107,7 @@ public class VideoFragment extends MvpButterKnifeFragment<VideoContract.View, Vi
         mTvHotMatchTopTitle.setText(hotMatch.getTitle());
         mTvHotMatchTopAuthor.setText(hotMatch.getAuthor());
         mTvHotMatchTopPlay.setText(hotMatch.getPlay());
-        ImageLoadUtil.loadImage(getActivity(), hotMatch.getAppthumb(), mIvHotMatchTopThumb);
+        ImageLoadUtil.loadImage(getActivity(), hotMatch.getAppthumb(), R.drawable.default_lol_ex, mIvHotMatchTopThumb);
     }
 
     @Override
@@ -134,7 +134,7 @@ public class VideoFragment extends MvpButterKnifeFragment<VideoContract.View, Vi
                 holder.setImagePath(R.id.iv_hot_author, new AbstractImageLoader(hotAuthor.getSIMG()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
-                        ImageLoadUtil.loadCircleImage(getActivity(), path, imageView);
+                        ImageLoadUtil.loadCircleImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                     }
                 });
             }
@@ -155,14 +155,14 @@ public class VideoFragment extends MvpButterKnifeFragment<VideoContract.View, Vi
                 holder.setImagePath(R.id.iv_hot_wpv_appthumb, new AbstractImageLoader(hotWpv.getAppthumb()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
-                        ImageLoadUtil.loadImage(getActivity(), path, imageView);
+                        ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                     }
                 });
 
                 holder.setImagePath(R.id.iv_hot_wpv_author, new AbstractImageLoader(hotWpv.getAuthorImg()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
-                        ImageLoadUtil.loadCircleImage(getActivity(), path, imageView);
+                        ImageLoadUtil.loadCircleImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                     }
                 });
             }
@@ -183,7 +183,7 @@ public class VideoFragment extends MvpButterKnifeFragment<VideoContract.View, Vi
                 holder.setImagePath(R.id.iv_hot_enter_logo, new AbstractImageLoader(hotEnter.getSIMG()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
-                        ImageLoadUtil.loadImage(getActivity(), path, imageView);
+                        ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                     }
                 });
 
@@ -204,7 +204,7 @@ public class VideoFragment extends MvpButterKnifeFragment<VideoContract.View, Vi
                 holder.setImagePath(R.id.iv_hot_match_thumb, new AbstractImageLoader(hotMatch.getThumb()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
-                        ImageLoadUtil.loadImage(getActivity(), path, imageView);
+                        ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                     }
                 });
 

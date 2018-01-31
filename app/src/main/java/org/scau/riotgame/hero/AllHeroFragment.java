@@ -61,7 +61,7 @@ public class AllHeroFragment extends MvpButterKnifeFragment<HeroContract.View, H
                             .setImagePath(R.id.iv_header, new AbstractImageLoader(hero.getUrl()) {
                                 @Override
                                 public void loadImage(ImageView imageView, String path) {
-                                    ImageLoadUtil.loadCircleImage(getContext(), path, imageView);
+                                    ImageLoadUtil.loadCircleImage(getContext(), path, R.drawable.default_lol_ex, imageView);
                                 }
                             })
                             .setText(R.id.tv_hero_nickname, hero.getNickName());

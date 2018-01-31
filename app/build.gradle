@@ -34,9 +34,6 @@ dependencies {
     })
 
     testCompile 'junit:junit:4.12'
-    //图片加载
-    compile lib.Glide
-    annotationProcessor lib.GlideCompiler
     //V4库
     compile lib.SupportV4
     //网络库

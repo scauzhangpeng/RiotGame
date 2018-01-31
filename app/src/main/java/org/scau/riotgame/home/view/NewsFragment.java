@@ -102,7 +102,7 @@ public class NewsFragment extends MvpButterKnifeFragment<NewsContract.View, News
         mBanner.setImageLoader(new ImageLoader() {
             @Override
             public void displayImage(Context context, Object path, ImageView imageView) {
-                ImageLoadUtil.loadImage(context, path.toString(), imageView);
+                ImageLoadUtil.loadImage(context, path.toString(), R.drawable.default_lol_ex, imageView);
             }
         });
         mBanner.start();
@@ -137,7 +137,7 @@ public class NewsFragment extends MvpButterKnifeFragment<NewsContract.View, News
                     holder.setImagePath(R.id.iv_article, new AbstractImageLoader(news.getImage_url_small()) {
                         @Override
                         public void loadImage(ImageView imageView, String path) {
-                            ImageLoadUtil.loadImage(getActivity(), path, imageView);
+                            ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                         }
                     });
 
@@ -161,21 +161,21 @@ public class NewsFragment extends MvpButterKnifeFragment<NewsContract.View, News
                     holder.setImagePath(R.id.iv_article_big, new AbstractImageLoader(news.getBig_image_url()) {
                         @Override
                         public void loadImage(ImageView imageView, String path) {
-                            ImageLoadUtil.loadImage(getActivity(), path, imageView);
+                            ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                         }
                     });
 
                     holder.setImagePath(R.id.iv_article_small, new AbstractImageLoader(news.getSmall_image_url()) {
                         @Override
                         public void loadImage(ImageView imageView, String path) {
-                            ImageLoadUtil.loadImage(getActivity(), path, imageView);
+                            ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                         }
                     });
 
                     holder.setImagePath(R.id.iv_article_count, new AbstractImageLoader(news.getCount_image_url()) {
                         @Override
                         public void loadImage(ImageView imageView, String path) {
-                            ImageLoadUtil.loadImage(getActivity(), path, imageView);
+                            ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                         }
                     });
                 }
@@ -192,14 +192,14 @@ public class NewsFragment extends MvpButterKnifeFragment<NewsContract.View, News
                     holder.setImagePath(R.id.iv_article, new AbstractImageLoader(news.getImage_url_small()) {
                         @Override
                         public void loadImage(ImageView imageView, String path) {
-                            ImageLoadUtil.loadImage(getActivity(), path, imageView);
+                            ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                         }
                     });
 
                     holder.setImagePath(R.id.iv_logo_teama, new AbstractImageLoader(news.getTeama_logo()) {
                         @Override
                         public void loadImage(ImageView imageView, String path) {
-                            ImageLoadUtil.loadImage(getActivity(), path, imageView);
+                            ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                         }
                     });
                     holder.setText(R.id.tv_name_teama, news.getTeama_name());
@@ -207,7 +207,7 @@ public class NewsFragment extends MvpButterKnifeFragment<NewsContract.View, News
                     holder.setImagePath(R.id.iv_logo_teamb, new AbstractImageLoader(news.getTeamb_logo()) {
                         @Override
                         public void loadImage(ImageView imageView, String path) {
-                            ImageLoadUtil.loadImage(getActivity(), path, imageView);
+                            ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                         }
                     });
                     holder.setText(R.id.tv_name_teamb, news.getTeamb_name());

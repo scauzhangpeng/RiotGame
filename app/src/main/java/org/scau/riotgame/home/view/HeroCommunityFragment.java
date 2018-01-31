@@ -114,7 +114,7 @@ public class HeroCommunityFragment extends MvpButterKnifeFragment<HeroCommunityC
                 holder.setImagePath(R.id.iv_bg, new AbstractImageLoader("") {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
-                        ImageLoadUtil.loadImage(getActivity(), path, imageView);
+                        ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                     }
                 });
             }
@@ -133,7 +133,7 @@ public class HeroCommunityFragment extends MvpButterKnifeFragment<HeroCommunityC
                 holder.setImagePath(R.id.iv_battle_video_header, new AbstractImageLoader(card.getImage_url_small()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
-                        ImageLoadUtil.loadImage(getActivity(), path, imageView);
+                        ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                     }
                 });
             }
@@ -167,7 +167,7 @@ public class HeroCommunityFragment extends MvpButterKnifeFragment<HeroCommunityC
                 holder.setImagePath(R.id.iv_article, new AbstractImageLoader(news.getImage_url_small()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
-                        ImageLoadUtil.loadImage(getActivity(), path, imageView);
+                        ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                     }
                 });
 
