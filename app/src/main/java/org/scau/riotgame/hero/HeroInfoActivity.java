@@ -1,24 +1,23 @@
 package org.scau.riotgame.hero;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.SparseArray;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.xyz.riotcommon.SimpleTopBarActivity;
+
 import org.scau.riotgame.R;
-import org.scau.riotgame.base.BaseActivity;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by ZP on 2017/8/2.
  */
 
-public class HeroInfoActivity extends BaseActivity {
+public class HeroInfoActivity extends SimpleTopBarActivity {
 
 
     @Bind(R.id.rbtn_hero_free)
@@ -40,12 +39,24 @@ public class HeroInfoActivity extends BaseActivity {
     private AllHeroFragment mAllHeroFragment;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hero_info);
-        ButterKnife.bind(this);
-        initTopBar(this);
-        initViewAndEvents();
+    protected int getTopBarContentId() {
+        return R.layout.activity_hero_info;
+    }
+
+    @Override
+    protected void initViewsAndEvents(Bundle savedInstanceState) {
+        mVpHero.addOnPageChangeListener(mOnPageChangeListener);
+        mRgHero.setOnCheckedChangeListener(mOnCheckedChangeListener);
+
+        mFragments = new SparseArray<>();
+        mFreeHeroFragment = new FreeHeroFragment();
+        mOwnerHeroFragment = new OwnerHeroFragment();
+        mAllHeroFragment = new AllHeroFragment();
+        mFragments.put(0, mFreeHeroFragment);
+        mFragments.put(1, mOwnerHeroFragment);
+        mFragments.put(2, mAllHeroFragment);
+        mPagerAdapter = new HeroPageAdapter(getSupportFragmentManager(), mFragments);
+        mVpHero.setAdapter(mPagerAdapter);
     }
 
     private ViewPager.OnPageChangeListener mOnPageChangeListener = new ViewPager.OnPageChangeListener() {
@@ -91,22 +102,6 @@ public class HeroInfoActivity extends BaseActivity {
             }
         }
     };
-
-
-    private void initViewAndEvents() {
-        mVpHero.addOnPageChangeListener(mOnPageChangeListener);
-        mRgHero.setOnCheckedChangeListener(mOnCheckedChangeListener);
-
-        mFragments = new SparseArray<>();
-        mFreeHeroFragment = new FreeHeroFragment();
-        mOwnerHeroFragment = new OwnerHeroFragment();
-        mAllHeroFragment = new AllHeroFragment();
-        mFragments.put(0, mFreeHeroFragment);
-        mFragments.put(1, mOwnerHeroFragment);
-        mFragments.put(2, mAllHeroFragment);
-        mPagerAdapter = new HeroPageAdapter(getSupportFragmentManager(), mFragments);
-        mVpHero.setAdapter(mPagerAdapter);
-    }
 
 
     @Override

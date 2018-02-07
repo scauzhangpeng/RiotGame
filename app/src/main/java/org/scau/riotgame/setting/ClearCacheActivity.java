@@ -1,21 +1,20 @@
 package org.scau.riotgame.setting;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.Button;
 
+import com.xyz.riotcommon.SimpleTopBarActivity;
+
 import org.scau.riotgame.R;
-import org.scau.riotgame.base.BaseActivity;
 import org.scau.riotgame.widget.SettingSwitchView;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by ZP on 2017/8/1.
  */
 
-public class ClearCacheActivity extends BaseActivity {
+public class ClearCacheActivity extends SimpleTopBarActivity {
 
     @Bind(R.id.switch_game_cache)
     SettingSwitchView mSwitchGameCache;
@@ -29,12 +28,12 @@ public class ClearCacheActivity extends BaseActivity {
     Button mBtnConfirmClear;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_clear_cache);
-        ButterKnife.bind(this);
-        initTopBar(this);
+    protected int getTopBarContentId() {
+        return R.layout.activity_clear_cache;
+    }
 
+    @Override
+    protected void initViewsAndEvents(Bundle savedInstanceState) {
         initData();
     }
 

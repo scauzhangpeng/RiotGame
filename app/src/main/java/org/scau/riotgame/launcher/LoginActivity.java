@@ -2,7 +2,6 @@ package org.scau.riotgame.launcher;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -14,14 +13,13 @@ import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 import com.xyz.basiclib.util.SPUtil;
+import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.json.JSONObject;
 import org.scau.riotgame.R;
-import org.scau.riotgame.base.BaseActivity;
 import org.scau.riotgame.home.MainActivity;
 import org.scau.riotgame.home.bean.QQLogin;
 
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -32,17 +30,25 @@ import butterknife.OnClick;
  * </p>
  */
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends SimpleTopBarActivity {
 
     private Tencent mTencent;
     private UserInfo mInfo;
     private String app_id = "1105966790";
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
+    protected int getTopBarContentId() {
+        return R.layout.activity_login;
+    }
+
+    @Override
+    protected int getTopBarHeaderId() {
+        return 0;
+    }
+
+    @Override
+    protected void initViewsAndEvents(Bundle savedInstanceState) {
+
     }
 
     @Override

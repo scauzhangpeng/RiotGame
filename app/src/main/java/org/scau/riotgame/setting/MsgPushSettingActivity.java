@@ -1,9 +1,9 @@
 package org.scau.riotgame.setting;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
-import org.scau.riotgame.base.BaseActivity;
+import com.xyz.riotcommon.SimpleTopBarActivity;
+
 import org.scau.riotgame.R;
 
 /**
@@ -13,13 +13,15 @@ import org.scau.riotgame.R;
  * </p>
  */
 
-public class MsgPushSettingActivity extends BaseActivity {
-
+public class MsgPushSettingActivity extends SimpleTopBarActivity {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_msg_push_setting);
-        initTopBar(this);
+    protected int getTopBarContentId() {
+        return R.layout.activity_msg_push_setting;
+    }
+
+    @Override
+    protected void initViewsAndEvents(Bundle savedInstanceState) {
+
     }
 }

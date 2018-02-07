@@ -2,16 +2,14 @@ package org.scau.riotgame.setting;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 import com.xyz.basiclib.util.PackageUtil;
+import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
-import org.scau.riotgame.base.BaseActivity;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -21,7 +19,7 @@ import butterknife.OnClick;
  * </p>
  */
 
-public class AboutRiotGameActivity extends BaseActivity {
+public class AboutRiotGameActivity extends SimpleTopBarActivity {
 
     private static final String TAG = "AboutRiotGameActivity";
 
@@ -29,12 +27,12 @@ public class AboutRiotGameActivity extends BaseActivity {
     TextView mTvVersionInfo;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_roit_game);
-        ButterKnife.bind(this);
-        initTopBar(this);
+    protected int getTopBarContentId() {
+        return R.layout.activity_about_roit_game;
+    }
 
+    @Override
+    protected void initViewsAndEvents(Bundle savedInstanceState) {
         showVersionInfo();
     }
 

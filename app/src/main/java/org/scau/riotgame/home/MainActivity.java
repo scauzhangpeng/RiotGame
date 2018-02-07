@@ -18,9 +18,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.xyz.basiclib.util.SPUtil;
+import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
-import org.scau.riotgame.base.BaseActivity;
 import org.scau.riotgame.favorite.FavoriteActivity;
 import org.scau.riotgame.home.view.HomeFragment;
 import org.scau.riotgame.mall.UserOrderActivity;
@@ -28,10 +28,9 @@ import org.scau.riotgame.setting.SettingActivity;
 import org.scau.riotgame.utils.ImageLoadUtil;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
+public class MainActivity extends SimpleTopBarActivity implements RadioGroup.OnCheckedChangeListener {
 
     @Bind(R.id.tabcontent)
     FrameLayout mTabcontent;
@@ -62,16 +61,18 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private Fragment mDiscoveryFragment;
     private Fragment mMeFragment;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        initViewsAndEvent();
+    protected int getTopBarContentId() {
+        return R.layout.activity_main;
     }
 
-    private void initViewsAndEvent() {
+    @Override
+    protected int getTopBarHeaderId() {
+        return 0;//主界面没有设置顶部标题栏，具体标题栏在fragment中设置
+    }
+
+    @Override
+    protected void initViewsAndEvents(Bundle savedInstanceState) {
         initHeader();
         mRgMain.setOnCheckedChangeListener(this);
         mDrawerLayout.setScrimColor(Color.TRANSPARENT);

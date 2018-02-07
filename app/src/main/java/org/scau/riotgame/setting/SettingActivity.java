@@ -1,16 +1,15 @@
 package org.scau.riotgame.setting;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.xyz.riotcommon.SimpleTopBarActivity;
+
 import org.scau.riotgame.R;
-import org.scau.riotgame.base.BaseActivity;
 import org.scau.riotgame.webview.WebViewActivity;
 import org.scau.riotgame.widget.SettingItemView;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -20,7 +19,7 @@ import butterknife.OnClick;
  * <p/>
  */
 
-public class SettingActivity extends BaseActivity {
+public class SettingActivity extends SimpleTopBarActivity {
 
     @Bind(R.id.stv_bind_area)
     SettingItemView mStvBindArea;
@@ -40,11 +39,13 @@ public class SettingActivity extends BaseActivity {
     SettingItemView mStvFeedBack;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
-        ButterKnife.bind(this);
-        initTopBar(this);
+    protected int getTopBarContentId() {
+        return R.layout.activity_setting;
+    }
+
+    @Override
+    protected void initViewsAndEvents(Bundle savedInstanceState) {
+
     }
 
     @OnClick(R.id.stv_bind_area)

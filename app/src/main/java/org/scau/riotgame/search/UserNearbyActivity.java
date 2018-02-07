@@ -1,13 +1,13 @@
 package org.scau.riotgame.search;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.xyz.riotcommon.SimpleTopBarActivity;
+
 import org.scau.riotgame.R;
-import org.scau.riotgame.base.BaseActivity;
 
 /**
  * Created by ZP on 2017/8/2.
@@ -16,12 +16,15 @@ import org.scau.riotgame.base.BaseActivity;
  * </p>
  */
 
-public class UserNearbyActivity extends BaseActivity {
+public class UserNearbyActivity extends SimpleTopBarActivity {
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_nearby);
-        initTopBar(this);
+    protected int getTopBarContentId() {
+        return R.layout.activity_user_nearby;
+    }
+
+    @Override
+    protected void initViewsAndEvents(Bundle savedInstanceState) {
+
     }
 
     @Override

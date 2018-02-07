@@ -1,24 +1,26 @@
 package org.scau.riotgame.mall;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.Menu;
 
+import com.xyz.riotcommon.SimpleTopBarActivity;
+
 import org.scau.riotgame.R;
-import org.scau.riotgame.base.BaseActivity;
 
 /**
  * Created by ZP on 2017/8/5.
  */
 
-public class UserOrderActivity extends BaseActivity {
-
+public class UserOrderActivity extends SimpleTopBarActivity {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_order);
-        initTopBar(this);
+    protected int getTopBarContentId() {
+        return R.layout.activity_user_order;
+    }
+
+    @Override
+    protected void initViewsAndEvents(Bundle savedInstanceState) {
+
     }
 
     @Override

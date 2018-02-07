@@ -1,27 +1,27 @@
 package org.scau.riotgame.search;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+
+import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
-import org.scau.riotgame.base.BaseActivity;
 
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
  * Created by ZP on 2017/8/2.
  */
 
-public class UserSearchActivity extends BaseActivity {
-
+public class UserSearchActivity extends SimpleTopBarActivity {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_search);
-        ButterKnife.bind(this);
-        initTopBar(this);
+    protected int getTopBarContentId() {
+        return R.layout.activity_user_search;
+    }
+
+    @Override
+    protected void initViewsAndEvents(Bundle savedInstanceState) {
+
     }
 
     @OnClick(R.id.rl_recently_play_with)
