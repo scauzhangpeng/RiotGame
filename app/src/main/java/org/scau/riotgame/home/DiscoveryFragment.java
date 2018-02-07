@@ -1,5 +1,6 @@
 package org.scau.riotgame.home;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,15 +12,19 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.xyz.basiclib.mvp.MvpFragment;
+import com.xyz.basiclib.recyclerview.BasicAdapter;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.hero.HeroInfoActivity;
+import org.scau.riotgame.home.bean.DiscoveryMenu;
 import org.scau.riotgame.search.UserNearbyActivity;
 import org.scau.riotgame.search.UserSearchActivity;
+import org.scau.riotgame.webview.WebViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,16 +48,42 @@ public class DiscoveryFragment extends MvpFragment<DiscoveryContract.View, Disco
     Toolbar mToolbar;
     @Bind(R.id.toolbar_title)
     TextView mToolbarTitle;
+    @Bind(R.id.rv_discovery)
+    RecyclerView mRvDiscovery;
 
 
     private ClubAdapter mAdapter;
     private List<Club.ClubsBean> mClubs;
 
+    //列表菜单
+    private List<DiscoveryMenu> mDiscoveryIndices;
+    private DiscoveryMenuAdapter mDiscoveryMenuAdapter;
+
     @Override
     protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.initViewsAndEvents(inflater, container, savedInstanceState);
         initTopBar();
+        initDiscoveryRv();
         initViewClub();
+    }
+
+    private void initDiscoveryRv() {
+        mDiscoveryIndices = new ArrayList<>();
+        mDiscoveryMenuAdapter = new DiscoveryMenuAdapter(mDiscoveryIndices, getActivity());
+        mRvDiscovery.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        mRvDiscovery.setAdapter(mDiscoveryMenuAdapter);
+        mRvDiscovery.setNestedScrollingEnabled(false);
+        mDiscoveryMenuAdapter.setOnItemClickListener(new BasicAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                DiscoveryMenu discoveryMenu = mDiscoveryIndices.get(position);
+                if ("1".equals(discoveryMenu.getIs_web())) {
+                    Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                    intent.putExtra("url", discoveryMenu.getArticle_url());
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     private void initTopBar() {
@@ -106,6 +137,7 @@ public class DiscoveryFragment extends MvpFragment<DiscoveryContract.View, Disco
         Log.d(TAG, "setUserVisibleHint: " + isVisibleToUser);
         if (isVisibleToUser) {
             mPresenter.getClubs();
+            mPresenter.getDiscoveryMenu();
         }
     }
 
@@ -134,5 +166,12 @@ public class DiscoveryFragment extends MvpFragment<DiscoveryContract.View, Disco
         mClubs.clear();
         mClubs.addAll(clubs);
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showDiscoveryMenu(List<DiscoveryMenu> menu) {
+        mDiscoveryIndices.clear();
+        mDiscoveryIndices.addAll(menu);
+        mDiscoveryMenuAdapter.notifyDataSetChanged();
     }
 }

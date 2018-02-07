@@ -1,6 +1,7 @@
 package org.scau.riotgame.http;
 
 import org.scau.riotgame.home.Club;
+import org.scau.riotgame.home.bean.DiscoveryMenu;
 import org.scau.riotgame.home.bean.CardsResponse;
 import org.scau.riotgame.home.bean.GameCenterData;
 import org.scau.riotgame.home.bean.News;
@@ -68,4 +69,11 @@ public class RequestManager {
         call.enqueue(callback);
         return call;
     }
+
+    public Call getDiscoveryMenu(HttpCallback<PageResponse<DiscoveryMenu>> callback) {
+        Call<PageResponse<DiscoveryMenu>> call = mApiService.getDiscoveryMenu();
+        call.enqueue(callback);
+        return call;
+    }
+
 }

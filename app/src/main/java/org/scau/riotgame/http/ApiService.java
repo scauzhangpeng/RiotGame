@@ -1,6 +1,7 @@
 package org.scau.riotgame.http;
 
 import org.scau.riotgame.home.Club;
+import org.scau.riotgame.home.bean.DiscoveryMenu;
 import org.scau.riotgame.home.bean.CardsResponse;
 import org.scau.riotgame.home.bean.GameCenterData;
 import org.scau.riotgame.home.bean.News;
@@ -53,4 +54,8 @@ public interface ApiService {
     Call<CardsResponse> getCardsData(@Query("uuid") String uuid,
                                      @Query("area_id") int area_id,
                                      @Query("version") int version);
+
+    @GET("static/pages/news/discovery/c21_index.js")
+    Call<PageResponse<DiscoveryMenu>> getDiscoveryMenu();
+
 }
