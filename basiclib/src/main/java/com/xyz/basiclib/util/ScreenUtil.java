@@ -1,4 +1,4 @@
-package com.xyz.basiclib;
+package com.xyz.basiclib.util;
 
 import android.app.Activity;
 import android.content.Context;

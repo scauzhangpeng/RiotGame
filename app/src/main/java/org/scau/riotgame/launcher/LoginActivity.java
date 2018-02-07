@@ -13,7 +13,7 @@ import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
-import com.xyz.basiclib.SPUtil;
+import com.xyz.basiclib.util.SPUtil;
 
 import org.json.JSONObject;
 import org.scau.riotgame.R;

@@ -16,7 +16,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.xyz.basiclib.mvp.MvpButterKnifeFragment;
+import com.xyz.basiclib.mvp.MvpFragment;
 import com.xyz.basiclib.recyclerview.AbstractImageLoader;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.BasicViewHolder;
@@ -44,7 +44,7 @@ import static android.content.ContentValues.TAG;
  * Created by ZP on 2017/7/27.
  */
 
-public class NewsFragment extends MvpButterKnifeFragment<NewsContract.View, NewsContract.Presenter> implements NewsContract.View, OnRefreshListener, OnLoadmoreListener {
+public class NewsFragment extends MvpFragment<NewsContract.View, NewsContract.Presenter> implements NewsContract.View, OnRefreshListener, OnLoadmoreListener {
 
 
     @Bind(R.id.rv_hero_free)

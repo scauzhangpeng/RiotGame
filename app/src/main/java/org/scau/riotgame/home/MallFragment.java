@@ -9,7 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 
-import com.xyz.basiclib.mvp.SimpleButterKnifeFragment;
+import com.xyz.basiclib.activity.SimpleButterKnifeFragment;
 
 import org.scau.riotgame.R;
 

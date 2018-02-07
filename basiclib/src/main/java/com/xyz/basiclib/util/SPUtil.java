@@ -1,4 +1,4 @@
-package com.xyz.basiclib;
+package com.xyz.basiclib.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.xyz.basiclib.SPUtil;
+import com.xyz.basiclib.util.SPUtil;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.base.BaseActivity;

@@ -7,11 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.xyz.basiclib.activity.SimpleButterKnifeFragment;
+
 /**
  * Created by ZP on 2017/8/16.
  */
 
-public abstract class MvpFragment<V, P extends BasePresenter<V>> extends BaseFragment {
+public abstract class MvpFragment<V, P extends BasePresenter<V>> extends SimpleButterKnifeFragment {
 
 
     protected P mPresenter;
@@ -48,7 +50,9 @@ public abstract class MvpFragment<V, P extends BasePresenter<V>> extends BaseFra
 //        initViewsAndEvents(container, savedInstanceState);
 //        initTopBar(mTopView);
         mPresenter = initPresenter();
-        mPresenter.attachView((V) this);
+        if (mPresenter != null) {
+            mPresenter.attachView((V) this);
+        }
         return mView;
     }
 
@@ -67,7 +71,9 @@ public abstract class MvpFragment<V, P extends BasePresenter<V>> extends BaseFra
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mPresenter.detachView();
+        if (mPresenter != null) {
+            mPresenter.detachView();
+        }
     }
 
     protected abstract P initPresenter();

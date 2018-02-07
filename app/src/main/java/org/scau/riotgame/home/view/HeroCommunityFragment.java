@@ -11,8 +11,8 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.xyz.basiclib.DateUtil;
-import com.xyz.basiclib.mvp.MvpButterKnifeFragment;
+import com.xyz.basiclib.util.DateUtil;
+import com.xyz.basiclib.mvp.MvpFragment;
 import com.xyz.basiclib.recyclerview.AbstractImageLoader;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.BasicViewHolder;
@@ -30,14 +30,14 @@ import java.util.List;
 
 import butterknife.Bind;
 
-import static com.xyz.basiclib.DateUtil.DATE_FORMAT_MONTH_DAY;
-import static com.xyz.basiclib.DateUtil.DATE_FORMAT_SEC;
+import static com.xyz.basiclib.util.DateUtil.DATE_FORMAT_MONTH_DAY;
+import static com.xyz.basiclib.util.DateUtil.DATE_FORMAT_SEC;
 
 /**
  * Created by ZP on 2018/1/24.
  */
 
-public class HeroCommunityFragment extends MvpButterKnifeFragment<HeroCommunityContract.View, HeroCommunityContract.Presenter> implements HeroCommunityContract.View, OnRefreshListener, OnLoadmoreListener {
+public class HeroCommunityFragment extends MvpFragment<HeroCommunityContract.View, HeroCommunityContract.Presenter> implements HeroCommunityContract.View, OnRefreshListener, OnLoadmoreListener {
 
 
     @Bind(R.id.rv_layout_refresh)

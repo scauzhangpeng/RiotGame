@@ -1,6 +1,5 @@
 package org.scau.riotgame.home;
 
-import android.Manifest;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +14,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.xyz.basiclib.mvp.MvpButterKnifeFragment;
+import com.xyz.basiclib.mvp.MvpFragment;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.hero.HeroInfoActivity;
@@ -35,7 +34,7 @@ import butterknife.OnClick;
  * </p>
  */
 
-public class DiscoveryFragment extends MvpButterKnifeFragment<DiscoveryContract.View, DiscoveryContract.Presenter> implements DiscoveryContract.View {
+public class DiscoveryFragment extends MvpFragment<DiscoveryContract.View, DiscoveryContract.Presenter> implements DiscoveryContract.View {
 
     private static final String TAG = "DiscoveryFragment";
     @Bind(R.id.rv_club)
@@ -70,7 +69,6 @@ public class DiscoveryFragment extends MvpButterKnifeFragment<DiscoveryContract.
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_bar_code) {
             showToastLong("scan");
-            checkPermission(Manifest.permission.CAMERA);
         }
         return super.onOptionsItemSelected(item);
     }

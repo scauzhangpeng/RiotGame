@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.xyz.basiclib.mvp.MvpButterKnifeFragment;
+import com.xyz.basiclib.mvp.MvpFragment;
 import com.xyz.basiclib.recyclerview.AbstractImageLoader;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.BasicViewHolder;
@@ -26,7 +26,7 @@ import butterknife.Bind;
  * Created by ZP on 2017/7/27.
  */
 
-public class AllHeroFragment extends MvpButterKnifeFragment<HeroContract.View, HeroContract.Presenter> implements HeroContract.View {
+public class AllHeroFragment extends MvpFragment<HeroContract.View, HeroContract.Presenter> implements HeroContract.View {
 
     @Bind(R.id.rv_hero_all)
     RecyclerView mRvHeroAll;

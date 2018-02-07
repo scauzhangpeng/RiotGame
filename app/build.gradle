@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion var.compileSdkVersion
@@ -25,6 +24,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    //引入aar
+    repositories {
+        flatDir {
+            dirs 'libs' //this way we can find the .aar file in libs folder
+            //如果module中引入aar，则需要使用相对路径
+            //dirs '../riot_common/libs'
+        }
+    }
 }
 
 dependencies {
@@ -44,6 +51,4 @@ dependencies {
     compile lib.Banner
     compile project(':riot_common')
 
-//    compile 'com.jakewharton:butterknife:8.8.1'
-//    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }

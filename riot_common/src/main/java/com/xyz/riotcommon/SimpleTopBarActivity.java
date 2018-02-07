@@ -4,7 +4,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
-import com.xyz.basiclib.mvp.TopBarActivity;
+import com.xyz.basiclib.activity.TopBarActivity;
 
 /**
  * Created by ZP on 2018/1/29.
@@ -22,8 +22,8 @@ public abstract class SimpleTopBarActivity extends TopBarActivity {
     }
 
     @Override
-    protected View getTopBarView() {
-        return TopBarFactory.getDefaultTopBar(this, R.layout.toolbar_default);
+    protected int getTopBarHeaderId() {
+        return R.layout.toolbar_default;
     }
 
     protected Toolbar initDefaultTopBar(View topView) {

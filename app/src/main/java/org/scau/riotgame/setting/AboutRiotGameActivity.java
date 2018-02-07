@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.TextView;
 
-import com.xyz.basiclib.PackageUtil;
+import com.xyz.basiclib.util.PackageUtil;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.base.BaseActivity;

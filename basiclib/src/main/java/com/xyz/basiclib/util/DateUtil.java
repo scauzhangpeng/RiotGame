@@ -1,4 +1,4 @@
-package com.xyz.basiclib;
+package com.xyz.basiclib.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

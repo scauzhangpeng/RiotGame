@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.xyz.basiclib.mvp.MvpButterKnifeFragment;
+import com.xyz.basiclib.mvp.MvpFragment;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.BasicViewHolder;
 
@@ -29,7 +29,7 @@ import butterknife.Bind;
  * Created by ZP on 2017/7/27.
  */
 
-public class FreeHeroFragment extends MvpButterKnifeFragment<HeroContract.FreeView, HeroContract.FreePresenter> implements AdapterView.OnItemClickListener, HeroContract.FreeView {
+public class FreeHeroFragment extends MvpFragment<HeroContract.FreeView, HeroContract.FreePresenter> implements AdapterView.OnItemClickListener, HeroContract.FreeView {
 
     @Bind(R.id.rv_hero_free)
     RecyclerView mRvHeroFree;

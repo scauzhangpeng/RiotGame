@@ -17,7 +17,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.xyz.basiclib.mvp.SimpleButterKnifeFragment;
+import com.xyz.basiclib.activity.SimpleButterKnifeFragment;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.hero.HeroPageAdapter;

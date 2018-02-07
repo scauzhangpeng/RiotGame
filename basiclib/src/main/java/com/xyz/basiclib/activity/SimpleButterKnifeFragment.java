@@ -1,4 +1,4 @@
-package com.xyz.basiclib.mvp;
+package com.xyz.basiclib.activity;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

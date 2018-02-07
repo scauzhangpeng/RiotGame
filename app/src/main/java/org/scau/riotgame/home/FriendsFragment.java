@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 
-import com.xyz.basiclib.mvp.SimpleButterKnifeFragment;
+import com.xyz.basiclib.activity.SimpleButterKnifeFragment;
 
 import org.scau.riotgame.R;
 
