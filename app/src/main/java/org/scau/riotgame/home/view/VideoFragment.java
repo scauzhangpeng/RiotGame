@@ -3,6 +3,7 @@ package org.scau.riotgame.home.view;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -38,7 +39,6 @@ import butterknife.Bind;
  */
 
 public class VideoFragment extends MvpFragment<VideoContract.View, VideoContract.Presenter> implements VideoContract.View, OnRefreshListener, OnLoadmoreListener {
-
     @Bind(R.id.rv_hot_author)
     RecyclerView mRvHotAuthor;
     @Bind(R.id.refreshLayout)
@@ -112,6 +112,8 @@ public class VideoFragment extends MvpFragment<VideoContract.View, VideoContract
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
+        Log.d(TAG, "setUserVisibleHint: " + isVisibleToUser);
+        super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
             mRefreshLayout.autoRefresh();
         }

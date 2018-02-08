@@ -3,6 +3,7 @@ package org.scau.riotgame.home.view;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,12 +12,12 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.xyz.basiclib.util.DateUtil;
 import com.xyz.basiclib.mvp.MvpFragment;
 import com.xyz.basiclib.recyclerview.AbstractImageLoader;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.BasicViewHolder;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
+import com.xyz.basiclib.util.DateUtil;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.home.bean.Card;
@@ -38,7 +39,7 @@ import static com.xyz.basiclib.util.DateUtil.DATE_FORMAT_SEC;
  */
 
 public class HeroCommunityFragment extends MvpFragment<HeroCommunityContract.View, HeroCommunityContract.Presenter> implements HeroCommunityContract.View, OnRefreshListener, OnLoadmoreListener {
-
+    private static final String TAG = "HeroCommunityFragment";
 
     @Bind(R.id.rv_layout_refresh)
     RecyclerView mRvLayoutRefresh;
@@ -206,6 +207,8 @@ public class HeroCommunityFragment extends MvpFragment<HeroCommunityContract.Vie
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
+        Log.d(TAG, "setUserVisibleHint: " + isVisibleToUser);
+        super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
             mRefreshLayout.autoRefresh();
         }

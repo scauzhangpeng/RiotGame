@@ -1,6 +1,7 @@
 package org.scau.riotgame.home.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -15,7 +16,7 @@ import org.scau.riotgame.home.presenter.NewVersionPresenter;
  */
 
 public class NewVersionFragment extends MvpFragment<NewVersionContract.View, NewVersionContract.Presenter> implements NewVersionContract.View {
-
+    private static final String TAG = "NewVersionFragment";
 
     @Override
     protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -30,5 +31,11 @@ public class NewVersionFragment extends MvpFragment<NewVersionContract.View, New
     @Override
     protected NewVersionContract.Presenter initPresenter() {
         return new NewVersionPresenter();
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        Log.d(TAG, "setUserVisibleHint: " + isVisibleToUser);
+        super.setUserVisibleHint(isVisibleToUser);
     }
 }

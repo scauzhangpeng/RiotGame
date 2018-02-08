@@ -1,5 +1,6 @@
 package org.scau.riotgame.home.view;
 
+import android.util.Log;
 import android.view.View;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -21,6 +22,7 @@ import java.util.List;
  */
 
 public class ColumnListFragment extends SimpleRefreshFragment<ColumnList, ColumnContract.View, ColumnContract.Presenter> implements ColumnContract.View {
+
     @Override
     public void showColumnList(List<ColumnList> news) {
         mData.clear();
@@ -59,6 +61,11 @@ public class ColumnListFragment extends SimpleRefreshFragment<ColumnList, Column
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
+        Log.d(TAG, "setUserVisibleHint: " + isVisibleToUser);
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            mSmartRefreshLayout.autoRefresh();
+        }
     }
 
     @Override

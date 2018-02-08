@@ -111,6 +111,7 @@ public class HomeFragment extends SimpleButterKnifeFragment implements RadioGrou
         mPages.put(5, new ColumnListFragment());
         mAdapter = new HeroPageAdapter(getActivity().getSupportFragmentManager(), mPages);
         mVpMain.setAdapter(mAdapter);
+        mVpMain.setOffscreenPageLimit(5);
         mVpMain.addOnPageChangeListener(mOnPageChangeListener);
     }
 

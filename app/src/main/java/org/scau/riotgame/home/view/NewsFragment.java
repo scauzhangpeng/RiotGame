@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,14 +34,12 @@ import java.util.List;
 
 import butterknife.Bind;
 
-import static android.content.ContentValues.TAG;
-
 /**
  * Created by ZP on 2017/7/27.
  */
 
 public class NewsFragment extends MvpFragment<NewsContract.View, NewsContract.Presenter> implements NewsContract.View, OnRefreshListener, OnLoadmoreListener {
-
+    private static final String TAG = "NewsFragment";
 
     @Bind(R.id.rv_layout_refresh)
     RecyclerView mRvHeroFree;
@@ -152,7 +149,6 @@ public class NewsFragment extends MvpFragment<NewsContract.View, NewsContract.Pr
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume: ");
         mRefreshLayout.autoRefresh();
     }
 

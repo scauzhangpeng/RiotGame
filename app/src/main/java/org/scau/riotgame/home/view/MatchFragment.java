@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,7 @@ import butterknife.Bind;
  */
 
 public class MatchFragment extends MvpFragment<MatchContract.View, MatchContract.Presenter> implements MatchContract.View, OnRefreshListener, OnLoadmoreListener {
-
+    private static final String TAG = "MatchFragment";
 
     @Bind(R.id.rv_layout_refresh)
     RecyclerView mRvLayoutRefresh;
@@ -247,6 +248,7 @@ public class MatchFragment extends MvpFragment<MatchContract.View, MatchContract
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
+        Log.d(TAG, "setUserVisibleHint: " + isVisibleToUser);
         if (isVisibleToUser) {
             mRefreshLayout.autoRefresh();
         }
