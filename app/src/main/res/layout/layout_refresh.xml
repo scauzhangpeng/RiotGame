@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     app:srlEnablePreviewInEditMode="true">
 
-    <org.scau.riotgame.widget.TeemoHeader
+    <com.xyz.riotcommon.TeemoHeader
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -19,7 +19,7 @@
         android:background="@color/colorMainBg"
         android:overScrollMode="never"/>
 
-    <org.scau.riotgame.widget.TeemoFooter
+    <com.xyz.riotcommon.TeemoFooter
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </com.scwang.smartrefresh.layout.SmartRefreshLayout>

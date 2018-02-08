@@ -3,23 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/refreshLayout"
-    android:background="@color/mainBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:srlEnablePreviewInEditMode="true">
 
-    <org.scau.riotgame.widget.TeemoHeader
+    <com.xyz.riotcommon.TeemoHeader
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_hero_free"
+        android:id="@+id/rv_base"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/mainBackground"
+        android:background="#fff"
         android:overScrollMode="never"/>
 
-    <org.scau.riotgame.widget.TeemoFooter
+    <com.xyz.riotcommon.TeemoFooter
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </com.scwang.smartrefresh.layout.SmartRefreshLayout>

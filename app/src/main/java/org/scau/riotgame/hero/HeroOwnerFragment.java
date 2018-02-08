@@ -13,7 +13,7 @@ import org.scau.riotgame.R;
  * Created by ZP on 2017/7/27.
  */
 
-public class OwnerHeroFragment extends Fragment {
+public class HeroOwnerFragment extends Fragment {
 
     private View mView;
 

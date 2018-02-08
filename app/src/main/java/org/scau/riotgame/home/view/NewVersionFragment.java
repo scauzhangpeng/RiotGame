@@ -24,7 +24,7 @@ public class NewVersionFragment extends MvpFragment<NewVersionContract.View, New
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_news;
+        return R.layout.layout_refresh;
     }
 
     @Override

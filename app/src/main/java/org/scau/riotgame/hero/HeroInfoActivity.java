@@ -34,9 +34,9 @@ public class HeroInfoActivity extends SimpleTopBarActivity {
 
     private SparseArray<Fragment> mFragments;
     private HeroPageAdapter mPagerAdapter;
-    private FreeHeroFragment mFreeHeroFragment;
-    private OwnerHeroFragment mOwnerHeroFragment;
-    private AllHeroFragment mAllHeroFragment;
+    private HeroFreeFragment mHeroFreeFragment;
+    private HeroOwnerFragment mHeroOwnerFragment;
+    private HeroAllFragment mHeroAllFragment;
 
     @Override
     protected int getTopBarContentId() {
@@ -49,12 +49,12 @@ public class HeroInfoActivity extends SimpleTopBarActivity {
         mRgHero.setOnCheckedChangeListener(mOnCheckedChangeListener);
 
         mFragments = new SparseArray<>();
-        mFreeHeroFragment = new FreeHeroFragment();
-        mOwnerHeroFragment = new OwnerHeroFragment();
-        mAllHeroFragment = new AllHeroFragment();
-        mFragments.put(0, mFreeHeroFragment);
-        mFragments.put(1, mOwnerHeroFragment);
-        mFragments.put(2, mAllHeroFragment);
+        mHeroFreeFragment = new HeroFreeFragment();
+        mHeroOwnerFragment = new HeroOwnerFragment();
+        mHeroAllFragment = new HeroAllFragment();
+        mFragments.put(0, mHeroFreeFragment);
+        mFragments.put(1, mHeroOwnerFragment);
+        mFragments.put(2, mHeroAllFragment);
         mPagerAdapter = new HeroPageAdapter(getSupportFragmentManager(), mFragments);
         mVpHero.setAdapter(mPagerAdapter);
     }

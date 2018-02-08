@@ -18,7 +18,6 @@
     <color name="btn_gold_normal">@color/colorMainGold</color>
     <color name="btn_gold_press">@color/btn_gold_disable</color>
 
-    <color name="mainBackground">#eeeff0</color>
     <color name="mainItemBackground">@android:color/white</color>
 
     <color name="bg_aphla">#80000000</color>

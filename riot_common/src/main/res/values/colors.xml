@@ -6,4 +6,5 @@
 
     <!-- 主颜色 -->
     <color name="colorMainGold">#d3bf8d</color>
+    <color name="mainBackground">#eeeff0</color>
 </resources>

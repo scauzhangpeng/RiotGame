@@ -1,4 +1,4 @@
-package org.scau.riotgame.widget;
+package com.xyz.riotcommon;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
@@ -10,34 +10,31 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.scwang.smartrefresh.layout.api.RefreshHeader;
+import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshKernel;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 
-import org.scau.riotgame.R;
-
 /**
  * Created by ZP on 2017/8/7.
  */
 
-public class TeemoHeader extends LinearLayout implements RefreshHeader {
+public class TeemoFooter extends LinearLayout implements RefreshFooter {
 
     private ImageView mImageView;
     private TextView mTextView;
     private AnimationDrawable mAnimationDrawable;
 
-
-    public TeemoHeader(Context context) {
+    public TeemoFooter(Context context) {
         this(context, null);
     }
 
-    public TeemoHeader(Context context, AttributeSet attrs) {
+    public TeemoFooter(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public TeemoHeader(Context context, AttributeSet attrs, int defStyleAttr) {
+    public TeemoFooter(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initViews(context);
     }
@@ -50,13 +47,18 @@ public class TeemoHeader extends LinearLayout implements RefreshHeader {
     }
 
     @Override
-    public void onPullingDown(float percent, int offset, int headerHeight, int extendHeight) {
+    public void onPullingUp(float percent, int offset, int footerHeight, int extendHeight) {
 
     }
 
     @Override
-    public void onReleasing(float percent, int offset, int headerHeight, int extendHeight) {
+    public void onPullReleasing(float percent, int offset, int footerHeight, int extendHeight) {
 
+    }
+
+    @Override
+    public boolean setLoadmoreFinished(boolean finished) {
+        return false;
     }
 
     @NonNull
@@ -94,9 +96,9 @@ public class TeemoHeader extends LinearLayout implements RefreshHeader {
     public int onFinish(RefreshLayout layout, boolean success) {
         mAnimationDrawable.stop();
         if (success) {
-            mTextView.setText("刷新完成");
+            mTextView.setText("加载完成");
         } else {
-            mTextView.setText("刷新失败");
+            mTextView.setText("加载失败");
         }
         return 500;
     }
@@ -110,17 +112,14 @@ public class TeemoHeader extends LinearLayout implements RefreshHeader {
     public void onStateChanged(RefreshLayout refreshLayout, RefreshState oldState, RefreshState newState) {
         switch (newState) {
             case None:
-            case PullDownToRefresh:
-                mTextView.setText("下拉刷新");
-                if (mAnimationDrawable.isRunning()) {
-                    mAnimationDrawable.stop();
-                }
+            case PullToUpLoad:
+                mTextView.setText("上拉加载");
                 break;
-            case ReleaseToRefresh:
-                mTextView.setText("释放刷新");
+            case ReleaseToLoad:
+                mTextView.setText("释放加载");
                 break;
-            case Refreshing:
-                mTextView.setText("正在刷新");
+            case Loading:
+                mTextView.setText("正在加载");
                 mAnimationDrawable.start();
                 break;
         }
