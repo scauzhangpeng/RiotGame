@@ -49,4 +49,5 @@ dependencies {
     //图片加载
     compile lib.Glide
     annotationProcessor lib.GlideCompiler
+    compile lib.Circle
 }

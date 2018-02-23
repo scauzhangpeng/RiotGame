@@ -54,6 +54,8 @@ public class MainActivity extends SimpleTopBarActivity implements RadioGroup.OnC
     LinearLayout mNavView;
     @Bind(R.id.iv_header)
     ImageView mIvHeader;
+    @Bind((R.id.iv_nav_header))
+    ImageView mIvNavHeader;
 
     private Fragment mNewsFragment;
     private Fragment mFriendsFragment;
@@ -73,6 +75,7 @@ public class MainActivity extends SimpleTopBarActivity implements RadioGroup.OnC
 
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
+        initNavgationView();
         initHeader();
         mRgMain.setOnCheckedChangeListener(this);
         mDrawerLayout.setScrimColor(Color.TRANSPARENT);
@@ -101,6 +104,10 @@ public class MainActivity extends SimpleTopBarActivity implements RadioGroup.OnC
             }
         });
         SetSelect(0);
+    }
+
+    private void initNavgationView() {
+        ImageLoadUtil.loadImage(this, SPUtil.getInstance(this).getString("figureurl_qq_2", ""), R.drawable.default_lol_ex, mIvNavHeader);
     }
 
     private void initHeader() {

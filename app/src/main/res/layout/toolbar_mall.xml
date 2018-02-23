@@ -7,14 +7,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/title_bg"
-    android:layout_marginTop="@dimen/status_bar_height"
+    android:paddingTop="@dimen/status_bar_height"
     android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="30dp"
         android:orientation="horizontal"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="60dp"
         android:background="@android:color/white"
         android:layout_gravity="center">
 
@@ -22,13 +22,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
+            android:layout_gravity="center_vertical"
             android:src="@drawable/search"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="找你喜欢的商品"
+            android:textSize="18sp"
             android:gravity="center_vertical"
-            android:textColor="@color/colorMain"/>
+            android:textColor="@color/colorSubText"/>
     </LinearLayout>
 </android.support.v7.widget.Toolbar>

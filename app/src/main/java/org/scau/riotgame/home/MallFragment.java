@@ -37,8 +37,8 @@ public class MallFragment extends SimpleButterKnifeFragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_news_search) {
-            showToastLong("search");
+        if (item.getItemId() == R.id.menu_cart) {
+            showToastLong("mall");
         }
         return super.onOptionsItemSelected(item);
     }
@@ -46,7 +46,7 @@ public class MallFragment extends SimpleButterKnifeFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        inflater.inflate(R.menu.news_search, menu);
+        inflater.inflate(R.menu.mall_shopping_cart, menu);
 //        super.onCreateOptionsMenu(menu, inflater);
     }
 

@@ -29,6 +29,8 @@ ext {
             //Banner库
             Banner               : "com.youth.banner:banner:1.4.9",
             //运行时权限
-            Permission           : "com.yanzhenjie:permission:2.0.0-alpha"
+            Permission           : "com.yanzhenjie:permission:2.0.0-alpha",
+            //圆形ImageView
+            Circle               : 'de.hdodenhof:circleimageview:2.2.0'
     ]
 }
