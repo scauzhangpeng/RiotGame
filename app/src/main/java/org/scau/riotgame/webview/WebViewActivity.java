@@ -3,7 +3,6 @@ package org.scau.riotgame.webview;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.WebChromeClient;
@@ -14,13 +13,15 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
+import com.xyz.riotcommon.SimpleTopBarActivity;
+
 import org.scau.riotgame.R;
 
 /**
  * Created by ZP on 2017/8/3.
  */
 
-public class WebViewActivity extends AppCompatActivity {
+public class WebViewActivity extends SimpleTopBarActivity {
 
     private static final String TAG = "WebViewActivity";
 
@@ -31,7 +32,6 @@ public class WebViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_webview);
         initView();
         mWebView = new WebView(getApplicationContext());
         mFlWebView.addView(mWebView);
@@ -56,6 +56,16 @@ public class WebViewActivity extends AppCompatActivity {
         mWebView.setWebViewClient(mWebViewClient);
 
         mWebView.setWebChromeClient(mWebChromeClient);
+    }
+
+    @Override
+    protected int getTopBarContentId() {
+        return R.layout.activity_webview;
+    }
+
+    @Override
+    protected void initViewsAndEvents(Bundle savedInstanceState) {
+
     }
 
     @Override
