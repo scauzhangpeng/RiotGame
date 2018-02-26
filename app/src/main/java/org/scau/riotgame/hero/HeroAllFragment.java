@@ -1,5 +1,6 @@
 package org.scau.riotgame.hero;
 
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -37,16 +38,20 @@ public class HeroAllFragment extends SimpleRefreshFragment<Hero, HeroContract.Vi
         mData.clear();
         mData.addAll(heros);
         mAdapter.notifyDataSetChanged();
+        mSmartRefreshLayout.finishRefresh();
+        mSmartRefreshLayout.setEnableLoadmore(false);
     }
 
     @Override
     public void onLoadmore(RefreshLayout refreshlayout) {
-
+        mPresenter.getAllHeros();
     }
 
     @Override
     public void onItemClick(View view, int position) {
-
+        Bundle bundle = new Bundle();
+        bundle.putInt("hero_id", mData.get(position).getId());
+        openActivity(HeroDetailActivity.class, bundle);
     }
 
     @Override

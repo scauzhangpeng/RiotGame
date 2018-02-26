@@ -23,10 +23,10 @@ public class HeroFreeAdapter extends BasicAdapter<Hero> {
     @Override
     protected void bindData(BasicViewHolder holder, Hero hero, int position) {
         holder.setText(R.id.tv_hero_name, hero.getName());
-        holder.setText(R.id.tv_hero_nickname, hero.getNickName());
-        holder.setText(R.id.tv_rate, hero.getRate() + "");
-        holder.setText(R.id.tv_tag, hero.getTag());
+        holder.setText(R.id.tv_hero_nickname, hero.getNick());
+        holder.setText(R.id.tv_rate, "");
+        holder.setText(R.id.tv_tag, hero.getTag1());
         ImageView imageView = (ImageView) holder.getView(R.id.iv_header);
-        ImageLoadUtil.loadCircleImage(mContext, hero.getUrl(), R.drawable.default_lol_ex, imageView);
+        ImageLoadUtil.loadCircleImage(mContext, "", R.drawable.default_lol_ex, imageView);
     }
 }

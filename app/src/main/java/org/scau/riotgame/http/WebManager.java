@@ -18,7 +18,7 @@ public class WebManager {
         mWebService = ServiceFactory.createServiceFrom(WebService.class, "http://lol.qq.com/");
     }
 
-    public static synchronized WebManager getInstance() {
+    public static WebManager getInstance() {
         if (mInstance == null) {
             synchronized (RequestManager.class) {
                 mInstance = new WebManager();
@@ -35,6 +35,12 @@ public class WebManager {
     }
 
     public Call getFreeHeros(int version, HttpCallback<String> callback) {
+        Call<String> call = mWebService.getFreeHeros(version);
+        call.enqueue(callback);
+        return call;
+    }
+
+    public Call<String> getFreeHero(int version, HttpCallback<String> callback) {
         Call<String> call = mWebService.getFreeHeros(version);
         call.enqueue(callback);
         return call;

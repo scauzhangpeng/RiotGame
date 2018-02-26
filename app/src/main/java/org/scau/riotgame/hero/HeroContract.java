@@ -26,4 +26,12 @@ public interface HeroContract {
     abstract class FreePresenter extends BasePresenter<FreeView> {
         abstract void getFreeHeros();
     }
+
+    interface AllView extends BaseView {
+        void showHeroBackground(String bgText);
+    }
+
+    abstract class AllPresenter extends BasePresenter<AllView> {
+        abstract void getHeroDetail(String heroId);
+    }
 }

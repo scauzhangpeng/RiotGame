@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.SparseArray;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -12,6 +13,7 @@ import com.xyz.riotcommon.SimpleTopBarActivity;
 import org.scau.riotgame.R;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * Created by ZP on 2017/8/2.
@@ -108,5 +110,10 @@ public class HeroInfoActivity extends SimpleTopBarActivity {
     protected void onDestroy() {
         super.onDestroy();
         mVpHero.removeOnPageChangeListener(mOnPageChangeListener);
+    }
+
+    @OnClick(R.id.tv_prop)
+    public void openProp(View view) {
+        openActivity(GoogsListActivity.class);
     }
 }

@@ -1,7 +1,11 @@
 package org.scau.riotgame.hero;
 
-import java.util.ArrayList;
+import org.scau.riotgame.http.HttpCallback;
+import org.scau.riotgame.http.OSSWebManager;
+
 import java.util.List;
+
+import retrofit2.Response;
 
 /**
  * Created by ZP on 2018/1/24.
@@ -10,19 +14,26 @@ import java.util.List;
 public class AllHeroPresenter extends HeroContract.Presenter {
     @Override
     void getAllHeros() {
-        List<Hero> heros = new ArrayList<>();
-        heros = new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
-            Hero hero = new Hero();
-            hero.setUrl("http://ossweb-img.qq.com/images/lol/web201310/skin/small62000.jpg");
-            hero.setName("齐天大圣" + i);
-            hero.setNickName("孙悟空" + i);
-            hero.setTag("战士");
-            hero.setRate(55);
-            heros.add(hero);
-        }
-        if (getView() != null) {
-            getView().showAllHeros(heros);
-        }
+        OSSWebManager.getInstance().getAllHero(new HttpCallback<List<Hero>>() {
+            @Override
+            public void doOnSuccess(Response<List<Hero>> response) {
+                List<Hero> body = response.body();
+                if (body != null) {
+                    if (getView() != null) {
+                        getView().showAllHeros(body);
+                    }
+                }
+            }
+
+            @Override
+            public void doOnError(Response<List<Hero>> response, String statusCode, String message) {
+
+            }
+
+            @Override
+            public void doOnFailure(int httpCode, String message) {
+
+            }
+        });
     }
 }

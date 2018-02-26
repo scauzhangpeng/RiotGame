@@ -70,8 +70,17 @@
             android:name=".mall.UserOrderActivity"
             android:label="我的订单"/>
         <activity
-            android:name=".wallpaper.WallPaperActivity"
-            android:label="壁纸" />
+            android:name=".hero.HeroDetailActivity"
+            android:label="英雄详情"/>
+
+        <activity
+            android:name=".hero.GoogsListActivity"
+            android:label="物品资料"/>
+
+        <activity
+            android:name=".hero.GoodsDetailActivity"
+            android:label="物品详情"/>
+
         <activity android:name=".webview.WebViewActivity"/>
         <activity android:name=".home.MainActivity"/>
 

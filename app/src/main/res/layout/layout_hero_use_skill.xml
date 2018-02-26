@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="使用技巧"
+        android:textColor="@color/colorMainText"/>
+
+    <TextView
+        android:padding="15dp"
+        android:id="@+id/tv_hero_use_skill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorSubText"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="对抗技巧"
+        android:textColor="@color/colorMainText"/>
+
+    <TextView
+        android:padding="15dp"
+        android:id="@+id/tv_hero_ag_skill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorSubText"/>
+
+</merge>

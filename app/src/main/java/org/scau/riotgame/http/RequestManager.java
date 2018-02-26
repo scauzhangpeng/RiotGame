@@ -1,8 +1,8 @@
 package org.scau.riotgame.http;
 
 import org.scau.riotgame.home.Club;
-import org.scau.riotgame.home.bean.DiscoveryMenu;
 import org.scau.riotgame.home.bean.CardsResponse;
+import org.scau.riotgame.home.bean.DiscoveryMenu;
 import org.scau.riotgame.home.bean.GameCenterData;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.bean.PageColumnList;
@@ -23,7 +23,7 @@ public class RequestManager {
         mApiService = ServiceFactory.createServiceFrom(ApiService.class, "http://qt.qq.com/");
     }
 
-    public static synchronized RequestManager getInstance() {
+    public static RequestManager getInstance() {
         if (mInstance == null) {
             synchronized (RequestManager.class) {
                 mInstance = new RequestManager();

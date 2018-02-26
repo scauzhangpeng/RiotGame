@@ -17,6 +17,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  *
@@ -27,8 +28,8 @@ public class ServiceFactory {
     public static <T> T createServiceFrom(Class<T> serviceClass, String endpoint) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(endpoint)
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                //.addConverterFactory(ScalarsConverterFactory.create())
                 .client(getLogClient())
                 .build();
         return retrofit.create(serviceClass);

@@ -77,5 +77,6 @@ public abstract class SimpleRefreshFragment<T, V, P extends BasePresenter<V>> ex
         if (mData != null && mData.size() != 0) {
             mData.clear();
         }
+        onLoadmore(refreshlayout);
     }
 }

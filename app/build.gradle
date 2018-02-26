@@ -46,6 +46,7 @@ dependencies {
     //网络库
     compile lib.Retrofit
     compile lib.RetrofitConverterGson
+    compile lib.RetrofitConverterScale
     debugCompile lib.OkHttpLogging
     //轮播图
     compile lib.Banner
