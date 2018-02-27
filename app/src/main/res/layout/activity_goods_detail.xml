@@ -15,6 +15,7 @@
         <ImageView
             android:id="@+id/iv_good_icon"
             android:background="@drawable/bg_good_icon"
+            android:padding="3dp"
             android:layout_width="50dp"
             android:layout_height="50dp"/>
 
