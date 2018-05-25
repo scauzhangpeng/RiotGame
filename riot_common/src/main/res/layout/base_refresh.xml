@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.scwang.smartrefresh.layout.SmartRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/refreshLayout"
-    android:background="@color/colorMainBg"
+    android:id="@+id/base_smart_refresh"
+    android:background="@color/mainBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:srlEnablePreviewInEditMode="true">
 
     <com.xyz.riotcommon.widget.TeemoHeader
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_layout_refresh"
+        android:id="@+id/rv_base"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorMainBg"
-        android:overScrollMode="never"/>
+        android:background="@color/mainBackground"
+        android:overScrollMode="never" />
 
     <com.xyz.riotcommon.widget.TeemoFooter
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 </com.scwang.smartrefresh.layout.SmartRefreshLayout>

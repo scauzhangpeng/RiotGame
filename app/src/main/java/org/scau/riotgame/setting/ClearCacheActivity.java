@@ -3,6 +3,7 @@ package org.scau.riotgame.setting;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
@@ -34,8 +35,15 @@ public class ClearCacheActivity extends SimpleTopBarActivity {
 
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
+        super.initViewsAndEvents(savedInstanceState);
         initData();
     }
+
+    @Override
+    protected BasePresenter initPresenter() {
+        return null;
+    }
+
 
     private void initData() {
         mSwitchGameCache.setRightSubText("167.66KB");

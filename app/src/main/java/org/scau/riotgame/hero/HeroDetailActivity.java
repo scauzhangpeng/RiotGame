@@ -3,6 +3,7 @@ package org.scau.riotgame.hero;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
@@ -31,6 +32,7 @@ public class HeroDetailActivity extends SimpleTopBarActivity {
 
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
+        super.initViewsAndEvents(savedInstanceState);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             mHeroId = extras.getInt("hero_id");
@@ -80,5 +82,10 @@ public class HeroDetailActivity extends SimpleTopBarActivity {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected BasePresenter initPresenter() {
+        return null;
     }
 }

@@ -1,11 +1,9 @@
 package com.xyz.riotcommon;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -13,7 +11,6 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.xyz.basiclib.mvp.BasePresenter;
-import com.xyz.basiclib.mvp.MvpFragment;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 
 import java.util.ArrayList;
@@ -23,21 +20,13 @@ import java.util.List;
  * Created by ZP on 2018/2/8.
  */
 
-public abstract class SimpleRefreshFragment<T, V, P extends BasePresenter<V>> extends MvpFragment<V, P> implements OnRefreshListener, OnLoadmoreListener, BasicAdapter.OnItemClickListener {
+public abstract class SimpleRefreshFragment<T, V, P extends BasePresenter<V>> extends CommonFragment<V, P> implements OnRefreshListener, OnLoadmoreListener, BasicAdapter.OnItemClickListener {
 
     protected RecyclerView mRecyclerView;
     protected SmartRefreshLayout mSmartRefreshLayout;
 
     protected List<T> mData;
     protected BasicAdapter<T> mAdapter;
-
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
-        return mView;
-    }
 
     @Override
     protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,7 +36,7 @@ public abstract class SimpleRefreshFragment<T, V, P extends BasePresenter<V>> ex
     }
 
     private void initRefreshView() {
-        mSmartRefreshLayout = (SmartRefreshLayout) mView.findViewById(R.id.refreshLayout);
+        mSmartRefreshLayout = (SmartRefreshLayout) mView.findViewById(R.id.base_smart_refresh);
         mSmartRefreshLayout.setOnRefreshListener(this);
         mSmartRefreshLayout.setOnLoadmoreListener(this);
     }
@@ -69,7 +58,7 @@ public abstract class SimpleRefreshFragment<T, V, P extends BasePresenter<V>> ex
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_base_fresh;
+        return R.layout.base_refresh;
     }
 
     @Override

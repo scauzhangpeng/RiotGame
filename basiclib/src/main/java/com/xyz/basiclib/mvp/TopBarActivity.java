@@ -1,4 +1,4 @@
-package com.xyz.basiclib.activity;
+package com.xyz.basiclib.mvp;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -11,13 +11,11 @@ import android.widget.FrameLayout;
 
 import com.xyz.basiclib.R;
 
-import butterknife.ButterKnife;
-
 /**
  * Created by ZP on 2018/1/25.
  */
 
-public abstract class TopBarActivity extends BaseActivity {
+public abstract class TopBarActivity extends ButterKnifeActivity {
 
     /**
      * 顶部布局
@@ -32,18 +30,20 @@ public abstract class TopBarActivity extends BaseActivity {
      * 顶部标题栏
      */
     private View mTopView;
+
     private int mTopBarLayoutId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: TopBarActivity");
-        //首先获取顶部标题布局
-        mTopBarLayoutId = getTopBarHeaderId();
-        super.onCreate(savedInstanceState);
-        if (mTopBarLayoutId != 0) {
+        mTopBarLayoutId = getTopBarLayoutId();
+        //如果顶部和内容都是为空则直接跳过本布局
+        if (mTopBarLayoutId == 0 && getTopBarContentId() == 0) {
+            super.onCreate(savedInstanceState);
+        } else {
+            super.onCreate(savedInstanceState);
             initRootView(R.layout.activity_base_topbar);
             setContentView(getTopBarContentId());
-            ButterKnife.bind(this);
             initTopBar(mTopView);
             initViewsAndEvents(savedInstanceState);
         }
@@ -58,17 +58,15 @@ public abstract class TopBarActivity extends BaseActivity {
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
-        //如果没有顶部布局则直接按照正常系统设置
-        if (mTopBarLayoutId == 0) {
+        if (mTopBarLayoutId == 0 && getTopBarContentId() == 0) {
             super.setContentView(layoutResID);
         } else {
             mFlTopBar = (FrameLayout) findViewById(R.id.fl_topbar);
             mFlContent = (FrameLayout) findViewById(R.id.fl_content);
-            if (layoutResID != 0) {
-                LayoutInflater.from(this).inflate(layoutResID, mFlContent, true);
-            }
 
-            mTopView = LayoutInflater.from(this).inflate(mTopBarLayoutId, mFlTopBar, false);
+            LayoutInflater.from(this).inflate(layoutResID, mFlContent, true);
+
+            mTopView = LayoutInflater.from(this).inflate(mTopBarLayoutId, mFlContent, false);
             if (mTopView != null) {
                 mFlTopBar.addView(mTopView);
                 mFlTopBar.setVisibility(View.VISIBLE);
@@ -80,13 +78,10 @@ public abstract class TopBarActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        if (mTopBarLayoutId == 0) {
-            return getTopBarContentId();
-        } else {
-            return 0;
-        }
+        return 0;
     }
 
-    protected abstract int getTopBarHeaderId();
     protected abstract int getTopBarContentId();
+
+    protected abstract int getTopBarLayoutId();
 }

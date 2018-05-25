@@ -9,7 +9,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 
-import com.xyz.basiclib.activity.SimpleButterKnifeFragment;
+import com.xyz.basiclib.mvp.BasePresenter;
+import com.xyz.riotcommon.CommonFragment;
 
 import org.scau.riotgame.R;
 
@@ -19,7 +20,7 @@ import butterknife.Bind;
  * Created by ZP on 2017/7/27.
  */
 
-public class MallFragment extends SimpleButterKnifeFragment {
+public class MallFragment extends CommonFragment {
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -37,8 +38,8 @@ public class MallFragment extends SimpleButterKnifeFragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_cart) {
-            showToastLong("mall");
+        if (item.getItemId() == R.id.menu_news_search) {
+            showToastLong("search");
         }
         return super.onOptionsItemSelected(item);
     }
@@ -46,7 +47,7 @@ public class MallFragment extends SimpleButterKnifeFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        inflater.inflate(R.menu.mall_shopping_cart, menu);
+        inflater.inflate(R.menu.news_search, menu);
 //        super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -55,5 +56,10 @@ public class MallFragment extends SimpleButterKnifeFragment {
         mToolbar.setTitle("");
         activity.setSupportActionBar(mToolbar);
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    protected BasePresenter initPresenter() {
+        return null;
     }
 }

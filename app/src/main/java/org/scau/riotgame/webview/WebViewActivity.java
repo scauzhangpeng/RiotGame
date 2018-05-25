@@ -13,6 +13,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
+import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
@@ -65,7 +66,7 @@ public class WebViewActivity extends SimpleTopBarActivity {
 
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
-
+        super.initViewsAndEvents(savedInstanceState);
     }
 
     @Override
@@ -91,6 +92,11 @@ public class WebViewActivity extends SimpleTopBarActivity {
         mFlWebView.removeAllViews();
 //        mWebView.clearCache(true);
         mWebView.destroy();
+    }
+
+    @Override
+    protected BasePresenter initPresenter() {
+        return null;
     }
 
 

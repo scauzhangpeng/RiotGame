@@ -1,4 +1,4 @@
-package com.xyz.riotcommon;
+package com.xyz.riotcommon.widget;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
@@ -10,31 +10,34 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.scwang.smartrefresh.layout.api.RefreshFooter;
+import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshKernel;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.xyz.riotcommon.R;
+
 
 /**
  * Created by ZP on 2017/8/7.
  */
 
-public class TeemoFooter extends LinearLayout implements RefreshFooter {
+public class TeemoHeader extends LinearLayout implements RefreshHeader {
 
     private ImageView mImageView;
     private TextView mTextView;
     private AnimationDrawable mAnimationDrawable;
 
-    public TeemoFooter(Context context) {
+
+    public TeemoHeader(Context context) {
         this(context, null);
     }
 
-    public TeemoFooter(Context context, AttributeSet attrs) {
+    public TeemoHeader(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public TeemoFooter(Context context, AttributeSet attrs, int defStyleAttr) {
+    public TeemoHeader(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initViews(context);
     }
@@ -47,18 +50,13 @@ public class TeemoFooter extends LinearLayout implements RefreshFooter {
     }
 
     @Override
-    public void onPullingUp(float percent, int offset, int footerHeight, int extendHeight) {
+    public void onPullingDown(float percent, int offset, int headerHeight, int extendHeight) {
 
     }
 
     @Override
-    public void onPullReleasing(float percent, int offset, int footerHeight, int extendHeight) {
+    public void onReleasing(float percent, int offset, int headerHeight, int extendHeight) {
 
-    }
-
-    @Override
-    public boolean setLoadmoreFinished(boolean finished) {
-        return false;
     }
 
     @NonNull
@@ -96,9 +94,9 @@ public class TeemoFooter extends LinearLayout implements RefreshFooter {
     public int onFinish(RefreshLayout layout, boolean success) {
         mAnimationDrawable.stop();
         if (success) {
-            mTextView.setText("加载完成");
+            mTextView.setText("刷新完成");
         } else {
-            mTextView.setText("加载失败");
+            mTextView.setText("刷新失败");
         }
         return 500;
     }
@@ -112,14 +110,17 @@ public class TeemoFooter extends LinearLayout implements RefreshFooter {
     public void onStateChanged(RefreshLayout refreshLayout, RefreshState oldState, RefreshState newState) {
         switch (newState) {
             case None:
-            case PullToUpLoad:
-                mTextView.setText("上拉加载");
+            case PullDownToRefresh:
+                mTextView.setText("下拉刷新");
+                if (mAnimationDrawable.isRunning()) {
+                    mAnimationDrawable.stop();
+                }
                 break;
-            case ReleaseToLoad:
-                mTextView.setText("释放加载");
+            case ReleaseToRefresh:
+                mTextView.setText("释放刷新");
                 break;
-            case Loading:
-                mTextView.setText("正在加载");
+            case Refreshing:
+                mTextView.setText("正在刷新");
                 mAnimationDrawable.start();
                 break;
         }

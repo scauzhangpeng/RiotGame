@@ -10,6 +10,13 @@ android {
         versionCode 2952
         versionName "6.1.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            // 显式声明支持注解
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
     }
     buildTypes {
         release {
@@ -20,7 +27,7 @@ android {
             // 缩减resource文件
             shrinkResources true
             //Proguard
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -46,10 +53,11 @@ dependencies {
     //网络库
     compile lib.Retrofit
     compile lib.RetrofitConverterGson
-    compile lib.RetrofitConverterScale
+//    compile lib.RetrofitConverterScale
     debugCompile lib.OkHttpLogging
     //轮播图
     compile lib.Banner
     compile project(':riot_common')
+    compile lib.Design
 
 }

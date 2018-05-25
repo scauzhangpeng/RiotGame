@@ -17,7 +17,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.xyz.basiclib.activity.SimpleButterKnifeFragment;
+import com.xyz.basiclib.mvp.BasePresenter;
+import com.xyz.riotcommon.CommonFragment;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.hero.HeroPageAdapter;
@@ -28,7 +29,7 @@ import butterknife.Bind;
  * Created by ZP on 2018/1/24.
  */
 
-public class HomeFragment extends SimpleButterKnifeFragment implements RadioGroup.OnCheckedChangeListener {
+public class HomeFragment extends CommonFragment implements RadioGroup.OnCheckedChangeListener {
 
 
     @Bind(R.id.rbtn_last)
@@ -111,7 +112,6 @@ public class HomeFragment extends SimpleButterKnifeFragment implements RadioGrou
         mPages.put(5, new ColumnListFragment());
         mAdapter = new HeroPageAdapter(getActivity().getSupportFragmentManager(), mPages);
         mVpMain.setAdapter(mAdapter);
-        mVpMain.setOffscreenPageLimit(5);
         mVpMain.addOnPageChangeListener(mOnPageChangeListener);
     }
 
@@ -169,5 +169,10 @@ public class HomeFragment extends SimpleButterKnifeFragment implements RadioGrou
             mVpMain.removeOnPageChangeListener(mOnPageChangeListener);
         }
         super.onDestroy();
+    }
+
+    @Override
+    protected BasePresenter initPresenter() {
+        return null;
     }
 }

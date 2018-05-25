@@ -8,6 +8,8 @@ import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.bean.PageColumnList;
 import org.scau.riotgame.home.bean.PageResponse;
 
+import java.util.HashMap;
+
 import retrofit2.Call;
 
 /**

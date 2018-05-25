@@ -1,4 +1,4 @@
-package com.xyz.basiclib.activity;
+package com.xyz.basiclib.mvp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,16 +6,12 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
-import com.xyz.basiclib.mvp.BaseView;
-
-import butterknife.ButterKnife;
-
 /**
  * Created by ZP on 2017/8/1.
  * Activity 基类
  */
 
-public abstract class BaseActivity extends PermissionActivity implements BaseView {
+public abstract class BaseActivity extends CheckPermissionActivity implements BaseView {
 
     protected final String TAG = this.getClass().getSimpleName();
 
@@ -24,7 +20,6 @@ public abstract class BaseActivity extends PermissionActivity implements BaseVie
         super.onCreate(savedInstanceState);
         if (getLayoutId() != 0) {
             setContentView(getLayoutId());
-            ButterKnife.bind(this);
             initViewsAndEvents(savedInstanceState);
         }
     }
@@ -54,7 +49,6 @@ public abstract class BaseActivity extends PermissionActivity implements BaseVie
         }
         startActivity(intent);
     }
-
 
     @Override
     public void showToastLong(String msg) {

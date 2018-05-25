@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +15,12 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.xyz.basiclib.mvp.MvpFragment;
 import com.xyz.basiclib.recyclerview.AbstractImageLoader;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.BasicViewHolder;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.basiclib.recyclerview.WrapperAdapter;
+import com.xyz.riotcommon.CommonFragment;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
@@ -45,8 +44,8 @@ import butterknife.Bind;
  * </p>
  */
 
-public class MatchFragment extends MvpFragment<MatchContract.View, MatchContract.Presenter> implements MatchContract.View, OnRefreshListener, OnLoadmoreListener {
-    private static final String TAG = "MatchFragment";
+public class MatchFragment extends CommonFragment<MatchContract.View, MatchContract.Presenter> implements MatchContract.View, OnRefreshListener, OnLoadmoreListener {
+
 
     @Bind(R.id.rv_layout_refresh)
     RecyclerView mRvLayoutRefresh;
@@ -248,7 +247,6 @@ public class MatchFragment extends MvpFragment<MatchContract.View, MatchContract
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
-        Log.d(TAG, "setUserVisibleHint: " + isVisibleToUser);
         if (isVisibleToUser) {
             mRefreshLayout.autoRefresh();
         }

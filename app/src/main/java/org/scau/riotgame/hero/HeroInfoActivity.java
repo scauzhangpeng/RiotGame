@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
@@ -36,9 +37,9 @@ public class HeroInfoActivity extends SimpleTopBarActivity {
 
     private SparseArray<Fragment> mFragments;
     private HeroPageAdapter mPagerAdapter;
-    private HeroFreeFragment mHeroFreeFragment;
-    private HeroOwnerFragment mHeroOwnerFragment;
-    private HeroAllFragment mHeroAllFragment;
+    private HeroFreeFragment mFreeHeroFragment;
+    private HeroOwnerFragment mOwnerHeroFragment;
+    private HeroAllFragment mAllHeroFragment;
 
     @Override
     protected int getTopBarContentId() {
@@ -47,16 +48,17 @@ public class HeroInfoActivity extends SimpleTopBarActivity {
 
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
+        super.initViewsAndEvents(savedInstanceState);
         mVpHero.addOnPageChangeListener(mOnPageChangeListener);
         mRgHero.setOnCheckedChangeListener(mOnCheckedChangeListener);
 
         mFragments = new SparseArray<>();
-        mHeroFreeFragment = new HeroFreeFragment();
-        mHeroOwnerFragment = new HeroOwnerFragment();
-        mHeroAllFragment = new HeroAllFragment();
-        mFragments.put(0, mHeroFreeFragment);
-        mFragments.put(1, mHeroOwnerFragment);
-        mFragments.put(2, mHeroAllFragment);
+        mFreeHeroFragment = new HeroFreeFragment();
+        mOwnerHeroFragment = new HeroOwnerFragment();
+        mAllHeroFragment = new HeroAllFragment();
+        mFragments.put(0, mFreeHeroFragment);
+        mFragments.put(1, mOwnerHeroFragment);
+        mFragments.put(2, mAllHeroFragment);
         mPagerAdapter = new HeroPageAdapter(getSupportFragmentManager(), mFragments);
         mVpHero.setAdapter(mPagerAdapter);
     }
@@ -112,8 +114,14 @@ public class HeroInfoActivity extends SimpleTopBarActivity {
         mVpHero.removeOnPageChangeListener(mOnPageChangeListener);
     }
 
+    @Override
+    protected BasePresenter initPresenter() {
+        return null;
+    }
+
+
     @OnClick(R.id.tv_prop)
-    public void openProp(View view) {
-        openActivity(GoogsListActivity.class);
+    public void openGoodsList(View view) {
+        openActivity(GoodsListActivity.class);
     }
 }

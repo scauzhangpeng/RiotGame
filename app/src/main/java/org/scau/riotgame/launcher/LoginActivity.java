@@ -1,7 +1,6 @@
 package org.scau.riotgame.launcher;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -12,8 +11,9 @@ import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
+import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.basiclib.util.SPUtil;
-import com.xyz.riotcommon.SimpleTopBarActivity;
+import com.xyz.riotcommon.CommonActivity;
 
 import org.json.JSONObject;
 import org.scau.riotgame.R;
@@ -30,25 +30,35 @@ import butterknife.OnClick;
  * </p>
  */
 
-public class LoginActivity extends SimpleTopBarActivity {
+public class LoginActivity extends CommonActivity {
 
     private Tencent mTencent;
     private UserInfo mInfo;
     private String app_id = "1105966790";
 
     @Override
-    protected int getTopBarContentId() {
-        return R.layout.activity_login;
+    protected void initTopBar(View topView) {
+
     }
 
     @Override
-    protected int getTopBarHeaderId() {
+    protected int getTopBarContentId() {
         return 0;
     }
 
     @Override
-    protected void initViewsAndEvents(Bundle savedInstanceState) {
+    protected int getTopBarLayoutId() {
+        return 0;
+    }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_login;
+    }
+
+    @Override
+    protected BasePresenter initPresenter() {
+        return null;
     }
 
     @Override

@@ -74,7 +74,7 @@
             android:label="英雄详情"/>
 
         <activity
-            android:name=".hero.GoogsListActivity"
+            android:name=".hero.GoodsListActivity"
             android:label="物品资料"/>
 
         <activity

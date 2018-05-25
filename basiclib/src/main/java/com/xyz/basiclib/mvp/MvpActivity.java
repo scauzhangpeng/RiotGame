@@ -3,7 +3,6 @@ package com.xyz.basiclib.mvp;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.xyz.basiclib.activity.TopBarActivity;
 
 /**
  * Created by ZP on 2017/8/15.

@@ -1,7 +1,6 @@
 package org.scau.riotgame.search;
 
-import android.os.Bundle;
-
+import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
@@ -14,15 +13,8 @@ import butterknife.OnClick;
 
 public class UserSearchActivity extends SimpleTopBarActivity {
 
-    @Override
-    protected int getTopBarContentId() {
-        return R.layout.activity_user_search;
-    }
 
-    @Override
-    protected void initViewsAndEvents(Bundle savedInstanceState) {
 
-    }
 
     @OnClick(R.id.rl_recently_play_with)
     public void recentlyPlayWith() {
@@ -32,5 +24,15 @@ public class UserSearchActivity extends SimpleTopBarActivity {
     @OnClick(R.id.rl_user_nearby)
     public void userNearby() {
         openActivity(UserNearbyActivity.class);
+    }
+
+    @Override
+    protected BasePresenter initPresenter() {
+        return null;
+    }
+
+    @Override
+    protected int getTopBarContentId() {
+        return R.layout.activity_user_search;
     }
 }

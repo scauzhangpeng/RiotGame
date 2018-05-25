@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/rg_wallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbtn_wallpaper_last"
+            style="@style/tab_wallpaper_indicator"
+            android:text="最新"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/rbtn_wallpaper_hot"
+            style="@style/tab_wallpaper_indicator"
+            android:text="最热" />
+
+        <RadioButton
+            android:id="@+id/rbtn_wallpaper_type"
+            style="@style/tab_wallpaper_indicator"
+            android:text="分类" />
+
+        <RadioButton
+            android:id="@+id/rbtn_wallpaper_collection"
+            style="@style/tab_wallpaper_indicator"
+            android:text="收藏" />
+    </RadioGroup>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_wallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

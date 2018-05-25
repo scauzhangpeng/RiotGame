@@ -1,4 +1,4 @@
-package com.xyz.basiclib.activity;
+package com.xyz.basiclib.mvp;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,8 +10,7 @@ import butterknife.ButterKnife;
  * Created by ZP on 2018/1/24.
  */
 
-public abstract class SimpleButterKnifeFragment extends BaseFragment {
-
+public abstract class MvpButterKnifeFragment<V, P extends BasePresenter<V>> extends MvpFragment<V, P> {
 
     @Override
     protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

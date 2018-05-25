@@ -5,7 +5,10 @@ package org.scau.riotgame.http;
  */
 
 
+import android.content.Context;
+import android.os.Environment;
 import android.os.Handler;
+import android.util.Log;
 
 import org.scau.riotgame.RiotGameApplication;
 
@@ -17,18 +20,17 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  *
  */
 public class ServiceFactory {
+    private static final String TAG = "ServiceFactory";
     private static Handler mHandler = new Handler();
 
     public static <T> T createServiceFrom(Class<T> serviceClass, String endpoint) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(endpoint)
-                .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(getLogClient())
                 .build();
@@ -48,9 +50,8 @@ public class ServiceFactory {
     public static OkHttpClient getLogClient() {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        File cacheFile = new File(RiotGameApplication.getContext().getExternalCacheDir(), "HttpCache");
-        System.out.println("path:" + RiotGameApplication.getContext().getExternalCacheDir());
-        Cache cache = new Cache(cacheFile, 1024 * 1024 * 10);//缓存文件为10MB
+        File cacheDir = getDiskCacheDir(RiotGameApplication.getContext(), "http");
+        Cache cache = new Cache(cacheDir, 1024 * 1024 * 10);//缓存文件为10MB
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
 //                .addInterceptor(getHttpLoggingInterceptor())
                 .cache(cache)
@@ -76,6 +77,18 @@ public class ServiceFactory {
                 .build();
 
         return okHttpClient;
+    }
+
+    public static File getDiskCacheDir(Context context, String uniqueName) {
+        File cachePath;
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
+                || !Environment.isExternalStorageRemovable()) {
+            cachePath = context.getExternalCacheDir();
+        } else {
+            cachePath = context.getCacheDir();
+        }
+        Log.d(TAG, "getDiskCacheDir: " + cachePath);
+        return new File(cachePath, uniqueName);
     }
 }
 

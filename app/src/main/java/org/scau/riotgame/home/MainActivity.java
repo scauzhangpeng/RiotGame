@@ -17,8 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.basiclib.util.SPUtil;
-import com.xyz.riotcommon.SimpleTopBarActivity;
+import com.xyz.riotcommon.CommonActivity;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.favorite.FavoriteActivity;
@@ -30,7 +31,7 @@ import org.scau.riotgame.utils.ImageLoadUtil;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class MainActivity extends SimpleTopBarActivity implements RadioGroup.OnCheckedChangeListener {
+public class MainActivity extends CommonActivity implements RadioGroup.OnCheckedChangeListener {
 
     @Bind(R.id.tabcontent)
     FrameLayout mTabcontent;
@@ -54,8 +55,6 @@ public class MainActivity extends SimpleTopBarActivity implements RadioGroup.OnC
     LinearLayout mNavView;
     @Bind(R.id.iv_header)
     ImageView mIvHeader;
-    @Bind((R.id.iv_nav_header))
-    ImageView mIvNavHeader;
 
     private Fragment mNewsFragment;
     private Fragment mFriendsFragment;
@@ -64,18 +63,33 @@ public class MainActivity extends SimpleTopBarActivity implements RadioGroup.OnC
     private Fragment mMeFragment;
 
     @Override
+    protected void initTopBar(View topView) {
+
+    }
+
+    @Override
     protected int getTopBarContentId() {
+        return 0;
+    }
+
+    @Override
+    protected int getTopBarLayoutId() {
+        return 0;
+    }
+
+    @Override
+    protected int getLayoutId() {
         return R.layout.activity_main;
     }
 
     @Override
-    protected int getTopBarHeaderId() {
-        return 0;//主界面没有设置顶部标题栏，具体标题栏在fragment中设置
+    protected BasePresenter initPresenter() {
+        return null;
     }
 
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
-        initNavgationView();
+        super.initViewsAndEvents(savedInstanceState);
         initHeader();
         mRgMain.setOnCheckedChangeListener(this);
         mDrawerLayout.setScrimColor(Color.TRANSPARENT);
@@ -104,10 +118,6 @@ public class MainActivity extends SimpleTopBarActivity implements RadioGroup.OnC
             }
         });
         SetSelect(0);
-    }
-
-    private void initNavgationView() {
-        ImageLoadUtil.loadImage(this, SPUtil.getInstance(this).getString("figureurl_qq_2", ""), R.drawable.default_lol_ex, mIvNavHeader);
     }
 
     private void initHeader() {

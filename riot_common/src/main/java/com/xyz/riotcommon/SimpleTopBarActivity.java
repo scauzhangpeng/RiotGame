@@ -4,13 +4,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
-import com.xyz.basiclib.activity.TopBarActivity;
+import com.xyz.basiclib.mvp.BasePresenter;
 
 /**
  * Created by ZP on 2018/1/29.
  */
 
-public abstract class SimpleTopBarActivity extends TopBarActivity {
+public abstract class SimpleTopBarActivity<V, P extends BasePresenter<V>> extends CommonActivity<V, P> {
 
     private TextView mTvTitle;
     private Toolbar mToolbar;
@@ -19,11 +19,6 @@ public abstract class SimpleTopBarActivity extends TopBarActivity {
     @Override
     protected void initTopBar(View topView) {
         initDefaultTopBar(topView);
-    }
-
-    @Override
-    protected int getTopBarHeaderId() {
-        return R.layout.toolbar_default;
     }
 
     protected Toolbar initDefaultTopBar(View topView) {
@@ -44,5 +39,10 @@ public abstract class SimpleTopBarActivity extends TopBarActivity {
 
         mTvTitle.setText(getTitle().toString());
         return mToolbar;
+    }
+
+    @Override
+    protected int getTopBarLayoutId() {
+        return R.layout.toolbar_default;
     }
 }

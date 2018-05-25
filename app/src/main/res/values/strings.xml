@@ -9,5 +9,5 @@
 
     <string name="article_pv">%s</string>
 
-    <string name="version_info" formatted="false">V%s(%d)</string>
+    <string name="version_info" formatted="true">V%s(%d)</string>
 </resources>

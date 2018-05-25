@@ -1,5 +1,6 @@
 package org.scau.riotgame.webview;
 
+import android.os.Build;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -12,24 +13,36 @@ public class WebViewConfig {
     public static WebSettings initWebView(WebView webView) {
         WebSettings webSettings = webView.getSettings();
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
-        //如果访问的页面中要与Javascript交互，则webview必须设置支持Javascript
+        //5.0以上开启混合模式加载
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
+        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setUseWideViewPort(true);
+        //允许js代码
         webSettings.setJavaScriptEnabled(true);
-        //设置自适应屏幕，两者合用
-        webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
-        webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
-        //缩放操作
-        webSettings.setSupportZoom(true); //支持缩放，默认为true。是下面那个的前提。
-        webSettings.setBuiltInZoomControls(false); //设置内置的缩放控件。若为false，则该WebView不可缩放
-        webSettings.setDisplayZoomControls(false); //隐藏原生的缩放控件
-
-        webSettings.setAllowFileAccess(true); //设置可以访问文件
-        webSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口
-//        webSettings.setLoadsImagesAutomatically(true); //支持自动加载图片
-        webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
-
-        webSettings.setDomStorageEnabled(true); // 开启 DOM storage API 功能
-        webSettings.setDatabaseEnabled(true);   //开启 database storage API 功能
-        webSettings.setAppCacheEnabled(true);//开启 Application Caches 功能
+        //允许SessionStorage/LocalStorage存储
+        webSettings.setDomStorageEnabled(true);
+        //禁用放缩
+        webSettings.setDisplayZoomControls(false);
+        webSettings.setBuiltInZoomControls(false);
+        //禁用文字缩放
+        webSettings.setTextZoom(100);
+        //10M缓存，api 18后，系统自动管理。
+        webSettings.setAppCacheMaxSize(10 * 1024 * 1024);
+        //允许缓存，设置缓存位置
+        webSettings.setAppCacheEnabled(true);
+//        webSettings.setAppCachePath(context.getDir("appcache", 0).getPath());
+        //允许WebView使用File协议
+        webSettings.setAllowFileAccess(true);
+        //不保存密码
+        webSettings.setSavePassword(false);
+        //设置UA
+//        webSettings.setUserAgentString(webSettings.getUserAgentString() + " kaolaApp/" + AppUtils.getVersionName());
+        //移除部分系统JavaScript接口
+//        KaolaWebViewSecurity.removeJavascriptInterfaces(webView);
+        //自动加载图片
+        webSettings.setLoadsImagesAutomatically(true);
 
         webSettings.setBlockNetworkImage(true);
         return webSettings;

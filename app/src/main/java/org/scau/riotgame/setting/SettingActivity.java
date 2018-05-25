@@ -3,6 +3,7 @@ package org.scau.riotgame.setting;
 import android.os.Bundle;
 import android.view.View;
 
+import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
@@ -38,16 +39,6 @@ public class SettingActivity extends SimpleTopBarActivity {
     @Bind(R.id.stv_feed_back)
     SettingItemView mStvFeedBack;
 
-    @Override
-    protected int getTopBarContentId() {
-        return R.layout.activity_setting;
-    }
-
-    @Override
-    protected void initViewsAndEvents(Bundle savedInstanceState) {
-
-    }
-
     @OnClick(R.id.stv_bind_area)
     public void bindingArea() {
         openActivity(WebViewActivity.class);
@@ -81,5 +72,20 @@ public class SettingActivity extends SimpleTopBarActivity {
     @OnClick(R.id.stv_feed_back)
     public void feedback(View view) {
         openActivity(FeedBackActivity.class);
+    }
+
+    @Override
+    protected BasePresenter initPresenter() {
+        return null;
+    }
+
+    @Override
+    protected void initViewsAndEvents(Bundle savedInstanceState) {
+        super.initViewsAndEvents(savedInstanceState);
+    }
+
+    @Override
+    protected int getTopBarContentId() {
+        return R.layout.activity_setting;
     }
 }

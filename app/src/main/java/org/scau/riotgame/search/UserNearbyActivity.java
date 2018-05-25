@@ -1,10 +1,10 @@
 package org.scau.riotgame.search;
 
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
@@ -17,14 +17,15 @@ import org.scau.riotgame.R;
  */
 
 public class UserNearbyActivity extends SimpleTopBarActivity {
+
     @Override
     protected int getTopBarContentId() {
         return R.layout.activity_user_nearby;
     }
 
     @Override
-    protected void initViewsAndEvents(Bundle savedInstanceState) {
-
+    protected BasePresenter initPresenter() {
+        return null;
     }
 
     @Override

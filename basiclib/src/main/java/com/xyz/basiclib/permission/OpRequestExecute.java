@@ -3,11 +3,10 @@ package com.xyz.basiclib.permission;
 import com.yanzhenjie.permission.RequestExecutor;
 
 /**
- * 运行时权限接口包装类.
- * Created by ZP on 2018/1/31.
+ * Created by ZP on 2018/5/22.
  */
 
-public interface PermissionExecutor extends RequestExecutor {
+public interface OpRequestExecute extends RequestExecutor {
 
     /**
      * Go request permission.

@@ -10,7 +10,8 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 
-import com.xyz.basiclib.activity.SimpleButterKnifeFragment;
+import com.xyz.basiclib.mvp.BasePresenter;
+import com.xyz.riotcommon.CommonFragment;
 
 import org.scau.riotgame.R;
 
@@ -20,7 +21,7 @@ import butterknife.Bind;
  * Created by ZP on 2017/7/27.
  */
 
-public class FriendsFragment extends SimpleButterKnifeFragment {
+public class FriendsFragment extends CommonFragment {
 
     @Bind(R.id.rbtn_friends)
     RadioButton mRbtnFriends;
@@ -60,5 +61,10 @@ public class FriendsFragment extends SimpleButterKnifeFragment {
             showToastLong("menu_add_friedn");
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected BasePresenter initPresenter() {
+        return null;
     }
 }

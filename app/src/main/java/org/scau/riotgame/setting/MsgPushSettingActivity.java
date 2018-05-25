@@ -1,7 +1,6 @@
 package org.scau.riotgame.setting;
 
-import android.os.Bundle;
-
+import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
@@ -15,13 +14,14 @@ import org.scau.riotgame.R;
 
 public class MsgPushSettingActivity extends SimpleTopBarActivity {
 
+
     @Override
     protected int getTopBarContentId() {
         return R.layout.activity_msg_push_setting;
     }
 
     @Override
-    protected void initViewsAndEvents(Bundle savedInstanceState) {
-
+    protected BasePresenter initPresenter() {
+        return null;
     }
 }

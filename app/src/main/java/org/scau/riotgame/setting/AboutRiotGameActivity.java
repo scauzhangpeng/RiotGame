@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.basiclib.util.PackageUtil;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
@@ -33,7 +34,13 @@ public class AboutRiotGameActivity extends SimpleTopBarActivity {
 
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
+        super.initViewsAndEvents(savedInstanceState);
         showVersionInfo();
+    }
+
+    @Override
+    protected BasePresenter initPresenter() {
+        return null;
     }
 
     private void showVersionInfo() {

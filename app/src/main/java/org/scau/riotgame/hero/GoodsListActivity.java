@@ -8,6 +8,7 @@ import android.view.View;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
@@ -25,7 +26,7 @@ import retrofit2.Response;
  * Created by ZP on 2018/2/26.
  */
 
-public class GoogsListActivity extends SimpleTopBarActivity implements OnRefreshListener, BasicAdapter.OnItemClickListener {
+public class GoodsListActivity extends SimpleTopBarActivity implements OnRefreshListener, BasicAdapter.OnItemClickListener {
 
 
     @Bind(R.id.rv_layout_refresh)
@@ -39,6 +40,7 @@ public class GoogsListActivity extends SimpleTopBarActivity implements OnRefresh
 
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
+        super.initViewsAndEvents(savedInstanceState);
         mRvLayoutRefresh.setLayoutManager(new GridLayoutManager(this, 4));
         mGoodsList = new ArrayList<>();
         mGoodsAdapter = new GoodsAdapter(mGoodsList, this);
@@ -93,5 +95,10 @@ public class GoogsListActivity extends SimpleTopBarActivity implements OnRefresh
         int good_id = mGoodsList.get(position).getGood_id();
         bundle.putInt("good_id", good_id);
         openActivity(GoodsDetailActivity.class, bundle);
+    }
+
+    @Override
+    protected BasePresenter initPresenter() {
+        return null;
     }
 }
