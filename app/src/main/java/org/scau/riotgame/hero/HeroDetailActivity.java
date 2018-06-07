@@ -1,6 +1,7 @@
 package org.scau.riotgame.hero;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.widget.TextView;
 
 import com.xyz.basiclib.mvp.BasePresenter;
@@ -49,20 +50,17 @@ public class HeroDetailActivity extends SimpleTopBarActivity {
         super.onResume();
         OSSWebManager.getInstance().getHeroDetail(mHeroId, 9740, new HttpCallback<HeroDetailBean>() {
             @Override
-            public void doOnSuccess(Response<HeroDetailBean> response) {
-                HeroDetailBean body = response.body();
-                if (body != null) {
-                    String story = body.getStory();
-                    mTvHeroBackground.setText(story);
-                    String use_skill1 = body.getUse_skill1() + "\n";
-                    String use_skill2 = body.getUse_skill2() + "\n";
-                    String use_skill3 = body.getUse_skill3();
-                    mTvHeroUseSkill.setText(use_skill1 + use_skill2 + use_skill3);
-                    String ag_skill1 = body.getAg_skill1() + "\n";
-                    String ag_skill2 = body.getAg_skill2() + "\n";
-                    String ag_skill3 = body.getAg_skill3();
-                    mTvHeroAgSkill.setText(ag_skill1 + ag_skill2 + ag_skill3);
-                }
+            public void doOnSuccess(@NonNull HeroDetailBean heroDetailBean, Response<HeroDetailBean> response) {
+                String story = heroDetailBean.getStory();
+                mTvHeroBackground.setText(story);
+                String use_skill1 = heroDetailBean.getUse_skill1() + "\n";
+                String use_skill2 = heroDetailBean.getUse_skill2() + "\n";
+                String use_skill3 = heroDetailBean.getUse_skill3();
+                mTvHeroUseSkill.setText(use_skill1 + use_skill2 + use_skill3);
+                String ag_skill1 = heroDetailBean.getAg_skill1() + "\n";
+                String ag_skill2 = heroDetailBean.getAg_skill2() + "\n";
+                String ag_skill3 = heroDetailBean.getAg_skill3();
+                mTvHeroAgSkill.setText(ag_skill1 + ag_skill2 + ag_skill3);
             }
 
             @Override

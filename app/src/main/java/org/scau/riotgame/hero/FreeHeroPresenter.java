@@ -1,6 +1,8 @@
 package org.scau.riotgame.hero;
 
 
+import android.support.annotation.NonNull;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.scau.riotgame.http.HttpCallback;
@@ -19,23 +21,20 @@ public class FreeHeroPresenter extends HeroContract.FreePresenter {
     void getFreeHeros() {
         WebManager.getInstance().getFreeHero(9740, new HttpCallback<String>() {
             @Override
-            public void doOnSuccess(Response<String> response) {
-                String body = response.body();
-                if (body != null) {
-                    int index = body.indexOf("free=");
-                    String resp = body.substring(index + "free=".length());
-                    try {
-                        JSONObject jsonObject = new JSONObject(resp);
-                        JSONObject keys = jsonObject.getJSONObject("keys");
-                        Iterator<String> iterator = keys.keys();
-                        while (iterator.hasNext()) {
-                            String next = iterator.next();
-                            String name = keys.getString(next);
-                            System.out.println(name);
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+            public void doOnSuccess(@NonNull String body, Response<String> response) {
+                int index = body.indexOf("free=");
+                String resp = body.substring(index + "free=".length());
+                try {
+                    JSONObject jsonObject = new JSONObject(resp);
+                    JSONObject keys = jsonObject.getJSONObject("keys");
+                    Iterator<String> iterator = keys.keys();
+                    while (iterator.hasNext()) {
+                        String next = iterator.next();
+                        String name = keys.getString(next);
+                        System.out.println(name);
                     }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
 

@@ -28,8 +28,9 @@ public abstract class HttpCallback<T> implements Callback<T> {
     @Override
     public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
         if (response.code() == 200) {//http响应成功
-            if (response.body() != null) {
-                doOnSuccess(response);
+            T body = response.body();
+            if (body != null) {
+                doOnSuccess(body, response);
             } else {
                 try {
                     doOnFailure(-1, response.errorBody().string());
@@ -77,7 +78,7 @@ public abstract class HttpCallback<T> implements Callback<T> {
     }
 
 
-    public abstract void doOnSuccess(Response<T> response);
+    public abstract void doOnSuccess(@NonNull T t, Response<T> response);
 
     public abstract void doOnError(Response<T> response, String statusCode, String message);
 

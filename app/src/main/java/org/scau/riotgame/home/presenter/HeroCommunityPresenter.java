@@ -1,5 +1,7 @@
 package org.scau.riotgame.home.presenter;
 
+import android.support.annotation.NonNull;
+
 import org.scau.riotgame.home.bean.Card;
 import org.scau.riotgame.home.bean.CardItem;
 import org.scau.riotgame.home.bean.CardsResponse;
@@ -29,19 +31,17 @@ public class HeroCommunityPresenter extends HeroCommunityContract.Presenter {
     public void loadMoreNews() {
         RequestManager.getInstance().getHeroGroup(mCurrentPage, "0c8a808f-61bd-4312-a9cc-a7a179b968a1", 7, 9740, new HttpCallback<PageResponse<News>>() {
             @Override
-            public void doOnSuccess(Response<PageResponse<News>> response) {
-                if (response.body() != null) {
-                    List<News> list = response.body().getList();
-                    if (list != null && list.size() != 0) {
-                        if (mCurrentPage == 0) {
-                            getView().showNewsList(list);
-                        } else {
-                            getView().showMoreNewsList(mCurrentPage, list);
-                        }
-                        mCurrentPage++;
+            public void doOnSuccess(@NonNull PageResponse<News> newsPageResponse, Response<PageResponse<News>> response) {
+                List<News> list = newsPageResponse.getList();
+                if (list != null && list.size() != 0) {
+                    if (mCurrentPage == 0) {
+                        getView().showNewsList(list);
                     } else {
-                        System.out.println("null list");
+                        getView().showMoreNewsList(mCurrentPage, list);
                     }
+                    mCurrentPage++;
+                } else {
+                    System.out.println("null list");
                 }
             }
 
@@ -61,23 +61,21 @@ public class HeroCommunityPresenter extends HeroCommunityContract.Presenter {
     public void refreshCardsData() {
         RequestManager.getInstance().getCardsData("0c8a808f-61bd-4312-a9cc-a7a179b968a1", 7, 9740, new HttpCallback<CardsResponse>() {
             @Override
-            public void doOnSuccess(Response<CardsResponse> response) {
-                if (response.body() != null) {
-                    List<CardItem> list = response.body().getList();
-                    if (list != null && list.size() != 0) {
-                        for (int i = 0; i < list.size(); i++) {
-                            if ("BattleVideosCard".equals(list.get(i).getNewstypeid())) {
-                                List<Card> data = list.get(i).getData();
-                                getView().showBattleVideo(data);
-                            }
-                            if ("RecentHeroCard".equals(list.get(i).getNewstypeid())) {
-                                List<Card> data = list.get(i).getData();
-                                getView().showRecentHero(data);
-                            }
+            public void doOnSuccess(@NonNull CardsResponse cardsResponse, Response<CardsResponse> response) {
+                List<CardItem> list = cardsResponse.getList();
+                if (list != null && list.size() != 0) {
+                    for (int i = 0; i < list.size(); i++) {
+                        if ("BattleVideosCard".equals(list.get(i).getNewstypeid())) {
+                            List<Card> data = list.get(i).getData();
+                            getView().showBattleVideo(data);
                         }
-                    } else {
-                        System.out.println("null list");
+                        if ("RecentHeroCard".equals(list.get(i).getNewstypeid())) {
+                            List<Card> data = list.get(i).getData();
+                            getView().showRecentHero(data);
+                        }
                     }
+                } else {
+                    System.out.println("null list");
                 }
             }
 

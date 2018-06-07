@@ -1,6 +1,7 @@
 package org.scau.riotgame.hero;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -66,15 +67,12 @@ public class GoodsListActivity extends SimpleTopBarActivity implements OnRefresh
     public void onRefresh(RefreshLayout refreshlayout) {
         OSSWebManager.getInstance().getGoods(new HttpCallback<GoodBean>() {
             @Override
-            public void doOnSuccess(Response<GoodBean> response) {
-                GoodBean body = response.body();
-                if (body != null) {
-                    List<GoodBean.ItemsBean> items = body.getItems();
-                    mGoodsList.clear();
-                    mGoodsList.addAll(items);
-                    mGoodsAdapter.notifyDataSetChanged();
-                    mRefreshLayout.finishRefresh();
-                }
+            public void doOnSuccess(@NonNull GoodBean goodBean, Response<GoodBean> response) {
+                List<GoodBean.ItemsBean> items = goodBean.getItems();
+                mGoodsList.clear();
+                mGoodsList.addAll(items);
+                mGoodsAdapter.notifyDataSetChanged();
+                mRefreshLayout.finishRefresh();
             }
 
             @Override

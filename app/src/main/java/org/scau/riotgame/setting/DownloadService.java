@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.NotificationCompat;
@@ -56,13 +57,13 @@ public class DownloadService extends Service {
     private void startDownload() {
         DownloadManager.getInstance().downloadApk("http://down.qq.com/qqtalk/lol_3498.apk", new HttpCallback<ResponseBody>() {
             @Override
-            public void doOnSuccess(final Response<ResponseBody> response) {
+            public void doOnSuccess(@NonNull final ResponseBody responseBody, final Response<ResponseBody> response) {
                 Log.d(TAG, "doOnSuccess: " + Thread.currentThread().getName());
                 if (response.isSuccessful()) {
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            boolean downloadSuccess = writeResponseBodyToDisk(response.body());
+                            boolean downloadSuccess = writeResponseBodyToDisk(responseBody);
                             if (downloadSuccess) {
                                 //
                                 Log.d(TAG, "run: 下载完成");

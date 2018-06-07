@@ -1,5 +1,7 @@
 package org.scau.riotgame.hero;
 
+import android.support.annotation.NonNull;
+
 import org.scau.riotgame.http.HttpCallback;
 import org.scau.riotgame.http.OSSWebManager;
 
@@ -16,12 +18,9 @@ public class AllHeroPresenter extends HeroContract.Presenter {
     void getAllHeros() {
         OSSWebManager.getInstance().getAllHero(new HttpCallback<List<Hero>>() {
             @Override
-            public void doOnSuccess(Response<List<Hero>> response) {
-                List<Hero> body = response.body();
-                if (body != null) {
-                    if (getView() != null) {
-                        getView().showAllHeros(body);
-                    }
+            public void doOnSuccess(@NonNull List<Hero> heroes, Response<List<Hero>> response) {
+                if (getView() != null) {
+                    getView().showAllHeros(heroes);
                 }
             }
 

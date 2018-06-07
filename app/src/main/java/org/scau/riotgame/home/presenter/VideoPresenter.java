@@ -1,5 +1,7 @@
 package org.scau.riotgame.home.presenter;
 
+import android.support.annotation.NonNull;
+
 import org.scau.riotgame.home.bean.HotAuthor;
 import org.scau.riotgame.home.bean.HotEnter;
 import org.scau.riotgame.home.bean.HotMatch;
@@ -24,23 +26,23 @@ public class VideoPresenter extends VideoContract.Presenter {
 
         WebManager.getInstance().getHostAuthors(9738, new HttpCallback<PageVideoData>() {
             @Override
-            public void doOnSuccess(Response<PageVideoData> response) {
-                List<HotAuthor> hotRecAuthorList = response.body().getMsg().getHotRecAuthorList();
+            public void doOnSuccess(@NonNull PageVideoData pageVideoData, Response<PageVideoData> response) {
+                List<HotAuthor> hotRecAuthorList = pageVideoData.getMsg().getHotRecAuthorList();
                 if (hotRecAuthorList != null) {
                     getView().showHotAuthorList(hotRecAuthorList);
                 }
 
-                List<HotWpv> hotRecWpvlist = response.body().getMsg().getHotRecWpvlist();
+                List<HotWpv> hotRecWpvlist = pageVideoData.getMsg().getHotRecWpvlist();
                 if (hotRecWpvlist != null) {
                     getView().showHotWpvList(hotRecWpvlist);
                 }
 
-                List<HotEnter> hotRecEnterList = response.body().getMsg().getHotRecEnterList();
+                List<HotEnter> hotRecEnterList = pageVideoData.getMsg().getHotRecEnterList();
                 if (hotRecEnterList != null) {
                     getView().showHotEnterList(hotRecEnterList);
                 }
 
-                List<HotMatch> hotRecMatchList = response.body().getMsg().getHotRecMatchList();
+                List<HotMatch> hotRecMatchList = pageVideoData.getMsg().getHotRecMatchList();
                 if (hotRecMatchList != null) {
                     getView().showHotMatchTop(hotRecMatchList.get(0));
                     hotRecMatchList.remove(0);

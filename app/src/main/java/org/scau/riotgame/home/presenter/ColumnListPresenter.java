@@ -1,5 +1,7 @@
 package org.scau.riotgame.home.presenter;
 
+import android.support.annotation.NonNull;
+
 import org.scau.riotgame.home.bean.ColumnList;
 import org.scau.riotgame.home.bean.PageColumnList;
 import org.scau.riotgame.home.contract.ColumnContract;
@@ -27,18 +29,17 @@ public class ColumnListPresenter extends ColumnContract.Presenter {
     @Override
     public void loadMoreNews() {
         RequestManager.getInstance().getColumnList(mCurrentPage, 9740, new HttpCallback<PageColumnList>() {
+
             @Override
-            public void doOnSuccess(Response<PageColumnList> response) {
-                if (response.body() != null) {
-                    List<ColumnList> unbook_list = response.body().getUnbook_list();
-                    if (unbook_list != null) {
-                        if (mCurrentPage == 0) {
-                            getView().showColumnList(unbook_list);
-                        } else {
-                            getView().showMoreColumnList(mCurrentPage, unbook_list);
-                        }
-                        mCurrentPage++;
+            public void doOnSuccess(@NonNull PageColumnList pageColumnList, Response<PageColumnList> response) {
+                List<ColumnList> unbook_list = pageColumnList.getUnbook_list();
+                if (unbook_list != null) {
+                    if (mCurrentPage == 0) {
+                        getView().showColumnList(unbook_list);
+                    } else {
+                        getView().showMoreColumnList(mCurrentPage, unbook_list);
                     }
+                    mCurrentPage++;
                 }
             }
 

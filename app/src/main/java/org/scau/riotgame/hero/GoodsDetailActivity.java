@@ -1,6 +1,7 @@
 package org.scau.riotgame.hero;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -104,48 +105,45 @@ public class GoodsDetailActivity extends SimpleTopBarActivity {
         super.onResume();
         OSSWebManager.getInstance().getGoodsDetail(mGoodId, new HttpCallback<GoodsDetailBean>() {
             @Override
-            public void doOnSuccess(Response<GoodsDetailBean> response) {
-                GoodsDetailBean body = response.body();
-                if (body != null) {
-                    showGoodsBaseInfo(body.getName(), body.getProplist(), body.getMaplist());
-                    showGoodsPrice(body.getPrice(), body.getCoprice(), body.getSaleprice());
-                    showGoodsDesc(body.getGood_desc());
-                    List<String> produceResp = new ArrayList<String>();
-                    List<String> produceneedlist = body.getProduceneedlist();
-                    for (int i = 0; i < produceneedlist.size(); i++) {
-                        String s = produceneedlist.get(i);
-                        if (!TextUtils.isEmpty(s)) {
-                            String url = "http://down.qq.com/qqtalk/lolApp/img/item/" + s + ".png";
-                            produceResp.add(url);
-                        }
-
+            public void doOnSuccess(@NonNull GoodsDetailBean goodsDetailBean, Response<GoodsDetailBean> response) {
+                showGoodsBaseInfo(goodsDetailBean.getName(), goodsDetailBean.getProplist(), goodsDetailBean.getMaplist());
+                showGoodsPrice(goodsDetailBean.getPrice(), goodsDetailBean.getCoprice(), goodsDetailBean.getSaleprice());
+                showGoodsDesc(goodsDetailBean.getGood_desc());
+                List<String> produceResp = new ArrayList<String>();
+                List<String> produceneedlist = goodsDetailBean.getProduceneedlist();
+                for (int i = 0; i < produceneedlist.size(); i++) {
+                    String s = produceneedlist.get(i);
+                    if (!TextUtils.isEmpty(s)) {
+                        String url = "http://down.qq.com/qqtalk/lolApp/img/item/" + s + ".png";
+                        produceResp.add(url);
                     }
-                    showGoodsProduceNeed(produceResp);
 
-                    //
-                    List<String> canProduceResp = new ArrayList<String>();
-                    List<String> canproducelist = body.getCanproducelist();
-                    for (int i = 0; i < canproducelist.size(); i++) {
-                        String s = canproducelist.get(i);
-                        if (!TextUtils.isEmpty(s)) {
-                            String url = "http://down.qq.com/qqtalk/lolApp/img/item/" + s + ".png";
-                            canProduceResp.add(url);
-                        }
-                    }
-                    showGoodsCanProduce(canProduceResp);
-
-                    //
-                    List<String> suitHeroResp = new ArrayList<String>();
-                    List<String> suithero = body.getSuithero();
-                    for (int i = 0; i < suithero.size(); i++) {
-                        String s = suithero.get(i);
-                        if (!TextUtils.isEmpty(s)) {
-                            String url = "http://down.qq.com/qqtalk/lolApp/img/hero/" + s + ".png";
-                            suitHeroResp.add(url);
-                        }
-                    }
-                    showGoodsSuitHeros(suitHeroResp);
                 }
+                showGoodsProduceNeed(produceResp);
+
+                //
+                List<String> canProduceResp = new ArrayList<String>();
+                List<String> canproducelist = goodsDetailBean.getCanproducelist();
+                for (int i = 0; i < canproducelist.size(); i++) {
+                    String s = canproducelist.get(i);
+                    if (!TextUtils.isEmpty(s)) {
+                        String url = "http://down.qq.com/qqtalk/lolApp/img/item/" + s + ".png";
+                        canProduceResp.add(url);
+                    }
+                }
+                showGoodsCanProduce(canProduceResp);
+
+                //
+                List<String> suitHeroResp = new ArrayList<String>();
+                List<String> suithero = goodsDetailBean.getSuithero();
+                for (int i = 0; i < suithero.size(); i++) {
+                    String s = suithero.get(i);
+                    if (!TextUtils.isEmpty(s)) {
+                        String url = "http://down.qq.com/qqtalk/lolApp/img/hero/" + s + ".png";
+                        suitHeroResp.add(url);
+                    }
+                }
+                showGoodsSuitHeros(suitHeroResp);
             }
 
             @Override

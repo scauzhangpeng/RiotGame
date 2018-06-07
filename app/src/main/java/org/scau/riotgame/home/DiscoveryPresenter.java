@@ -1,5 +1,6 @@
 package org.scau.riotgame.home;
 
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import org.scau.riotgame.home.bean.DiscoveryMenu;
@@ -24,8 +25,7 @@ public class DiscoveryPresenter extends DiscoveryContract.Presenter {
     public void getClubs() {
         RequestManager.getInstance().getClubInfo(9718, new HttpCallback<Club>() {
             @Override
-            public void doOnSuccess(Response<Club> response) {
-                Club club = response.body();
+            public void doOnSuccess(@NonNull Club club, Response<Club> response) {
                 List<Club.ClubsBean> clubs = club.getClubs();
                 if (getView() != null) {
                     getView().showClubs(clubs);
@@ -55,45 +55,42 @@ public class DiscoveryPresenter extends DiscoveryContract.Presenter {
     public void getDiscoveryMenu() {
         RequestManager.getInstance().getDiscoveryMenu(new HttpCallback<PageResponse<DiscoveryMenu>>() {
             @Override
-            public void doOnSuccess(Response<PageResponse<DiscoveryMenu>> response) {
-                PageResponse<DiscoveryMenu> body = response.body();
-                if (body != null) {
-                    List<DiscoveryMenu> list = body.getList();
-                    List<DiscoveryMenu> data = new ArrayList<DiscoveryMenu>();
-                    for (DiscoveryMenu discoveryMenu : list) {
-                        String section_index = discoveryMenu.getSection_index();
-                        if (!"0".equals(section_index) && !"6".equals(section_index)
-                                && !"100".equals(section_index)
-                                && TextUtils.isEmpty(discoveryMenu.getSub_index())) {
-                            data.add(discoveryMenu);
-                        }
+            public void doOnSuccess(@NonNull PageResponse<DiscoveryMenu> discoveryMenuPageResponse, Response<PageResponse<DiscoveryMenu>> response) {
+                List<DiscoveryMenu> list = discoveryMenuPageResponse.getList();
+                List<DiscoveryMenu> data = new ArrayList<DiscoveryMenu>();
+                for (DiscoveryMenu discoveryMenu : list) {
+                    String section_index = discoveryMenu.getSection_index();
+                    if (!"0".equals(section_index) && !"6".equals(section_index)
+                            && !"100".equals(section_index)
+                            && TextUtils.isEmpty(discoveryMenu.getSub_index())) {
+                        data.add(discoveryMenu);
                     }
+                }
 
-                    Collections.sort(data, new Comparator<DiscoveryMenu>() {
-                        @Override
-                        public int compare(DiscoveryMenu o1, DiscoveryMenu o2) {
-                            int section1 = Integer.parseInt(o1.getSection_index());
-                            int section2 = Integer.parseInt(o2.getSection_index());
-                            if (section1 > section2) {
+                Collections.sort(data, new Comparator<DiscoveryMenu>() {
+                    @Override
+                    public int compare(DiscoveryMenu o1, DiscoveryMenu o2) {
+                        int section1 = Integer.parseInt(o1.getSection_index());
+                        int section2 = Integer.parseInt(o2.getSection_index());
+                        if (section1 > section2) {
+                            return 1;
+                        } else if (section1 < section2) {
+                            return -1;
+                        } else {
+                            int pos1 = Integer.parseInt(o1.getPos_index());
+                            int pos2 = Integer.parseInt(o2.getPos_index());
+                            if (pos1 > pos2) {
                                 return 1;
-                            } else if (section1 < section2) {
+                            } else if (pos1 < pos2) {
                                 return -1;
                             } else {
-                                int pos1 = Integer.parseInt(o1.getPos_index());
-                                int pos2 = Integer.parseInt(o2.getPos_index());
-                                if (pos1 > pos2) {
-                                    return 1;
-                                } else if (pos1 < pos2) {
-                                    return -1;
-                                } else {
-                                    return 0;
-                                }
+                                return 0;
                             }
                         }
-                    });
-                    if (getView() != null) {
-                        getView().showDiscoveryMenu(data);
                     }
+                });
+                if (getView() != null) {
+                    getView().showDiscoveryMenu(data);
                 }
             }
 

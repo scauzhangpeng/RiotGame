@@ -1,5 +1,7 @@
 package org.scau.riotgame.home.presenter;
 
+import android.support.annotation.NonNull;
+
 import org.scau.riotgame.home.bean.Feature;
 import org.scau.riotgame.home.bean.GameCenterData;
 import org.scau.riotgame.home.bean.News;
@@ -23,13 +25,13 @@ public class MatchPresenter extends MatchContract.Presenter {
     public void gameCenterData() {
         RequestManager.getInstance().getGameCenterData(9738, new HttpCallback<GameCenterData>() {
             @Override
-            public void doOnSuccess(Response<GameCenterData> response) {
-                List<Feature> normal_features = response.body().getNormal_features();
+            public void doOnSuccess(@NonNull GameCenterData gameCenterData, Response<GameCenterData> response) {
+                List<Feature> normal_features = gameCenterData.getNormal_features();
                 if (normal_features != null) {
                     getView().showMatchHeaderMenu(normal_features);
                 }
 
-                List<Feature> gallery_features = response.body().getGallery_features();
+                List<Feature> gallery_features = gameCenterData.getGallery_features();
                 if (gallery_features != null) {
                     getView().showMatchHeaderGallery(gallery_features);
                 }
@@ -58,19 +60,17 @@ public class MatchPresenter extends MatchContract.Presenter {
     public void loadMoreNews() {
         RequestManager.getInstance().getNews(73, mCurrentPage, 9738, new HttpCallback<PageResponse<News>>() {
             @Override
-            public void doOnSuccess(Response<PageResponse<News>> response) {
-                if (response.body() != null) {
-                    List<News> list = response.body().getList();
-                    if (list != null && list.size() != 0) {
-                        if (mCurrentPage == 0) {
-                            getView().showRefreshMatchNews(list);
-                        } else {
-                            getView().showMoreMatchNews(list);
-                        }
-                        mCurrentPage++;
+            public void doOnSuccess(@NonNull PageResponse<News> newsPageResponse, Response<PageResponse<News>> response) {
+                List<News> list = newsPageResponse.getList();
+                if (list != null && list.size() != 0) {
+                    if (mCurrentPage == 0) {
+                        getView().showRefreshMatchNews(list);
                     } else {
-                        System.out.println("null list");
+                        getView().showMoreMatchNews(list);
                     }
+                    mCurrentPage++;
+                } else {
+                    System.out.println("null list");
                 }
             }
 

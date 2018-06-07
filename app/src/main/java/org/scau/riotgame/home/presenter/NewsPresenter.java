@@ -1,5 +1,7 @@
 package org.scau.riotgame.home.presenter;
 
+import android.support.annotation.NonNull;
+
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.bean.PageResponse;
 import org.scau.riotgame.home.contract.NewsContract;
@@ -27,20 +29,19 @@ public class NewsPresenter extends NewsContract.Presenter {
     @Override
     public void loadMoreNews() {
         RequestManager.getInstance().getNews(12, mCurrentPage, 9738, new HttpCallback<PageResponse<News>>() {
+
             @Override
-            public void doOnSuccess(Response<PageResponse<News>> response) {
-                if (response.body() != null) {
-                    List<News> list = response.body().getList();
-                    if (list != null && list.size() != 0) {
-                        if (mCurrentPage == 0) {
-                            getView().showNewsList(list);
-                        } else {
-                            getView().showMoreNewsList(mCurrentPage, list);
-                        }
-                        mCurrentPage++;
+            public void doOnSuccess(@NonNull PageResponse<News> newsPageResponse, Response<PageResponse<News>> response) {
+                List<News> list = newsPageResponse.getList();
+                if (list != null && list.size() != 0) {
+                    if (mCurrentPage == 0) {
+                        getView().showNewsList(list);
                     } else {
-                        System.out.println("null list");
+                        getView().showMoreNewsList(mCurrentPage, list);
                     }
+                    mCurrentPage++;
+                } else {
+                    System.out.println("null list");
                 }
             }
 
@@ -60,14 +61,12 @@ public class NewsPresenter extends NewsContract.Presenter {
     public void refreshBannerNews() {
         RequestManager.getInstance().getNews(13, 0, 9738, new HttpCallback<PageResponse<News>>() {
             @Override
-            public void doOnSuccess(Response<PageResponse<News>> response) {
-                if (response.body() != null) {
-                    List<News> list = response.body().getList();
-                    if (list != null && list.size() != 0) {
-                        getView().showBannerNewsList(list);
-                    } else {
-                        System.out.println("null list");
-                    }
+            public void doOnSuccess(@NonNull PageResponse<News> newsPageResponse, Response<PageResponse<News>> response) {
+                List<News> list = newsPageResponse.getList();
+                if (list != null && list.size() != 0) {
+                    getView().showBannerNewsList(list);
+                } else {
+                    System.out.println("null list");
                 }
             }
 
