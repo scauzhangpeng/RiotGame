@@ -55,6 +55,8 @@ public class MainActivity extends CommonActivity implements RadioGroup.OnChecked
     LinearLayout mNavView;
     @Bind(R.id.iv_header)
     ImageView mIvHeader;
+    @Bind(R.id.iv_nav_header)
+    ImageView mIvNavHeader;
 
     private Fragment mNewsFragment;
     private Fragment mFriendsFragment;
@@ -128,6 +130,7 @@ public class MainActivity extends CommonActivity implements RadioGroup.OnChecked
                 mDrawerLayout.openDrawer(Gravity.LEFT | Gravity.START);
             }
         });
+        ImageLoadUtil.loadCircleImage(this, SPUtil.getInstance(this).getString("figureurl_qq_2", ""), R.drawable.default_lol_ex, mIvNavHeader);
     }
 
     private void SetSelect(int i) {

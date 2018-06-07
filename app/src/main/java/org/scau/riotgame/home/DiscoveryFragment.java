@@ -1,6 +1,7 @@
 package org.scau.riotgame.home;
 
 import android.Manifest;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,10 +13,12 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.xyz.basiclib.permission.OpPermissionCallback;
+import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.riotcommon.CommonFragment;
 
 import org.scau.riotgame.R;
@@ -23,6 +26,8 @@ import org.scau.riotgame.hero.HeroInfoActivity;
 import org.scau.riotgame.home.bean.DiscoveryMenu;
 import org.scau.riotgame.search.UserNearbyActivity;
 import org.scau.riotgame.search.UserSearchActivity;
+import org.scau.riotgame.wallpaper.WallPaperActivity;
+import org.scau.riotgame.webview.WebViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,16 +51,44 @@ public class DiscoveryFragment extends CommonFragment<DiscoveryContract.View, Di
     Toolbar mToolbar;
     @Bind(R.id.toolbar_title)
     TextView mToolbarTitle;
+    @Bind(R.id.rv_discovery)
+    RecyclerView mRvDiscovery;
 
 
     private ClubAdapter mAdapter;
     private List<Club.ClubsBean> mClubs;
+
+    private DiscoveryMenuAdapter mDiscoveryMenuAdapter;
+    private List<DiscoveryMenu> mMenus;
 
     @Override
     protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.initViewsAndEvents(inflater, container, savedInstanceState);
         initTopBar();
         initViewClub();
+        initMenu();
+    }
+
+    private void initMenu() {
+        mMenus = new ArrayList<>();
+        mRvDiscovery.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mDiscoveryMenuAdapter = new DiscoveryMenuAdapter(mMenus, getActivity());
+        mRvDiscovery.setAdapter(mDiscoveryMenuAdapter);
+        mRvDiscovery.setNestedScrollingEnabled(false);
+        mDiscoveryMenuAdapter.setOnItemClickListener(new BasicAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                DiscoveryMenu discoveryMenu = mMenus.get(position);
+                if ("1".equals(discoveryMenu.getIs_web())) {
+                    Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                    intent.putExtra("url", discoveryMenu.getArticle_url());
+                    startActivity(intent);
+                }
+                if ("13121".equals(discoveryMenu.getArticle_id())) {
+                    openActivity(WallPaperActivity.class);
+                }
+            }
+        });
     }
 
     private void initTopBar() {
@@ -71,7 +104,6 @@ public class DiscoveryFragment extends CommonFragment<DiscoveryContract.View, Di
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_bar_code) {
-            showToastLong("scan");
             checkPermission(Manifest.permission.CAMERA, new OpPermissionCallback() {
                 @Override
                 public void onGranted(List<String> permissions) {
@@ -91,7 +123,6 @@ public class DiscoveryFragment extends CommonFragment<DiscoveryContract.View, Di
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
         inflater.inflate(R.menu.discovery_barcode, menu);
-//        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -111,15 +142,14 @@ public class DiscoveryFragment extends CommonFragment<DiscoveryContract.View, Di
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume: ");
         setUserVisibleHint(true);
     }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
-        Log.d(TAG, "setUserVisibleHint: " + isVisibleToUser);
         if (isVisibleToUser) {
             mPresenter.getClubs();
+            mPresenter.getDiscoveryMenu();
         }
     }
 
@@ -152,6 +182,8 @@ public class DiscoveryFragment extends CommonFragment<DiscoveryContract.View, Di
 
     @Override
     public void showDiscoveryMenu(List<DiscoveryMenu> menu) {
-
+        mMenus.clear();
+        mMenus.addAll(menu);
+        mDiscoveryMenuAdapter.notifyDataSetChanged();
     }
 }
