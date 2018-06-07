@@ -81,6 +81,14 @@
             android:name=".hero.GoodsDetailActivity"
             android:label="物品详情"/>
 
+        <activity
+            android:name=".wallpaper.WallPaperActivity"
+            android:label="壁纸" />
+
+        <activity
+            android:name=".wallpaper.WallPaperKindActivity"
+            android:label="壁纸" />
+
         <activity android:name=".webview.WebViewActivity"/>
         <activity android:name=".home.MainActivity"/>
 

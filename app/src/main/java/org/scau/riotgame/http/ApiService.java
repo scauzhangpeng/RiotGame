@@ -7,6 +7,8 @@ import org.scau.riotgame.home.bean.GameCenterData;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.bean.PageColumnList;
 import org.scau.riotgame.home.bean.PageResponse;
+import org.scau.riotgame.wallpaper.bean.KindWallPaper;
+import org.scau.riotgame.wallpaper.bean.WallPaper;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -57,5 +59,20 @@ public interface ApiService {
 
     @GET("static/pages/news/discovery/c21_index.js")
     Call<PageResponse<DiscoveryMenu>> getDiscoveryMenu();
+
+
+    @GET("php_cgi/lol_goods/varcache_wallpaper_list.php")
+    Call<WallPaper> getWallPaper(@Query("type") String type, @Query("page") int page,
+                                 @Query("num") int num);
+
+    @GET("php_cgi/lol_goods/varcache_kind_index.php")
+    Call<KindWallPaper> getTypeWallPaper(@Query("page") int page,
+                                         @Query("num") int num);
+
+    @GET("php_cgi/lol_goods/varcache_wallpaper_kind.php")
+    Call<WallPaper> getWallPaperByKind(
+            @Query("kind") String kind,
+            @Query("page") int page,
+            @Query("num") int num);
 
 }

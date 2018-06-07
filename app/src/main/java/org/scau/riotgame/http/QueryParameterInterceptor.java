@@ -28,6 +28,7 @@ public class QueryParameterInterceptor implements Interceptor {
         HttpUrl modifiedUrl = originalRequest.url().newBuilder()
                 // Provide your custom parameter here
                 .addQueryParameter("plat", "android")
+                .addQueryParameter("version", "9774")
                 .build();
         request = originalRequest.newBuilder().url(modifiedUrl).build();
         return chain.proceed(request);

@@ -1,22 +1,37 @@
 package org.scau.riotgame.wallpaper;
 
-import com.xyz.basiclib.mvp.MvpButterKnifeFragment;
-import com.xyz.riotcommon.CommonFragment;
+import android.view.View;
+
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.xyz.basiclib.recyclerview.BasicAdapter;
+import com.xyz.riotcommon.SimpleRefreshFragment;
+
+import org.scau.riotgame.wallpaper.bean.WallPaperDetail;
 
 /**
  * Created by ZP on 2018/1/29.
  */
 
-public class WallPaperCollectionFragment extends CommonFragment<WallPaperContract.View, WallPaperContract.Presenter> {
+public class WallPaperCollectionFragment extends SimpleRefreshFragment<WallPaperDetail, WallPaperContract.View, WallPaperContract.Presenter> {
 
 
     @Override
-    protected int getLayoutId() {
-        return 0;
+    protected BasicAdapter<WallPaperDetail> getAdapter() {
+        return null;
+    }
+
+    @Override
+    public void onLoadmore(RefreshLayout refreshlayout) {
+
     }
 
     @Override
     protected WallPaperContract.Presenter initPresenter() {
-        return new WallPaperPresenter();
+        return new WallPaperPresenter("");
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+
     }
 }

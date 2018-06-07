@@ -7,8 +7,8 @@ import org.scau.riotgame.home.bean.GameCenterData;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.bean.PageColumnList;
 import org.scau.riotgame.home.bean.PageResponse;
-
-import java.util.HashMap;
+import org.scau.riotgame.wallpaper.bean.KindWallPaper;
+import org.scau.riotgame.wallpaper.bean.WallPaper;
 
 import retrofit2.Call;
 
@@ -74,6 +74,24 @@ public class RequestManager {
 
     public Call getDiscoveryMenu(HttpCallback<PageResponse<DiscoveryMenu>> callback) {
         Call<PageResponse<DiscoveryMenu>> call = mApiService.getDiscoveryMenu();
+        call.enqueue(callback);
+        return call;
+    }
+
+    public Call getWallPaper(String type, int page, int num, HttpCallback<WallPaper> callback) {
+        Call<WallPaper> call = mApiService.getWallPaper(type, page, num);
+        call.enqueue(callback);
+        return call;
+    }
+
+    public Call getTypeWallPaper(int page, int num, HttpCallback<KindWallPaper> callback) {
+        Call<KindWallPaper> call = mApiService.getTypeWallPaper(page, num);
+        call.enqueue(callback);
+        return call;
+    }
+
+    public Call getWallPaperByKind(String kind, int page, int num, HttpCallback<WallPaper> callback) {
+        Call<WallPaper> call = mApiService.getWallPaperByKind(kind, page, num);
         call.enqueue(callback);
         return call;
     }

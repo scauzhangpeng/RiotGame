@@ -45,4 +45,8 @@ public abstract class SimpleTopBarActivity<V, P extends BasePresenter<V>> extend
     protected int getTopBarLayoutId() {
         return R.layout.toolbar_default;
     }
+
+    protected void setTitle(String title) {
+        mTvTitle.setText(title);
+    }
 }

@@ -47,7 +47,9 @@ public abstract class SimpleRefreshFragment<T, V, P extends BasePresenter<V>> ex
         mRecyclerView = (RecyclerView) mView.findViewById(R.id.rv_base);
         mRecyclerView.setLayoutManager(getLayoutManager());
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(this);
+        if (mAdapter != null) {
+            mAdapter.setOnItemClickListener(this);
+        }
     }
 
     protected RecyclerView.LayoutManager getLayoutManager() {
@@ -66,6 +68,9 @@ public abstract class SimpleRefreshFragment<T, V, P extends BasePresenter<V>> ex
         if (mData != null && mData.size() != 0) {
             mData.clear();
         }
-        onLoadmore(refreshlayout);
+    }
+
+    protected RecyclerView getRecyclerView() {
+        return mRecyclerView;
     }
 }
