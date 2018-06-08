@@ -1,5 +1,7 @@
 package org.scau.riotgame.http;
 
+import org.scau.riotgame.act.bean.ActDetailResponse;
+import org.scau.riotgame.act.bean.ActInfo;
 import org.scau.riotgame.home.Club;
 import org.scau.riotgame.home.bean.CardsResponse;
 import org.scau.riotgame.home.bean.DiscoveryMenu;
@@ -96,4 +98,15 @@ public class RequestManager {
         return call;
     }
 
+    public Call getActInfo(HttpCallback<ActInfo> callback) {
+        Call<ActInfo> call = mApiService.getActivityInfo();
+        call.enqueue(callback);
+        return call;
+    }
+
+    public Call getActDetailList(String type, String lasttime, HttpCallback<ActDetailResponse> callback) {
+        Call<ActDetailResponse> call = mApiService.getActDetailList(type, lasttime);
+        call.enqueue(callback);
+        return call;
+    }
 }

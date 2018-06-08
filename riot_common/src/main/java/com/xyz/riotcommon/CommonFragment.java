@@ -70,4 +70,14 @@ public abstract class CommonFragment<V, P extends BasePresenter<V>> extends MvpB
             mPermissionDialog = null;
         }
     }
+
+    @Override
+    public void showEmptyPage(String msg) {
+
+    }
+
+    @Override
+    public void showErrorPage(String msg) {
+
+    }
 }

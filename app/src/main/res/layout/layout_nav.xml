@@ -105,6 +105,7 @@
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/tv_menu_act_center"
             android:layout_marginLeft="25dp"
             style="@style/menu_mid_layout">
 

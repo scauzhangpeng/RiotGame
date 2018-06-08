@@ -89,6 +89,10 @@
             android:name=".wallpaper.WallPaperKindActivity"
             android:label="壁纸" />
 
+        <activity
+            android:name=".act.ActCenterActivity"
+            android:label="活动中心" />
+
         <activity android:name=".webview.WebViewActivity"/>
         <activity android:name=".home.MainActivity"/>
 

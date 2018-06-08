@@ -1,5 +1,7 @@
 package org.scau.riotgame.http;
 
+import org.scau.riotgame.act.bean.ActDetailResponse;
+import org.scau.riotgame.act.bean.ActInfo;
 import org.scau.riotgame.home.Club;
 import org.scau.riotgame.home.bean.CardsResponse;
 import org.scau.riotgame.home.bean.DiscoveryMenu;
@@ -74,5 +76,12 @@ public interface ApiService {
             @Query("kind") String kind,
             @Query("page") int page,
             @Query("num") int num);
+
+    @GET("php_cgi/news/php/varcache_actinfo.php")
+    Call<ActInfo> getActivityInfo();
+
+
+    @GET("php_cgi/news/php/varcache_getactnews.php")
+    Call<ActDetailResponse> getActDetailList(@Query("t") String type, @Query("lasttime") String lasttime);
 
 }

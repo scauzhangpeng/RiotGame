@@ -22,6 +22,7 @@ import com.xyz.basiclib.util.SPUtil;
 import com.xyz.riotcommon.CommonActivity;
 
 import org.scau.riotgame.R;
+import org.scau.riotgame.act.ActCenterActivity;
 import org.scau.riotgame.favorite.FavoriteActivity;
 import org.scau.riotgame.home.view.HomeFragment;
 import org.scau.riotgame.mall.UserOrderActivity;
@@ -234,5 +235,10 @@ public class MainActivity extends CommonActivity implements RadioGroup.OnChecked
     @OnClick(R.id.tv_menu_trade)
     public void openMyOrder(View view) {
         openActivity(UserOrderActivity.class);
+    }
+
+    @OnClick(R.id.tv_menu_act_center)
+    public void openActCenter(View view) {
+        openActivity(ActCenterActivity.class);
     }
 }

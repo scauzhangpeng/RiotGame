@@ -10,4 +10,7 @@ public interface BaseView {
 
     void showToastShort(String msg);
 
+    void showEmptyPage(String msg);
+
+    void showErrorPage(String msg);
 }
