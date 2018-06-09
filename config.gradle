@@ -1,13 +1,13 @@
 ext {
     var = [
-            compileSdkVersion: 25,
-            buildToolsVersion: "26.0.2",
+            compileSdkVersion: 27,
+            buildToolsVersion: "27.0.1",
 
             minSdkVersion    : 15,
             targetSdkVersion : 25,
     ]
 
-    SupportVerison = "25.3.1"
+    SupportVerison = "27.1.1"
     RetrofitVersion = "2.3.0"
     GlideVerison = "4.0.0"
 
@@ -29,8 +29,12 @@ ext {
             //Banner库
             Banner               : "com.youth.banner:banner:1.4.9",
             //运行时权限
-            Permission           : "com.yanzhenjie:permission:2.0.0-alpha",
+            Permission           : "com.yanzhenjie:permission:2.0.0-rc10",
             Design :"com.android.support:design:$SupportVerison",
-            Circle : "de.hdodenhof:circleimageview:2.2.0"
+            Circle : "de.hdodenhof:circleimageview:2.2.0",
+
+            RxAndroid :'io.reactivex.rxjava2:rxandroid:2.0.1',
+            RxJava :'io.reactivex.rxjava2:rxjava:2.0.5',
+            RxPermission :'com.tbruyelle.rxpermissions2:rxpermissions:0.9.3@aar'
     ]
 }

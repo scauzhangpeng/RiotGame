@@ -22,12 +22,12 @@ public abstract class CheckPermissionFragment extends Fragment implements CheckP
 
         AndPermission.with(this)
                 .permission(permission)
-                .onGranted(new Action() {
+                .onGranted(new Action<List<String>>() {
                     @Override
                     public void onAction(List<String> permissions) {
                         callback.onGranted(permissions);
                     }
-                }).onDenied(new Action() {
+                }).onDenied(new Action<List<String>>() {
             @Override
             public void onAction(List<String> permissions) {
                 if (AndPermission.hasAlwaysDeniedPermission(CheckPermissionFragment.this, permissions)) {
@@ -37,7 +37,7 @@ public abstract class CheckPermissionFragment extends Fragment implements CheckP
                     callback.onDenied(permissions);
                 }
             }
-        }).rationale(new Rationale() {
+        }).rationale(new Rationale<List<String>>() {
             @Override
             public void showRationale(Context context, List<String> permissions, RequestExecutor executor) {
                 showRationaleDialog(context, permissions, new AndRequestExecutorAdapter(executor));

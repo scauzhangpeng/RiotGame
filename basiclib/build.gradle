@@ -46,6 +46,9 @@ dependencies {
     compile lib.SupportV7
     //运行时权限
     compile lib.Permission
+//    compile lib.RxAndroid
+//    compile lib.RxJava
+//    compile lib.RxPermission
     //图片加载
     compile lib.Glide
     annotationProcessor lib.GlideCompiler

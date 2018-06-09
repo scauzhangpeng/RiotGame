@@ -24,13 +24,14 @@ public abstract class CheckPermissionActivity extends AppCompatActivity implemen
     protected void checkPermission(String permission, final OpPermissionCallback callback) {
 
         AndPermission.with(this)
+                .runtime()
                 .permission(permission)
-                .onGranted(new Action() {
+                .onGranted(new Action<List<String>>() {
                     @Override
                     public void onAction(List<String> permissions) {
                         callback.onGranted(permissions);
                     }
-                }).onDenied(new Action() {
+                }).onDenied(new Action<List<String>>() {
             @Override
             public void onAction(List<String> permissions) {
                 if (AndPermission.hasAlwaysDeniedPermission(CheckPermissionActivity.this, permissions)) {
@@ -40,7 +41,7 @@ public abstract class CheckPermissionActivity extends AppCompatActivity implemen
                     callback.onDenied(permissions);
                 }
             }
-        }).rationale(new Rationale() {
+        }).rationale(new Rationale<List<String>>() {
             @Override
             public void showRationale(Context context, List<String> permissions, RequestExecutor executor) {
                 showRationaleDialog(context, permissions, new AndRequestExecutorAdapter(executor));
