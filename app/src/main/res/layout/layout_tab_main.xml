@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/rg_main"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal">
+    android:id="@+id/rg_main"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:layout_alignParentBottom="true"
+    android:orientation="horizontal">
 
     <RadioButton
         android:id="@+id/rbtn_news"
-        android:checked="true"
         style="@style/main_tab"
+        android:checked="true"
         android:drawableTop="@drawable/tab_news_selector"
-        android:text="@string/tab_main_news"/>
+        android:text="@string/tab_main_news" />
 
     <RadioButton
         android:id="@+id/rbtn_friends"
         style="@style/main_tab"
         android:drawableTop="@drawable/tab_friends_selector"
-        android:text="@string/tab_main_friends"/>
+        android:text="@string/tab_main_friends" />
 
     <RadioButton
         android:id="@+id/rbtn_mall"
         style="@style/main_tab"
         android:drawableTop="@drawable/tab_shop_selector"
-        android:text="@string/tab_main_mall"/>
+        android:text="@string/tab_main_mall" />
 
     <RadioButton
         android:id="@+id/rbtn_discovery"
         style="@style/main_tab"
         android:drawableTop="@drawable/tab_discovery_selector"
-        android:text="@string/tab_main_discovery"/>
+        android:text="@string/tab_main_discovery" />
 
     <RadioButton
         android:id="@+id/rbtn_me"
         style="@style/main_tab"
         android:drawableTop="@drawable/tab_me_selector"
-        android:text="@string/tab_main_me"/>
+        android:text="@string/tab_main_me" />
 
 
 </RadioGroup>

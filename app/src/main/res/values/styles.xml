@@ -10,6 +10,7 @@
         <item name="android:windowTranslucentStatus" tools:targetApi="19">true</item>
         <!-- 菜单字体颜色 -->
         <item name="android:actionMenuTextColor">@color/colorMainGold</item>
+        <item name="android:windowBackground">@null</item>
     </style>
 
     <style name="main_tab">

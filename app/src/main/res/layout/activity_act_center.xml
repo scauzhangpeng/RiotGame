@@ -7,7 +7,6 @@
     <RadioGroup
         android:id="@+id/rg_act"
         android:orientation="horizontal"
-        android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="42dp">
 
