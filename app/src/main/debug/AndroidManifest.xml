@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="org.scau.riotgame">
+    package="org.scau.riotgame">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- SDK2.1新增获取用户位置信息 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -22,7 +22,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".RiotGameApplication"
+        android:name="muggi.DebugApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -30,59 +30,59 @@
         android:theme="@style/AppTheme">
         <activity android:name=".launcher.LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity
             android:name=".setting.AboutRiotGameActivity"
-            android:label="关于掌盟"/>
+            android:label="关于掌盟" />
         <activity
             android:name=".setting.MsgPushSettingActivity"
-            android:label="消息推送设置"/>
+            android:label="消息推送设置" />
         <activity
             android:name=".setting.SecretSettingActivity"
-            android:label="隐私设置"/>
+            android:label="隐私设置" />
         <activity
             android:name=".setting.ClearCacheActivity"
-            android:label="清空缓存"/>
+            android:label="清空缓存" />
         <activity
             android:name=".setting.FeedBackActivity"
-            android:label="感谢你的意见"/>
+            android:label="感谢你的意见" />
         <activity
             android:name=".setting.SettingActivity"
-            android:label="设置"/>
+            android:label="设置" />
         <activity
             android:name=".hero.HeroInfoActivity"
-            android:label="我的英雄圈"/>
+            android:label="我的英雄圈" />
         <activity
             android:name=".search.UserNearbyActivity"
-            android:label="附近玩家"/>
+            android:label="附近玩家" />
         <activity
             android:name=".search.UserSearchActivity"
-            android:label="召唤师查询"/>
+            android:label="召唤师查询" />
         <activity
             android:name=".favorite.FavoriteActivity"
-            android:label="我的收藏"/>
+            android:label="我的收藏" />
         <activity
             android:name=".setting.BindPhoneActivity"
-            android:label="绑定手机号码"/>
+            android:label="绑定手机号码" />
         <activity
             android:name=".mall.UserOrderActivity"
-            android:label="我的订单"/>
+            android:label="我的订单" />
         <activity
             android:name=".hero.HeroDetailActivity"
-            android:label="英雄详情"/>
+            android:label="英雄详情" />
 
         <activity
             android:name=".hero.GoodsListActivity"
-            android:label="物品资料"/>
+            android:label="物品资料" />
 
         <activity
             android:name=".hero.GoodsDetailActivity"
-            android:label="物品详情"/>
+            android:label="物品详情" />
 
         <activity
             android:name=".wallpaper.WallPaperActivity"
@@ -96,10 +96,10 @@
             android:name=".act.ActCenterActivity"
             android:label="活动中心" />
 
-        <activity android:name=".webview.WebViewActivity"/>
-        <activity android:name=".home.MainActivity"/>
+        <activity android:name=".webview.WebViewActivity" />
+        <activity android:name=".home.MainActivity" />
 
-        <service android:name=".setting.DownloadService"/>
+        <service android:name=".setting.DownloadService" />
 
 
         <activity
@@ -107,12 +107,12 @@
             android:launchMode="singleTask"
             android:noHistory="true">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="tencent1105966790"/>
+                <data android:scheme="tencent1105966790" />
                 <!-- 100380359 100381104 222222 -->
             </intent-filter>
         </activity>
@@ -121,7 +121,7 @@
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="behind"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 
 </manifest>

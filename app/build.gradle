@@ -23,20 +23,34 @@ android {
             // 不显示Log
             buildConfigField "boolean", "LEO_DEBUG", "false"
             //是否zip对齐
-            zipAlignEnabled true
+//            zipAlignEnabled true
             // 缩减resource文件
-            shrinkResources true
+//            shrinkResources true
             //Proguard
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     //引入aar
-    repositories {
-        flatDir {
-            dirs 'libs' //this way we can find the .aar file in libs folder
-            //如果module中引入aar，则需要使用相对路径
-            //dirs '../riot_common/libs'
+//    repositories {
+//        flatDir {
+//            dirs 'libs' //this way we can find the .aar file in libs folder
+//            //如果module中引入aar，则需要使用相对路径
+//            //dirs '../riot_common/libs'
+//        }
+//    }
+
+    sourceSets {
+        main {
+            if (debug) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                java {
+                    exclude 'debug/**'
+                }
+            }
+            java.srcDirs = ['src/main/java', 'src/main/debug']
         }
     }
 }
@@ -59,5 +73,6 @@ dependencies {
     compile lib.Banner
     compile project(':riot_common')
     compile lib.Design
+    debugCompile project(':DebugTools')
 
 }

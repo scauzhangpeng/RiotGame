@@ -1,0 +1,46 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion var.compileSdkVersion
+
+
+
+    defaultConfig {
+//        applicationId "com.muugi.debugtools"
+        minSdkVersion var.minSdkVersion
+        targetSdkVersion var.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    // ele ue tool
+    debugCompile ('me.ele:uetool:1.0.15') {
+        exclude module: 'support-v4'
+        exclude module: 'appcompat-v7'
+        exclude module: 'recyclerview-v7'
+    }
+    releaseCompile 'me.ele:uetool-no-op:1.0.15'
+    // if you want to show more attrs about Fresco's DraweeView
+    // debugCompile 'me.ele:uetool-fresco:1.0.15'
+
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    //releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+
+    // most often used way, enable notification to notify block event
+    //compile 'com.github.markzhai:blockcanary-android:1.5.0'
+    // this way you only enable BlockCanary in debug package
+     debugCompile 'com.github.markzhai:blockcanary-android:1.5.0'
+    // releaseCompile 'com.github.markzhai:blockcanary-no-op:1.5.0'
+}
