@@ -1,1 +1,1 @@
-include ':app', ':riot_common', ':basiclib', ':CaptureLibrary', ':DebugTools'
+include ':app', ':riot_common', ':basiclib', ':DebugTools'

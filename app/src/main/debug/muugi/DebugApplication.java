@@ -1,4 +1,4 @@
-package muggi;
+package muugi;
 
 import android.util.Log;
 
@@ -16,7 +16,7 @@ import org.scau.riotgame.RiotGameApplication;
 
 public class DebugApplication extends RiotGameApplication {
 
-    private static final String TAG = "muggi.DebugApplication";
+    private static final String TAG = "muugi.DebugApplication";
 
     @Override
     public void onCreate() {
