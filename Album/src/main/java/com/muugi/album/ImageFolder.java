@@ -4,7 +4,7 @@ package com.muugi.album;
  * Created by ZP on 2018/7/18.
  */
 
-public class ImageFloder {
+public class ImageFolder {
 
     /**
      * 图片的文件夹路径

@@ -13,14 +13,14 @@ import java.util.List;
  * Created by ZP on 2018/7/18.
  */
 
-public class AlbumAdapter extends BasicAdapter<ImageFloder> {
+public class AlbumAdapter extends BasicAdapter<ImageFolder> {
 
-    public AlbumAdapter(List<ImageFloder> datas, Context context) {
+    public AlbumAdapter(List<ImageFolder> datas, Context context) {
         super(R.layout.item_album_list, datas, context);
     }
 
     @Override
-    protected void bindData(BasicViewHolder holder, ImageFloder imageFloder, int position) {
+    protected void bindData(BasicViewHolder holder, ImageFolder imageFloder, int position) {
         holder.setText(R.id.path, mContext.getString(R.string.album_name_and_count, imageFloder.getName(), imageFloder.getCount()));
         ImageLoadUtil.loadImage(mContext, imageFloder.getFirstImagePath(), R.drawable.teemo_1, (ImageView) holder.getView(R.id.album));
     }
