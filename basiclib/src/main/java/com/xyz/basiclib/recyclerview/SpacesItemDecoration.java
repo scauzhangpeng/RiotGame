@@ -1,4 +1,4 @@
-package org.scau.riotgame.wallpaper;
+package com.xyz.basiclib.recyclerview;
 
 import android.graphics.Rect;
 import android.support.v7.widget.GridLayoutManager;

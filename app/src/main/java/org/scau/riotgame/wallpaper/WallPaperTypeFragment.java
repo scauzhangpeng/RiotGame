@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
+import com.xyz.basiclib.recyclerview.SpacesItemDecoration;
 import com.xyz.riotcommon.SimpleRefreshFragment;
 
 import org.scau.riotgame.utils.ScreenUtil;

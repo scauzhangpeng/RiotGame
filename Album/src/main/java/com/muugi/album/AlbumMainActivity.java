@@ -20,12 +20,6 @@ public class AlbumMainActivity extends SimpleRefreshActivity<ImageFolder, AlbumC
     protected void initViewsAndEvents(Bundle savedInstanceState) {
         super.initViewsAndEvents(savedInstanceState);
         mSmartRefreshLayout.setEnableLoadmore(false);
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         mSmartRefreshLayout.autoRefresh();
     }
 
@@ -64,5 +58,10 @@ public class AlbumMainActivity extends SimpleRefreshActivity<ImageFolder, AlbumC
     @Override
     protected AlbumContract.Presenter initPresenter() {
         return new AlbumPresenter(getApplicationContext());
+    }
+
+    @Override
+    protected int getTopBarContentId() {
+        return R.layout.activity_photo_album;
     }
 }
