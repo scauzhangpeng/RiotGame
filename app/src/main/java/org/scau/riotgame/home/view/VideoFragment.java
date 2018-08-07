@@ -25,7 +25,8 @@ import org.scau.riotgame.home.bean.HotMatch;
 import org.scau.riotgame.home.bean.HotWpv;
 import org.scau.riotgame.home.contract.VideoContract;
 import org.scau.riotgame.home.presenter.VideoPresenter;
-import org.scau.riotgame.utils.ImageLoadUtil;
+
+import com.xyz.riotcommon.ImageLoadUtil;
 
 import java.util.ArrayList;
 import java.util.List;

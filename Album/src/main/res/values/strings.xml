@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Album</string>
+
+    <string name="album_name_and_count">%s (%d)</string>
+</resources>

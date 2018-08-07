@@ -30,7 +30,8 @@ import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.contract.NewsContract;
 import org.scau.riotgame.home.presenter.NewsPresenter;
 import org.scau.riotgame.utils.FormatUtil;
-import org.scau.riotgame.utils.ImageLoadUtil;
+
+import com.xyz.riotcommon.ImageLoadUtil;
 import org.scau.riotgame.webview.WebViewActivity;
 
 import java.util.ArrayList;

@@ -22,7 +22,8 @@ import org.scau.riotgame.R;
 import org.scau.riotgame.home.bean.ColumnList;
 import org.scau.riotgame.home.contract.ColumnContract;
 import org.scau.riotgame.home.presenter.ColumnListPresenter;
-import org.scau.riotgame.utils.ImageLoadUtil;
+
+import com.xyz.riotcommon.ImageLoadUtil;
 
 import java.util.ArrayList;
 import java.util.List;

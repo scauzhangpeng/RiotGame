@@ -38,10 +38,15 @@ public class HeroFreeFragment extends SimpleRefreshFragment<Hero, HeroContract.F
         mSmartRefreshLayout.finishRefresh();
     }
 
+    @Override
+    public void onRefresh(RefreshLayout refreshlayout) {
+        super.onRefresh(refreshlayout);
+        mPresenter.getFreeHeros();
+    }
 
     @Override
     public void onLoadmore(RefreshLayout refreshlayout) {
-        mPresenter.getFreeHeros();
+
     }
 
     @Override

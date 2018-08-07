@@ -5,9 +5,9 @@ import android.widget.ImageView;
 
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.BasicViewHolder;
+import com.xyz.riotcommon.ImageLoadUtil;
 
 import org.scau.riotgame.R;
-import org.scau.riotgame.utils.ImageLoadUtil;
 
 import java.util.List;
 

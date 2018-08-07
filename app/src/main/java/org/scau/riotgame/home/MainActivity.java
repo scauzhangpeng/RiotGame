@@ -27,7 +27,8 @@ import org.scau.riotgame.favorite.FavoriteActivity;
 import org.scau.riotgame.home.view.HomeFragment;
 import org.scau.riotgame.mall.UserOrderActivity;
 import org.scau.riotgame.setting.SettingActivity;
-import org.scau.riotgame.utils.ImageLoadUtil;
+
+import com.xyz.riotcommon.ImageLoadUtil;
 
 import butterknife.Bind;
 import butterknife.OnClick;

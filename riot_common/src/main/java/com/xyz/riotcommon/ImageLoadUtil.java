@@ -1,4 +1,4 @@
-package org.scau.riotgame.utils;
+package com.xyz.riotcommon;
 
 import android.content.Context;
 import android.graphics.Bitmap;

@@ -20,6 +20,7 @@ ext {
             //网络库Retrofit
             Retrofit             : "com.squareup.retrofit2:retrofit:$RetrofitVersion",
             RetrofitConverterGson: "com.squareup.retrofit2:converter-gson:$RetrofitVersion",
+            RetrofitConverterString: "com.squareup.retrofit2:converter-scalars:$RetrofitVersion",
             //OkHttp日志库，建议仅仅Debug开启
             OkHttpLogging        : "com.squareup.okhttp3:logging-interceptor:3.8.0",
             //图片加载库

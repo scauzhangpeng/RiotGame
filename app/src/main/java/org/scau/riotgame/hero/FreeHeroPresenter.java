@@ -3,12 +3,15 @@ package org.scau.riotgame.hero;
 
 import android.support.annotation.NonNull;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.scau.riotgame.http.HttpCallback;
 import org.scau.riotgame.http.WebManager;
 
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import retrofit2.Response;
 
@@ -23,19 +26,23 @@ public class FreeHeroPresenter extends HeroContract.FreePresenter {
             @Override
             public void doOnSuccess(@NonNull String body, Response<String> response) {
                 int index = body.indexOf("free=");
-                String resp = body.substring(index + "free=".length());
-                try {
-                    JSONObject jsonObject = new JSONObject(resp);
-                    JSONObject keys = jsonObject.getJSONObject("keys");
-                    Iterator<String> iterator = keys.keys();
-                    while (iterator.hasNext()) {
-                        String next = iterator.next();
-                        String name = keys.getString(next);
-                        System.out.println(name);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                String resp = body.substring(index + "free=".length(), body.length() - 1);
+                Gson gson = new Gson();
+                FreeHeroResult freeHeroResult = gson.fromJson(resp, new TypeToken<FreeHeroResult>() {
+                }.getType());
+
+                List<Hero> heroes = new ArrayList<>();
+                HashMap<String, String> keys = freeHeroResult.getKeys();
+                HashMap<String, FreeHeroInner> data = freeHeroResult.getData();
+                for (String key : keys.values()) {
+                    FreeHeroInner freeHeroInner = data.get(key);
+                    Hero hero = new Hero();
+                    hero.setName(freeHeroInner.getName());
+                    hero.setNick(freeHeroInner.getTitle());
+                    hero.setTag1(freeHeroInner.getTags().get(0));
+                    heroes.add(hero);
                 }
+                getView().showFreeHeros(heroes);
             }
 
             @Override

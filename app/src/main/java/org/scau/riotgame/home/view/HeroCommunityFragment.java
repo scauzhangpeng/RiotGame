@@ -23,7 +23,8 @@ import org.scau.riotgame.home.bean.Card;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.contract.HeroCommunityContract;
 import org.scau.riotgame.home.presenter.HeroCommunityPresenter;
-import org.scau.riotgame.utils.ImageLoadUtil;
+
+import com.xyz.riotcommon.ImageLoadUtil;
 
 import java.util.ArrayList;
 import java.util.List;

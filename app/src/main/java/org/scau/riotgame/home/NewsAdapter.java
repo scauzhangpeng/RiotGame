@@ -13,7 +13,8 @@ import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import org.scau.riotgame.R;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.utils.FormatUtil;
-import org.scau.riotgame.utils.ImageLoadUtil;
+
+import com.xyz.riotcommon.ImageLoadUtil;
 
 import java.util.List;
 

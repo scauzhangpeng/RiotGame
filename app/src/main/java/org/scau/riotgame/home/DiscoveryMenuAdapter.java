@@ -8,7 +8,8 @@ import com.xyz.basiclib.recyclerview.BasicViewHolder;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.home.bean.DiscoveryMenu;
-import org.scau.riotgame.utils.ImageLoadUtil;
+
+import com.xyz.riotcommon.ImageLoadUtil;
 
 import java.util.List;
 
