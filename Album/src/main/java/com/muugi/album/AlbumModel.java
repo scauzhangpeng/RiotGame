@@ -66,14 +66,7 @@ public class AlbumModel {
         if (!file.exists()) {
             return;
         }
-        File[] pngs = file.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String filename) {
-                return filename.endsWith(".jpg") || filename.endsWith(".JPG")
-                        || filename.endsWith(".png") || filename.endsWith("PNG")
-                        || filename.endsWith(".jpeg") || filename.endsWith(".JPEG");
-            }
-        });
+        File[] pngs = file.listFiles(new PictureFilter());
         callback.onSuccess(Arrays.asList(pngs));
     }
 
@@ -128,14 +121,7 @@ public class AlbumModel {
                 imageFolder.setFirstImagePath(path);
             }
 
-            int picSize = parentFile.list(new FilenameFilter() {
-                @Override
-                public boolean accept(File dir, String filename) {
-                    return filename.endsWith(".jpg") || filename.endsWith(".JPG")
-                            || filename.endsWith(".png") || filename.endsWith("PNG")
-                            || filename.endsWith(".jpeg") || filename.endsWith(".JPEG");
-                }
-            }).length;
+            int picSize = parentFile.list(new PictureFilter()).length;
             totalCount += picSize;
 
             imageFolder.setCount(picSize);
@@ -152,5 +138,15 @@ public class AlbumModel {
         mDirPaths = null;
 
         return mImageFolders;
+    }
+
+    private static class PictureFilter implements FilenameFilter {
+
+        @Override
+        public boolean accept(File dir, String filename) {
+            return filename.endsWith(".jpg") || filename.endsWith(".JPG")
+                    || filename.endsWith(".png") || filename.endsWith("PNG")
+                    || filename.endsWith(".jpeg") || filename.endsWith(".JPEG");
+        }
     }
 }
