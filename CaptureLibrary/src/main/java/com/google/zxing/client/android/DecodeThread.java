@@ -26,6 +26,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.ResultPointCallback;
 import com.muugi.capture.CaptureActivity;
+import com.muugi.capture.ScanClient;
 
 import java.util.Collection;
 import java.util.EnumMap;
@@ -66,22 +67,22 @@ final class DecodeThread extends Thread {
         if (decodeFormats == null || decodeFormats.isEmpty()) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
             decodeFormats = EnumSet.noneOf(BarcodeFormat.class);
-            if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_1D_PRODUCT, true)) {
+            if (ScanClient.getInstance().isDecode1DProduct()) {
                 decodeFormats.addAll(DecodeFormatManager.PRODUCT_FORMATS);
             }
-            if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_1D_INDUSTRIAL, true)) {
+            if (ScanClient.getInstance().isDecode1DIndustrial()) {
                 decodeFormats.addAll(DecodeFormatManager.INDUSTRIAL_FORMATS);
             }
-            if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_QR, true)) {
+            if (ScanClient.getInstance().isDecodeQR()) {
                 decodeFormats.addAll(DecodeFormatManager.QR_CODE_FORMATS);
             }
-            if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_DATA_MATRIX, true)) {
+            if (ScanClient.getInstance().isDecodeDataMatrix()) {
                 decodeFormats.addAll(DecodeFormatManager.DATA_MATRIX_FORMATS);
             }
-            if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_AZTEC, false)) {
+            if (ScanClient.getInstance().isDecodeAztec()) {
                 decodeFormats.addAll(DecodeFormatManager.AZTEC_FORMATS);
             }
-            if (prefs.getBoolean(PreferencesActivity.KEY_DECODE_PDF417, false)) {
+            if (ScanClient.getInstance().isDecodePDF417()) {
                 decodeFormats.addAll(DecodeFormatManager.PDF417_FORMATS);
             }
         }

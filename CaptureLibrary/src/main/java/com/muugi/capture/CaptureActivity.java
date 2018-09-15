@@ -29,7 +29,6 @@ import com.google.zxing.client.android.AmbientLightManager;
 import com.google.zxing.client.android.CaptureActivityHandler;
 import com.google.zxing.client.android.FinishListener;
 import com.google.zxing.client.android.InactivityTimer;
-import com.google.zxing.client.android.PreferencesActivity;
 import com.google.zxing.client.android.ViewfinderView;
 import com.google.zxing.client.android.camera.CameraManager;
 import com.xyz.basiclib.mvp.BasePresenter;
@@ -120,7 +119,7 @@ public class CaptureActivity extends SimpleTopBarActivity implements SurfaceHold
 //    }
 
         //add because fix bug
-        if (prefs.getBoolean(PreferencesActivity.KEY_DISABLE_AUTO_ORIENTATION, true)) {
+        if (!ScanClient.getInstance().isAutoOrientation()) {
             setRequestedOrientation(getCurrentOrientation());
         } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR); // 旋转
