@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.riotcommon.SimpleRefreshActivity;
@@ -15,7 +16,7 @@ import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 /**
  * Created by ZP on 2018/7/18.
  */
-
+@Route(path = "/album/main")
 public class AlbumMainActivity extends SimpleRefreshActivity<ImageFolder, AlbumContract.View, AlbumContract.Presenter>
         implements AlbumContract.View {
 
