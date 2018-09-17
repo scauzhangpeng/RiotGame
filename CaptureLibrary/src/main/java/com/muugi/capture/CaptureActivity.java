@@ -21,6 +21,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
@@ -132,7 +133,7 @@ public class CaptureActivity extends SimpleTopBarActivity implements SurfaceHold
     }
 
     private void openAlbumByRouter() {
-
+        ARouter.getInstance().build("/album/main").navigation();
     }
 
     @Override

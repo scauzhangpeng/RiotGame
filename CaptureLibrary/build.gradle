@@ -1,4 +1,4 @@
-if(isLibrary.toBoolean()) {
+if(isCaptureLibrary.toBoolean()) {
     apply plugin: 'com.android.library'
 } else {
     apply plugin: 'com.android.application'
@@ -11,6 +11,9 @@ android {
 
 
     defaultConfig {
+        if (!isCaptureLibrary.toBoolean()) {
+            applicationId "com.muugi.capture"
+        }
         minSdkVersion var.minSdkVersion
         targetSdkVersion var.targetSdkVersion
         versionCode 1
@@ -34,7 +37,7 @@ android {
 
     sourceSets {
         main {
-            if (isLibrary.toBoolean()) {
+            if (isCaptureLibrary.toBoolean()) {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
                 java {
                     exclude 'src/main/debug/AndroidManifest.xml'
@@ -57,4 +60,7 @@ dependencies {
     compile 'com.google.zxing:android-core:3.3.0';
     compile project(':riot_common')
     testCompile 'junit:junit:4.12'
+    if (!isCaptureLibrary.toBoolean()) {
+        compile project(':Album')
+    }
 }

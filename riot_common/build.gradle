@@ -16,6 +16,7 @@ android {
             // 显式声明支持注解
             annotationProcessorOptions {
                 includeCompileClasspath true
+                arguments = [moduleName: project.getName()]
             }
         }
 
@@ -37,4 +38,5 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile project(':basiclib')
+    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
 }

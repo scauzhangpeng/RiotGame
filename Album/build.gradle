@@ -1,4 +1,4 @@
-if (isLibrary.toBoolean()) {
+if (isAlbumLibrary.toBoolean()) {
     apply plugin: 'com.android.library'
 } else {
     apply plugin: 'com.android.application'
@@ -8,7 +8,7 @@ android {
     compileSdkVersion var.compileSdkVersion
 
     defaultConfig {
-        if (!isLibrary.toBoolean()) {
+        if (!isAlbumLibrary.toBoolean()) {
             applicationId "com.muugi.album"
         }
         minSdkVersion var.minSdkVersion
@@ -21,6 +21,7 @@ android {
             // 显式声明支持注解
             annotationProcessorOptions {
                 includeCompileClasspath true
+                arguments = [moduleName: project.getName()]
             }
         }
     }
@@ -34,7 +35,7 @@ android {
 
     sourceSets {
         main {
-            if (isLibrary.toBoolean()) {
+            if (isAlbumLibrary.toBoolean()) {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
                 java {
                     exclude 'src/main/debug/AndroidManifest.xml'
@@ -54,4 +55,5 @@ dependencies {
     })
     testCompile 'junit:junit:4.12'
     compile project(':riot_common')
+    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
 }
