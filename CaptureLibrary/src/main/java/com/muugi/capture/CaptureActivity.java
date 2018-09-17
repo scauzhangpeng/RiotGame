@@ -19,7 +19,7 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
@@ -61,6 +61,10 @@ public class CaptureActivity extends SimpleTopBarActivity implements SurfaceHold
     private Map<DecodeHintType, ?> decodeHints;
     private String characterSet;
 
+    private TextView mTvAlbum;
+    private TextView mTvFlash;
+    private TextView mTvMyBarCode;
+
     @Override
     protected BasePresenter initPresenter() {
         return null;
@@ -92,6 +96,43 @@ public class CaptureActivity extends SimpleTopBarActivity implements SurfaceHold
         myOrientationDetector = new MyOrientationDetector(this);
         myOrientationDetector.setLastOrientation(getWindowManager().getDefaultDisplay().getRotation());
         //add because fix bug
+
+        //相册
+        mTvAlbum = (TextView) findViewById(R.id.tv_album);
+        mTvAlbum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openAlbumByRouter();
+            }
+        });
+        //闪光灯
+        mTvFlash = (TextView) findViewById(R.id.tv_flash);
+        mTvFlash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchFlashLight();
+            }
+        });
+        //二维码
+        mTvMyBarCode = (TextView) findViewById(R.id.tv_my_qr);
+        mTvMyBarCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openQRCode();
+            }
+        });
+    }
+
+    private void openQRCode() {
+        openActivity(QRActivity.class);
+    }
+
+    private void switchFlashLight() {
+        cameraManager.setTorch(true);
+    }
+
+    private void openAlbumByRouter() {
+
     }
 
     @Override
@@ -297,7 +338,7 @@ public class CaptureActivity extends SimpleTopBarActivity implements SurfaceHold
     public void handleDecode(Result rawResult, Bitmap barcode, float scaleFactor) {
         inactivityTimer.onActivity();
         lastResult = rawResult;
-        Toast.makeText(this, rawResult.getText(), Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, rawResult.getText(), Toast.LENGTH_LONG).show();
 //        ResultHandler resultHandler = ResultHandlerFactory.makeResultHandler(this, rawResult);
 
         boolean fromLiveScan = barcode != null;
@@ -311,6 +352,8 @@ public class CaptureActivity extends SimpleTopBarActivity implements SurfaceHold
         if (barcode != null) {
             viewfinderView.drawResultBitmap(barcode);
         }
+
+        openScanTip(rawResult, barcode);
 
 //        switch (source) {
 //            case NATIVE_APP_INTENT:
@@ -340,6 +383,11 @@ public class CaptureActivity extends SimpleTopBarActivity implements SurfaceHold
 //        }
     }
 
+    private void openScanTip(Result rawResult, Bitmap barcode) {
+        Bundle bundle = new Bundle();
+        bundle.putString("result_text", rawResult.getText());
+        openActivity(ScanTipActivity.class, bundle);
+    }
 
     /**
      * Superimpose a line for 1D or dots for 2D to highlight the key features of the barcode.

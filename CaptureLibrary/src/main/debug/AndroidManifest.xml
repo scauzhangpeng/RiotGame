@@ -19,6 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".QRActivity"
+            android:label="我的掌盟二维码" />
+
+        <activity
+            android:name=".ScanTipActivity"
+            android:label="提示" />
     </application>
 </manifest>
 

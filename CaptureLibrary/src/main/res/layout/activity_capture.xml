@@ -26,4 +26,37 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 
+    <LinearLayout
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_album"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="相册"
+            android:gravity="center"
+            android:drawableTop="@drawable/barcode_photos_press" />
+
+        <TextView
+            android:id="@+id/tv_flash"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="闪关灯"
+            android:gravity="center"
+            android:drawableTop="@drawable/flashlight_close_selector" />
+
+        <TextView
+            android:id="@+id/tv_my_qr"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="二维码"
+            android:gravity="center"
+            android:drawableTop="@drawable/my_barcode_selector" />
+    </LinearLayout>
+
 </merge>

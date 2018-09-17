@@ -13,6 +13,14 @@
         <activity
             android:name=".CaptureActivity"
             android:label="扫一扫" />
+
+        <activity
+            android:name=".QRActivity"
+            android:label="我的掌盟二维码" />
+
+        <activity
+            android:name=".ScanTipActivity"
+            android:label="提示" />
     </application>
 </manifest>
 
