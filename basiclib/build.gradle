@@ -17,6 +17,7 @@ android {
             // 显式声明支持注解
             annotationProcessorOptions {
                 includeCompileClasspath true
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
 
@@ -53,4 +54,6 @@ dependencies {
     compile lib.Glide
     annotationProcessor lib.GlideCompiler
     compile lib.Circle
+    compile 'com.alibaba:arouter-api:1.4.0'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
 }
