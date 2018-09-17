@@ -22,8 +22,5 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".AlbumDetailActivity"
-            android:label="相册" />
     </application>
 </manifest>

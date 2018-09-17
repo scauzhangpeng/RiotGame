@@ -41,6 +41,10 @@ public abstract class SimpleTopBarActivity<V, P extends BasePresenter<V>> extend
         return mToolbar;
     }
 
+    protected void setBackIconClickListener(View.OnClickListener listener) {
+        mToolbar.setNavigationOnClickListener(listener);
+    }
+
     @Override
     protected int getTopBarLayoutId() {
         return R.layout.toolbar_default;

@@ -14,9 +14,7 @@
         <activity
             android:name=".AlbumMainActivity"
             android:label="相册" />
-        <activity
-            android:name=".AlbumDetailActivity"
-            android:label="相册" />
+
     </application>
 
 </manifest>
