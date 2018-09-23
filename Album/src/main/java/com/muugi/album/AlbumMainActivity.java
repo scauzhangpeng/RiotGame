@@ -16,18 +16,13 @@ import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.RouterConstants;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
-import butterknife.Bind;
-import butterknife.OnClick;
-
 /**
  * Created by ZP on 2018/7/18.
  */
 @Route(path = RouterConstants.ALBUM_MAIN)
 public class AlbumMainActivity extends SimpleTopBarActivity {
 
-    @Bind(R.id.cb_real_size)
     CheckBox mCbRealSize;
-    @Bind(R.id.btn_ok)
     Button mBtnOk;
 
     private static final int TYPE_LIST = 0;
@@ -44,6 +39,14 @@ public class AlbumMainActivity extends SimpleTopBarActivity {
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
         super.initViewsAndEvents(savedInstanceState);
+        mCbRealSize = findViewById(R.id.cb_real_size);
+        mBtnOk = findViewById(R.id.btn_ok);
+        mBtnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirmSelectPicture();
+            }
+        });
         showListAlbum();
         setBackIconClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +124,6 @@ public class AlbumMainActivity extends SimpleTopBarActivity {
         }
     }
 
-    @OnClick(R.id.btn_ok)
     public void confirmSelectPicture() {
         if (!TextUtils.isEmpty(mCurrentSelectDir) && !TextUtils.isEmpty(mCurrentSelectImages)) {
             boolean checked = mCbRealSize.isChecked();
