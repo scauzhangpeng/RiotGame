@@ -7,4 +7,5 @@ package com.xyz.riotcommon;
 public class RouterConstants {
 
     public static final String ALBUM_MAIN = "/album/main";
+    public static final int REQUEST_CODE_ALBUM_MAIN = 100;
 }

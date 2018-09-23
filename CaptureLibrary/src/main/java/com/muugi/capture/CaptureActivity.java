@@ -1,5 +1,6 @@
 package com.muugi.capture;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -33,6 +34,7 @@ import com.google.zxing.client.android.InactivityTimer;
 import com.google.zxing.client.android.ViewfinderView;
 import com.google.zxing.client.android.camera.CameraManager;
 import com.xyz.basiclib.mvp.BasePresenter;
+import com.xyz.riotcommon.RouterConstants;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import java.io.IOException;
@@ -133,7 +135,7 @@ public class CaptureActivity extends SimpleTopBarActivity implements SurfaceHold
     }
 
     private void openAlbumByRouter() {
-        ARouter.getInstance().build("/album/main").navigation();
+        ARouter.getInstance().build(RouterConstants.ALBUM_MAIN).navigation(this, RouterConstants.REQUEST_CODE_ALBUM_MAIN);
     }
 
     @Override
@@ -570,5 +572,23 @@ public class CaptureActivity extends SimpleTopBarActivity implements SurfaceHold
                 Log.i(TAG, "SUCCESS");
             }
         }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RouterConstants.REQUEST_CODE_ALBUM_MAIN) {
+            if (resultCode == Activity.RESULT_OK) {
+                handleAlbumResult(data);
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    private void handleAlbumResult(Intent data) {
+        Log.d(TAG, "handleAlbumResult: " + data.getStringExtra("dir"));
+        Log.d(TAG, "handleAlbumResult: " + data.getStringExtra("path"));
+        Log.d(TAG, "handleAlbumResult: " + data.getBooleanExtra("isRealSize", false));
     }
 }

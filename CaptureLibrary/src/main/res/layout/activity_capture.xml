@@ -28,6 +28,7 @@
 
     <LinearLayout
         android:layout_gravity="bottom"
+        android:background="#80000000"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -37,8 +38,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="相册"
+            android:textColor="@android:color/white"
             android:gravity="center"
-            android:drawableTop="@drawable/barcode_photos_press" />
+            android:drawableTop="@drawable/barcode_photo_selector" />
 
         <TextView
             android:id="@+id/tv_flash"
@@ -46,8 +48,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="闪关灯"
+            android:textColor="@android:color/white"
             android:gravity="center"
-            android:drawableTop="@drawable/flashlight_close_selector" />
+            android:drawableTop="@drawable/flashlight_open_selector" />
 
         <TextView
             android:id="@+id/tv_my_qr"
@@ -55,6 +58,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="二维码"
+            android:textColor="@android:color/white"
             android:gravity="center"
             android:drawableTop="@drawable/my_barcode_selector" />
     </LinearLayout>
