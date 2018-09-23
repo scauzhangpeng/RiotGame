@@ -3,7 +3,6 @@ package com.muugi.album;
 import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.basiclib.mvp.BaseView;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -17,7 +16,7 @@ public interface AlbumContract {
     }
 
     interface DetailView extends BaseView {
-        void showAlbumPictureUnderFolder(List<File> data);
+        void showAlbumPictureUnderFolder(List<WrapperFile> data);
     }
 
     abstract class Presenter extends BasePresenter<View> {
@@ -31,10 +30,10 @@ public interface AlbumContract {
     }
 
     interface DetailModelCallback {
-        void onSuccess(List<File> data);
+        void onSuccess(List<WrapperFile> data);
     }
 
     abstract class DetailPresenter extends BasePresenter<DetailView> {
-        abstract void getAlbumPictureUnderFolder(String uri);
+        abstract void getAlbumPictureUnderFolder(String uri, String currentImage, String currentDir);
     }
 }

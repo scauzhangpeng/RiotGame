@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="checkboxSelect" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/photo_select_selector</item>
+    </style>
+
+    <style name="checkBoxRealSize" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/photo_orgin_selector</item>
+    </style>
+</resources>

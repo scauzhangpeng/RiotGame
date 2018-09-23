@@ -21,7 +21,7 @@ import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 public class AlbumListFragment extends SimpleRefreshFragment<ImageFolder, AlbumContract.View,
         AlbumContract.Presenter> implements AlbumContract.View {
 
-    private AlbumFragmentCallback mAlbumFragmentCallback;
+    private AlbumCallbackContract.AlbumListItemClickListener mAlbumCallbackContract;
 
     @Override
     protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,14 +67,14 @@ public class AlbumListFragment extends SimpleRefreshFragment<ImageFolder, AlbumC
 
     @Override
     public void onItemClick(View view, int position) {
-        if (mAlbumFragmentCallback != null) {
-            mAlbumFragmentCallback.openAlbumDetailFragment(mData.get(position).getDir(), mData.get(position).getName());
+        if (mAlbumCallbackContract != null) {
+            mAlbumCallbackContract.onClick(mData.get(position).getDir(), mData.get(position).getName());
         }
     }
 
 
-    public void setFragmentCallback(AlbumFragmentCallback callback) {
-        mAlbumFragmentCallback = callback;
+    public void setFragmentCallback(AlbumCallbackContract.AlbumListItemClickListener callback) {
+        mAlbumCallbackContract = callback;
     }
 
 }

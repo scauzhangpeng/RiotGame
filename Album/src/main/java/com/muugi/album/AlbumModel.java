@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.xyz.basiclib.executor.AppExecutors;
@@ -12,7 +13,6 @@ import com.xyz.basiclib.executor.AppExecutors;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -61,13 +61,40 @@ public class AlbumModel {
         mAppExecutors.diskIO().execute(runnable);
     }
 
-    public void getAlbumListUnderFolder(String uri, AlbumContract.DetailModelCallback callback) {
-        File file = new File(uri);
-        if (!file.exists()) {
-            return;
-        }
-        File[] pngs = file.listFiles(new PictureFilter());
-        callback.onSuccess(Arrays.asList(pngs));
+    public void getAlbumListUnderFolder(final String uri, final String selectDir, final String selectImage,
+                                        final AlbumContract.DetailModelCallback callback) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                File file = new File(uri);
+                if (!file.exists()) {
+                    return;
+                }
+                File[] pngs = file.listFiles(new PictureFilter());
+                final List<WrapperFile> result = new ArrayList<>();
+                if (!TextUtils.isEmpty(selectDir) && selectDir.equals(uri)) {
+                    for (File png : pngs) {
+                        if (png.getAbsolutePath().equals(selectImage)) {
+                            result.add(new WrapperFile(png, true));
+                        } else {
+                            result.add(new WrapperFile(png, false));
+                        }
+                    }
+                } else {
+                    for (File png : pngs) {
+                        result.add(new WrapperFile(png, false));
+                    }
+                }
+
+                mAppExecutors.mainThread().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onSuccess(result);
+                    }
+                });
+            }
+        };
+        mAppExecutors.diskIO().execute(runnable);
     }
 
 

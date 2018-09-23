@@ -2,7 +2,6 @@ package com.muugi.album;
 
 import android.content.Context;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -20,10 +19,10 @@ public class AlbumDetailPresenter extends AlbumContract.DetailPresenter {
     }
 
     @Override
-    void getAlbumPictureUnderFolder(String uri) {
-        mAlbumModel.getAlbumListUnderFolder(uri, new AlbumContract.DetailModelCallback() {
+    void getAlbumPictureUnderFolder(String uri, final String currentSelectImage, final String currentSelectDir) {
+        mAlbumModel.getAlbumListUnderFolder(uri, currentSelectDir, currentSelectImage, new AlbumContract.DetailModelCallback() {
             @Override
-            public void onSuccess(List<File> data) {
+            public void onSuccess(List<WrapperFile> data) {
                 if (getView() != null) {
                     getView().showAlbumPictureUnderFolder(data);
                 }

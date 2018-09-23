@@ -1,15 +1,23 @@
 package com.muugi.album;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.RouterConstants;
 import com.xyz.riotcommon.SimpleTopBarActivity;
+
+import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * Created by ZP on 2018/7/18.
@@ -17,12 +25,20 @@ import com.xyz.riotcommon.SimpleTopBarActivity;
 @Route(path = RouterConstants.ALBUM_MAIN)
 public class AlbumMainActivity extends SimpleTopBarActivity {
 
+    @Bind(R.id.cb_real_size)
+    CheckBox mCbRealSize;
+    @Bind(R.id.btn_ok)
+    Button mBtnOk;
+
     private static final int TYPE_LIST = 0;
     private static final int TYPE_DETAIL = 1;
     private static int TYPE = TYPE_LIST;
 
     private AlbumListFragment mAlbumListFragment;
     private AlbumDetailFragment mAlbumDetailFragment;
+
+    private String mCurrentSelectImages;
+    private String mCurrentSelectDir;
 
 
     @Override
@@ -54,15 +70,10 @@ public class AlbumMainActivity extends SimpleTopBarActivity {
         if (mAlbumListFragment == null) {
             mAlbumListFragment = new AlbumListFragment();
             transaction.add(R.id.fl_album_content, mAlbumListFragment);
-            mAlbumListFragment.setFragmentCallback(new AlbumFragmentCallback() {
+            mAlbumListFragment.setFragmentCallback(new AlbumCallbackContract.AlbumListItemClickListener() {
                 @Override
-                public void openAlbumDetailFragment(String dir, String name) {
+                public void onClick(String dir, String name) {
                     showDetailAlbum(dir, name);
-                }
-
-                @Override
-                public void selectPicture(String dir, String path) {
-
                 }
             });
         }
@@ -79,19 +90,23 @@ public class AlbumMainActivity extends SimpleTopBarActivity {
         if (mAlbumDetailFragment == null) {
             mAlbumDetailFragment = new AlbumDetailFragment();
             transaction.add(R.id.fl_album_content, mAlbumDetailFragment);
-            mAlbumDetailFragment.setFragmentCallback(new AlbumFragmentCallback() {
+            mAlbumDetailFragment.setFragmentCallback(new AlbumCallbackContract.AlbumDetailSelectClickListener() {
                 @Override
-                public void openAlbumDetailFragment(String dir, String name) {
-
+                public void onClick(String dir, String path, String fileSize) {
+                    mCurrentSelectImages = path;
+                    mCurrentSelectDir = dir;
+                    mCbRealSize.setText(mCbRealSize.getText() + "(" + fileSize + ")");
                 }
 
                 @Override
-                public void selectPicture(String dir, String path) {
-                    Log.d(TAG, "selectPicture: " + path);
+                public void onUnSelected() {
+                    mCurrentSelectDir = null;
+                    mCurrentSelectImages = null;
+                    mCbRealSize.setText("原图");
                 }
             });
         }
-        mAlbumDetailFragment.setCurrentUri(dir);
+        mAlbumDetailFragment.setCurrentUri(dir, mCurrentSelectImages, mCurrentSelectDir);
         transaction.attach(mAlbumDetailFragment);
         setTitle(name);
         transaction.commit();
@@ -104,6 +119,24 @@ public class AlbumMainActivity extends SimpleTopBarActivity {
         if (mAlbumDetailFragment != null) {
             transaction.detach(mAlbumDetailFragment);
         }
+    }
+
+    @OnClick(R.id.btn_ok)
+    public void confirmSelectPicture() {
+        if (!TextUtils.isEmpty(mCurrentSelectDir) && !TextUtils.isEmpty(mCurrentSelectImages)) {
+            boolean checked = mCbRealSize.isChecked();
+            Intent intent = new Intent();
+            intent.putExtra("dir", mCurrentSelectDir);
+            intent.putExtra("path", mCurrentSelectImages);
+            intent.putExtra("isRealSize", checked);
+            Log.d(TAG, "confirmSelectPicture: " + mCurrentSelectDir + "-" + mCurrentSelectImages + "-" + checked);
+            setResult(Activity.RESULT_OK, intent);
+        } else {
+            Log.d(TAG, "confirmSelectPicture: " + "failure");
+            setResult(Activity.RESULT_FIRST_USER);
+        }
+
+        finish();
     }
 
     @Override
