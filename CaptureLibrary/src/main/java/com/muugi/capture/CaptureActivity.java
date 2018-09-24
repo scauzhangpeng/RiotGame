@@ -10,9 +10,11 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.OrientationEventListener;
@@ -34,6 +36,7 @@ import com.google.zxing.client.android.InactivityTimer;
 import com.google.zxing.client.android.ViewfinderView;
 import com.google.zxing.client.android.camera.CameraManager;
 import com.xyz.basiclib.mvp.BasePresenter;
+import com.xyz.riotcommon.ImageLoadUtil;
 import com.xyz.riotcommon.RouterConstants;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
@@ -587,8 +590,16 @@ public class CaptureActivity extends SimpleTopBarActivity implements SurfaceHold
     }
 
     private void handleAlbumResult(Intent data) {
-        Log.d(TAG, "handleAlbumResult: " + data.getStringExtra("dir"));
-        Log.d(TAG, "handleAlbumResult: " + data.getStringExtra("path"));
-        Log.d(TAG, "handleAlbumResult: " + data.getBooleanExtra("isRealSize", false));
+        ImageLoadUtil.loadBitmap(this, data.getStringExtra("path"), new ImageLoadUtil.SimpleTargetCallback() {
+            @Override
+            public void onResourceReady(Bitmap resource) {
+
+            }
+
+            @Override
+            public void onLoadFailed(@Nullable Drawable errorDrawable) {
+
+            }
+        });
     }
 }
