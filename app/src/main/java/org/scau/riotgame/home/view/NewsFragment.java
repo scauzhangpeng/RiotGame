@@ -22,6 +22,7 @@ import com.xyz.basiclib.recyclerview.BasicViewHolder;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.basiclib.recyclerview.WrapperAdapter;
 import com.xyz.riotcommon.CommonFragment;
+import com.xyz.riotcommon.ImageLoadUtil;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
@@ -30,16 +31,12 @@ import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.contract.NewsContract;
 import org.scau.riotgame.home.presenter.NewsPresenter;
 import org.scau.riotgame.utils.FormatUtil;
-
-import com.xyz.riotcommon.ImageLoadUtil;
 import org.scau.riotgame.webview.WebViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by ZP on 2017/7/27.
@@ -259,12 +256,13 @@ public class NewsFragment extends CommonFragment<NewsContract.View, NewsContract
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume: ");
-        mRefreshLayout.autoRefresh();
+//        mRefreshLayout.autoRefresh();
     }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         Log.d(TAG, "setUserVisibleHint: " + isVisibleToUser);
+        super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
 //            mRefreshLayout.autoRefresh();
         }
@@ -279,5 +277,11 @@ public class NewsFragment extends CommonFragment<NewsContract.View, NewsContract
     @Override
     public void onLoadmore(RefreshLayout refreshlayout) {
         mPresenter.loadMoreNews();
+    }
+
+    @Override
+    protected void requestData() {
+        super.requestData();
+        mRefreshLayout.autoRefresh();
     }
 }

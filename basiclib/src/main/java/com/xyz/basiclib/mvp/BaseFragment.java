@@ -20,7 +20,7 @@ public abstract class BaseFragment extends CheckPermissionFragment implements Ba
     private Toolbar mToolbar;
     private TextView mTvTitle;
     private ImageView mIvLeft;
-    private static final String TAG = "BaseFragment";
+    protected String TAG = this.getClass().getSimpleName();
 
     protected View mView;
 

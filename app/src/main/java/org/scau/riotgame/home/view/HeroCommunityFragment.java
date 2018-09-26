@@ -3,6 +3,7 @@ package org.scau.riotgame.home.view;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,14 +18,13 @@ import com.xyz.basiclib.recyclerview.BasicViewHolder;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.basiclib.util.DateUtil;
 import com.xyz.riotcommon.CommonFragment;
+import com.xyz.riotcommon.ImageLoadUtil;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.home.bean.Card;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.contract.HeroCommunityContract;
 import org.scau.riotgame.home.presenter.HeroCommunityPresenter;
-
-import com.xyz.riotcommon.ImageLoadUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -208,8 +208,17 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
+        Log.d(TAG, "setUserVisibleHint: ");
+        super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            mRefreshLayout.autoRefresh();
+//            mRefreshLayout.autoRefresh();
         }
     }
+
+    @Override
+    protected void requestData() {
+        super.requestData();
+        mRefreshLayout.autoRefresh();
+    }
+
 }

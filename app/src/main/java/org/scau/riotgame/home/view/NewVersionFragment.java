@@ -1,6 +1,7 @@
 package org.scau.riotgame.home.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -30,5 +31,23 @@ public class NewVersionFragment extends CommonFragment<NewVersionContract.View, 
     @Override
     protected NewVersionContract.Presenter initPresenter() {
         return new NewVersionPresenter();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: ");
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        Log.d(TAG, "setUserVisibleHint: ");
+    }
+
+    @Override
+    protected void requestData() {
+        super.requestData();
+        Log.d(TAG, "requestData: ");
     }
 }

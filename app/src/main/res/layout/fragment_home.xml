@@ -24,14 +24,14 @@
                 android:checked="true"/>
 
             <RadioButton
-                android:id="@+id/rbtn_new_version"
+                android:id="@+id/rbtn_hot"
                 style="@style/tab_indicator"
-                android:text="新版本"/>
+                android:text="热点" />
 
             <RadioButton
-                android:id="@+id/rbtn_hero"
+                android:id="@+id/rbtn_column"
                 style="@style/tab_indicator"
-                android:text="英雄圈"/>
+                android:text="专栏" />
 
             <RadioButton
                 android:id="@+id/rbtn_video"
@@ -39,14 +39,26 @@
                 android:text="视频"/>
 
             <RadioButton
-                android:id="@+id/rbtn_match"
+                android:id="@+id/rbtn_new_version"
                 style="@style/tab_indicator"
-                android:text="赛事"/>
+                android:text="新版本" />
 
             <RadioButton
-                android:id="@+id/rbtn_column"
+                android:id="@+id/rbtn_office"
                 style="@style/tab_indicator"
-                android:text="专栏"/>
+                android:text="官方" />
+
+            <RadioButton
+                android:id="@+id/rbtn_hero"
+                style="@style/tab_indicator"
+                android:text="英雄圈" />
+
+            <!--<RadioButton-->
+            <!--android:id="@+id/rbtn_match"-->
+            <!--style="@style/tab_indicator"-->
+            <!--android:text="赛事"/>-->
+
+
         </RadioGroup>
     </HorizontalScrollView>
 

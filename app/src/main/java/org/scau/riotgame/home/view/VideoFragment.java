@@ -3,6 +3,7 @@ package org.scau.riotgame.home.view;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ import com.xyz.basiclib.recyclerview.AbstractImageLoader;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.BasicViewHolder;
 import com.xyz.riotcommon.CommonFragment;
+import com.xyz.riotcommon.ImageLoadUtil;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.home.bean.HotAuthor;
@@ -25,8 +27,6 @@ import org.scau.riotgame.home.bean.HotMatch;
 import org.scau.riotgame.home.bean.HotWpv;
 import org.scau.riotgame.home.contract.VideoContract;
 import org.scau.riotgame.home.presenter.VideoPresenter;
-
-import com.xyz.riotcommon.ImageLoadUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,9 +113,11 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
-        if (isVisibleToUser) {
-            mRefreshLayout.autoRefresh();
-        }
+        Log.d(TAG, "setUserVisibleHint: ");
+        super.setUserVisibleHint(isVisibleToUser);
+//        if (isVisibleToUser) {
+//            mRefreshLayout.autoRefresh();
+//        }
     }
 
     @Override
@@ -237,4 +239,17 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
     public void onLoadmore(RefreshLayout refreshlayout) {
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: ");
+    }
+
+    @Override
+    protected void requestData() {
+        super.requestData();
+        mRefreshLayout.autoRefresh();
+    }
+
 }

@@ -40,12 +40,17 @@ public class HomeFragment extends CommonFragment implements RadioGroup.OnChecked
     RadioButton mRbtnHero;
     @Bind(R.id.rbtn_video)
     RadioButton mRbtnVideo;
-    @Bind(R.id.rbtn_match)
-    RadioButton mRbtnMatch;
+    //    @Bind(R.id.rbtn_match)
+//    RadioButton mRbtnMatch;
     @Bind(R.id.rbtn_column)
     RadioButton mRbtnColumn;
     @Bind(R.id.rg_main_tab)
     RadioGroup mRgMainTab;
+    @Bind(R.id.rbtn_hot)
+    RadioButton mRbtnHot;
+    @Bind(R.id.rbtn_office)
+    RadioButton mRbtnOffice;
+
     @Bind(R.id.vp_main)
     ViewPager mVpMain;
     @Bind(R.id.toolbar_title)
@@ -56,6 +61,14 @@ public class HomeFragment extends CommonFragment implements RadioGroup.OnChecked
 
     private FragmentPagerAdapter mAdapter;
 
+    public static final int PAGE_LAST = 0;
+    public static final int PAGE_HOT = 1;
+    public static final int PAGE_COLUMN = 2;
+    public static final int PAGE_VIDEO = 3;
+    public static final int PAGE_NEW_VERSION = 4;
+    public static final int PAGE_OFFICE = 5;
+    public static final int PAGE_HERO = 6;
+
     private ViewPager.OnPageChangeListener mOnPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -65,24 +78,26 @@ public class HomeFragment extends CommonFragment implements RadioGroup.OnChecked
         @Override
         public void onPageSelected(int position) {
             switch (position) {
-                case 0:
+                case PAGE_LAST:
                     mRbtnLast.setChecked(true);
                     break;
-                case 1:
-                    mRbtnNewVersion.setChecked(true);
+                case PAGE_HOT:
+                    mRbtnHot.setChecked(true);
                     break;
-                case 2:
-                    mRbtnHero.setChecked(true);
-                    break;
-                case 3:
-                    mRbtnVideo.setChecked(true);
-                    break;
-                case 4:
-                    mRbtnMatch.setChecked(true);
-                    break;
-                case 5:
+                case PAGE_COLUMN:
                     mRbtnColumn.setChecked(true);
                     break;
+                case PAGE_VIDEO:
+                    mRbtnVideo.setChecked(true);
+                    break;
+                case PAGE_NEW_VERSION:
+                    mRbtnNewVersion.setChecked(true);
+                    break;
+                case PAGE_OFFICE:
+                    mRbtnOffice.setChecked(true);
+                    break;
+                case PAGE_HERO:
+                    mRbtnHero.setChecked(true);
             }
         }
 
@@ -104,15 +119,17 @@ public class HomeFragment extends CommonFragment implements RadioGroup.OnChecked
         mRgMainTab.setOnCheckedChangeListener(this);
 
         mPages = new SparseArray<>();
-        mPages.put(0, new NewsFragment());
-        mPages.put(1, new NewVersionFragment());
-        mPages.put(2, new HeroCommunityFragment());
-        mPages.put(3, new VideoFragment());
-        mPages.put(4, new MatchFragment());
-        mPages.put(5, new ColumnListFragment());
+        mPages.put(PAGE_LAST, new NewsFragment());
+        mPages.put(PAGE_HOT, new ColumnListFragment());
+        mPages.put(PAGE_COLUMN, new ColumnListFragment());
+        mPages.put(PAGE_VIDEO, new VideoFragment());
+        mPages.put(PAGE_NEW_VERSION, new NewVersionFragment());
+        mPages.put(PAGE_OFFICE, new ColumnListFragment());
+        mPages.put(PAGE_HERO, new HeroCommunityFragment());
         mAdapter = new HeroPageAdapter(getActivity().getSupportFragmentManager(), mPages);
         mVpMain.setAdapter(mAdapter);
         mVpMain.addOnPageChangeListener(mOnPageChangeListener);
+        mVpMain.setOffscreenPageLimit(6);
     }
 
     private void initTopBar() {
@@ -143,22 +160,25 @@ public class HomeFragment extends CommonFragment implements RadioGroup.OnChecked
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
         switch (checkedId) {
             case R.id.rbtn_last:
-                mVpMain.setCurrentItem(0);
+                mVpMain.setCurrentItem(PAGE_LAST);
                 break;
             case R.id.rbtn_new_version:
-                mVpMain.setCurrentItem(1);
+                mVpMain.setCurrentItem(PAGE_NEW_VERSION);
                 break;
             case R.id.rbtn_hero:
-                mVpMain.setCurrentItem(2);
+                mVpMain.setCurrentItem(PAGE_HERO);
                 break;
             case R.id.rbtn_video:
-                mVpMain.setCurrentItem(3);
+                mVpMain.setCurrentItem(PAGE_VIDEO);
                 break;
-            case R.id.rbtn_match:
-                mVpMain.setCurrentItem(4);
+            case R.id.rbtn_hot:
+                mVpMain.setCurrentItem(PAGE_HOT);
                 break;
             case R.id.rbtn_column:
-                mVpMain.setCurrentItem(5);
+                mVpMain.setCurrentItem(PAGE_COLUMN);
+                break;
+            case R.id.rbtn_office:
+                mVpMain.setCurrentItem(PAGE_OFFICE);
                 break;
         }
     }

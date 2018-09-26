@@ -1,7 +1,12 @@
 package com.xyz.riotcommon;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.basiclib.mvp.MvpButterKnifeFragment;
@@ -19,6 +24,10 @@ import java.util.List;
 public abstract class CommonFragment<V, P extends BasePresenter<V>> extends MvpButterKnifeFragment<V, P> {
 
     protected DefaultDialog mPermissionDialog;
+
+    protected boolean isViewCreated;
+    protected boolean isFirstVisible = true;
+    protected boolean isFragmentVisible;
 
 
     @Override
@@ -79,5 +88,43 @@ public abstract class CommonFragment<V, P extends BasePresenter<V>> extends MvpB
     @Override
     public void showErrorPage(String msg) {
 
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        isViewCreated = true;
+        if (isFragmentVisible && isFirstVisible) {
+            Log.e(TAG, "Adapter 默认展示的那个 Fragment ，或者隔 tab 选中的时候  requestData 推迟到 onCreateView 后 ");
+            requestData();
+            isFirstVisible = false;
+        }
+        return mView;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        isFragmentVisible = isVisibleToUser;
+        Log.d(TAG, "setUserVisibleHint: " + isViewCreated + isFirstVisible + isFragmentVisible);
+        //当 View 创建完成切 用户可见的时候请求 且仅当是第一次对用户可见的时候请求自动数据
+        if (isVisibleToUser && isViewCreated && isFirstVisible) {
+            Log.e(TAG, "只有自动请求一次数据  requestData");
+            requestData();
+            isFirstVisible = false;
+
+        }
+    }
+
+    protected void requestData() {
+        Log.d(TAG, "requestData: ");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d(TAG, "onDestroyView: " + isViewCreated + isFirstVisible + isFragmentVisible);
     }
 }
