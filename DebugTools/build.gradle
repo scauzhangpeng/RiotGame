@@ -31,8 +31,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.android.support:appcompat-v7:27.1.1'
     // ele ue tool
     debugCompile ('me.ele:uetool:1.0.15') {
@@ -52,5 +50,4 @@ dependencies {
     // this way you only enable BlockCanary in debug package
      debugCompile 'com.github.markzhai:blockcanary-android:1.5.0'
      releaseCompile 'com.github.markzhai:blockcanary-no-op:1.5.0'
-    testCompile 'junit:junit:4.12'
 }
