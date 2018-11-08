@@ -54,7 +54,6 @@ public class WallPaperActivity extends SimpleTopBarActivity {
         HeroPageAdapter adapter = new HeroPageAdapter(getSupportFragmentManager(), pages);
         mVpWallpaper.setAdapter(adapter);
 
-        mVpWallpaper.setOffscreenPageLimit(3);
     }
 
     private ViewPager.OnPageChangeListener mOnPageChangeListener = new ViewPager.OnPageChangeListener() {

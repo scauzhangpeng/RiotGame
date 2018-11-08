@@ -24,6 +24,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
@@ -47,7 +48,7 @@ import java.util.Map;
 /**
  * Created by ZP on 2018/6/1.
  */
-
+@Route(path = RouterConstants.SCAN_MAIN)
 public class CaptureActivity extends SimpleTopBarActivity implements SurfaceHolder.Callback {
 
     private CameraManager cameraManager;

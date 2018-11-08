@@ -34,4 +34,10 @@ public class WallPaperCollectionFragment extends SimpleRefreshFragment<WallPaper
     public void onItemClick(View view, int position) {
 
     }
+
+    @Override
+    protected void requestData() {
+        super.requestData();
+        mSmartRefreshLayout.autoRefresh();
+    }
 }

@@ -43,7 +43,10 @@ public class AlbumDetailFragment extends SimpleRefreshFragment<WrapperFile, Albu
     protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.initViewsAndEvents(inflater, container, savedInstanceState);
         mSmartRefreshLayout.setEnableLoadmore(false);
-        getRecyclerView().addItemDecoration(new SpacesItemDecoration(ScreenUtil.dp2px(getActivity().getApplicationContext(), 10)));
+        getRecyclerView().addItemDecoration(
+                new SpacesItemDecoration(
+                        ScreenUtil.dp2px(getActivity().getApplicationContext(), 10),
+                        true));
         mSmartRefreshLayout.autoRefresh();
     }
 

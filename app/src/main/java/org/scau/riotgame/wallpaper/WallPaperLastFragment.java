@@ -29,7 +29,7 @@ public class WallPaperLastFragment extends SimpleRefreshFragment<WallPaperDetail
     @Override
     protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.initViewsAndEvents(inflater, container, savedInstanceState);
-        getRecyclerView().addItemDecoration(new SpacesItemDecoration((int) ScreenUtil.dip2px(getActivity(), 10)));
+        getRecyclerView().addItemDecoration(new SpacesItemDecoration((int) ScreenUtil.dip2px(getActivity(), 10), true));
     }
 
     @Override
@@ -81,5 +81,11 @@ public class WallPaperLastFragment extends SimpleRefreshFragment<WallPaperDetail
     @Override
     public void setLoadMoreEnable(boolean isEnable) {
         mSmartRefreshLayout.setEnableLoadmore(isEnable);
+    }
+
+    @Override
+    protected void requestData() {
+        super.requestData();
+        mSmartRefreshLayout.autoRefresh();
     }
 }

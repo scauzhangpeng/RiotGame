@@ -70,7 +70,7 @@ public class WallPaperKindActivity extends SimpleTopBarActivity<WallPaperContrac
         mRvLayoutRefresh.setLayoutManager(new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false));
         mRvLayoutRefresh.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(this);
-        mRvLayoutRefresh.addItemDecoration(new SpacesItemDecoration((int) ScreenUtil.dip2px(this, 10)));
+        mRvLayoutRefresh.addItemDecoration(new SpacesItemDecoration((int) ScreenUtil.dip2px(this, 10), true));
     }
 
     @Override
