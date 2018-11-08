@@ -14,6 +14,7 @@ import org.scau.riotgame.wallpaper.bean.WallPaper;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Query;
 
 /**
@@ -33,6 +34,7 @@ public interface ApiService {
 
 
     @GET("lua/lol_news/columnlist")
+    @Headers("Cookie:l_uin=o2456513456; p_uin=o2456513456; p_skey=3vAhB*etp*ElpHK15U*LThQfHMAf-yQjk7NV-iE59Nc_; uin=o2456513456; skey=MHplxd1Wtz;")
     Call<PageColumnList> getColumnList(@Query("page") int page,
                                        @Query("version") int version);
 

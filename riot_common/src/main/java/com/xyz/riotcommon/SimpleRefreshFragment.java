@@ -59,7 +59,7 @@ public abstract class SimpleRefreshFragment<T, V, P extends BasePresenter<V>> ex
     protected abstract BasicAdapter<T> getAdapter();
 
     @Override
-    protected int getLayoutId() {
+    protected final int getLayoutId() {
         return R.layout.base_refresh;
     }
 

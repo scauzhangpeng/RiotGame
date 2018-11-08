@@ -2,12 +2,14 @@ package org.scau.riotgame.home.presenter;
 
 import android.support.annotation.NonNull;
 
+import org.scau.riotgame.home.ListColumnListWrapper;
 import org.scau.riotgame.home.bean.ColumnList;
 import org.scau.riotgame.home.bean.PageColumnList;
 import org.scau.riotgame.home.contract.ColumnContract;
 import org.scau.riotgame.http.HttpCallback;
 import org.scau.riotgame.http.RequestManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Response;
@@ -32,14 +34,38 @@ public class ColumnListPresenter extends ColumnContract.Presenter {
 
             @Override
             public void doOnSuccess(@NonNull PageColumnList pageColumnList, Response<PageColumnList> response) {
-                List<ColumnList> unbook_list = pageColumnList.getUnbook_list();
-                if (unbook_list != null) {
-                    if (mCurrentPage == 0) {
-                        getView().showColumnList(unbook_list);
-                    } else {
-                        getView().showMoreColumnList(mCurrentPage, unbook_list);
+                List<ColumnList> unBook_list = pageColumnList.getUnbook_list();
+                List<ColumnList> book_list = pageColumnList.getBook_list();
+                List<ColumnList> recommend_list = pageColumnList.getRecommend_list();
+                List<ListColumnListWrapper> wrappers = new ArrayList<>();
+                if (recommend_list != null) {
+                    for (ColumnList columnList : recommend_list) {
+                        wrappers.add(new ListColumnListWrapper(columnList, 2));
                     }
+                }
+
+                if (book_list != null) {
+                    for (ColumnList columnList : book_list) {
+                        wrappers.add(new ListColumnListWrapper(columnList, 1));
+                    }
+                }
+
+                if (unBook_list != null) {
+                    for (ColumnList columnList : unBook_list) {
+                        wrappers.add(new ListColumnListWrapper(columnList, 0));
+                    }
+                }
+
+
+                if (mCurrentPage == 0) {
+                    getView().showColumnList(wrappers);
+                } else {
+                    getView().showMoreColumnList(mCurrentPage, wrappers);
+                }
+                if ("1".equals(pageColumnList.getHasnext())) {
                     mCurrentPage++;
+                } else {
+
                 }
             }
 

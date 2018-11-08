@@ -1,34 +1,24 @@
 package org.scau.riotgame.home.view;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.xyz.basiclib.recyclerview.AbstractImageLoader;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
-import com.xyz.basiclib.recyclerview.BasicViewHolder;
-import com.xyz.riotcommon.CommonFragment;
-import com.xyz.riotcommon.ImageLoadUtil;
+import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
+import com.xyz.riotcommon.SimpleRefreshFragment;
 
 import org.scau.riotgame.R;
-import org.scau.riotgame.home.bean.ColumnList;
+import org.scau.riotgame.home.ColumnListAdapter;
+import org.scau.riotgame.home.ListColumnListWrapper;
 import org.scau.riotgame.home.contract.ColumnContract;
 import org.scau.riotgame.home.presenter.ColumnListPresenter;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.Bind;
 
 /**
  * Created by ZP on 2018/1/24.
@@ -37,66 +27,49 @@ import butterknife.Bind;
  * </p>
  */
 
-public class ColumnListFragment extends CommonFragment<ColumnContract.View, ColumnContract.Presenter> implements ColumnContract.View, OnRefreshListener, OnLoadmoreListener {
+public class ColumnListFragment extends SimpleRefreshFragment<ListColumnListWrapper, ColumnContract.View, ColumnContract.Presenter> implements ColumnContract.View, OnRefreshListener, OnLoadmoreListener {
 
-
-    @Bind(R.id.rv_layout_refresh)
-    RecyclerView mRvHeroFree;
-    @Bind(R.id.refreshLayout)
-    SmartRefreshLayout mRefreshLayout;
-
-    private List<ColumnList> mColumnLists;
-    private BasicAdapter<ColumnList> mAdapter;
 
     @Override
-    public void showColumnList(List<ColumnList> news) {
-        mColumnLists.clear();
-        mColumnLists.addAll(news);
+    public void showColumnList(List<ListColumnListWrapper> news) {
+        mData.clear();
+        mData.addAll(news);
         mAdapter.notifyDataSetChanged();
-        mRefreshLayout.finishRefresh();
+        mSmartRefreshLayout.finishRefresh();
     }
 
     @Override
-    public void showMoreColumnList(int currentPage, List<ColumnList> news) {
-        mColumnLists.addAll(news);
+    public void showMoreColumnList(int currentPage, List<ListColumnListWrapper> news) {
+        mData.addAll(news);
         mAdapter.notifyDataSetChanged();
-        mRefreshLayout.finishLoadmore();
+        mSmartRefreshLayout.finishLoadmore();
     }
 
     @Override
     protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.initViewsAndEvents(inflater, container, savedInstanceState);
-        mRvHeroFree.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mColumnLists = new ArrayList<>();
-        mAdapter = new BasicAdapter<ColumnList>(R.layout.item_columlist_unbook, mColumnLists, getActivity()) {
-            @Override
-            protected void bindData(BasicViewHolder holder, ColumnList columnList, int position) {
-                holder.setText(R.id.tv_col_title, columnList.getCol_title());
-                holder.setText(R.id.tv_col_author, columnList.getAuthor());
-                holder.setText(R.id.tv_col_book_num, columnList.getBook_num());
-                holder.setText(R.id.tv_col_des, columnList.getCol_des());
-                holder.setImagePath(R.id.iv_col_logo, new AbstractImageLoader(columnList.getLogo()) {
-                    @Override
-                    public void loadImage(ImageView imageView, String path) {
-                        ImageLoadUtil.loadCircleImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
-                    }
-                });
-                if (columnList.getCol_from() != null && !TextUtils.isEmpty(columnList.getCol_from())) {
-                    holder.setVisibility(R.id.iv_col_video_tag, View.VISIBLE);
-                } else {
-                    holder.setVisibility(R.id.iv_col_video_tag, View.GONE);
-                }
-            }
-        };
-        mRvHeroFree.setAdapter(mAdapter);
-        mRefreshLayout.setOnRefreshListener(this);
-        mRefreshLayout.setOnLoadmoreListener(this);
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.layout_refresh;
+    protected BasicAdapter<ListColumnListWrapper> getAdapter() {
+        return new ColumnListAdapter(mData, getActivity(), mMultipleTypeSupport);
     }
+
+    private MultipleTypeSupport<ListColumnListWrapper> mMultipleTypeSupport = new MultipleTypeSupport<ListColumnListWrapper>() {
+        @Override
+        public int getLayoutId(ListColumnListWrapper listColumnListWrapper, int position) {
+            int type = listColumnListWrapper.getType();
+            if (type == 0) {
+                return R.layout.item_columlist_unbook;
+            } else if (type == 1) {
+                return R.layout.item_columlist_book;
+            } else if (type == 2) {
+                return R.layout.item_columlist_recommend;
+            } else {
+                return R.layout.item_columlist_unbook;
+            }
+        }
+    };
 
     @Override
     protected ColumnContract.Presenter initPresenter() {
@@ -114,23 +87,13 @@ public class ColumnListFragment extends CommonFragment<ColumnContract.View, Colu
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume: ");
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        Log.d(TAG, "setUserVisibleHint: " + isVisibleToUser);
-        super.setUserVisibleHint(isVisibleToUser);
-//        if (isVisibleToUser) {
-//            mRefreshLayout.autoRefresh();
-//        }
-    }
-
-    @Override
     protected void requestData() {
         super.requestData();
-        mRefreshLayout.autoRefresh();
+        mSmartRefreshLayout.autoRefresh();
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+
     }
 }

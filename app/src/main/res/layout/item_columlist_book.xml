@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/RecyclerView_item"
+    android:background="@color/mainItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="90dp">
+
+    <FrameLayout
+        android:id="@+id/fl_col_logo"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="14dp">
+
+        <ImageView
+            android:id="@+id/iv_col_logo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/iv_col_video_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:src="@drawable/video_tag"
+            android:visibility="gone" />
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/tv_col_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/fl_col_logo"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@id/fl_col_logo"
+        android:text=""
+        android:textColor="@color/colorMainText"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_col_des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_col_title"
+        android:layout_below="@id/tv_col_title"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text=""
+        android:textColor="@color/colorSubText"
+        android:textSize="12sp" />
+
+</RelativeLayout>
