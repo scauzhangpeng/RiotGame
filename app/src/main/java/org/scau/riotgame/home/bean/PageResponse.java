@@ -14,7 +14,8 @@ public class PageResponse<T> {
      * nextpage : 1
      * this_page_num : 20
      */
-
+    private int code;
+    private String msg;
     private String next;
     private String nextpage;
     private String this_page_num;
@@ -50,5 +51,21 @@ public class PageResponse<T> {
 
     public void setThis_page_num(String this_page_num) {
         this.this_page_num = this_page_num;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

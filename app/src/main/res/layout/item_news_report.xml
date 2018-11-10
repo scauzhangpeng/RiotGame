@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/RecyclerView_item"
     android:layout_width="match_parent"
     android:layout_height="84dp"
@@ -32,10 +33,12 @@
         android:layout_centerVertical="true"
         android:orientation="horizontal">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_logo_teama"
             android:layout_width="18dp"
-            android:layout_height="18dp"/>
+            android:layout_height="18dp"
+            app:civ_border_width="@dimen/circle_image_border"
+            app:civ_border_color="@color/circle_image_border" />
 
         <TextView
             android:id="@+id/tv_name_teama"
@@ -44,7 +47,8 @@
             android:layout_marginLeft="8dp"
             android:gravity="center"
             android:textSize="12.0sp"
-            android:textColor="#c0c0c0"/>
+            android:textColor="#c0c0c0"
+            tools:text="IG" />
 
         <TextView
             android:id="@+id/tv_match_result"
@@ -53,14 +57,16 @@
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:gravity="center"
-            android:text="#121212"
+            tools:text="3:0"
             android:textStyle="bold"/>
 
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_logo_teamb"
             android:layout_width="18dp"
-            android:layout_height="18dp"/>
+            android:layout_height="18dp"
+            app:civ_border_width="@dimen/circle_image_border"
+            app:civ_border_color="@color/circle_image_border" />
 
         <TextView
             android:id="@+id/tv_name_teamb"
@@ -69,6 +75,7 @@
             android:layout_marginLeft="8dp"
             android:gravity="center"
             android:textSize="12.0sp"
+            tools:text="FNC"
             android:textColor="#c0c0c0"/>
     </LinearLayout>
 

@@ -28,7 +28,7 @@ public class NewsPresenter extends NewsContract.Presenter {
 
     @Override
     public void loadMoreNews() {
-        RequestManager.getInstance().getNews(12, mCurrentPage, 9738, new HttpCallback<PageResponse<News>>() {
+        RequestManager.getInstance().getNews(12, mCurrentPage, 9740, new HttpCallback<PageResponse<News>>() {
 
             @Override
             public void doOnSuccess(@NonNull PageResponse<News> newsPageResponse, Response<PageResponse<News>> response) {

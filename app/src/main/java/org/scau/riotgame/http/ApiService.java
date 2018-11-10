@@ -86,4 +86,7 @@ public interface ApiService {
     @GET("php_cgi/news/php/varcache_getactnews.php")
     Call<ActDetailResponse> getActDetailList(@Query("t") String type, @Query("lasttime") String lasttime);
 
+    @GET("php_cgi/news/php/varcache_getnews.php")
+    Call<PageResponse<News>> getHotNews(@Query("id") int cid, @Query("page") int page);
+
 }

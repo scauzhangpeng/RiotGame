@@ -120,7 +120,7 @@ public class HomeFragment extends CommonFragment implements RadioGroup.OnChecked
 
         mPages = new SparseArray<>();
         mPages.put(PAGE_LAST, new NewsFragment());
-        mPages.put(PAGE_HOT, new ColumnListFragment());
+        mPages.put(PAGE_HOT, new HotNewsFragment());
         mPages.put(PAGE_COLUMN, new ColumnListFragment());
         mPages.put(PAGE_VIDEO, new VideoFragment());
         mPages.put(PAGE_NEW_VERSION, new NewVersionFragment());

@@ -109,4 +109,10 @@ public class RequestManager {
         call.enqueue(callback);
         return call;
     }
+
+    public Call getHotNews(int id, int currentPage, HttpCallback<PageResponse<News>> callback) {
+        Call<PageResponse<News>> call = mApiService.getHotNews(id, currentPage);
+        call.enqueue(callback);
+        return call;
+    }
 }
