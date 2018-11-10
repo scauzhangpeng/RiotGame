@@ -124,7 +124,7 @@ public class HomeFragment extends CommonFragment implements RadioGroup.OnChecked
         mPages.put(PAGE_COLUMN, new ColumnListFragment());
         mPages.put(PAGE_VIDEO, new VideoFragment());
         mPages.put(PAGE_NEW_VERSION, new NewVersionFragment());
-        mPages.put(PAGE_OFFICE, new ColumnListFragment());
+        mPages.put(PAGE_OFFICE, new OfficialNewsFragment());
         mPages.put(PAGE_HERO, new HeroCommunityFragment());
         mAdapter = new HeroPageAdapter(getActivity().getSupportFragmentManager(), mPages);
         mVpMain.setAdapter(mAdapter);

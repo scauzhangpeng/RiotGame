@@ -89,4 +89,9 @@ public interface ApiService {
     @GET("php_cgi/news/php/varcache_getnews.php")
     Call<PageResponse<News>> getHotNews(@Query("id") int cid, @Query("page") int page);
 
+    @GET("php_cgi/news/php/varcache_getnews.php")
+    Call<PageResponse<News>> getOfficialNews(@Query("id") int cid, @Query("page") int page, @Query("uuid") String uuid, @Query("area_id") int areaId);
+
+
+
 }
