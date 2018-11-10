@@ -1,5 +1,6 @@
 package org.scau.riotgame.http;
 
+import org.scau.riotgame.home.bean.PageRespWholeVideoData;
 import org.scau.riotgame.home.bean.PageVideoData;
 
 import retrofit2.Call;
@@ -13,10 +14,13 @@ import retrofit2.http.Query;
 public interface WebService {
 
     @GET("web201310/js/videodata/LOL_APP_HOTREC_LIST.js")
-    Call<PageVideoData> getVideoData(@Query("version") int version);
+    Call<PageVideoData> getVideoDataHotRec();
 
     @GET("biz/hero/free.js")
     Call<String> getFreeHeros(@Query("version") int version);
+
+    @GET("http://apps.game.qq.com/lol/act/website2013/video.php")
+    Call<PageRespWholeVideoData> getVideoDataWhole(@Query("page") int page, @Query("pagesize") int pageSize, @Query("r1") int r1, @Query("source") String source);
 
 
 }

@@ -1,5 +1,6 @@
 package org.scau.riotgame.http;
 
+import org.scau.riotgame.home.bean.PageRespWholeVideoData;
 import org.scau.riotgame.home.bean.PageVideoData;
 
 import retrofit2.Call;
@@ -28,8 +29,8 @@ public class WebManager {
         return mInstance;
     }
 
-    public Call getHostAuthors(int version, HttpCallback<PageVideoData> callback) {
-        Call<PageVideoData> call = mWebService.getVideoData(version);
+    public Call getVideoDataHotRec(HttpCallback<PageVideoData> callback) {
+        Call<PageVideoData> call = mWebService.getVideoDataHotRec();
         call.enqueue(callback);
         return call;
     }
@@ -42,6 +43,12 @@ public class WebManager {
 
     public Call<String> getFreeHero(int version, HttpCallback<String> callback) {
         Call<String> call = mWebService.getFreeHeros(version);
+        call.enqueue(callback);
+        return call;
+    }
+
+    public Call<PageRespWholeVideoData> getVideoDataWhole(int page, int pageSize, HttpCallback<PageRespWholeVideoData> callback) {
+        Call<PageRespWholeVideoData> call = mWebService.getVideoDataWhole(page, pageSize, 1, "lolapp");
         call.enqueue(callback);
         return call;
     }

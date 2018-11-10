@@ -16,6 +16,8 @@ public class VideoData {
 
     private List<HotMatch> HotRecMatchList;
 
+    private List<HotHero> HotRecHeroList;
+
     public List<HotMatch> getHotRecMatchList() {
         return HotRecMatchList;
     }
@@ -46,5 +48,13 @@ public class VideoData {
 
     public void setHotRecAuthorList(List<HotAuthor> hotRecAuthorList) {
         HotRecAuthorList = hotRecAuthorList;
+    }
+
+    public List<HotHero> getHotRecHeroList() {
+        return HotRecHeroList;
+    }
+
+    public void setHotRecHeroList(List<HotHero> hotRecHeroList) {
+        HotRecHeroList = hotRecHeroList;
     }
 }

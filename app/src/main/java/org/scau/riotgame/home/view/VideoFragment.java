@@ -1,9 +1,9 @@
 package org.scau.riotgame.home.view;
 
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -23,6 +23,7 @@ import com.xyz.riotcommon.ImageLoadUtil;
 import org.scau.riotgame.R;
 import org.scau.riotgame.home.bean.HotAuthor;
 import org.scau.riotgame.home.bean.HotEnter;
+import org.scau.riotgame.home.bean.HotHero;
 import org.scau.riotgame.home.bean.HotMatch;
 import org.scau.riotgame.home.bean.HotWpv;
 import org.scau.riotgame.home.contract.VideoContract;
@@ -58,6 +59,10 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
     TextView mTvHotMatchTopPlay;
     @Bind(R.id.rv_hot_match)
     RecyclerView mRvHotMatch;
+    @Bind(R.id.rv_hot_hero)
+    RecyclerView mRvHotHero;
+    @Bind(R.id.rv_whole_video)
+    RecyclerView mRvWholeVideo;
 
     private BasicAdapter<HotAuthor> mAdapter;
     private List<HotAuthor> mHotAuthors;
@@ -70,6 +75,12 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
 
     private BasicAdapter<HotMatch> mHotMatchAdapter;
     private List<HotMatch> mHotMatches;
+
+    private BasicAdapter<HotHero> mHotHeroAdapter;
+    private List<HotHero> mHotHeroes;
+
+    private BasicAdapter<HotMatch> mWholeVideoAdapter;
+    private List<HotMatch> mWholeVideos;
 
     @Override
     public void showHotAuthorList(List<HotAuthor> hotAuthors) {
@@ -112,39 +123,33 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
     }
 
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        Log.d(TAG, "setUserVisibleHint: ");
-        super.setUserVisibleHint(isVisibleToUser);
-//        if (isVisibleToUser) {
-//            mRefreshLayout.autoRefresh();
-//        }
+    public void showHotHeroList(List<HotHero> hotHeroes) {
+        mHotHeroes.clear();
+        mHotHeroes.addAll(hotHeroes);
+        mHotHeroAdapter.notifyDataSetChanged();
+        mRefreshLayout.finishRefresh();
+    }
+
+    @Override
+    public void showWholeVideoList(List<HotMatch> result) {
+        mWholeVideos.clear();
+        mWholeVideos.addAll(result);
+        mWholeVideoAdapter.notifyDataSetChanged();
+        mRefreshLayout.finishRefresh();
+    }
+
+    @Override
+    public void showMoreWholeVideoList(int currentPage, List<HotMatch> result) {
+        mWholeVideos.addAll(result);
+        mWholeVideoAdapter.notifyDataSetChanged();
+        mRefreshLayout.finishLoadmore();
     }
 
     @Override
     protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.initViewsAndEvents(inflater, container, savedInstanceState);
-        LinearLayoutManager linearLayout = new LinearLayoutManager(getActivity());
-        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-        mRvHotAuthor.setLayoutManager(linearLayout);
 
-        mHotAuthors = new ArrayList<>();
-        mAdapter = new BasicAdapter<HotAuthor>(R.layout.item_hot_author, mHotAuthors, getActivity()) {
-            @Override
-            protected void bindData(BasicViewHolder holder, HotAuthor hotAuthor, int position) {
-                holder.setText(R.id.tv_hot_author_name, hotAuthor.getSName());
-                holder.setText(R.id.tv_hot_author_video, hotAuthor.getIVideo());
-                holder.setText(R.id.tv_hot_author_update, hotAuthor.getPubdate());
-                holder.setImagePath(R.id.iv_hot_author, new AbstractImageLoader(hotAuthor.getSIMG()) {
-                    @Override
-                    public void loadImage(ImageView imageView, String path) {
-                        ImageLoadUtil.loadCircleImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
-                    }
-                });
-            }
-        };
-
-        mRvHotAuthor.setAdapter(mAdapter);
-        //
+        //本周热榜
         LinearLayoutManager linearLayout1 = new LinearLayoutManager(getActivity());
         linearLayout1.setOrientation(LinearLayout.HORIZONTAL);
         mRvHotWpv.setLayoutManager(linearLayout1);
@@ -172,7 +177,51 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
         };
         mRvHotWpv.setAdapter(mHotWpvAdapter);
 
-        //
+
+        //热门解说
+        LinearLayoutManager linearLayout = new LinearLayoutManager(getActivity());
+        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        mRvHotAuthor.setLayoutManager(linearLayout);
+        mHotAuthors = new ArrayList<>();
+        mAdapter = new BasicAdapter<HotAuthor>(R.layout.item_hot_author, mHotAuthors, getActivity()) {
+            @Override
+            protected void bindData(BasicViewHolder holder, HotAuthor hotAuthor, int position) {
+                holder.setText(R.id.tv_hot_author_name, hotAuthor.getSName());
+                holder.setText(R.id.tv_hot_author_video, hotAuthor.getIVideo());
+                holder.setText(R.id.tv_hot_author_update, hotAuthor.getPubdate());
+                holder.setImagePath(R.id.iv_hot_author, new AbstractImageLoader(hotAuthor.getSIMG()) {
+                    @Override
+                    public void loadImage(ImageView imageView, String path) {
+                        ImageLoadUtil.loadCircleImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
+                    }
+                });
+            }
+        };
+        mRvHotAuthor.setAdapter(mAdapter);
+
+
+        //热门赛事
+        LinearLayoutManager hotMatchLayout = new LinearLayoutManager(getActivity());
+        hotMatchLayout.setOrientation(LinearLayout.HORIZONTAL);
+        mRvHotMatch.setLayoutManager(hotMatchLayout);
+        mHotMatches = new ArrayList<>();
+        mHotMatchAdapter = new BasicAdapter<HotMatch>(R.layout.item_hot_match, mHotMatches, getActivity()) {
+            @Override
+            protected void bindData(BasicViewHolder holder, HotMatch hotMatch, int position) {
+                holder.setText(R.id.tv_hot_match_title, hotMatch.getTitle());
+                holder.setText(R.id.tv_hot_match_play, hotMatch.getPlay());
+                holder.setImagePath(R.id.iv_hot_match_thumb, new AbstractImageLoader(hotMatch.getThumb()) {
+                    @Override
+                    public void loadImage(ImageView imageView, String path) {
+                        ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
+                    }
+                });
+
+            }
+        };
+        mRvHotMatch.setAdapter(mHotMatchAdapter);
+
+        //热门娱乐
         LinearLayoutManager hotEnterLayout = new LinearLayoutManager(getActivity());
         hotEnterLayout.setOrientation(LinearLayout.HORIZONTAL);
         mRvHotEnter.setLayoutManager(hotEnterLayout);
@@ -194,12 +243,31 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
         };
         mRvHotEnter.setAdapter(mHotEnterAdapter);
 
-        //
-        LinearLayoutManager hotMatchLayout = new LinearLayoutManager(getActivity());
-        hotMatchLayout.setOrientation(LinearLayout.HORIZONTAL);
-        mRvHotMatch.setLayoutManager(hotMatchLayout);
-        mHotMatches = new ArrayList<>();
-        mHotMatchAdapter = new BasicAdapter<HotMatch>(R.layout.item_hot_match, mHotMatches, getActivity()) {
+        //热门英雄
+        LinearLayoutManager hotHeroLayout = new LinearLayoutManager(getActivity());
+        hotHeroLayout.setOrientation(LinearLayout.HORIZONTAL);
+        mRvHotHero.setLayoutManager(hotHeroLayout);
+        mHotHeroes = new ArrayList<>();
+        mHotHeroAdapter = new BasicAdapter<HotHero>(R.layout.item_hot_match, mHotHeroes, getActivity()) {
+            @Override
+            protected void bindData(BasicViewHolder holder, HotHero hotHero, int position) {
+                holder.setText(R.id.tv_hot_match_title, hotHero.getTitle());
+                holder.setText(R.id.tv_hot_match_play, hotHero.getPlay());
+                holder.setImagePath(R.id.iv_hot_match_thumb, new AbstractImageLoader(hotHero.getThumb()) {
+                    @Override
+                    public void loadImage(ImageView imageView, String path) {
+                        ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
+                    }
+                });
+            }
+        };
+        mRvHotHero.setAdapter(mHotHeroAdapter);
+
+        //全部英雄
+        GridLayoutManager wholeVideoLayout = new GridLayoutManager(getActivity(), 2);
+        mRvWholeVideo.setLayoutManager(wholeVideoLayout);
+        mWholeVideos = new ArrayList<>();
+        mWholeVideoAdapter = new BasicAdapter<HotMatch>(R.layout.item_hot_match, mWholeVideos, getActivity()) {
             @Override
             protected void bindData(BasicViewHolder holder, HotMatch hotMatch, int position) {
                 holder.setText(R.id.tv_hot_match_title, hotMatch.getTitle());
@@ -210,14 +278,13 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
                         ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                     }
                 });
-
             }
         };
-        mRvHotMatch.setAdapter(mHotMatchAdapter);
+        mRvWholeVideo.setAdapter(mWholeVideoAdapter);
+
 
         mRefreshLayout.setOnRefreshListener(this);
         mRefreshLayout.setOnLoadmoreListener(this);
-        mRefreshLayout.setEnableLoadmore(false);
     }
 
     @Override
@@ -232,18 +299,13 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
 
     @Override
     public void onRefresh(RefreshLayout refreshlayout) {
-        mPresenter.getHotAuthorList();
+        mPresenter.getVideoDataHotRec();
+        mPresenter.requestVideoDataWhole();
     }
 
     @Override
     public void onLoadmore(RefreshLayout refreshlayout) {
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume: ");
+        mPresenter.loadMoreVideoDataWhole();
     }
 
     @Override

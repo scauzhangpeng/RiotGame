@@ -6,6 +6,7 @@ import com.xyz.basiclib.mvp.BaseView;
 
 import org.scau.riotgame.home.bean.HotAuthor;
 import org.scau.riotgame.home.bean.HotEnter;
+import org.scau.riotgame.home.bean.HotHero;
 import org.scau.riotgame.home.bean.HotMatch;
 import org.scau.riotgame.home.bean.HotWpv;
 
@@ -27,11 +28,19 @@ public interface VideoContract {
         void showHotMatchList(List<HotMatch> hotMatches);
 
         void showHotMatchTop(HotMatch hotMatch);
+
+        void showHotHeroList(List<HotHero> hotHeroes);
+
+        void showWholeVideoList(List<HotMatch> result);
+
+        void showMoreWholeVideoList(int currentPage, List<HotMatch> result);
     }
 
     abstract class Presenter extends BasePresenter<View> {
-        public abstract void getHotAuthorList();
+        public abstract void getVideoDataHotRec();
 
-        public abstract void getHotWpvList();
+        public abstract void requestVideoDataWhole();
+
+        public abstract void loadMoreVideoDataWhole();
     }
 }
