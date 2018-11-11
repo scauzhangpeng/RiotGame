@@ -264,6 +264,7 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
         mRvHotHero.setAdapter(mHotHeroAdapter);
 
         //全部英雄
+        mRvWholeVideo.setNestedScrollingEnabled(false);
         GridLayoutManager wholeVideoLayout = new GridLayoutManager(getActivity(), 2);
         mRvWholeVideo.setLayoutManager(wholeVideoLayout);
         mWholeVideos = new ArrayList<>();
