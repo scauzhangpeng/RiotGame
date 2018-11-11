@@ -8,6 +8,7 @@ import org.scau.riotgame.home.bean.DiscoveryMenu;
 import org.scau.riotgame.home.bean.GameCenterData;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.bean.PageColumnList;
+import org.scau.riotgame.home.bean.PageRespNewVersionCard;
 import org.scau.riotgame.home.bean.PageResponse;
 import org.scau.riotgame.wallpaper.bean.KindWallPaper;
 import org.scau.riotgame.wallpaper.bean.WallPaper;
@@ -92,6 +93,11 @@ public interface ApiService {
     @GET("php_cgi/news/php/varcache_getnews.php")
     Call<PageResponse<News>> getOfficialNews(@Query("id") int cid, @Query("page") int page, @Query("uuid") String uuid, @Query("area_id") int areaId);
 
+    @GET("php_cgi/news/php/varcache_getnews.php")
+    Call<PageResponse<News>> getNewVersionNews(@Query("id") int cid, @Query("page") int page);
 
+    @GET("http://qt.qq.com/lua/lol_news/recommend?cid=367&areaid=7")
+    @Headers("Cookie:l_uin=o2456513456; p_uin=o2456513456; p_skey=3vAhB*etp*ElpHK15U*LThQfHMAf-yQjk7NV-iE59Nc_; uin=o2456513456; skey=MHplxd1Wtz;")
+    Call<PageRespNewVersionCard> getNewVersionCard(@Query("cid") int cid, @Query("areaid") int areaid);
 
 }

@@ -8,6 +8,7 @@ import org.scau.riotgame.home.bean.DiscoveryMenu;
 import org.scau.riotgame.home.bean.GameCenterData;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.bean.PageColumnList;
+import org.scau.riotgame.home.bean.PageRespNewVersionCard;
 import org.scau.riotgame.home.bean.PageResponse;
 import org.scau.riotgame.wallpaper.bean.KindWallPaper;
 import org.scau.riotgame.wallpaper.bean.WallPaper;
@@ -112,6 +113,18 @@ public class RequestManager {
 
     public Call getHotNews(int id, int currentPage, HttpCallback<PageResponse<News>> callback) {
         Call<PageResponse<News>> call = mApiService.getHotNews(id, currentPage);
+        call.enqueue(callback);
+        return call;
+    }
+
+    public Call getNewVersionNews(int id, int currentPage, HttpCallback<PageResponse<News>> callback) {
+        Call<PageResponse<News>> call = mApiService.getNewVersionNews(id, currentPage);
+        call.enqueue(callback);
+        return call;
+    }
+
+    public Call getNewVersionCard(int cid, int currentPage, HttpCallback<PageRespNewVersionCard> callback) {
+        Call<PageRespNewVersionCard> call = mApiService.getNewVersionCard(cid, currentPage);
         call.enqueue(callback);
         return call;
     }
