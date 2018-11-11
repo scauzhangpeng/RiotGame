@@ -4,8 +4,8 @@ package org.scau.riotgame.home.contract;
 import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.basiclib.mvp.BaseView;
 
-import org.scau.riotgame.home.bean.Card;
-import org.scau.riotgame.home.bean.News;
+import org.scau.riotgame.home.bean.CardItem;
+import org.scau.riotgame.home.bean.HeroGroupListBean;
 
 import java.util.List;
 
@@ -17,13 +17,19 @@ public interface HeroCommunityContract {
 
 
     interface View extends BaseView {
-        void showNewsList(List<News> news);
+        void showNewsList(List<HeroGroupListBean> news);
 
-        void showMoreNewsList(int currentPage, List<News> news);
+        void showMoreNewsList(int currentPage, List<HeroGroupListBean> news);
 
-        void showBattleVideo(List<Card> battleVideoCard);
+        void showBattleVideoCard(CardItem battleVideoCard);
 
-        void showRecentHero(List<Card> recentHero);
+        void showRecentHeroCard(CardItem recentHero);
+
+        void showRecommendStrategyCard(CardItem recommendStrategy);
+
+        void showPlayerShowCard(CardItem playerShow);
+
+        void updateCardItem(int position, HeroGroupListBean bean);
     }
 
     abstract class Presenter extends BasePresenter<View> {

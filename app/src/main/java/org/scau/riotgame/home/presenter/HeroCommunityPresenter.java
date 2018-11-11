@@ -2,15 +2,16 @@ package org.scau.riotgame.home.presenter;
 
 import android.support.annotation.NonNull;
 
-import org.scau.riotgame.home.bean.Card;
 import org.scau.riotgame.home.bean.CardItem;
 import org.scau.riotgame.home.bean.CardsResponse;
+import org.scau.riotgame.home.bean.HeroGroupListBean;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.bean.PageResponse;
 import org.scau.riotgame.home.contract.HeroCommunityContract;
 import org.scau.riotgame.http.HttpCallback;
 import org.scau.riotgame.http.RequestManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Response;
@@ -34,10 +35,15 @@ public class HeroCommunityPresenter extends HeroCommunityContract.Presenter {
             public void doOnSuccess(@NonNull PageResponse<News> newsPageResponse, Response<PageResponse<News>> response) {
                 List<News> list = newsPageResponse.getList();
                 if (list != null && list.size() != 0) {
+                    List<HeroGroupListBean> heroGroupListBeans = new ArrayList<>();
+                    for (News news : list) {
+                        HeroGroupListBean bean = new HeroGroupListBean(news, "news");
+                        heroGroupListBeans.add(bean);
+                    }
                     if (mCurrentPage == 0) {
-                        getView().showNewsList(list);
+                        getView().showNewsList(heroGroupListBeans);
                     } else {
-                        getView().showMoreNewsList(mCurrentPage, list);
+                        getView().showMoreNewsList(mCurrentPage, heroGroupListBeans);
                     }
                     mCurrentPage++;
                 } else {
@@ -62,20 +68,41 @@ public class HeroCommunityPresenter extends HeroCommunityContract.Presenter {
         RequestManager.getInstance().getCardsData("0c8a808f-61bd-4312-a9cc-a7a179b968a1", 7, 9740, new HttpCallback<CardsResponse>() {
             @Override
             public void doOnSuccess(@NonNull CardsResponse cardsResponse, Response<CardsResponse> response) {
-                List<CardItem> list = cardsResponse.getList();
-                if (list != null && list.size() != 0) {
-                    for (int i = 0; i < list.size(); i++) {
-                        if ("BattleVideosCard".equals(list.get(i).getNewstypeid())) {
-                            List<Card> data = list.get(i).getData();
-                            getView().showBattleVideo(data);
+                if ("0".equals(cardsResponse.getCode())) {
+                    List<CardItem> list = cardsResponse.getList();
+                    if (list != null && list.size() != 0) {
+                        for (int i = 0; i < list.size(); i++) {
+                            if ("BattleVideosCard".equals(list.get(i).getNewstypeid())) {
+                                HeroGroupListBean bean = new HeroGroupListBean(null, "BattleVideosCard");
+
+                                getView().updateCardItem(Integer.valueOf(list.get(i).getPosition()) - 1, bean);
+                                CardItem battleVideosCard = list.get(i);
+                                getView().showBattleVideoCard(battleVideosCard);
+                            }
+                            if ("RecentHeroCard".equals(list.get(i).getNewstypeid())) {
+                                HeroGroupListBean bean = new HeroGroupListBean(null, "RecentHeroCard");
+                                getView().updateCardItem(Integer.valueOf(list.get(i).getPosition()) - 1, bean);
+                                CardItem recentHeroCard = list.get(i);
+                                getView().showRecentHeroCard(recentHeroCard);
+                            }
+                            if ("RecommendStrategyCard".equals(list.get(i).getNewstypeid())) {
+                                HeroGroupListBean bean = new HeroGroupListBean(null, "RecommendStrategyCard");
+                                getView().updateCardItem(Integer.valueOf(list.get(i).getPosition()) - 1, bean);
+                                CardItem recommendStrategy = list.get(i);
+                                getView().showRecommendStrategyCard(recommendStrategy);
+                            }
+
+                            if ("PlayerShowCard".equals(list.get(i).getNewstypeid())) {
+                                HeroGroupListBean bean = new HeroGroupListBean(null, "PlayerShowCard");
+                                getView().updateCardItem(Integer.valueOf(list.get(i).getPosition()) - 1, bean);
+                                CardItem playerShow = list.get(i);
+                                getView().showPlayerShowCard(playerShow);
+                            }
+
                         }
-                        if ("RecentHeroCard".equals(list.get(i).getNewstypeid())) {
-                            List<Card> data = list.get(i).getData();
-                            getView().showRecentHero(data);
-                        }
+                    } else {
+                        System.out.println("null list");
                     }
-                } else {
-                    System.out.println("null list");
                 }
             }
 
