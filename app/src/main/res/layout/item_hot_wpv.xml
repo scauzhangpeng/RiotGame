@@ -15,6 +15,7 @@
 
         <ImageView
             android:id="@+id/iv_hot_wpv_appthumb"
+            android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
@@ -23,6 +24,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/golden_play_icon"/>
+
+        <TextView
+            android:id="@+id/tv_video_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|top"
+            android:background="#40000000"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
     </FrameLayout>
 
     <RelativeLayout

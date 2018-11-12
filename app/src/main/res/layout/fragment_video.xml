@@ -34,6 +34,26 @@
 
             <include layout="@layout/layout_hot_hero" />
 
+            <RelativeLayout
+                android:background="@color/colorMainBg"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp">
+
+                <TextView
+                    style="@style/video_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="全部视频"
+                    android:textColor="@color/colorMainText"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true" />
+            </RelativeLayout>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_whole_video"
                 android:layout_width="match_parent"

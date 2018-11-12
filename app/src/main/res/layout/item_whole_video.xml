@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:background="@android:color/white"
-              android:layout_width="140dp"
-              android:layout_height="140dp"
-              android:padding="8dp"
-              style="@style/video_item">
+    style="@style/video_item"
+    android:layout_width="168dp"
+    android:layout_height="176dp"
+    android:layout_gravity="center"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="8dp">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="66dp">
+        android:layout_height="95dp">
 
         <ImageView
             android:id="@+id/iv_hot_match_thumb"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/golden_play_icon"/>
+            android:src="@drawable/golden_play_icon" />
 
         <TextView
             android:id="@+id/tv_video_time"
@@ -39,15 +40,16 @@
         android:layout_height="40dp"
         android:ellipsize="end"
         android:maxLines="2"
-        android:textSize="16sp"
-        android:textColor="@color/colorMainText"/>
+        android:textColor="@color/colorMainText"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tv_hot_match_play"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
+        android:layout_marginTop="1dp"
         android:gravity="right"
-        android:textColor="@color/colorMainGold"/>
+        android:textColor="@color/colorMainGold"
+        android:textSize="12sp" />
 
 </LinearLayout>

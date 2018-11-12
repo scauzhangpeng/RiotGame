@@ -15,4 +15,12 @@ public class FormatUtil {
         }
         return String.format(Locale.US, "%.1f", srcLong / 10000.0f) + "万阅";
     }
+
+    public static String formatVideoPv(String src) {
+        Long srcLong = Long.valueOf(src);
+        if (srcLong < 10000) {
+            return src + "播放";
+        }
+        return String.format(Locale.CHINA, "%.1f", srcLong / 10000.0f) + "万播放";
+    }
 }

@@ -51,6 +51,8 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
     RecyclerView mRvHotEnter;
     @Bind(R.id.iv_hot_match_top_thumb)
     ImageView mIvHotMatchTopThumb;
+    @Bind(R.id.tv_video_time)
+    TextView mTvHotMatchTopTime;
     @Bind(R.id.tv_hot_match_top_title)
     TextView mTvHotMatchTopTitle;
     @Bind(R.id.tv_hot_match_top_author)
@@ -116,9 +118,10 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
 
     @Override
     public void showHotMatchTop(HotMatch hotMatch) {
+        mTvHotMatchTopTime.setText(hotMatch.getTime());
         mTvHotMatchTopTitle.setText(hotMatch.getTitle());
         mTvHotMatchTopAuthor.setText(hotMatch.getAuthor());
-        mTvHotMatchTopPlay.setText(hotMatch.getPlay());
+        mTvHotMatchTopPlay.setText(getString(R.string.information_video_play, hotMatch.getPlay()));
         ImageLoadUtil.loadImage(getActivity(), hotMatch.getAppthumb(), R.drawable.default_lol_ex, mIvHotMatchTopThumb);
     }
 
@@ -157,9 +160,10 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
         mHotWpvAdapter = new BasicAdapter<HotWpv>(R.layout.item_hot_wpv, mHotWpvs, getActivity()) {
             @Override
             protected void bindData(BasicViewHolder holder, HotWpv hotWpv, int position) {
+                holder.setText(R.id.tv_video_time, hotWpv.getTime());
                 holder.setText(R.id.tv_hot_wpv_title, hotWpv.getTitle());
                 holder.setText(R.id.tv_hot_wpv_author, hotWpv.getAuthor());
-                holder.setText(R.id.tv_hot_wpv_play, hotWpv.getPlay());
+                holder.setText(R.id.tv_hot_wpv_play, getString(R.string.information_video_play, hotWpv.getPlay()));
                 holder.setImagePath(R.id.iv_hot_wpv_appthumb, new AbstractImageLoader(hotWpv.getAppthumb()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
@@ -187,7 +191,7 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
             @Override
             protected void bindData(BasicViewHolder holder, HotAuthor hotAuthor, int position) {
                 holder.setText(R.id.tv_hot_author_name, hotAuthor.getSName());
-                holder.setText(R.id.tv_hot_author_video, hotAuthor.getIVideo());
+                holder.setText(R.id.tv_hot_author_video, getString(R.string.information_author_video_num, hotAuthor.getIVideo()));
                 holder.setText(R.id.tv_hot_author_update, hotAuthor.getPubdate());
                 holder.setImagePath(R.id.iv_hot_author, new AbstractImageLoader(hotAuthor.getSIMG()) {
                     @Override
@@ -208,8 +212,9 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
         mHotMatchAdapter = new BasicAdapter<HotMatch>(R.layout.item_hot_match, mHotMatches, getActivity()) {
             @Override
             protected void bindData(BasicViewHolder holder, HotMatch hotMatch, int position) {
+                holder.setText(R.id.tv_video_time, hotMatch.getTime());
                 holder.setText(R.id.tv_hot_match_title, hotMatch.getTitle());
-                holder.setText(R.id.tv_hot_match_play, hotMatch.getPlay());
+                holder.setText(R.id.tv_hot_match_play, getString(R.string.information_video_play, hotMatch.getPlay()));
                 holder.setImagePath(R.id.iv_hot_match_thumb, new AbstractImageLoader(hotMatch.getThumb()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
@@ -230,7 +235,7 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
             @Override
             protected void bindData(BasicViewHolder holder, HotEnter hotEnter, int position) {
                 holder.setText(R.id.tv_hot_enter_name, hotEnter.getSName());
-                holder.setText(R.id.tv_hot_enter_num, hotEnter.getIVideo());
+                holder.setText(R.id.tv_hot_enter_num, getString(R.string.information_author_video_num, hotEnter.getIVideo()));
                 holder.setText(R.id.tv_hot_enter_update, hotEnter.getPubdate());
                 holder.setImagePath(R.id.iv_hot_enter_logo, new AbstractImageLoader(hotEnter.getSIMG()) {
                     @Override
@@ -251,8 +256,9 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
         mHotHeroAdapter = new BasicAdapter<HotHero>(R.layout.item_hot_match, mHotHeroes, getActivity()) {
             @Override
             protected void bindData(BasicViewHolder holder, HotHero hotHero, int position) {
+                holder.setText(R.id.tv_video_time, hotHero.getTime());
                 holder.setText(R.id.tv_hot_match_title, hotHero.getTitle());
-                holder.setText(R.id.tv_hot_match_play, hotHero.getPlay());
+                holder.setText(R.id.tv_hot_match_play, getString(R.string.information_video_play, hotHero.getPlay()));
                 holder.setImagePath(R.id.iv_hot_match_thumb, new AbstractImageLoader(hotHero.getThumb()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
@@ -268,11 +274,12 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
         GridLayoutManager wholeVideoLayout = new GridLayoutManager(getActivity(), 2);
         mRvWholeVideo.setLayoutManager(wholeVideoLayout);
         mWholeVideos = new ArrayList<>();
-        mWholeVideoAdapter = new BasicAdapter<HotMatch>(R.layout.item_hot_match, mWholeVideos, getActivity()) {
+        mWholeVideoAdapter = new BasicAdapter<HotMatch>(R.layout.item_whole_video, mWholeVideos, getActivity()) {
             @Override
             protected void bindData(BasicViewHolder holder, HotMatch hotMatch, int position) {
+                holder.setText(R.id.tv_video_time, hotMatch.getTime());
                 holder.setText(R.id.tv_hot_match_title, hotMatch.getTitle());
-                holder.setText(R.id.tv_hot_match_play, hotMatch.getPlay());
+                holder.setText(R.id.tv_hot_match_play, getString(R.string.information_video_play, hotMatch.getPlay()));
                 holder.setImagePath(R.id.iv_hot_match_thumb, new AbstractImageLoader(hotMatch.getThumb()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
