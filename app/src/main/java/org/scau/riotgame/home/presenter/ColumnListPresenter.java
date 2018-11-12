@@ -2,7 +2,7 @@ package org.scau.riotgame.home.presenter;
 
 import android.support.annotation.NonNull;
 
-import org.scau.riotgame.home.ListColumnListWrapper;
+import org.scau.riotgame.home.SpecialColumnListBean;
 import org.scau.riotgame.home.bean.ColumnList;
 import org.scau.riotgame.home.bean.PageColumnList;
 import org.scau.riotgame.home.contract.ColumnContract;
@@ -37,22 +37,27 @@ public class ColumnListPresenter extends ColumnContract.Presenter {
                 List<ColumnList> unBook_list = pageColumnList.getUnbook_list();
                 List<ColumnList> book_list = pageColumnList.getBook_list();
                 List<ColumnList> recommend_list = pageColumnList.getRecommend_list();
-                List<ListColumnListWrapper> wrappers = new ArrayList<>();
-                if (recommend_list != null) {
+                List<SpecialColumnListBean> wrappers = new ArrayList<>();
+                if (recommend_list != null && recommend_list.size() > 0) {
+                    wrappers.add(new SpecialColumnListBean(null, 5));
                     for (ColumnList columnList : recommend_list) {
-                        wrappers.add(new ListColumnListWrapper(columnList, 2));
+                        wrappers.add(new SpecialColumnListBean(columnList, 2));
                     }
                 }
 
-                if (book_list != null) {
+                if (book_list != null && book_list.size() > 0) {
+                    wrappers.add(new SpecialColumnListBean(null, 4));
                     for (ColumnList columnList : book_list) {
-                        wrappers.add(new ListColumnListWrapper(columnList, 1));
+                        wrappers.add(new SpecialColumnListBean(columnList, 1));
                     }
                 }
 
-                if (unBook_list != null) {
+                if (unBook_list != null && unBook_list.size() > 0) {
+                    if (mCurrentPage == 0) {
+                        wrappers.add(new SpecialColumnListBean(null, 3));
+                    }
                     for (ColumnList columnList : unBook_list) {
-                        wrappers.add(new ListColumnListWrapper(columnList, 0));
+                        wrappers.add(new SpecialColumnListBean(columnList, 0));
                     }
                 }
 

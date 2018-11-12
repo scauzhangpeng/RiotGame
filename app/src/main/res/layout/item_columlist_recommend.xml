@@ -3,7 +3,7 @@
     style="@style/RecyclerView_item"
     android:background="@color/mainItemBackground"
     android:layout_width="match_parent"
-    android:layout_height="90dp">
+    android:layout_height="70dp">
 
     <FrameLayout
         android:id="@+id/fl_col_logo"
@@ -14,6 +14,7 @@
 
         <ImageView
             android:id="@+id/iv_col_logo"
+            android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

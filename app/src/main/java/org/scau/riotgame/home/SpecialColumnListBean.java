@@ -5,13 +5,13 @@ import org.scau.riotgame.home.bean.ColumnList;
 /**
  * Created by ZP on 2018/11/9.
  */
-public class ListColumnListWrapper {
+public class SpecialColumnListBean {
 
     private ColumnList mColumnList;
 
     private int type;
 
-    public ListColumnListWrapper(ColumnList columnList, int type) {
+    public SpecialColumnListBean(ColumnList columnList, int type) {
         mColumnList = columnList;
         this.type = type;
     }

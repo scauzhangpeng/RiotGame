@@ -4,7 +4,7 @@ package org.scau.riotgame.home.contract;
 import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.basiclib.mvp.BaseView;
 
-import org.scau.riotgame.home.ListColumnListWrapper;
+import org.scau.riotgame.home.SpecialColumnListBean;
 
 import java.util.List;
 
@@ -15,9 +15,9 @@ import java.util.List;
 public interface ColumnContract {
 
     interface View extends BaseView {
-        void showColumnList(List<ListColumnListWrapper> news);
+        void showColumnList(List<SpecialColumnListBean> news);
 
-        void showMoreColumnList(int currentPage, List<ListColumnListWrapper> news);
+        void showMoreColumnList(int currentPage, List<SpecialColumnListBean> news);
     }
 
     abstract class Presenter extends BasePresenter<View> {

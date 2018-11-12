@@ -9,6 +9,7 @@ import com.xyz.basiclib.recyclerview.AbstractImageLoader;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.BasicViewHolder;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
+import com.xyz.basiclib.util.DateUtil;
 import com.xyz.riotcommon.ImageLoadUtil;
 
 import org.scau.riotgame.R;
@@ -19,14 +20,14 @@ import java.util.List;
  * Created by ZP on 2018/2/8.
  */
 
-public class ColumnListAdapter extends BasicAdapter<ListColumnListWrapper> {
+public class ColumnListAdapter extends BasicAdapter<SpecialColumnListBean> {
 
-    public ColumnListAdapter(List<ListColumnListWrapper> datas, Context context, MultipleTypeSupport<ListColumnListWrapper> multipleTypeSupport) {
+    public ColumnListAdapter(List<SpecialColumnListBean> datas, Context context, MultipleTypeSupport<SpecialColumnListBean> multipleTypeSupport) {
         super(datas, context, multipleTypeSupport);
     }
 
     @Override
-    protected void bindData(BasicViewHolder holder, ListColumnListWrapper columnList, int position) {
+    protected void bindData(BasicViewHolder holder, SpecialColumnListBean columnList, int position) {
         if (columnList.getType() == 0) {
             holder.setText(R.id.tv_col_title, columnList.getColumnList().getCol_title());
             holder.setText(R.id.tv_col_author, columnList.getColumnList().getAuthor());
@@ -47,6 +48,9 @@ public class ColumnListAdapter extends BasicAdapter<ListColumnListWrapper> {
 
         //book
         if (columnList.getType() == 1) {
+            String last_update = columnList.getColumnList().getLast_update();
+            String updateTime = DateUtil.strToStr(last_update, DateUtil.DATE_FORMAT_SEC, DateUtil.DATE_FORMAT_MONTH_DAY);
+            holder.setText(R.id.tv_col_update_time, updateTime + "更新");
             holder.setText(R.id.tv_col_title, columnList.getColumnList().getCol_title());
             holder.setText(R.id.tv_col_des, columnList.getColumnList().getLast_news_title());
             holder.setImagePath(R.id.iv_col_logo, new AbstractImageLoader(columnList.getColumnList().getLogo()) {
@@ -77,6 +81,18 @@ public class ColumnListAdapter extends BasicAdapter<ListColumnListWrapper> {
             } else {
                 holder.setVisibility(R.id.iv_col_video_tag, View.GONE);
             }
+        }
+
+        if (columnList.getType() == 3) {
+            holder.setText(R.id.tv_columnlist_desc, "未订阅");
+        }
+
+        if (columnList.getType() == 4) {
+            holder.setText(R.id.tv_columnlist_desc, "已订阅");
+        }
+
+        if (columnList.getType() == 5) {
+            holder.setText(R.id.tv_columnlist_desc, "栏目推荐");
         }
     }
 }

@@ -14,7 +14,7 @@ import com.xyz.riotcommon.SimpleRefreshFragment;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.home.ColumnListAdapter;
-import org.scau.riotgame.home.ListColumnListWrapper;
+import org.scau.riotgame.home.SpecialColumnListBean;
 import org.scau.riotgame.home.contract.ColumnContract;
 import org.scau.riotgame.home.presenter.ColumnListPresenter;
 
@@ -27,11 +27,11 @@ import java.util.List;
  * </p>
  */
 
-public class ColumnListFragment extends SimpleRefreshFragment<ListColumnListWrapper, ColumnContract.View, ColumnContract.Presenter> implements ColumnContract.View, OnRefreshListener, OnLoadmoreListener {
+public class ColumnListFragment extends SimpleRefreshFragment<SpecialColumnListBean, ColumnContract.View, ColumnContract.Presenter> implements ColumnContract.View, OnRefreshListener, OnLoadmoreListener {
 
 
     @Override
-    public void showColumnList(List<ListColumnListWrapper> news) {
+    public void showColumnList(List<SpecialColumnListBean> news) {
         mData.clear();
         mData.addAll(news);
         mAdapter.notifyDataSetChanged();
@@ -39,7 +39,7 @@ public class ColumnListFragment extends SimpleRefreshFragment<ListColumnListWrap
     }
 
     @Override
-    public void showMoreColumnList(int currentPage, List<ListColumnListWrapper> news) {
+    public void showMoreColumnList(int currentPage, List<SpecialColumnListBean> news) {
         mData.addAll(news);
         mAdapter.notifyDataSetChanged();
         mSmartRefreshLayout.finishLoadmore();
@@ -51,20 +51,22 @@ public class ColumnListFragment extends SimpleRefreshFragment<ListColumnListWrap
     }
 
     @Override
-    protected BasicAdapter<ListColumnListWrapper> getAdapter() {
+    protected BasicAdapter<SpecialColumnListBean> getAdapter() {
         return new ColumnListAdapter(mData, getActivity(), mMultipleTypeSupport);
     }
 
-    private MultipleTypeSupport<ListColumnListWrapper> mMultipleTypeSupport = new MultipleTypeSupport<ListColumnListWrapper>() {
+    private MultipleTypeSupport<SpecialColumnListBean> mMultipleTypeSupport = new MultipleTypeSupport<SpecialColumnListBean>() {
         @Override
-        public int getLayoutId(ListColumnListWrapper listColumnListWrapper, int position) {
-            int type = listColumnListWrapper.getType();
+        public int getLayoutId(SpecialColumnListBean specialColumnListBean, int position) {
+            int type = specialColumnListBean.getType();
             if (type == 0) {
                 return R.layout.item_columlist_unbook;
             } else if (type == 1) {
                 return R.layout.item_columlist_book;
             } else if (type == 2) {
                 return R.layout.item_columlist_recommend;
+            } else if (type == 3 || type == 4 || type == 5) {
+                return R.layout.item_columnlist_desc;
             } else {
                 return R.layout.item_columlist_unbook;
             }
