@@ -31,29 +31,29 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
+    api 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
 
 //    compile 'com.jakewharton:butterknife:8.4.0'
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 
-    compile lib.RecyclerViewV7
+    api lib.RecyclerViewV7
     //下拉刷新
-    compile lib.SmartRefreshLayout
-    compile lib.SupportV7
+    api lib.SmartRefreshLayout
+    api lib.SupportV7
     //运行时权限
-    compile lib.Permission
+    api lib.Permission
 //    compile lib.RxAndroid
 //    compile lib.RxJava
 //    compile lib.RxPermission
     //图片加载
-    compile lib.Glide
+    api lib.Glide
     annotationProcessor lib.GlideCompiler
-    compile lib.Circle
-    compile 'com.alibaba:arouter-api:1.4.0'
+    api lib.Circle
+    api 'com.alibaba:arouter-api:1.4.0'
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
 }

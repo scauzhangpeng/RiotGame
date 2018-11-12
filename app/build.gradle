@@ -65,18 +65,18 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    api fileTree(include: ['*.jar'], dir: 'libs')
     //V4库
-    compile lib.SupportV4
+    api lib.SupportV4
     //网络库
-    compile lib.Retrofit
-    compile lib.RetrofitConverterGson
-    compile lib.RetrofitConverterString
-    compile lib.OkHttpLogging
+    api lib.Retrofit
+    api lib.RetrofitConverterGson
+    api lib.RetrofitConverterString
+    api lib.OkHttpLogging
     //轮播图
-    compile lib.Banner
-    compile project(':riot_common')
-    compile lib.Design
-    debugCompile project(':DebugTools')
+    api lib.Banner
+    api project(':riot_common')
+    api lib.Design
+    debugApi project(':DebugTools')
 
 }
