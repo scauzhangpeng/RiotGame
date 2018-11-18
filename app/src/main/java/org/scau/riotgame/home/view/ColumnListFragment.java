@@ -96,6 +96,13 @@ public class ColumnListFragment extends SimpleRefreshFragment<SpecialColumnListB
 
     @Override
     public void onItemClick(View view, int position) {
-
+        Bundle bundle = new Bundle();
+        bundle.putString("title", mData.get(position).getColumnList().getCol_title());
+        bundle.putString("author", mData.get(position).getColumnList().getAuthor());
+        bundle.putString("desc", mData.get(position).getColumnList().getCol_des());
+        bundle.putString("id", mData.get(position).getColumnList().getCol_id());
+        bundle.putString("logo", mData.get(position).getColumnList().getLogo());
+        bundle.putString("isBook", mData.get(position).getColumnList().getIs_book());
+        openActivity(ColumnListDetailActivity.class, bundle);
     }
 }
