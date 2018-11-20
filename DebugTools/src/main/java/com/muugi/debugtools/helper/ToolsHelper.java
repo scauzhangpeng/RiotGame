@@ -3,6 +3,7 @@ package com.muugi.debugtools.helper;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.stetho.Stetho;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.muugi.debugtools.block.AppBlockCanaryContext;
 import com.muugi.debugtools.ele.EleActivityLifecycleCallbacks;
@@ -14,7 +15,7 @@ import com.tencent.wstt.gt.controller.GTRController;
  * @date 2018/11/12
  * @since 1.0
  */
-public class BlockCanaryHelper {
+public class ToolsHelper {
 
 
     /**
@@ -51,5 +52,12 @@ public class BlockCanaryHelper {
 //        UETool.putAttrsProviderClass(CustomAttribution.class);
 
         context.registerActivityLifecycleCallbacks(new EleActivityLifecycleCallbacks());
+    }
+
+    /**
+     * 初始化facebook 数据库调试工具.
+     */
+    public void initStetho(Context context) {
+        Stetho.initializeWithDefaults(context);
     }
 }

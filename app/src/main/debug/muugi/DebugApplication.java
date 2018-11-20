@@ -2,7 +2,7 @@ package muugi;
 
 import android.util.Log;
 
-import com.muugi.debugtools.helper.BlockCanaryHelper;
+import com.muugi.debugtools.helper.ToolsHelper;
 
 import org.scau.riotgame.RiotGameApplication;
 
@@ -13,17 +13,25 @@ import org.scau.riotgame.RiotGameApplication;
 public class DebugApplication extends RiotGameApplication {
 
     private static final String TAG = "muugi.DebugApplication";
-    private BlockCanaryHelper mHelper;
+    private ToolsHelper mHelper;
 
     @Override
     public void onCreate() {
         Log.d(TAG, "onCreate: ");
         super.onCreate();
-        mHelper = new BlockCanaryHelper();
+        mHelper = new ToolsHelper();
+        initStetho();
         initEleUeTool();
         initLeakCanary();
         initBlockCanary();
         initGT();
+    }
+
+    /**
+     * 初始化facebook 数据库调试工具.
+     */
+    private void initStetho() {
+        mHelper.initStetho(this);
     }
 
     /**
