@@ -1,15 +1,19 @@
 package org.scau.riotgame.hero;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.xyz.basiclib.mvp.BasePresenter;
-import com.xyz.riotcommon.SimpleTopBarActivity;
+import com.xyz.riotcommon.CommonActivity;
 
 import org.scau.riotgame.R;
 
@@ -20,7 +24,7 @@ import butterknife.OnClick;
  * Created by ZP on 2017/8/2.
  */
 
-public class HeroInfoActivity extends SimpleTopBarActivity {
+public class HeroInfoActivity extends CommonActivity {
 
 
     @Bind(R.id.rbtn_hero_free)
@@ -33,6 +37,14 @@ public class HeroInfoActivity extends SimpleTopBarActivity {
     RadioGroup mRgHero;
     @Bind(R.id.vp_hero)
     ViewPager mVpHero;
+    @Bind(R.id.toolbar_title)
+    TextView mToolbarTitle;
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
+    @Bind(R.id.collapsing_layout)
+    CollapsingToolbarLayout mCollapsingLayout;
+    @Bind(R.id.appbar_layout)
+    AppBarLayout mAppbarLayout;
 
 
     private SparseArray<Fragment> mFragments;
@@ -42,13 +54,32 @@ public class HeroInfoActivity extends SimpleTopBarActivity {
     private HeroAllFragment mAllHeroFragment;
 
     @Override
+    protected void initTopBar(View topView) {
+
+    }
+
+    @Override
     protected int getTopBarContentId() {
+        return 0;
+    }
+
+    @Override
+    protected int getTopBarLayoutId() {
+        return 0;
+    }
+
+    @Override
+    protected int getLayoutId() {
         return R.layout.activity_hero_info;
     }
 
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
         super.initViewsAndEvents(savedInstanceState);
+        mToolbar.setTitle("");
+        setSupportActionBar(mToolbar);
+        mToolbarTitle.setText("我的英雄圈");
+
         mVpHero.addOnPageChangeListener(mOnPageChangeListener);
         mRgHero.setOnCheckedChangeListener(mOnCheckedChangeListener);
 

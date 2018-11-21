@@ -26,7 +26,8 @@ public class FreeHeroPresenter extends HeroContract.FreePresenter {
             @Override
             public void doOnSuccess(@NonNull String body, Response<String> response) {
                 int index = body.indexOf("free=");
-                String resp = body.substring(index + "free=".length(), body.length() - 1);
+                int endIndex = body.indexOf(";/");
+                String resp = body.substring(index + "free=".length(), endIndex);
                 Gson gson = new Gson();
                 FreeHeroResult freeHeroResult = gson.fromJson(resp, new TypeToken<FreeHeroResult>() {
                 }.getType());
