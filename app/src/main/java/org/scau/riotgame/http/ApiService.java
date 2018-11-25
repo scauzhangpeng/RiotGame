@@ -100,4 +100,7 @@ public interface ApiService {
     @Headers("Cookie:l_uin=o2456513456; p_uin=o2456513456; p_skey=3vAhB*etp*ElpHK15U*LThQfHMAf-yQjk7NV-iE59Nc_; uin=o2456513456; skey=MHplxd1Wtz;")
     Call<PageRespNewVersionCard> getNewVersionCard(@Query("cid") int cid, @Query("areaid") int areaid);
 
+    @GET("php_cgi/news/php/varcache_getcols.php")
+    Call<PageResponse<News>> getColumnListNews(@Query("cid") String cid, @Query("page") int page);
+
 }

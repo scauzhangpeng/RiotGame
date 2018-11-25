@@ -25,6 +25,7 @@ import org.scau.riotgame.home.HotNewsAdapter;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.contract.ColumnListDetailContract;
 import org.scau.riotgame.home.presenter.ColumnListDetailPresenter;
+import org.scau.riotgame.webview.WebViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +67,7 @@ public class ColumnListDetailActivity extends CommonActivity<ColumnListDetailCon
 
     private List<News> mData;
     private HotNewsAdapter mAdapter;
+    private String cid;
 
     @Override
     protected void initTopBar(View topView) {
@@ -98,7 +100,7 @@ public class ColumnListDetailActivity extends CommonActivity<ColumnListDetailCon
         final String title = getIntent().getStringExtra("title");
         final String author = getIntent().getStringExtra("author");
         String desc = getIntent().getStringExtra("desc");
-        String id = getIntent().getStringExtra("id");
+        cid = getIntent().getStringExtra("id");
         String logo = getIntent().getStringExtra("logo");
         String isBook = getIntent().getStringExtra("isBook");
 
@@ -107,18 +109,22 @@ public class ColumnListDetailActivity extends CommonActivity<ColumnListDetailCon
         mToolbarTitle.setText("专栏详情");
         mAppbarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+            public void onOffsetChanged(final AppBarLayout appBarLayout, final int verticalOffset) {
+                mAppbarLayout.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        int totalScrollRange = appBarLayout.getTotalScrollRange();
+                        int abs = Math.abs(verticalOffset);
+                        float v = abs * 1.0f / totalScrollRange * 1.0f;
 
-                int totalScrollRange = appBarLayout.getTotalScrollRange();
-                int abs = Math.abs(verticalOffset);
-                float v = abs * 1.0f / totalScrollRange * 1.0f;
-
-                mColumnListDetailLayout.setAlpha(1.0f - v);
-                if (v == 1) {
-                    mToolbarTitle.setText(title);
-                } else {
-                    mToolbarTitle.setText("专栏详情");
-                }
+                        mColumnListDetailLayout.setAlpha(1.0f - v);
+                        if (v == 1) {
+                            mToolbarTitle.setText(title);
+                        } else {
+                            mToolbarTitle.setText("专栏详情");
+                        }
+                    }
+                });
             }
         });
 
@@ -176,17 +182,19 @@ public class ColumnListDetailActivity extends CommonActivity<ColumnListDetailCon
 
     @Override
     public void onRefresh(RefreshLayout refreshlayout) {
-        mPresenter.refreshNews();
+        mPresenter.refreshNews(cid);
     }
 
     @Override
     public void onLoadmore(RefreshLayout refreshlayout) {
-        mPresenter.loadMoreNews();
+        mPresenter.loadMoreNews(cid);
     }
 
     @Override
     public void onItemClick(View view, int position) {
-
+        Bundle bundle = new Bundle();
+        bundle.putString("url", mData.get(position).getArticle_url());
+        openActivity(WebViewActivity.class, bundle);
     }
 
     @Override
@@ -202,5 +210,11 @@ public class ColumnListDetailActivity extends CommonActivity<ColumnListDetailCon
         mData.addAll(news);
         mAdapter.notifyDataSetChanged();
         mRefreshLayout.finishLoadmore();
+    }
+
+
+    @Override
+    public void setEnableLoadMore(boolean enableLoadMore) {
+        mRefreshLayout.setEnableLoadmore(enableLoadMore);
     }
 }

@@ -16,11 +16,13 @@ public interface ColumnListDetailContract {
         void showNewsList(List<News> news);
 
         void showMoreNewsList(List<News> news);
+
+        void setEnableLoadMore(boolean enableLoadMore);
     }
 
     abstract class Presenter extends BasePresenter<View> {
-        public abstract void refreshNews();
+        public abstract void refreshNews(String cid);
 
-        public abstract void loadMoreNews();
+        public abstract void loadMoreNews(String cid);
     }
 }

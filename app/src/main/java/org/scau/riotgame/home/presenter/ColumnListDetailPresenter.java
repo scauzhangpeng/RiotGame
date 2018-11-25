@@ -1,10 +1,14 @@
 package org.scau.riotgame.home.presenter;
 
-import org.scau.riotgame.home.bean.News;
-import org.scau.riotgame.home.contract.ColumnListDetailContract;
+import android.support.annotation.NonNull;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.scau.riotgame.home.bean.News;
+import org.scau.riotgame.home.bean.PageResponse;
+import org.scau.riotgame.home.contract.ColumnListDetailContract;
+import org.scau.riotgame.http.HttpCallback;
+import org.scau.riotgame.http.RequestManager;
+
+import retrofit2.Response;
 
 /**
  * Created by ZP on 2018/11/18.
@@ -14,30 +18,47 @@ public class ColumnListDetailPresenter extends ColumnListDetailContract.Presente
     private int mCurrentPage = 0;
 
     @Override
-    public void refreshNews() {
+    public void refreshNews(String cid) {
         mCurrentPage = 0;
-        loadMoreNews();
+        getView().setEnableLoadMore(true);
+        loadMoreNews(cid);
     }
 
     @Override
-    public void loadMoreNews() {
-        List<News> result = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
-            News news = new News();
-            news.setNewstypeid("ordinary");
-            news.setIs_top("True");
-            news.setTitle("Tr111ue");
-            news.setSummary("Tr111ue");
-            news.setPv("121333");
-            result.add(news);
-        }
-        if (getView() != null) {
-            if (mCurrentPage == 0) {
-                getView().showNewsList(result);
-            } else {
-                getView().showMoreNewsList(result);
+    public void loadMoreNews(String cid) {
+        RequestManager.getInstance().getColumnListNews(cid, mCurrentPage, new HttpCallback<PageResponse<News>>() {
+            @Override
+            public void doOnSuccess(@NonNull PageResponse<News> newsPageResponse, Response<PageResponse<News>> response) {
+                if (newsPageResponse.getCode() != 0) {
+                    doOnError(response, String.valueOf(newsPageResponse.getCode()), newsPageResponse.getMsg());
+                    return;
+                }
+                if (mCurrentPage == 0) {
+                    if (getView() != null) {
+                        getView().showNewsList(newsPageResponse.getList());
+                    }
+                } else {
+                    if (getView() != null) {
+                        getView().showMoreNewsList(newsPageResponse.getList());
+                    }
+                }
+
+                if ("True".equals(newsPageResponse.getNext())) {
+                    mCurrentPage++;
+                } else {
+                    getView().setEnableLoadMore(false);
+                }
             }
-            mCurrentPage++;
-        }
+
+            @Override
+            public void doOnError(Response<PageResponse<News>> response, String statusCode, String message) {
+
+            }
+
+            @Override
+            public void doOnFailure(int httpCode, String message) {
+
+            }
+        });
     }
 }

@@ -128,4 +128,10 @@ public class RequestManager {
         call.enqueue(callback);
         return call;
     }
+
+    public Call getColumnListNews(String cid, int page, HttpCallback<PageResponse<News>> callback) {
+        Call<PageResponse<News>> call = mApiService.getColumnListNews(cid, page);
+        call.enqueue(callback);
+        return call;
+    }
 }
