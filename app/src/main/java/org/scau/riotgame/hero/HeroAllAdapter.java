@@ -27,7 +27,7 @@ public class HeroAllAdapter extends BasicAdapter<Hero> {
                 .setImagePath(R.id.iv_hero_header, new AbstractImageLoader(hero.getId() + "") {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
-                        ImageLoadUtil.loadCircleImage(mContext, "http://down.qq.com/qqtalk/lolApp/img/hero/" + path + ".png", R.drawable.default_lol_ex, imageView);
+                        ImageLoadUtil.loadImage(mContext, "http://down.qq.com/qqtalk/lolApp/img/hero/" + path + ".png", R.drawable.default_lol_ex, imageView);
                     }
                 })
                 .setText(R.id.tv_hero_nick, hero.getNick())

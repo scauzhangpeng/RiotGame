@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_hot_wpv_author"
             android:layout_width="36dp"
             android:layout_height="36dp"

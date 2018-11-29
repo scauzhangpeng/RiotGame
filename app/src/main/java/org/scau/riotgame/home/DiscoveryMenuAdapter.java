@@ -5,11 +5,10 @@ import android.widget.ImageView;
 
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.BasicViewHolder;
+import com.xyz.riotcommon.ImageLoadUtil;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.home.bean.DiscoveryMenu;
-
-import com.xyz.riotcommon.ImageLoadUtil;
 
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class DiscoveryMenuAdapter extends BasicAdapter<DiscoveryMenu> {
     @Override
     protected void bindData(BasicViewHolder holder, DiscoveryMenu discoveryMenu, int position) {
         holder.setText(R.id.tv_discovery_menu_title, discoveryMenu.getTitle());
-        ImageLoadUtil.loadCircleImage(mContext, discoveryMenu.getImage_url_big(),
+        ImageLoadUtil.loadImage(mContext, discoveryMenu.getImage_url_big(),
                 R.drawable.default_lol_ex, (ImageView) holder.getView(R.id.iv_discovery_menu));
     }
 }

@@ -7,7 +7,7 @@
               android:gravity="center"
               style="@style/video_item">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_hot_author"
         android:layout_width="60dp"
         android:layout_height="60dp"/>

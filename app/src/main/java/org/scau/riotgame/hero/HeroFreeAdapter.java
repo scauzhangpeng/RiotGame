@@ -11,6 +11,8 @@ import org.scau.riotgame.R;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by ZP on 2018/2/8.
  */
@@ -26,7 +28,7 @@ public class HeroFreeAdapter extends BasicAdapter<Hero> {
         holder.setText(R.id.tv_hero_nickname, hero.getNick());
         holder.setText(R.id.tv_rate, "");
         holder.setText(R.id.tv_tag, hero.getTag1());
-        ImageView imageView = (ImageView) holder.getView(R.id.iv_header);
-        ImageLoadUtil.loadCircleImage(mContext, "", R.drawable.default_lol_ex, imageView);
+        ImageView imageView = (CircleImageView) holder.getView(R.id.iv_header);
+        ImageLoadUtil.loadImage(mContext, "", R.drawable.default_lol_ex, imageView);
     }
 }

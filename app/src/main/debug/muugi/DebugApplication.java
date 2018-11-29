@@ -24,7 +24,7 @@ public class DebugApplication extends RiotGameApplication {
         initEleUeTool();
         initLeakCanary();
         initBlockCanary();
-        initGT();
+//        initGT();
     }
 
     /**

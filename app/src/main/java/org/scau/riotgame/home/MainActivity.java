@@ -20,6 +20,7 @@ import android.widget.RadioGroup;
 import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.basiclib.util.SPUtil;
 import com.xyz.riotcommon.CommonActivity;
+import com.xyz.riotcommon.ImageLoadUtil;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.act.ActCenterActivity;
@@ -27,8 +28,6 @@ import org.scau.riotgame.favorite.FavoriteActivity;
 import org.scau.riotgame.home.view.HomeFragment;
 import org.scau.riotgame.mall.UserOrderActivity;
 import org.scau.riotgame.setting.SettingActivity;
-
-import com.xyz.riotcommon.ImageLoadUtil;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -125,14 +124,14 @@ public class MainActivity extends CommonActivity implements RadioGroup.OnChecked
     }
 
     private void initHeader() {
-        ImageLoadUtil.loadCircleImage(this, SPUtil.getInstance(this).getString("figureurl_qq_2", ""), R.drawable.default_lol_ex, mIvHeader);
+        ImageLoadUtil.loadImage(this, SPUtil.getInstance(this).getString("figureurl_qq_2", ""), R.drawable.default_lol_ex, mIvHeader);
         mIvHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mDrawerLayout.openDrawer(Gravity.LEFT | Gravity.START);
             }
         });
-        ImageLoadUtil.loadCircleImage(this, SPUtil.getInstance(this).getString("figureurl_qq_2", ""), R.drawable.default_lol_ex, mIvNavHeader);
+        ImageLoadUtil.loadImage(this, SPUtil.getInstance(this).getString("figureurl_qq_2", ""), R.drawable.default_lol_ex, mIvNavHeader);
     }
 
     private void SetSelect(int i) {

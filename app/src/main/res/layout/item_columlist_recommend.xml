@@ -12,7 +12,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="14dp">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_col_logo"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"

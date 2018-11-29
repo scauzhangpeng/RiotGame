@@ -16,6 +16,8 @@ import org.scau.riotgame.R;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by ZP on 2018/2/8.
  */
@@ -33,12 +35,8 @@ public class ColumnListAdapter extends BasicAdapter<SpecialColumnListBean> {
             holder.setText(R.id.tv_col_author, columnList.getColumnList().getAuthor());
             holder.setText(R.id.tv_col_book_num, columnList.getColumnList().getBook_num());
             holder.setText(R.id.tv_col_des, columnList.getColumnList().getCol_des());
-            holder.setImagePath(R.id.iv_col_logo, new AbstractImageLoader(columnList.getColumnList().getLogo()) {
-                @Override
-                public void loadImage(ImageView imageView, String path) {
-                    ImageLoadUtil.loadCircleImage(mContext, path, R.drawable.default_lol_ex, imageView);
-                }
-            });
+            CircleImageView logoView = holder.getView(R.id.iv_col_logo);
+            ImageLoadUtil.loadImage(mContext, columnList.getColumnList().getLogo(), R.drawable.default_lol_ex, logoView);
             if (columnList.getColumnList().getCol_from() != null && !TextUtils.isEmpty(columnList.getColumnList().getCol_from())) {
                 holder.setVisibility(R.id.iv_col_video_tag, View.VISIBLE);
             } else {
@@ -56,7 +54,7 @@ public class ColumnListAdapter extends BasicAdapter<SpecialColumnListBean> {
             holder.setImagePath(R.id.iv_col_logo, new AbstractImageLoader(columnList.getColumnList().getLogo()) {
                 @Override
                 public void loadImage(ImageView imageView, String path) {
-                    ImageLoadUtil.loadCircleImage(mContext, path, R.drawable.default_lol_ex, imageView);
+                    ImageLoadUtil.loadImage(mContext, path, R.drawable.default_lol_ex, imageView);
                 }
             });
             if (columnList.getColumnList().getCol_from() != null && !TextUtils.isEmpty(columnList.getColumnList().getCol_from())) {
@@ -73,7 +71,7 @@ public class ColumnListAdapter extends BasicAdapter<SpecialColumnListBean> {
             holder.setImagePath(R.id.iv_col_logo, new AbstractImageLoader(columnList.getColumnList().getLogo()) {
                 @Override
                 public void loadImage(ImageView imageView, String path) {
-                    ImageLoadUtil.loadCircleImage(mContext, path, R.drawable.default_lol_ex, imageView);
+                    ImageLoadUtil.loadImage(mContext, path, R.drawable.default_lol_ex, imageView);
                 }
             });
             if (columnList.getColumnList().getCol_from() != null && !TextUtils.isEmpty(columnList.getColumnList().getCol_from())) {

@@ -174,7 +174,7 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
                 holder.setImagePath(R.id.iv_hot_wpv_author, new AbstractImageLoader(hotWpv.getAuthorImg()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
-                        ImageLoadUtil.loadCircleImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
+                        ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                     }
                 });
             }
@@ -196,7 +196,7 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
                 holder.setImagePath(R.id.iv_hot_author, new AbstractImageLoader(hotAuthor.getSIMG()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
-                        ImageLoadUtil.loadCircleImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
+                        ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                     }
                 });
             }
