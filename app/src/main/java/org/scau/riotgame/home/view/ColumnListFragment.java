@@ -103,6 +103,9 @@ public class ColumnListFragment extends SimpleRefreshFragment<SpecialColumnListB
         bundle.putString("id", mData.get(position).getColumnList().getCol_id());
         bundle.putString("logo", mData.get(position).getColumnList().getLogo());
         bundle.putString("isBook", mData.get(position).getColumnList().getIs_book());
+        if (mAdapter instanceof ColumnListAdapter) {
+            bundle.putBoolean("isVideo", ((ColumnListAdapter) mAdapter).isVideoColumnList(position));
+        }
         openActivity(ColumnListDetailActivity.class, bundle);
     }
 }

@@ -2,6 +2,7 @@ package org.scau.riotgame.home.presenter;
 
 import android.support.annotation.NonNull;
 
+import org.scau.riotgame.home.bean.HotMatch;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.bean.PageResponse;
 import org.scau.riotgame.home.contract.ColumnListDetailContract;
@@ -52,6 +53,51 @@ public class ColumnListDetailPresenter extends ColumnListDetailContract.Presente
 
             @Override
             public void doOnError(Response<PageResponse<News>> response, String statusCode, String message) {
+
+            }
+
+            @Override
+            public void doOnFailure(int httpCode, String message) {
+
+            }
+        });
+    }
+
+    @Override
+    public void refreshHotMatch(String cid) {
+        mCurrentPage = 0;
+        getView().setEnableLoadMore(true);
+        loadMoreHotMatch(cid);
+    }
+
+    @Override
+    public void loadMoreHotMatch(String cid) {
+        RequestManager.getInstance().getColumnHotMatch(cid, mCurrentPage, new HttpCallback<PageResponse<HotMatch>>() {
+            @Override
+            public void doOnSuccess(@NonNull PageResponse<HotMatch> newsPageResponse, Response<PageResponse<HotMatch>> response) {
+                if (newsPageResponse.getCode() != 0) {
+                    doOnError(response, String.valueOf(newsPageResponse.getCode()), newsPageResponse.getMsg());
+                    return;
+                }
+                if (mCurrentPage == 0) {
+                    if (getView() != null) {
+                        getView().showHotMatchList(newsPageResponse.getList());
+                    }
+                } else {
+                    if (getView() != null) {
+                        getView().showMoreHotMatchList(newsPageResponse.getList());
+                    }
+                }
+
+                if ("True".equals(newsPageResponse.getNext())) {
+                    mCurrentPage++;
+                } else {
+                    getView().setEnableLoadMore(false);
+                }
+            }
+
+            @Override
+            public void doOnError(Response<PageResponse<HotMatch>> response, String statusCode, String message) {
 
             }
 

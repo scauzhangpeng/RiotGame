@@ -6,6 +6,7 @@ import org.scau.riotgame.home.Club;
 import org.scau.riotgame.home.bean.CardsResponse;
 import org.scau.riotgame.home.bean.DiscoveryMenu;
 import org.scau.riotgame.home.bean.GameCenterData;
+import org.scau.riotgame.home.bean.HotMatch;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.bean.PageColumnList;
 import org.scau.riotgame.home.bean.PageRespNewVersionCard;
@@ -102,5 +103,8 @@ public interface ApiService {
 
     @GET("php_cgi/news/php/varcache_getcols.php")
     Call<PageResponse<News>> getColumnListNews(@Query("cid") String cid, @Query("page") int page);
+
+    @GET("php_cgi/news/php/varcache_getcols.php")
+    Call<PageResponse<HotMatch>> getColumnHotMatch(@Query("cid") String cid, @Query("page") int page);
 
 }

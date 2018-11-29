@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +16,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.xyz.basiclib.recyclerview.AverageSpaceItemDecoration;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.riotcommon.CommonActivity;
@@ -22,9 +24,12 @@ import com.xyz.riotcommon.ImageLoadUtil;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.home.HotNewsAdapter;
+import org.scau.riotgame.home.WholeVideoAdapter;
+import org.scau.riotgame.home.bean.HotMatch;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.contract.ColumnListDetailContract;
 import org.scau.riotgame.home.presenter.ColumnListDetailPresenter;
+import org.scau.riotgame.utils.ScreenUtil;
 import org.scau.riotgame.webview.WebViewActivity;
 
 import java.util.ArrayList;
@@ -67,7 +72,10 @@ public class ColumnListDetailActivity extends CommonActivity<ColumnListDetailCon
 
     private List<News> mData;
     private HotNewsAdapter mAdapter;
+    private List<HotMatch> mHotMatches;
+    private WholeVideoAdapter mWholeVideoAdapter;
     private String cid;
+    private boolean isVideo = false;
 
     @Override
     protected void initTopBar(View topView) {
@@ -103,6 +111,7 @@ public class ColumnListDetailActivity extends CommonActivity<ColumnListDetailCon
         cid = getIntent().getStringExtra("id");
         String logo = getIntent().getStringExtra("logo");
         String isBook = getIntent().getStringExtra("isBook");
+        isVideo = getIntent().getBooleanExtra("isVideo", false);
 
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
@@ -154,13 +163,24 @@ public class ColumnListDetailActivity extends CommonActivity<ColumnListDetailCon
 
     private void initRecyclerView() {
         mData = new ArrayList<>();
-        mAdapter = new HotNewsAdapter(mData, this, mMultipleTypeSupport);
+        mHotMatches = new ArrayList<>();
         mRvColumnListDetail = (RecyclerView) findViewById(R.id.rv_column_list_detail);
         mRvColumnListDetail.setNestedScrollingEnabled(false);
-        mRvColumnListDetail.setLayoutManager(new LinearLayoutManager(this));
-        mRvColumnListDetail.setAdapter(mAdapter);
+        if (isVideo) {
+            mWholeVideoAdapter = new WholeVideoAdapter(R.layout.item_whole_video, mHotMatches, this);
+            mRvColumnListDetail.setLayoutManager(new GridLayoutManager(this, 2));
+            mRvColumnListDetail.addItemDecoration(new AverageSpaceItemDecoration((int) ScreenUtil.dip2px(this, 10), true));
+            mRvColumnListDetail.setAdapter(mWholeVideoAdapter);
+        } else {
+            mAdapter = new HotNewsAdapter(mData, this, mMultipleTypeSupport);
+            mRvColumnListDetail.setLayoutManager(new LinearLayoutManager(this));
+            mRvColumnListDetail.setAdapter(mAdapter);
+        }
         if (mAdapter != null) {
             mAdapter.setOnItemClickListener(this);
+        }
+        if (mWholeVideoAdapter != null) {
+            mWholeVideoAdapter.setOnItemClickListener(this);
         }
     }
 
@@ -182,12 +202,20 @@ public class ColumnListDetailActivity extends CommonActivity<ColumnListDetailCon
 
     @Override
     public void onRefresh(RefreshLayout refreshlayout) {
-        mPresenter.refreshNews(cid);
+        if (isVideo) {
+            mPresenter.refreshHotMatch(cid);
+        } else {
+            mPresenter.refreshNews(cid);
+        }
     }
 
     @Override
     public void onLoadmore(RefreshLayout refreshlayout) {
-        mPresenter.loadMoreNews(cid);
+        if (isVideo) {
+            mPresenter.loadMoreHotMatch(cid);
+        } else {
+            mPresenter.loadMoreNews(cid);
+        }
     }
 
     @Override
@@ -212,6 +240,20 @@ public class ColumnListDetailActivity extends CommonActivity<ColumnListDetailCon
         mRefreshLayout.finishLoadmore();
     }
 
+    @Override
+    public void showHotMatchList(List<HotMatch> hotMatches) {
+        mHotMatches.clear();
+        mHotMatches.addAll(hotMatches);
+        mWholeVideoAdapter.notifyDataSetChanged();
+        mRefreshLayout.finishRefresh();
+    }
+
+    @Override
+    public void showMoreHotMatchList(List<HotMatch> hotMatches) {
+        mHotMatches.addAll(hotMatches);
+        mWholeVideoAdapter.notifyDataSetChanged();
+        mRefreshLayout.finishLoadmore();
+    }
 
     @Override
     public void setEnableLoadMore(boolean enableLoadMore) {

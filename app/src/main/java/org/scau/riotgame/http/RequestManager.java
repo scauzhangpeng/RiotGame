@@ -6,6 +6,7 @@ import org.scau.riotgame.home.Club;
 import org.scau.riotgame.home.bean.CardsResponse;
 import org.scau.riotgame.home.bean.DiscoveryMenu;
 import org.scau.riotgame.home.bean.GameCenterData;
+import org.scau.riotgame.home.bean.HotMatch;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.bean.PageColumnList;
 import org.scau.riotgame.home.bean.PageRespNewVersionCard;
@@ -131,6 +132,12 @@ public class RequestManager {
 
     public Call getColumnListNews(String cid, int page, HttpCallback<PageResponse<News>> callback) {
         Call<PageResponse<News>> call = mApiService.getColumnListNews(cid, page);
+        call.enqueue(callback);
+        return call;
+    }
+
+    public Call getColumnHotMatch(String cid, int page, HttpCallback<PageResponse<HotMatch>> callback) {
+        Call<PageResponse<HotMatch>> call = mApiService.getColumnHotMatch(cid, page);
         call.enqueue(callback);
         return call;
     }

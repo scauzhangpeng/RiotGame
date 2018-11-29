@@ -93,4 +93,13 @@ public class ColumnListAdapter extends BasicAdapter<SpecialColumnListBean> {
             holder.setText(R.id.tv_columnlist_desc, "栏目推荐");
         }
     }
+
+    public boolean isVideoColumnList(int position) {
+        SpecialColumnListBean specialColumnListBean = mDatas.get(position);
+        if (specialColumnListBean.getColumnList().getCol_from() != null
+                && !TextUtils.isEmpty(specialColumnListBean.getColumnList().getCol_from())) {
+            return true;
+        }
+        return false;
+    }
 }
