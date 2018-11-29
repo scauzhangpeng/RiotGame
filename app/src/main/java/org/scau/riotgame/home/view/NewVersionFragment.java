@@ -1,6 +1,10 @@
 package org.scau.riotgame.home.view;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -9,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.request.target.CustomViewTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.xyz.basiclib.recyclerview.AbstractImageLoader;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
@@ -26,6 +32,7 @@ import org.scau.riotgame.home.presenter.NewVersionPresenter;
 import org.scau.riotgame.utils.FormatUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -78,6 +85,23 @@ public class NewVersionFragment extends SimpleRefreshFragment<NewVersionListBean
                         ImageLoadUtil.loadImage(mContext, path, R.drawable.default_lol_ex, imageView);
                     }
                 });
+                ImageView view = holder.getView(R.id.rl_background);
+                ImageLoadUtil.blurTransformation(mContext, card.getHero_bg_img_url(), new CustomViewTarget<ImageView, Bitmap>(view) {
+                    @Override
+                    protected void onResourceCleared(@Nullable Drawable placeholder) {
+
+                    }
+
+                    @Override
+                    public void onLoadFailed(@Nullable Drawable errorDrawable) {
+
+                    }
+
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        view.setImageBitmap(resource);
+                    }
+                });
             }
         };
 
@@ -85,8 +109,14 @@ public class NewVersionFragment extends SimpleRefreshFragment<NewVersionListBean
         mNewVersionSkinAdapter = new BasicAdapter<NewVersionCard>(R.layout.item_version_skin, mNewVersionSkin, getActivity()) {
             @Override
             protected void bindData(BasicViewHolder holder, NewVersionCard card, int position) {
-                holder.setText(R.id.iv_hero_skin_desc, card.getHero_nick());
+                holder.setText(R.id.iv_hero_skin_desc, card.getHero_nick() + " " + card.getHero_name());
                 holder.setImagePath(R.id.iv_hero_skin, new AbstractImageLoader(card.getSkin_pic_url()) {
+                    @Override
+                    public void loadImage(ImageView imageView, String path) {
+                        ImageLoadUtil.loadImage(mContext, path, R.drawable.default_lol_ex, imageView);
+                    }
+                });
+                holder.setImagePath(R.id.iv_hero_logo, new AbstractImageLoader(card.getHero_head_img_url()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
                         ImageLoadUtil.loadImage(mContext, path, R.drawable.default_lol_ex, imageView);
@@ -114,6 +144,10 @@ public class NewVersionFragment extends SimpleRefreshFragment<NewVersionListBean
             @Override
             protected void bindData(BasicViewHolder holder, NewVersionListBean newVersionListBean, int position) {
                 if ("newverhero".equals(newVersionListBean.getType())) {
+                    HashMap<String, String> header = newVersionListBean.getHeader();
+                    holder.setText(R.id.tv_change_hero_ver, header.get("ver"));
+                    holder.setText(R.id.tv_change_hero_desc, header.get("desc"));
+                    holder.setText(R.id.tv_change_hero_num, header.get("num"));
                     mRvNewVersionHero = holder.getView(R.id.rv_version_hero);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                     linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -123,6 +157,10 @@ public class NewVersionFragment extends SimpleRefreshFragment<NewVersionListBean
                 }
 
                 if ("newverskin".equals(newVersionListBean.getType())) {
+                    HashMap<String, String> header = newVersionListBean.getHeader();
+                    holder.setText(R.id.tv_change_hero_ver, header.get("ver"));
+                    holder.setText(R.id.tv_change_hero_desc, header.get("desc"));
+                    holder.setText(R.id.tv_change_hero_num, header.get("num"));
                     mRvNewVersionSkin = holder.getView(R.id.rv_version_skin);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                     linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);

@@ -12,6 +12,7 @@ import org.scau.riotgame.http.HttpCallback;
 import org.scau.riotgame.http.RequestManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Response;
@@ -79,12 +80,22 @@ public class NewVersionPresenter extends NewVersionContract.Presenter {
                         String newstypeid = newVersionCardItem.getNewstypeid();
                         if ("newverhero".equals(newstypeid)) {
                             NewVersionListBean bean = new NewVersionListBean(null, "newverhero");
+                            HashMap<String, String> header = new HashMap<>();
+                            header.put("ver", newVersionCardItem.getChange_hero_ver());
+                            header.put("desc", newVersionCardItem.getChange_hero_desc());
+                            header.put("num", newVersionCardItem.getChange_hero_num_desc());
+                            bean.setHeader(header);
                             getView().updateCardItem(Integer.valueOf(newVersionCardItem.getPosition()) - 1, bean);
                             getView().showNewVersionHero(newVersionCardItem);
                         }
 
                         if ("newverskin".equals(newstypeid)) {
                             NewVersionListBean bean = new NewVersionListBean(null, "newverskin");
+                            HashMap<String, String> header = new HashMap<>();
+                            header.put("ver", newVersionCardItem.getChange_skin_ver());
+                            header.put("desc", newVersionCardItem.getChange_skin_desc());
+                            header.put("num", newVersionCardItem.getChange_skin_num_desc());
+                            bean.setHeader(header);
                             getView().updateCardItem(Integer.valueOf(newVersionCardItem.getPosition()) - 1, bean);
                             getView().showNewVersionSkin(newVersionCardItem);
                         }

@@ -4,7 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="132dp"
+    android:layout_marginLeft="8dp"
     android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/rl_background"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/tv_is_own"
@@ -19,6 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="29dp"
         android:gravity="center"
+        android:textColor="@android:color/white"
         android:layout_alignParentBottom="true"
         tools:text="Q伤害提升" />
 
@@ -28,6 +36,7 @@
         android:layout_height="17dp"
         android:layout_marginBottom="9dp"
         tools:text="佐伊"
+        android:textColor="@color/colorMainGold"
         android:gravity="center"
         android:layout_above="@id/tv_hero_desc" />
 

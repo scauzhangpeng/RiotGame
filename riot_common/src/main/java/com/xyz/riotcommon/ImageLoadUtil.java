@@ -8,10 +8,13 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 
 import java.io.ByteArrayOutputStream;
+
+import jp.wasabeef.glide.transformations.BlurTransformation;
 
 /**
  * Created by ZP on 2017/8/2.
@@ -59,5 +62,9 @@ public class ImageLoadUtil {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(format, 100, baos);
         return baos.toByteArray();
+    }
+
+    public static void blurTransformation(Context context, String url, CustomViewTarget<ImageView, Bitmap> customViewTarget) {
+        Glide.with(context).asBitmap().load(url).apply(RequestOptions.bitmapTransform(new BlurTransformation(25, 3))).into(customViewTarget);
     }
 }

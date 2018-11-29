@@ -43,6 +43,15 @@ public class NewVersionCardItem {
     private String article_id;
     private String begintime;
     private String version_name;
+    /**
+     * change_skin_ver : 8.23版本皮肤：
+     * change_skin_num_desc : 11个
+     * change_skin_desc : 新皮肤
+     */
+
+    private String change_skin_ver;
+    private String change_skin_num_desc;
+    private String change_skin_desc;
 
     public String getIntent() {
         return intent;
@@ -178,5 +187,29 @@ public class NewVersionCardItem {
 
     public void setCardlist(List<NewVersionCard> cardlist) {
         this.cardlist = cardlist;
+    }
+
+    public String getChange_skin_ver() {
+        return change_skin_ver;
+    }
+
+    public void setChange_skin_ver(String change_skin_ver) {
+        this.change_skin_ver = change_skin_ver;
+    }
+
+    public String getChange_skin_num_desc() {
+        return change_skin_num_desc;
+    }
+
+    public void setChange_skin_num_desc(String change_skin_num_desc) {
+        this.change_skin_num_desc = change_skin_num_desc;
+    }
+
+    public String getChange_skin_desc() {
+        return change_skin_desc;
+    }
+
+    public void setChange_skin_desc(String change_skin_desc) {
+        this.change_skin_desc = change_skin_desc;
     }
 }

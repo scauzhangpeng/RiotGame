@@ -52,6 +52,7 @@ dependencies {
 //    compile lib.RxPermission
     //图片加载
     api lib.Glide
+    api lib.GlideTransformations
     annotationProcessor lib.GlideCompiler
     api lib.Circle
     api 'com.alibaba:arouter-api:1.4.0'

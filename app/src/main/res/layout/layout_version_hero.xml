@@ -10,13 +10,29 @@
         android:gravity="center_vertical">
 
         <TextView
+            android:id="@+id/tv_change_hero_ver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/newver_focus_icon"
+            android:layout_marginLeft="8dp"
+            android:drawablePadding="4dp"
+            android:textSize="14sp"
+            android:textColor="@color/colorMainText"
             android:text="版本改动" />
 
         <TextView
+            android:id="@+id/tv_change_hero_desc"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/colorSubText" />
+
+        <TextView
+            android:id="@+id/tv_change_hero_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/colorMainGold" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
