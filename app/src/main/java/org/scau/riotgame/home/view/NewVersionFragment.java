@@ -30,6 +30,7 @@ import org.scau.riotgame.home.bean.NewVersionListBean;
 import org.scau.riotgame.home.contract.NewVersionContract;
 import org.scau.riotgame.home.presenter.NewVersionPresenter;
 import org.scau.riotgame.utils.FormatUtil;
+import org.scau.riotgame.webview.WebViewActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -281,7 +282,12 @@ public class NewVersionFragment extends SimpleRefreshFragment<NewVersionListBean
 
     @Override
     public void onItemClick(View view, int position) {
-
+        NewVersionListBean newVersionListBean = mData.get(position);
+        if ("news".equals(newVersionListBean.getType())) {
+            Bundle bundle = new Bundle();
+            bundle.putString("url", newVersionListBean.getNews().getArticle_url());
+            openActivity(WebViewActivity.class, bundle);
+        }
     }
 
     @Override

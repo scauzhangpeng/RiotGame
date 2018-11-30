@@ -1,5 +1,7 @@
 package org.scau.riotgame.home.view;
 
+import android.os.Bundle;
+
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
@@ -10,6 +12,7 @@ import org.scau.riotgame.home.HotNewsAdapter;
 import org.scau.riotgame.home.bean.News;
 import org.scau.riotgame.home.contract.OfficialNewsContract.View;
 import org.scau.riotgame.home.presenter.OfficialNewsPresenter;
+import org.scau.riotgame.webview.WebViewActivity;
 
 import java.util.List;
 
@@ -55,7 +58,9 @@ public class OfficialNewsFragment extends SimpleRefreshFragment<News, View, Offi
 
     @Override
     public void onItemClick(android.view.View view, int position) {
-
+        Bundle bundle = new Bundle();
+        bundle.putString("url", mData.get(position).getArticle_url());
+        openActivity(WebViewActivity.class, bundle);
     }
 
     @Override

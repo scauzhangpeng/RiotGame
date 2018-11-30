@@ -28,6 +28,7 @@ import org.scau.riotgame.home.bean.HeroGroupListBean;
 import org.scau.riotgame.home.contract.HeroCommunityContract;
 import org.scau.riotgame.home.presenter.HeroCommunityPresenter;
 import org.scau.riotgame.utils.FormatUtil;
+import org.scau.riotgame.webview.WebViewActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -281,7 +282,7 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
 
                 holder.setText(R.id.tv_article_title, bean.getNews().getTitle());
                 holder.setText(R.id.tv_article_summary, bean.getNews().getSummary());
-                holder.setText(R.id.tv_article_pv, bean.getNews().getPv());
+                holder.setText(R.id.tv_article_pv, FormatUtil.unitToTenThousand(bean.getNews().getPv()));
                 holder.setImagePath(R.id.iv_article, new AbstractImageLoader(bean.getNews().getImage_url_small()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
@@ -291,6 +292,18 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
 
             }
         };
+
+
+        mAdapter.setOnItemClickListener(new BasicAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if ("news".equals(mNews.get(position).getType())) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("url", mNews.get(position).getNews().getArticle_url());
+                    openActivity(WebViewActivity.class, bundle);
+                }
+            }
+        });
 
 
         mRvLayoutRefresh.setLayoutManager(new LinearLayoutManager(getActivity()));
