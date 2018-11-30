@@ -12,6 +12,7 @@ import org.scau.riotgame.http.HttpCallback;
 import org.scau.riotgame.http.RequestManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Response;
@@ -74,7 +75,9 @@ public class HeroCommunityPresenter extends HeroCommunityContract.Presenter {
                         for (int i = 0; i < list.size(); i++) {
                             if ("BattleVideosCard".equals(list.get(i).getNewstypeid())) {
                                 HeroGroupListBean bean = new HeroGroupListBean(null, "BattleVideosCard");
-
+                                HashMap<String, String> header = new HashMap<>();
+                                header.put("hero", list.get(i).getHero_name());
+                                bean.setHeader(header);
                                 getView().updateCardItem(Integer.valueOf(list.get(i).getPosition()) - 1, bean);
                                 CardItem battleVideosCard = list.get(i);
                                 getView().showBattleVideoCard(battleVideosCard);

@@ -13,4 +13,5 @@
 
     <string name="information_video_play">%s播放</string>
     <string name="information_author_video_num">%s个视频</string>
+    <string name="hero_time_desc">根据最近玩的%s推荐</string>
 </resources>

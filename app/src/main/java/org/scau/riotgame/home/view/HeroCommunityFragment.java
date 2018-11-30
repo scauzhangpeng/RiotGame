@@ -3,7 +3,9 @@ package org.scau.riotgame.home.view;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -25,8 +27,10 @@ import org.scau.riotgame.home.bean.CardItem;
 import org.scau.riotgame.home.bean.HeroGroupListBean;
 import org.scau.riotgame.home.contract.HeroCommunityContract;
 import org.scau.riotgame.home.presenter.HeroCommunityPresenter;
+import org.scau.riotgame.utils.FormatUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.Bind;
@@ -211,11 +215,18 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
             @Override
             protected void bindData(BasicViewHolder holder, Card card, int position) {
                 holder.setText(R.id.tv_title, card.getTitle());
-                holder.setText(R.id.tv_news_type, card.getNewstype());
+                String newstype = card.getNewstype();
+                if (TextUtils.isEmpty(newstype)) {
+                    holder.setVisibility(R.id.tv_news_type, View.GONE);
+                } else {
+                    holder.setVisibility(R.id.tv_news_type, View.VISIBLE);
+                    holder.setText(R.id.tv_news_type, newstype);
+                }
+
                 holder.setText(R.id.tv_video_len, card.getV_len());
                 String date = DateUtil.strToStr(card.getPublication_date(), DATE_FORMAT_SEC, DATE_FORMAT_MONTH_DAY);
                 holder.setText(R.id.tv_publication_date, date);
-                holder.setText(R.id.tv_pv, card.getPv());
+                holder.setText(R.id.tv_pv, FormatUtil.formatVideoPv(card.getPv()));
                 holder.setImagePath(R.id.iv_battle_video_header, new AbstractImageLoader(card.getImage_url_small()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
@@ -255,6 +266,8 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
                     return;
                 }
                 if ("BattleVideosCard".equals(bean.getType())) {
+                    HashMap<String, String> header = bean.getHeader();
+                    holder.setText(R.id.tv_hero_desc, getString(R.string.hero_time_desc, header.get("hero")));
                     mRvBattleVideo = holder.getView(R.id.rv_hero_battle_video);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                     linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
