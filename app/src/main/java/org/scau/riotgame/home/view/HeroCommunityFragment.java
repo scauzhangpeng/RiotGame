@@ -200,6 +200,7 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
             protected void bindData(BasicViewHolder holder, Card card, int position) {
                 holder.setText(R.id.tv_user_nick_name, card.getGame_nick());
                 holder.setText(R.id.tv_user_rank, card.getRank());
+                holder.setText(R.id.tv_praise_num, getString(R.string.praise_num, card.getPraise_num()));
                 holder.setText(R.id.tv_content, card.getContent());
                 holder.setImagePath(R.id.iv_user_logo, new AbstractImageLoader(card.getLogo_url()) {
                     @Override
@@ -258,6 +259,8 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
                     return;
                 }
                 if ("PlayerShowCard".equals(bean.getType())) {
+                    HashMap<String, String> header = bean.getHeader();
+                    holder.setText(R.id.tv_hero_desc, getString(R.string.hero_time_desc, header.get("hero")));
                     mRvPlayShow = holder.getView(R.id.rv_player_show);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                     linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);

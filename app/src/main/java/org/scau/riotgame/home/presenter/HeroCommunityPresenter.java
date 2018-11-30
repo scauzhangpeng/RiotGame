@@ -97,6 +97,9 @@ public class HeroCommunityPresenter extends HeroCommunityContract.Presenter {
 
                             if ("PlayerShowCard".equals(list.get(i).getNewstypeid())) {
                                 HeroGroupListBean bean = new HeroGroupListBean(null, "PlayerShowCard");
+                                HashMap<String, String> header = new HashMap<>();
+                                header.put("hero", list.get(i).getHero_name());
+                                bean.setHeader(header);
                                 getView().updateCardItem(Integer.valueOf(list.get(i).getPosition()) - 1, bean);
                                 CardItem playerShow = list.get(i);
                                 getView().showPlayerShowCard(playerShow);

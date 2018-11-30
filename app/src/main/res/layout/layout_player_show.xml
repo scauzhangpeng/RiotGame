@@ -6,17 +6,25 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp">
+        android:layout_height="44dp"
+        android:gravity="center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="玩家英雄秀" />
+            android:drawableLeft="@drawable/hero_post"
+            android:layout_marginLeft="8dp"
+            android:drawablePadding="4dp"
+            android:textSize="14sp"
+            android:textColor="@color/colorMainText"
+            android:text="玩家英雄秀：" />
 
         <TextView
+            android:id="@+id/tv_hero_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="根据最近在玩推荐" />
+            android:textSize="12sp"
+            android:textColor="@color/colorSubText" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
