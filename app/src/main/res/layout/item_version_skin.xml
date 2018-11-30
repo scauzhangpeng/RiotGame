@@ -32,6 +32,8 @@
         android:gravity="center_vertical"
         android:layout_alignParentBottom="true"
         tools:text="伊芙丽"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:textSize="12sp"
         android:textColor="@color/colorMainGold"
         android:layout_alignParentRight="true" />
