@@ -65,7 +65,7 @@ android {
 }
 
 dependencies {
-    api fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     //V4库
     api lib.SupportV4
     //网络库
@@ -75,8 +75,8 @@ dependencies {
     api lib.OkHttpLogging
     //轮播图
     api lib.Banner
-    api project(':riot_common')
+    implementation project(':riot_common')
     api lib.Design
-    debugApi project(':DebugTools')
+    debugImplementation project(':DebugTools')
 
 }
