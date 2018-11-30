@@ -4,10 +4,8 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,6 +22,7 @@ import com.xyz.riotcommon.CommonFragment;
 import com.xyz.riotcommon.ImageLoadUtil;
 
 import org.scau.riotgame.R;
+import org.scau.riotgame.home.WholeVideoAdapter;
 import org.scau.riotgame.home.bean.HotAuthor;
 import org.scau.riotgame.home.bean.HotEnter;
 import org.scau.riotgame.home.bean.HotHero;
@@ -278,41 +277,13 @@ public class VideoFragment extends CommonFragment<VideoContract.View, VideoContr
         GridLayoutManager wholeVideoLayout = new GridLayoutManager(getActivity(), 2);
         mRvWholeVideo.setLayoutManager(wholeVideoLayout);
         mWholeVideos = new ArrayList<>();
-        mWholeVideoAdapter = new BasicAdapter<HotMatch>(R.layout.item_whole_video, mWholeVideos, getActivity()) {
-            @Override
-            protected void bindData(BasicViewHolder holder, HotMatch hotMatch, int position) {
-                measureHeight(holder);
-                holder.setText(R.id.tv_video_time, hotMatch.getTime());
-                holder.setText(R.id.tv_hot_match_title, hotMatch.getTitle());
-                holder.setText(R.id.tv_hot_match_play, getString(R.string.information_video_play, hotMatch.getPlay()));
-                holder.setImagePath(R.id.iv_hot_match_thumb, new AbstractImageLoader(hotMatch.getThumb()) {
-                    @Override
-                    public void loadImage(ImageView imageView, String path) {
-                        ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
-                    }
-                });
-            }
-        };
+        mWholeVideoAdapter = new WholeVideoAdapter(R.layout.item_whole_video, mWholeVideos, getActivity());
         mRvWholeVideo.addItemDecoration(new AverageSpaceItemDecoration((int) ScreenUtil.dip2px(getActivity(), 10), true));
         mRvWholeVideo.setAdapter(mWholeVideoAdapter);
 
 
         mRefreshLayout.setOnRefreshListener(this);
         mRefreshLayout.setOnLoadmoreListener(this);
-    }
-
-    /**
-     * item的长宽为（屏幕宽度 - 间距）/ 列数.
-     */
-    private void measureHeight(BasicViewHolder holder) {
-        DisplayMetrics metric = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metric);
-        int width = metric.widthPixels;
-        int screenPadding = (int) ScreenUtil.dip2px(getActivity(), 30);
-        AbsListView.LayoutParams mParams = new AbsListView.LayoutParams(
-                (width - screenPadding) / 2,
-                (int) ScreenUtil.dip2px(getActivity(), 176));
-        holder.itemView.setLayoutParams(mParams);
     }
 
     @Override
