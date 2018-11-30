@@ -8,7 +8,6 @@
         android:layout_width="48.0dp"
         android:layout_height="48.0dp"
         android:layout_centerHorizontal="true"
-        android:scaleType="fitStart"
         android:src="@drawable/team_club_9"/>
 
     <TextView
