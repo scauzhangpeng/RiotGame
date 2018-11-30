@@ -165,7 +165,7 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
                 holder.setText(R.id.tv_win_rate, card.getWin_rate());
                 holder.setText(R.id.tv_achievement_num, card.getAchievement_num());
                 holder.setText(R.id.tv_achievement_name, card.getAchievement_name());
-                holder.setImagePath(R.id.iv_bg, new AbstractImageLoader("") {
+                holder.setImagePath(R.id.iv_bg, new AbstractImageLoader(card.getImage_url_small()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
                         ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
