@@ -1,5 +1,6 @@
 if (isAlbumLibrary.toBoolean()) {
     apply plugin: 'com.android.library'
+    apply plugin: 'com.jakewharton.butterknife'
 } else {
     apply plugin: 'com.android.application'
 }
@@ -21,7 +22,7 @@ android {
             // 显式声明支持注解
             annotationProcessorOptions {
                 includeCompileClasspath true
-                arguments = [moduleName: project.getName()]
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
     }
@@ -51,5 +52,6 @@ android {
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api project(':riot_common')
-    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
+    annotationProcessor "com.alibaba:arouter-compiler:$ARouterCompiler"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$Butterknife"
 }

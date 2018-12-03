@@ -23,7 +23,7 @@ import org.scau.riotgame.wallpaper.bean.WallPaperDetail;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by ZP on 2018/6/7.
@@ -32,9 +32,9 @@ import butterknife.Bind;
 public class WallPaperKindActivity extends SimpleTopBarActivity<WallPaperContract.View, WallPaperContract.Presenter> implements WallPaperContract.View, OnRefreshListener, OnLoadmoreListener, BasicAdapter.OnItemClickListener {
 
 
-    @Bind(R.id.rv_layout_refresh)
+    @BindView(R.id.rv_layout_refresh)
     RecyclerView mRvLayoutRefresh;
-    @Bind(R.id.refreshLayout)
+    @BindView(R.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
 
     private List<WallPaperDetail> mData;

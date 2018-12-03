@@ -20,7 +20,7 @@ import org.scau.riotgame.http.OSSWebManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import retrofit2.Response;
 
 /**
@@ -30,9 +30,9 @@ import retrofit2.Response;
 public class GoodsListActivity extends SimpleTopBarActivity implements OnRefreshListener, BasicAdapter.OnItemClickListener {
 
 
-    @Bind(R.id.rv_layout_refresh)
+    @BindView(R.id.rv_layout_refresh)
     RecyclerView mRvLayoutRefresh;
-    @Bind(R.id.refreshLayout)
+    @BindView(R.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
 
     private List<GoodBean.ItemsBean> mGoodsList;

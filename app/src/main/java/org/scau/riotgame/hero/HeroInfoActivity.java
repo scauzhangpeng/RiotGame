@@ -17,7 +17,7 @@ import com.xyz.riotcommon.CommonActivity;
 
 import org.scau.riotgame.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -27,23 +27,23 @@ import butterknife.OnClick;
 public class HeroInfoActivity extends CommonActivity {
 
 
-    @Bind(R.id.rbtn_hero_free)
+    @BindView(R.id.rbtn_hero_free)
     RadioButton mRbtnHeroFree;
-    @Bind(R.id.rbtn_hero_owner)
+    @BindView(R.id.rbtn_hero_owner)
     RadioButton mRbtnHeroOwner;
-    @Bind(R.id.rbtn_hero_all)
+    @BindView(R.id.rbtn_hero_all)
     RadioButton mRbtnHeroAll;
-    @Bind(R.id.rg_hero)
+    @BindView(R.id.rg_hero)
     RadioGroup mRgHero;
-    @Bind(R.id.vp_hero)
+    @BindView(R.id.vp_hero)
     ViewPager mVpHero;
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView mToolbarTitle;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.collapsing_layout)
+    @BindView(R.id.collapsing_layout)
     CollapsingToolbarLayout mCollapsingLayout;
-    @Bind(R.id.appbar_layout)
+    @BindView(R.id.appbar_layout)
     AppBarLayout mAppbarLayout;
 
 

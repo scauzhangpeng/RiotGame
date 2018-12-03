@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion var.compileSdkVersion
@@ -32,11 +32,9 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    api 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
 //    compile 'com.jakewharton:butterknife:8.4.0'
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
@@ -55,6 +53,9 @@ dependencies {
     api lib.GlideTransformations
     annotationProcessor lib.GlideCompiler
     api lib.Circle
-    api 'com.alibaba:arouter-api:1.4.0'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
+    api "com.alibaba:arouter-api:$ARouterApi"
+    annotationProcessor "com.alibaba:arouter-compiler:$ARouterCompiler"
+
+    api "com.jakewharton:butterknife:$Butterknife"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$Butterknife"
 }

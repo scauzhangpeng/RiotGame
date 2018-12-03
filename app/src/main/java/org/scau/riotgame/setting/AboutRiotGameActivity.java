@@ -10,7 +10,7 @@ import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -24,7 +24,7 @@ public class AboutRiotGameActivity extends SimpleTopBarActivity {
 
     private static final String TAG = "AboutRiotGameActivity";
 
-    @Bind(R.id.tv_version_info)
+    @BindView(R.id.tv_version_info)
     TextView mTvVersionInfo;
 
     @Override

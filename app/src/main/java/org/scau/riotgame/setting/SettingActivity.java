@@ -10,7 +10,7 @@ import org.scau.riotgame.R;
 import org.scau.riotgame.webview.WebViewActivity;
 import org.scau.riotgame.widget.SettingItemView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -22,21 +22,21 @@ import butterknife.OnClick;
 
 public class SettingActivity extends SimpleTopBarActivity {
 
-    @Bind(R.id.stv_bind_area)
+    @BindView(R.id.stv_bind_area)
     SettingItemView mStvBindArea;
-    @Bind(R.id.stv_bind_phone)
+    @BindView(R.id.stv_bind_phone)
     SettingItemView mStvBindPhone;
-    @Bind(R.id.stv_msg_setting)
+    @BindView(R.id.stv_msg_setting)
     SettingItemView mStvMsgSetting;
-    @Bind(R.id.stv_save_data)
+    @BindView(R.id.stv_save_data)
     SettingItemView mStvSaveData;
-    @Bind(R.id.stv_clear_cache)
+    @BindView(R.id.stv_clear_cache)
     SettingItemView mStvClearCache;
-    @Bind(R.id.stv_secret_setting)
+    @BindView(R.id.stv_secret_setting)
     SettingItemView mStvSecretSetting;
-    @Bind(R.id.stv_about_riot)
+    @BindView(R.id.stv_about_riot)
     SettingItemView mStvAboutRiot;
-    @Bind(R.id.stv_feed_back)
+    @BindView(R.id.stv_feed_back)
     SettingItemView mStvFeedBack;
 
     @OnClick(R.id.stv_bind_area)

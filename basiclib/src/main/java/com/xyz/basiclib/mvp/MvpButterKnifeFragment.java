@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by ZP on 2018/1/24.
@@ -12,14 +13,18 @@ import butterknife.ButterKnife;
 
 public abstract class MvpButterKnifeFragment<V, P extends BasePresenter<V>> extends MvpFragment<V, P> {
 
+    private Unbinder mUnBinder;
+
     @Override
     protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ButterKnife.bind(this, mView);
+        mUnBinder = ButterKnife.bind(this, mView);
     }
 
     @Override
     public void onDestroy() {
-        ButterKnife.unbind(this);
+        if (mUnBinder != null) {
+            mUnBinder.unbind();
+        }
         super.onDestroy();
     }
 }

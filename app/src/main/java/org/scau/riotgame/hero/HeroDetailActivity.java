@@ -11,7 +11,7 @@ import org.scau.riotgame.R;
 import org.scau.riotgame.http.HttpCallback;
 import org.scau.riotgame.http.OSSWebManager;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Response;
 
@@ -21,11 +21,11 @@ import retrofit2.Response;
 
 public class HeroDetailActivity extends SimpleTopBarActivity {
 
-    @Bind(R.id.tv_hero_background)
+    @BindView(R.id.tv_hero_background)
     TextView mTvHeroBackground;
-    @Bind(R.id.tv_hero_use_skill)
+    @BindView(R.id.tv_hero_use_skill)
     TextView mTvHeroUseSkill;
-    @Bind(R.id.tv_hero_ag_skill)
+    @BindView(R.id.tv_hero_ag_skill)
     TextView mTvHeroAgSkill;
 
     private int mHeroId;

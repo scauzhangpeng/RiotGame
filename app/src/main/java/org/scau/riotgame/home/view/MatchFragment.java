@@ -21,6 +21,7 @@ import com.xyz.basiclib.recyclerview.BasicViewHolder;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.basiclib.recyclerview.WrapperAdapter;
 import com.xyz.riotcommon.CommonFragment;
+import com.xyz.riotcommon.ImageLoadUtil;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
@@ -31,12 +32,10 @@ import org.scau.riotgame.home.contract.MatchContract;
 import org.scau.riotgame.home.presenter.MatchPresenter;
 import org.scau.riotgame.utils.FormatUtil;
 
-import com.xyz.riotcommon.ImageLoadUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by ZP on 2018/1/24.
@@ -48,9 +47,9 @@ import butterknife.Bind;
 public class MatchFragment extends CommonFragment<MatchContract.View, MatchContract.Presenter> implements MatchContract.View, OnRefreshListener, OnLoadmoreListener {
 
 
-    @Bind(R.id.rv_layout_refresh)
+    @BindView(R.id.rv_layout_refresh)
     RecyclerView mRvLayoutRefresh;
-    @Bind(R.id.refreshLayout)
+    @BindView(R.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
 
     private WrapperAdapter<News> mWrapperAdapter;

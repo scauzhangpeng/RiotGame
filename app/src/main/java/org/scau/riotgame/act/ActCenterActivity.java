@@ -13,7 +13,7 @@ import com.xyz.riotcommon.SimpleTopBarActivity;
 import org.scau.riotgame.R;
 import org.scau.riotgame.hero.HeroPageAdapter;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by ZP on 2018/6/8.
@@ -22,13 +22,13 @@ import butterknife.Bind;
 public class ActCenterActivity extends SimpleTopBarActivity {
 
 
-    @Bind(R.id.rg_act)
+    @BindView(R.id.rg_act)
     RadioGroup mRgAct;
-    @Bind(R.id.vp_act)
+    @BindView(R.id.vp_act)
     ViewPager mVpAct;
-    @Bind(R.id.rbtn_act_open)
+    @BindView(R.id.rbtn_act_open)
     RadioButton mRbtnActOpen;
-    @Bind(R.id.rbtn_act_close)
+    @BindView(R.id.rbtn_act_close)
     RadioButton mRbtnActClose;
 
     @Override

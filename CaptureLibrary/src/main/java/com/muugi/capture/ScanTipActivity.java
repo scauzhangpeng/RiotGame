@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by ZP on 2018/9/16.
@@ -16,7 +16,7 @@ import butterknife.Bind;
 public class ScanTipActivity extends SimpleTopBarActivity {
 
 
-    @Bind(R.id.tv_scan_result)
+    @BindView(R2.id.tv_scan_result)
     TextView mTvScanResult;
 
     @Override

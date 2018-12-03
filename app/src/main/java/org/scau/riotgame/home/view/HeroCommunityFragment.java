@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 import static com.xyz.basiclib.util.DateUtil.DATE_FORMAT_MONTH_DAY;
 import static com.xyz.basiclib.util.DateUtil.DATE_FORMAT_SEC;
@@ -47,9 +47,9 @@ import static com.xyz.basiclib.util.DateUtil.DATE_FORMAT_SEC;
 public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.View, HeroCommunityContract.Presenter> implements HeroCommunityContract.View, OnRefreshListener, OnLoadmoreListener {
 
 
-    @Bind(R.id.rv_layout_refresh)
+    @BindView(R.id.rv_layout_refresh)
     RecyclerView mRvLayoutRefresh;
-    @Bind(R.id.refreshLayout)
+    @BindView(R.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
 
     private BasicAdapter<HeroGroupListBean> mAdapter;

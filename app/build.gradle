@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     signingConfigs {
@@ -25,6 +26,10 @@ android {
                 includeCompileClasspath true
             }
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     buildTypes {
         release {
@@ -76,7 +81,10 @@ dependencies {
     //轮播图
     api lib.Banner
     implementation project(':riot_common')
+    implementation project(':riot_news')
+    implementation project(':CaptureLibrary')
     api lib.Design
     debugImplementation project(':DebugTools')
+    annotationProcessor "com.jakewharton:butterknife-compiler:$Butterknife"
 
 }

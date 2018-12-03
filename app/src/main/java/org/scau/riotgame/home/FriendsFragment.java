@@ -15,7 +15,7 @@ import com.xyz.riotcommon.CommonFragment;
 
 import org.scau.riotgame.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by ZP on 2017/7/27.
@@ -23,11 +23,11 @@ import butterknife.Bind;
 
 public class FriendsFragment extends CommonFragment {
 
-    @Bind(R.id.rbtn_friends)
+    @BindView(R.id.rbtn_friends)
     RadioButton mRbtnFriends;
-    @Bind(R.id.rbtn_message)
+    @BindView(R.id.rbtn_message)
     RadioButton mRbtnMessage;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
     @Override

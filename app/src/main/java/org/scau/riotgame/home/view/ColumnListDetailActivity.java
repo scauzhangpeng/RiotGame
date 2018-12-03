@@ -35,7 +35,7 @@ import org.scau.riotgame.webview.WebViewActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -45,29 +45,29 @@ public class ColumnListDetailActivity extends CommonActivity<ColumnListDetailCon
         implements ColumnListDetailContract.View, OnRefreshListener, OnLoadmoreListener, BasicAdapter.OnItemClickListener {
 
 
-    @Bind(R.id.iv_column_logo)
+    @BindView(R.id.iv_column_logo)
     CircleImageView mIvColumnLogo;
-    @Bind(R.id.tv_columnlist_title)
+    @BindView(R.id.tv_columnlist_title)
     TextView mTvColumnlistTitle;
-    @Bind(R.id.tv_columnlist_author)
+    @BindView(R.id.tv_columnlist_author)
     TextView mTvColumnlistAuthor;
-    @Bind(R.id.tv_columnlist_desc)
+    @BindView(R.id.tv_columnlist_desc)
     TextView mTvColumnlistDesc;
-    @Bind(R.id.tv_columnlist_book)
+    @BindView(R.id.tv_columnlist_book)
     TextView mTvColumnlistBook;
-    @Bind(R.id.column_list_detail_layout)
+    @BindView(R.id.column_list_detail_layout)
     RelativeLayout mColumnListDetailLayout;
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView mToolbarTitle;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.collapsing_layout)
+    @BindView(R.id.collapsing_layout)
     CollapsingToolbarLayout mCollapsingLayout;
-    @Bind(R.id.appbar_layout)
+    @BindView(R.id.appbar_layout)
     AppBarLayout mAppbarLayout;
-    @Bind(R.id.rv_column_list_detail)
+    @BindView(R.id.rv_column_list_detail)
     RecyclerView mRvColumnListDetail;
-    @Bind(R.id.refreshLayout)
+    @BindView(R.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
 
     private List<News> mData;

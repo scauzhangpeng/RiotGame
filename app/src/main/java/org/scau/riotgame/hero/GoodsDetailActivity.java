@@ -11,18 +11,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.xyz.basiclib.mvp.BasePresenter;
+import com.xyz.riotcommon.ImageLoadUtil;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.http.HttpCallback;
 import org.scau.riotgame.http.OSSWebManager;
 
-import com.xyz.riotcommon.ImageLoadUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import retrofit2.Response;
 
 /**
@@ -31,34 +30,34 @@ import retrofit2.Response;
 
 public class GoodsDetailActivity extends SimpleTopBarActivity {
 
-    @Bind(R.id.iv_good_icon)
+    @BindView(R.id.iv_good_icon)
     ImageView mIvGoodIcon;
-    @Bind(R.id.tv_good_name)
+    @BindView(R.id.tv_good_name)
     TextView mTvGoodName;
-    @Bind(R.id.tv_prop_list)
+    @BindView(R.id.tv_prop_list)
     TextView mTvPropList;
-    @Bind(R.id.tv_goods_map_list)
+    @BindView(R.id.tv_goods_map_list)
     TextView mTvGoodsMapList;
-    @Bind(R.id.tv_price)
+    @BindView(R.id.tv_price)
     TextView mTvPrice;
-    @Bind(R.id.tv_coprice)
+    @BindView(R.id.tv_coprice)
     TextView mTvCoprice;
-    @Bind(R.id.tv_saleprice)
+    @BindView(R.id.tv_saleprice)
     TextView mTvSaleprice;
-    @Bind(R.id.tv_good_desc)
+    @BindView(R.id.tv_good_desc)
     TextView mTvGoodDesc;
 
-    @Bind(R.id.rv_produce_need)
+    @BindView(R.id.rv_produce_need)
     RecyclerView mRvProduceNeed;
-    @Bind(R.id.ll_produce_need)
+    @BindView(R.id.ll_produce_need)
     LinearLayout mLlProduceNeed;
-    @Bind(R.id.rv_can_produce)
+    @BindView(R.id.rv_can_produce)
     RecyclerView mRvCanProduce;
-    @Bind(R.id.ll_can_produce)
+    @BindView(R.id.ll_can_produce)
     LinearLayout mLlCanProduce;
-    @Bind(R.id.rv_suit_hero)
+    @BindView(R.id.rv_suit_hero)
     RecyclerView mRvSuitHero;
-    @Bind(R.id.ll_suit_hero)
+    @BindView(R.id.ll_suit_hero)
     LinearLayout mLlSuitHero;
 
     private int mGoodId;

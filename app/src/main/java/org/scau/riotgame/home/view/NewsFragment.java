@@ -36,7 +36,7 @@ import org.scau.riotgame.webview.WebViewActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by ZP on 2017/7/27.
@@ -45,9 +45,9 @@ import butterknife.Bind;
 public class NewsFragment extends CommonFragment<NewsContract.View, NewsContract.Presenter> implements NewsContract.View, OnRefreshListener, OnLoadmoreListener {
 
 
-    @Bind(R.id.rv_hero_free)
+    @BindView(R.id.rv_hero_free)
     RecyclerView mRvHeroFree;
-    @Bind(R.id.refreshLayout)
+    @BindView(R.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
 
     private BasicAdapter<News> mAdapter;

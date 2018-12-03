@@ -14,7 +14,7 @@ import com.xyz.riotcommon.CommonFragment;
 
 import org.scau.riotgame.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by ZP on 2017/7/27.
@@ -22,7 +22,7 @@ import butterknife.Bind;
 
 public class MallFragment extends CommonFragment {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
     @Override

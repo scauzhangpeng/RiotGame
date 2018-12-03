@@ -17,9 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.xyz.basiclib.permission.OpPermissionCallback;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.riotcommon.CommonFragment;
+import com.xyz.riotcommon.RouterConstants;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.hero.HeroInfoActivity;
@@ -32,7 +34,7 @@ import org.scau.riotgame.webview.WebViewActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -45,13 +47,13 @@ import butterknife.OnClick;
 public class DiscoveryFragment extends CommonFragment<DiscoveryContract.View, DiscoveryContract.Presenter> implements DiscoveryContract.View {
 
     private static final String TAG = "DiscoveryFragment";
-    @Bind(R.id.rv_club)
+    @BindView(R.id.rv_club)
     RecyclerView mRvClub;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView mToolbarTitle;
-    @Bind(R.id.rv_discovery)
+    @BindView(R.id.rv_discovery)
     RecyclerView mRvDiscovery;
 
 
@@ -108,6 +110,7 @@ public class DiscoveryFragment extends CommonFragment<DiscoveryContract.View, Di
                 @Override
                 public void onGranted(List<String> permissions) {
                     Log.d(TAG, "onGranted: ");
+                    ARouter.getInstance().build(RouterConstants.SCAN_MAIN).navigation();
                 }
 
                 @Override

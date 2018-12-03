@@ -13,7 +13,7 @@ import com.xyz.riotcommon.SimpleTopBarActivity;
 import org.scau.riotgame.R;
 import org.scau.riotgame.hero.HeroPageAdapter;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by kevin on 2018/1/29.
@@ -22,17 +22,17 @@ import butterknife.Bind;
 public class WallPaperActivity extends SimpleTopBarActivity {
 
 
-    @Bind(R.id.rbtn_wallpaper_last)
+    @BindView(R.id.rbtn_wallpaper_last)
     RadioButton mRbtnWallpaperLast;
-    @Bind(R.id.rbtn_wallpaper_hot)
+    @BindView(R.id.rbtn_wallpaper_hot)
     RadioButton mRbtnWallpaperHot;
-    @Bind(R.id.rbtn_wallpaper_type)
+    @BindView(R.id.rbtn_wallpaper_type)
     RadioButton mRbtnWallpaperType;
-    @Bind(R.id.rbtn_wallpaper_collection)
+    @BindView(R.id.rbtn_wallpaper_collection)
     RadioButton mRbtnWallpaperCollection;
-    @Bind(R.id.rg_wallpaper)
+    @BindView(R.id.rg_wallpaper)
     RadioGroup mRgWallpaper;
-    @Bind(R.id.vp_wallpaper)
+    @BindView(R.id.vp_wallpaper)
     ViewPager mVpWallpaper;
 
     @Override

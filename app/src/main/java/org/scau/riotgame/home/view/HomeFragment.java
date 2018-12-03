@@ -23,7 +23,7 @@ import com.xyz.riotcommon.CommonFragment;
 import org.scau.riotgame.R;
 import org.scau.riotgame.hero.HeroPageAdapter;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by ZP on 2018/1/24.
@@ -32,30 +32,30 @@ import butterknife.Bind;
 public class HomeFragment extends CommonFragment implements RadioGroup.OnCheckedChangeListener {
 
 
-    @Bind(R.id.rbtn_last)
+    @BindView(R.id.rbtn_last)
     RadioButton mRbtnLast;
-    @Bind(R.id.rbtn_new_version)
+    @BindView(R.id.rbtn_new_version)
     RadioButton mRbtnNewVersion;
-    @Bind(R.id.rbtn_hero)
+    @BindView(R.id.rbtn_hero)
     RadioButton mRbtnHero;
-    @Bind(R.id.rbtn_video)
+    @BindView(R.id.rbtn_video)
     RadioButton mRbtnVideo;
-    //    @Bind(R.id.rbtn_match)
+    //    @BindView(R.id.rbtn_match)
 //    RadioButton mRbtnMatch;
-    @Bind(R.id.rbtn_column)
+    @BindView(R.id.rbtn_column)
     RadioButton mRbtnColumn;
-    @Bind(R.id.rg_main_tab)
+    @BindView(R.id.rg_main_tab)
     RadioGroup mRgMainTab;
-    @Bind(R.id.rbtn_hot)
+    @BindView(R.id.rbtn_hot)
     RadioButton mRbtnHot;
-    @Bind(R.id.rbtn_office)
+    @BindView(R.id.rbtn_office)
     RadioButton mRbtnOffice;
 
-    @Bind(R.id.vp_main)
+    @BindView(R.id.vp_main)
     ViewPager mVpMain;
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView mToolbarTitle;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
     private SparseArray<Fragment> mPages;
 

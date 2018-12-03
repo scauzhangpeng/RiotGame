@@ -35,7 +35,7 @@ import org.scau.riotgame.utils.ScreenUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 
 /**
@@ -44,29 +44,29 @@ import butterknife.Bind;
 
 public class VideoFragment extends CommonFragment<VideoContract.View, VideoContract.Presenter> implements VideoContract.View, OnRefreshListener, OnLoadmoreListener {
 
-    @Bind(R.id.rv_hot_author)
+    @BindView(R.id.rv_hot_author)
     RecyclerView mRvHotAuthor;
-    @Bind(R.id.refreshLayout)
+    @BindView(R.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
-    @Bind(R.id.rv_hot_wpv)
+    @BindView(R.id.rv_hot_wpv)
     RecyclerView mRvHotWpv;
-    @Bind(R.id.rv_hot_enter)
+    @BindView(R.id.rv_hot_enter)
     RecyclerView mRvHotEnter;
-    @Bind(R.id.iv_hot_match_top_thumb)
+    @BindView(R.id.iv_hot_match_top_thumb)
     ImageView mIvHotMatchTopThumb;
-    @Bind(R.id.tv_video_time)
+    @BindView(R.id.tv_video_time)
     TextView mTvHotMatchTopTime;
-    @Bind(R.id.tv_hot_match_top_title)
+    @BindView(R.id.tv_hot_match_top_title)
     TextView mTvHotMatchTopTitle;
-    @Bind(R.id.tv_hot_match_top_author)
+    @BindView(R.id.tv_hot_match_top_author)
     TextView mTvHotMatchTopAuthor;
-    @Bind(R.id.tv_hot_match_top_play)
+    @BindView(R.id.tv_hot_match_top_play)
     TextView mTvHotMatchTopPlay;
-    @Bind(R.id.rv_hot_match)
+    @BindView(R.id.rv_hot_match)
     RecyclerView mRvHotMatch;
-    @Bind(R.id.rv_hot_hero)
+    @BindView(R.id.rv_hot_hero)
     RecyclerView mRvHotHero;
-    @Bind(R.id.rv_whole_video)
+    @BindView(R.id.rv_whole_video)
     RecyclerView mRvWholeVideo;
 
     private BasicAdapter<HotAuthor> mAdapter;
