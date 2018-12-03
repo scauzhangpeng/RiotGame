@@ -91,6 +91,9 @@ public class HeroCommunityPresenter extends HeroCommunityContract.Presenter {
                             }
                             if ("RecommendStrategyCard".equals(list.get(i).getNewstypeid())) {
                                 HeroGroupListBean bean = new HeroGroupListBean(null, "RecommendStrategyCard");
+                                HashMap<String, String> header = new HashMap<>();
+                                header.put("hero", list.get(i).getHero_name());
+                                bean.setHeader(header);
                                 getView().updateCardItem(Integer.valueOf(list.get(i).getPosition()) - 1, bean);
                                 CardItem recommendStrategy = list.get(i);
                                 getView().showRecommendStrategyCard(recommendStrategy);

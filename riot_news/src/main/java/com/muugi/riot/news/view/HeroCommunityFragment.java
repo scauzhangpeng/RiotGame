@@ -36,6 +36,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
+import static com.xyz.basiclib.util.DateUtil.DATE_FORMAT_DAY;
 import static com.xyz.basiclib.util.DateUtil.DATE_FORMAT_MONTH_DAY;
 import static com.xyz.basiclib.util.DateUtil.DATE_FORMAT_SEC;
 
@@ -183,8 +184,8 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
         mRecommendStrategyAdapter = new BasicAdapter<Card>(R.layout.item_recommend_strategy, mRecommendStrategyCard, getActivity()) {
             @Override
             protected void bindData(BasicViewHolder holder, Card card, int position) {
-                holder.setText(R.id.tv_publication_date, card.getPublication_date());
-                holder.setText(R.id.tv_pv, card.getPv());
+                holder.setText(R.id.tv_publication_date, DateUtil.strToStr(card.getPublication_date(), DATE_FORMAT_SEC, DATE_FORMAT_DAY));
+                holder.setText(R.id.tv_pv, FormatUtil.unitToTenThousand(card.getPv()));
                 holder.setText(R.id.tv_video_title, card.getTitle());
                 holder.setImagePath(R.id.iv_article_small, new AbstractImageLoader(card.getImage_url_small()) {
                     @Override
@@ -252,6 +253,8 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
                     return;
                 }
                 if ("RecommendStrategyCard".equals(bean.getType())) {
+                    HashMap<String, String> header = bean.getHeader();
+                    holder.setText(R.id.tv_hero_desc, getString(R.string.hero_time_desc, header.get("hero")));
                     mRvRecommendStrategy = holder.getView(R.id.rv_recommend_strategy);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                     linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
