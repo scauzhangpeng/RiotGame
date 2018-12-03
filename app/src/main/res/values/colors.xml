@@ -4,10 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="colorMain">#000000</color>
-    <color name="colorMainText">#333333</color>
-    <color name="colorSubText">#999999</color>
-    <color name="colorMainBg">#eeeff0</color>
+
 
 
     <color name="btn_red_normal">#ff5255</color>
@@ -19,7 +16,4 @@
     <color name="btn_gold_press">@color/btn_gold_disable</color>
 
 
-    <color name="mainItemBackground">@android:color/white</color>
-
-    <color name="bg_aphla">#80000000</color>
 </resources>

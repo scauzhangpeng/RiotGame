@@ -1,5 +1,7 @@
 package org.scau.riotgame.http;
 
+import com.xyz.riotcommon.net.ServiceFactory;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;

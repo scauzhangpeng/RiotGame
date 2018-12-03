@@ -144,25 +144,4 @@
         <item name="android:gravity">center</item>
         <item name="android:layout_weight">1</item>
     </style>
-
-    <style name="RecyclerView_item">
-        <item name="android:background">@android:color/white</item>
-        <item name="android:layout_marginBottom">@dimen/item_vertical_margin</item>
-        <item name="android:layout_marginTop">@dimen/item_vertical_margin</item>
-        <item name="android:layout_marginRight">@dimen/item_horizontal_margin</item>
-        <item name="android:layout_marginLeft">@dimen/item_horizontal_margin</item>
-    </style>
-
-    <style name="video_item">
-        <item name="android:layout_marginLeft">8dp</item>
-    </style>
-
-    <style name="video_top_menu">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">#646464</item>
-        <item name="android:textSize">14sp</item>
-    </style>
 </resources>

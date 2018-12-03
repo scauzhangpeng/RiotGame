@@ -96,8 +96,8 @@
             android:name=".act.ActCenterActivity"
             android:label="活动中心" />
 
-        <activity android:name=".webview.WebViewActivity" />
-        <activity android:name=".home.MainActivity" />
+        <activity android:name="com.xyz.riotcommon.webview.WebViewActivity" />
+        <activity android:name=".home.view.MainActivity" />
 
         <service android:name=".setting.DownloadService" />
 
@@ -123,7 +123,7 @@
             android:screenOrientation="behind"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name=".home.view.ColumnListDetailActivity"
+            android:name="com.muugi.riot.news.view.ColumnListDetailActivity"
             android:label="test" />
     </application>
 

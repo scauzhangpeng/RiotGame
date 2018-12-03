@@ -14,9 +14,10 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
+import com.xyz.riotcommon.net.HttpCallback;
+
 import org.scau.riotgame.R;
 import org.scau.riotgame.http.DownloadManager;
-import org.scau.riotgame.http.HttpCallback;
 
 import java.io.File;
 import java.io.FileOutputStream;

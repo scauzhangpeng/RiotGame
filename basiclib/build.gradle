@@ -40,6 +40,7 @@ dependencies {
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 
     api lib.RecyclerViewV7
+    api "com.android.support:design:$SupportVerison"
     //下拉刷新
     api lib.SmartRefreshLayout
     api lib.SupportV7
@@ -58,4 +59,10 @@ dependencies {
 
     api "com.jakewharton:butterknife:$Butterknife"
     annotationProcessor "com.jakewharton:butterknife-compiler:$Butterknife"
+    api "com.youth.banner:banner:1.4.9"
+    //网络库
+    api lib.Retrofit
+    api lib.RetrofitConverterGson
+    api lib.RetrofitConverterString
+    api lib.OkHttpLogging
 }

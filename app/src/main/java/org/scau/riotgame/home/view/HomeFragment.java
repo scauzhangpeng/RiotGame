@@ -17,6 +17,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.muugi.riot.news.view.NewsFragment;
+import com.muugi.riot.news.view.ColumnListFragment;
+import com.muugi.riot.news.view.HeroCommunityFragment;
+import com.muugi.riot.news.view.HotNewsFragment;
+import com.muugi.riot.news.view.NewVersionFragment;
+import com.muugi.riot.news.view.OfficialNewsFragment;
+import com.muugi.riot.news.view.VideoFragment;
 import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.CommonFragment;
 

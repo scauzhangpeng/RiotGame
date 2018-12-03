@@ -8,7 +8,8 @@ import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
-import org.scau.riotgame.http.HttpCallback;
+
+import com.xyz.riotcommon.net.HttpCallback;
 import org.scau.riotgame.http.OSSWebManager;
 
 import butterknife.BindView;

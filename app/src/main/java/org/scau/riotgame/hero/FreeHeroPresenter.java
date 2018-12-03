@@ -6,8 +6,8 @@ import android.support.annotation.NonNull;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.scau.riotgame.http.HttpCallback;
-import org.scau.riotgame.http.WebManager;
+import com.xyz.riotcommon.net.HttpCallback;
+import com.muugi.riot.news.model.WebManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;

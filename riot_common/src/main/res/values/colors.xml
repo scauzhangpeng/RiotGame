@@ -9,4 +9,11 @@
 
     <color name="mainBackground">#eeeff0</color>
     <color name="circle_image_border">@color/colorMainGold</color>
+
+    <color name="colorMain">#000000</color>
+    <color name="colorMainText">#333333</color>
+    <color name="colorSubText">#999999</color>
+    <color name="colorMainBg">#eeeff0</color>
+
+    <color name="mainItemBackground">@android:color/white</color>
 </resources>

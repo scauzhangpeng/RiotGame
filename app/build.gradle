@@ -73,13 +73,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //V4库
     api lib.SupportV4
-    //网络库
-    api lib.Retrofit
-    api lib.RetrofitConverterGson
-    api lib.RetrofitConverterString
-    api lib.OkHttpLogging
-    //轮播图
-    api lib.Banner
+
+
     implementation project(':riot_common')
     implementation project(':riot_news')
     implementation project(':CaptureLibrary')

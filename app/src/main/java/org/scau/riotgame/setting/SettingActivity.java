@@ -7,7 +7,8 @@ import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
-import org.scau.riotgame.webview.WebViewActivity;
+
+import com.xyz.riotcommon.webview.WebViewActivity;
 import org.scau.riotgame.widget.SettingItemView;
 
 import butterknife.BindView;

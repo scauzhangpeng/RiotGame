@@ -14,4 +14,12 @@
         <item name="android:windowBackground">@null</item>
     </style>
 
+    <style name="RecyclerView_item">
+        <item name="android:background">@android:color/white</item>
+        <item name="android:layout_marginBottom">@dimen/item_vertical_margin</item>
+        <item name="android:layout_marginTop">@dimen/item_vertical_margin</item>
+        <item name="android:layout_marginRight">@dimen/item_horizontal_margin</item>
+        <item name="android:layout_marginLeft">@dimen/item_horizontal_margin</item>
+    </style>
+
 </resources>

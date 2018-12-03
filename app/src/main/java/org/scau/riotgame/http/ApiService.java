@@ -1,22 +1,16 @@
 package org.scau.riotgame.http;
 
+import com.xyz.riotcommon.bean.PageResponse;
+
 import org.scau.riotgame.act.bean.ActDetailResponse;
 import org.scau.riotgame.act.bean.ActInfo;
-import org.scau.riotgame.home.Club;
-import org.scau.riotgame.home.bean.CardsResponse;
+import org.scau.riotgame.home.bean.Club;
 import org.scau.riotgame.home.bean.DiscoveryMenu;
-import org.scau.riotgame.home.bean.GameCenterData;
-import org.scau.riotgame.home.bean.HotMatch;
-import org.scau.riotgame.home.bean.News;
-import org.scau.riotgame.home.bean.PageColumnList;
-import org.scau.riotgame.home.bean.PageRespNewVersionCard;
-import org.scau.riotgame.home.bean.PageResponse;
 import org.scau.riotgame.wallpaper.bean.KindWallPaper;
 import org.scau.riotgame.wallpaper.bean.WallPaper;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.Query;
 
 /**
@@ -29,39 +23,6 @@ public interface ApiService {
     @GET("php_cgi/lol_mobile/club/varcache_team_entrancev2.php")
     Call<Club> getClubInfo(@Query("version") int version);
 
-    @GET("php_cgi/news/php/varcache_getnews.php")
-    Call<PageResponse<News>> getNews(@Query("id") int id,
-                                     @Query("page") int page,
-                                     @Query("version") int version);
-
-
-    @GET("lua/lol_news/columnlist")
-    @Headers("Cookie:l_uin=o2456513456; p_uin=o2456513456; p_skey=3vAhB*etp*ElpHK15U*LThQfHMAf-yQjk7NV-iE59Nc_; uin=o2456513456; skey=MHplxd1Wtz;")
-    Call<PageColumnList> getColumnList(@Query("page") int page,
-                                       @Query("version") int version);
-
-    @GET("php_cgi/lol_mobile/gamecenter/varcache_gamecenterindex.php")
-    Call<GameCenterData> getGameCenterData(@Query("version") int version);
-
-    /**
-     * 英雄圈
-     *
-     * @param page
-     * @param uuid
-     * @param area_id
-     * @param version
-     * @return
-     */
-    @GET("http://qt.qq.com/php_cgi/lol_mobile/hero_group/php/article_list.php")
-    Call<PageResponse<News>> getHeroGroup(@Query("page") int page,
-                                          @Query("uuid") String uuid,
-                                          @Query("area_id") int area_id,
-                                          @Query("version") int version);
-
-    @GET("http://qt.qq.com/php_cgi/lol_mobile/hero_group/php/cards.php")
-    Call<CardsResponse> getCardsData(@Query("uuid") String uuid,
-                                     @Query("area_id") int area_id,
-                                     @Query("version") int version);
 
     @GET("static/pages/news/discovery/c21_index.js")
     Call<PageResponse<DiscoveryMenu>> getDiscoveryMenu();
@@ -87,24 +48,5 @@ public interface ApiService {
 
     @GET("php_cgi/news/php/varcache_getactnews.php")
     Call<ActDetailResponse> getActDetailList(@Query("t") String type, @Query("lasttime") String lasttime);
-
-    @GET("php_cgi/news/php/varcache_getnews.php")
-    Call<PageResponse<News>> getHotNews(@Query("id") int cid, @Query("page") int page);
-
-    @GET("php_cgi/news/php/varcache_getnews.php")
-    Call<PageResponse<News>> getOfficialNews(@Query("id") int cid, @Query("page") int page, @Query("uuid") String uuid, @Query("area_id") int areaId);
-
-    @GET("php_cgi/news/php/varcache_getnews.php")
-    Call<PageResponse<News>> getNewVersionNews(@Query("id") int cid, @Query("page") int page);
-
-    @GET("http://qt.qq.com/lua/lol_news/recommend?cid=367&areaid=7")
-    @Headers("Cookie:l_uin=o2456513456; p_uin=o2456513456; p_skey=3vAhB*etp*ElpHK15U*LThQfHMAf-yQjk7NV-iE59Nc_; uin=o2456513456; skey=MHplxd1Wtz;")
-    Call<PageRespNewVersionCard> getNewVersionCard(@Query("cid") int cid, @Query("areaid") int areaid);
-
-    @GET("php_cgi/news/php/varcache_getcols.php")
-    Call<PageResponse<News>> getColumnListNews(@Query("cid") String cid, @Query("page") int page);
-
-    @GET("php_cgi/news/php/varcache_getcols.php")
-    Call<PageResponse<HotMatch>> getColumnHotMatch(@Query("cid") String cid, @Query("page") int page);
 
 }

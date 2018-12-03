@@ -5,12 +5,13 @@ import android.content.Context;
 import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.xyz.basiclib.BaseApplication;
 
 /**
  * Created by ZP on 2017/8/8.
  */
 
-public class RiotGameApplication extends Application {
+public class RiotGameApplication extends BaseApplication {
 
     private static final String TAG = "RiotGameApplication";
 

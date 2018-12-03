@@ -17,7 +17,7 @@ import com.xyz.riotcommon.CommonActivity;
 
 import org.json.JSONObject;
 import org.scau.riotgame.R;
-import org.scau.riotgame.home.MainActivity;
+import org.scau.riotgame.home.view.MainActivity;
 import org.scau.riotgame.home.bean.QQLogin;
 
 import butterknife.OnClick;

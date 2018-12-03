@@ -2,7 +2,7 @@ package org.scau.riotgame.wallpaper;
 
 import android.support.annotation.NonNull;
 
-import org.scau.riotgame.http.HttpCallback;
+import com.xyz.riotcommon.net.HttpCallback;
 import org.scau.riotgame.http.RequestManager;
 import org.scau.riotgame.wallpaper.bean.KindWallPaper;
 import org.scau.riotgame.wallpaper.bean.WallPaper;

@@ -7,12 +7,8 @@
     <string name="tab_main_discovery">发现</string>
     <string name="tab_main_me">我的</string>
 
-    <string name="article_pv">%s</string>
 
     <string name="version_info" formatted="true">V%s(%d)</string>
 
-    <string name="information_video_play">%s播放</string>
-    <string name="information_author_video_num">%s个视频</string>
-    <string name="hero_time_desc">根据最近玩的%s推荐</string>
-    <string name="praise_num">%s人赞</string>
+
 </resources>

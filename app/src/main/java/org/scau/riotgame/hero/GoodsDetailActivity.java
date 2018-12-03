@@ -15,7 +15,8 @@ import com.xyz.riotcommon.ImageLoadUtil;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
-import org.scau.riotgame.http.HttpCallback;
+
+import com.xyz.riotcommon.net.HttpCallback;
 import org.scau.riotgame.http.OSSWebManager;
 
 import java.util.ArrayList;

@@ -2,7 +2,7 @@ package org.scau.riotgame.hero;
 
 import android.support.annotation.NonNull;
 
-import org.scau.riotgame.http.HttpCallback;
+import com.xyz.riotcommon.net.HttpCallback;
 import org.scau.riotgame.http.OSSWebManager;
 
 import java.util.List;

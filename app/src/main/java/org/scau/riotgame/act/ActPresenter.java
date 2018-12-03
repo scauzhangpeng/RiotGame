@@ -4,7 +4,8 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import org.scau.riotgame.act.bean.ActDetailResponse;
-import org.scau.riotgame.http.HttpCallback;
+
+import com.xyz.riotcommon.net.HttpCallback;
 import org.scau.riotgame.http.RequestManager;
 
 import retrofit2.Response;

@@ -1,5 +1,8 @@
 package org.scau.riotgame.http;
 
+import com.xyz.riotcommon.net.HttpCallback;
+import com.xyz.riotcommon.net.ServiceFactory;
+
 import org.scau.riotgame.hero.GoodBean;
 import org.scau.riotgame.hero.GoodsDetailBean;
 import org.scau.riotgame.hero.Hero;
