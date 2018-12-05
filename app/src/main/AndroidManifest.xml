@@ -55,13 +55,13 @@
             android:name=".setting.SettingActivity"
             android:label="设置"/>
         <activity
-            android:name=".hero.HeroInfoActivity"
+            android:name="com.muugi.riot.discovery.hero.view.HeroInfoActivity"
             android:label="我的英雄圈"/>
         <activity
-            android:name=".search.UserNearbyActivity"
+            android:name="com.muugi.riot.discovery.search.UserNearbyActivity"
             android:label="附近玩家"/>
         <activity
-            android:name=".search.UserSearchActivity"
+            android:name="com.muugi.riot.discovery.search.UserSearchActivity"
             android:label="召唤师查询"/>
         <activity
             android:name=".favorite.FavoriteActivity"
@@ -73,23 +73,23 @@
             android:name=".mall.UserOrderActivity"
             android:label="我的订单"/>
         <activity
-            android:name=".hero.HeroDetailActivity"
+            android:name="com.muugi.riot.discovery.hero.view.HeroDetailActivity"
             android:label="英雄详情"/>
 
         <activity
-            android:name=".hero.GoodsListActivity"
+            android:name="com.muugi.riot.discovery.hero.view.GoodsListActivity"
             android:label="物品资料"/>
 
         <activity
-            android:name=".hero.GoodsDetailActivity"
+            android:name="com.muugi.riot.discovery.hero.view.GoodsDetailActivity"
             android:label="物品详情"/>
 
         <activity
-            android:name=".wallpaper.WallPaperActivity"
+            android:name="com.muugi.riot.discovery.wallpaper.WallPaperActivity"
             android:label="壁纸" />
 
         <activity
-            android:name=".wallpaper.WallPaperKindActivity"
+            android:name="com.muugi.riot.discovery.wallpaper.view.WallPaperKindActivity"
             android:label="壁纸" />
 
         <activity

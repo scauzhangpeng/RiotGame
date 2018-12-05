@@ -11,7 +11,8 @@ import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
-import org.scau.riotgame.hero.HeroPageAdapter;
+
+import com.muugi.riot.discovery.hero.adapter.HeroPageAdapter;
 
 import butterknife.BindView;
 

@@ -63,15 +63,6 @@
         <item name="android:gravity">center|left</item>
     </style>
 
-    <style name="menu_discovery">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:textSize">18.0sp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center</item>
-        <item name="android:drawablePadding">10dp</item>
-        <item name="android:textColor">@android:color/black</item>
-    </style>
 
     <style name="tab_style">
         <item name="android:layout_width">0dp</item>
@@ -81,25 +72,6 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <style name="page_tab">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:button">@null</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:drawableBottom">@drawable/rbtn_page_tab_selector</item>
-        <item name="android:textColor">@color/rbtn_page_tab_color</item>
-    </style>
-
-    <style name="hero_mid_tag">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center</item>
-        <item name="android:drawablePadding">8dp</item>
-        <item name="android:paddingTop">8dp</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
 
     <style name="loading_dialog" parent="android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
@@ -134,14 +106,5 @@
         <item name="android:textColor">@color/rbtn_page_tab_color</item>
     </style>
 
-    <style name="tab_wallpaper_indicator">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:button">@null</item>
-        <item name="android:drawableBottom">@drawable/rbtn_page_tab_selector</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/rbtn_page_tab_color</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_weight">1</item>
-    </style>
+
 </resources>

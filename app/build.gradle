@@ -26,6 +26,7 @@ android {
                 includeCompileClasspath true
             }
         }
+        multiDexEnabled true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -67,6 +68,19 @@ android {
             java.srcDirs = ['src/main/java', 'src/main/debug']
         }
     }
+    flavorDimensions "isDev"
+    productFlavors {
+        dev {
+            minSdkVersion 21
+            dimension "isDev"
+        }
+    }
+
+    //multiDex的一些相关配置，这样配置可以让你的编译速度更快
+    dexOptions {
+        preDexLibraries = false//让它不要对Lib做preDexing
+        javaMaxHeapSize "4g"//增加java堆内存大小，避免导致编译时出现OOM异常
+    }
 }
 
 dependencies {
@@ -77,9 +91,11 @@ dependencies {
 
     implementation project(':riot_common')
     implementation project(':riot_news')
+    implementation project(':riot_discovery')
     implementation project(':CaptureLibrary')
     api lib.Design
     debugImplementation project(':DebugTools')
     annotationProcessor "com.jakewharton:butterknife-compiler:$Butterknife"
+    implementation 'com.android.support:multidex:1.0.3'
 
 }

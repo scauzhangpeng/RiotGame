@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.muugi.riot.discovery.main.view.DiscoveryFragment;
 import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.basiclib.util.SPUtil;
 import com.xyz.riotcommon.CommonActivity;
