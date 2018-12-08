@@ -68,13 +68,6 @@ android {
             java.srcDirs = ['src/main/java', 'src/main/debug']
         }
     }
-    flavorDimensions "isDev"
-    productFlavors {
-        dev {
-            minSdkVersion 21
-            dimension "isDev"
-        }
-    }
 
     //multiDex的一些相关配置，这样配置可以让你的编译速度更快
     dexOptions {
