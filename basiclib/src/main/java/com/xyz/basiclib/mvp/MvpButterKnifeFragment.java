@@ -8,6 +8,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
+ * Mvp中使用ButterKnife，单独一个类可以随时丢弃.
  * Created by ZP on 2018/1/24.
  */
 

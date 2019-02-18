@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
+ * Mvp绑定与解绑.
  * Created by ZP on 2017/8/16.
  */
 

@@ -18,6 +18,7 @@ import java.util.List;
 
 /**
  * 统一业务基类.
+ * 主要完成权限申请Dialog、懒加载、空界面、错误界面
  * Created by ZP on 2018/5/23.
  */
 

@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
+ * 基类.
+ * 主要完成界面初始化、界面跳转方法
  * Created by ZP on 2017/8/2.
  */
 

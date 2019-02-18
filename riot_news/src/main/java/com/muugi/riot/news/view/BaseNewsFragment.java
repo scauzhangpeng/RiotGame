@@ -8,6 +8,8 @@ import com.xyz.riotcommon.SimpleRefreshFragment;
 import com.xyz.riotcommon.webview.WebViewActivity;
 
 /**
+ * 新闻资讯基础页面.
+ * 主要完成页面自动刷新、刷新数据、加载更多数据。
  * Created by ZP on 2019/2/18.
  */
 public abstract class BaseNewsFragment<T, V, P extends BaseNewsPresenter<V>> extends SimpleRefreshFragment<T, V, P> {

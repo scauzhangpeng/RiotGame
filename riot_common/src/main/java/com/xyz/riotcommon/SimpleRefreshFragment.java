@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 单一的下拉刷新页面.
+ * 主要完成界面初始化、Adapter数据绑定、刷新数据展示、加载更多数据展示。
  * Created by ZP on 2018/2/8.
  */
 
