@@ -20,6 +20,10 @@ public class NewsPresenter extends NewsContract.Presenter {
 
     private int mCurrentPage = 0;
 
+    public NewsPresenter(String cid) {
+        super(cid);
+    }
+
     @Override
     public void refreshNews() {
         mCurrentPage = 0;
@@ -28,7 +32,7 @@ public class NewsPresenter extends NewsContract.Presenter {
 
     @Override
     public void loadMoreNews() {
-        RequestManager.getInstance().getNews(12, mCurrentPage, 9740, new HttpCallback<PageResponse<News>>() {
+        RequestManager.getInstance().getNews(cid, mCurrentPage, 9740, new HttpCallback<PageResponse<News>>() {
 
             @Override
             public void doOnSuccess(@NonNull PageResponse<News> newsPageResponse, Response<PageResponse<News>> response) {
@@ -59,7 +63,7 @@ public class NewsPresenter extends NewsContract.Presenter {
 
     @Override
     public void refreshBannerNews() {
-        RequestManager.getInstance().getNews(13, 0, 9738, new HttpCallback<PageResponse<News>>() {
+        RequestManager.getInstance().getNews("13", 0, 9738, new HttpCallback<PageResponse<News>>() {
             @Override
             public void doOnSuccess(@NonNull PageResponse<News> newsPageResponse, Response<PageResponse<News>> response) {
                 List<News> list = newsPageResponse.getList();

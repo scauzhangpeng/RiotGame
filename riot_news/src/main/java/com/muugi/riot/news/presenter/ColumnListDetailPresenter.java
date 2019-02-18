@@ -18,15 +18,19 @@ public class ColumnListDetailPresenter extends ColumnListDetailContract.Presente
 
     private int mCurrentPage = 0;
 
-    @Override
-    public void refreshNews(String cid) {
-        mCurrentPage = 0;
-        getView().setEnableLoadMore(true);
-        loadMoreNews(cid);
+    public ColumnListDetailPresenter(String cid) {
+        super(cid);
     }
 
     @Override
-    public void loadMoreNews(String cid) {
+    public void refreshNews() {
+        mCurrentPage = 0;
+        getView().setEnableLoadMore(true);
+        loadMoreNews();
+    }
+
+    @Override
+    public void loadMoreNews() {
         RequestManager.getInstance().getColumnListNews(cid, mCurrentPage, new HttpCallback<PageResponse<News>>() {
             @Override
             public void doOnSuccess(@NonNull PageResponse<News> newsPageResponse, Response<PageResponse<News>> response) {

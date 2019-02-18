@@ -35,7 +35,7 @@ public class RequestManager {
         return mInstance;
     }
 
-    public Call getNews(int id, int page, int version, HttpCallback<PageResponse<News>> callback) {
+    public Call getNews(String id, int page, int version, HttpCallback<PageResponse<News>> callback) {
         Call<PageResponse<News>> call = mApiService.getNews(id, page, version);
         call.enqueue(callback);
         return call;
@@ -65,13 +65,13 @@ public class RequestManager {
         return call;
     }
 
-    public Call getHotNews(int id, int currentPage, HttpCallback<PageResponse<News>> callback) {
+    public Call getHotNews(String id, int currentPage, HttpCallback<PageResponse<News>> callback) {
         Call<PageResponse<News>> call = mApiService.getHotNews(id, currentPage);
         call.enqueue(callback);
         return call;
     }
 
-    public Call getNewVersionNews(int id, int currentPage, HttpCallback<PageResponse<News>> callback) {
+    public Call getNewVersionNews(String id, int currentPage, HttpCallback<PageResponse<News>> callback) {
         Call<PageResponse<News>> call = mApiService.getNewVersionNews(id, currentPage);
         call.enqueue(callback);
         return call;

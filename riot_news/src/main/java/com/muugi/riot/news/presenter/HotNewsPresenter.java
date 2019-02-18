@@ -17,6 +17,9 @@ public class HotNewsPresenter extends HotNewsContract.Presenter {
 
     private int mCurrentPage = 0;
 
+    public HotNewsPresenter(String cid) {
+        super(cid);
+    }
 
     @Override
     public void refreshNews() {
@@ -26,7 +29,7 @@ public class HotNewsPresenter extends HotNewsContract.Presenter {
 
     @Override
     public void loadMoreNews() {
-        RequestManager.getInstance().getHotNews(471, mCurrentPage, new HttpCallback<PageResponse<News>>() {
+        RequestManager.getInstance().getHotNews(cid, mCurrentPage, new HttpCallback<PageResponse<News>>() {
             @Override
             public void doOnSuccess(@NonNull PageResponse<News> newsPageResponse, Response<PageResponse<News>> response) {
                 if (newsPageResponse.getCode() != 0) {

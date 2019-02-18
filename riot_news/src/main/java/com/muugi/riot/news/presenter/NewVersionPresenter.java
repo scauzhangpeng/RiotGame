@@ -25,16 +25,19 @@ public class NewVersionPresenter extends NewVersionContract.Presenter {
 
     private int mCurrentPage;
 
-
-    @Override
-    public void requestNewVersionNews() {
-        mCurrentPage = 0;
-        loadMoreNewVersionNews();
+    public NewVersionPresenter(String cid) {
+        super(cid);
     }
 
     @Override
-    public void loadMoreNewVersionNews() {
-        RequestManager.getInstance().getNewVersionNews(367, mCurrentPage, new HttpCallback<PageResponse<News>>() {
+    public void refreshNews() {
+        mCurrentPage = 0;
+        loadMoreNews();
+    }
+
+    @Override
+    public void loadMoreNews() {
+        RequestManager.getInstance().getNewVersionNews(cid, mCurrentPage, new HttpCallback<PageResponse<News>>() {
             @Override
             public void doOnSuccess(@NonNull PageResponse<News> newsPageResponse, Response<PageResponse<News>> response) {
                 if (newsPageResponse.getCode() == 0) {

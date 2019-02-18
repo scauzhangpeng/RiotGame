@@ -21,6 +21,10 @@ import retrofit2.Response;
 public class MatchPresenter extends MatchContract.Presenter {
     private int mCurrentPage = 0;
 
+    public MatchPresenter(String cid) {
+        super(cid);
+    }
+
     @Override
     public void gameCenterData() {
         RequestManager.getInstance().getGameCenterData(9738, new HttpCallback<GameCenterData>() {
@@ -50,7 +54,7 @@ public class MatchPresenter extends MatchContract.Presenter {
     }
 
     @Override
-    public void getNews() {
+    public void refreshNews() {
         mCurrentPage = 0;
         loadMoreNews();
     }
@@ -58,7 +62,7 @@ public class MatchPresenter extends MatchContract.Presenter {
 
     @Override
     public void loadMoreNews() {
-        RequestManager.getInstance().getNews(73, mCurrentPage, 9738, new HttpCallback<PageResponse<News>>() {
+        RequestManager.getInstance().getNews(cid, mCurrentPage, 9738, new HttpCallback<PageResponse<News>>() {
             @Override
             public void doOnSuccess(@NonNull PageResponse<News> newsPageResponse, Response<PageResponse<News>> response) {
                 List<News> list = newsPageResponse.getList();

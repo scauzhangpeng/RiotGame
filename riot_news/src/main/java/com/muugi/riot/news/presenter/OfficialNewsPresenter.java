@@ -17,6 +17,9 @@ public class OfficialNewsPresenter extends OfficialNewsContract.Presenter {
 
     private int mCurrentPage = 0;
 
+    public OfficialNewsPresenter(String cid) {
+        super(cid);
+    }
 
     @Override
     public void refreshNews() {
@@ -26,7 +29,7 @@ public class OfficialNewsPresenter extends OfficialNewsContract.Presenter {
 
     @Override
     public void loadMoreNews() {
-        RequestManager.getInstance().getHotNews(3, mCurrentPage, new HttpCallback<PageResponse<News>>() {
+        RequestManager.getInstance().getHotNews(cid, mCurrentPage, new HttpCallback<PageResponse<News>>() {
             @Override
             public void doOnSuccess(@NonNull PageResponse<News> newsPageResponse, Response<PageResponse<News>> response) {
                 if (newsPageResponse.getCode() != 0) {

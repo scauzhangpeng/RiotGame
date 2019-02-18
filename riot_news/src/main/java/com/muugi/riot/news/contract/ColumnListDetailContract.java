@@ -1,10 +1,9 @@
 package com.muugi.riot.news.contract;
 
-import com.xyz.basiclib.mvp.BasePresenter;
-import com.xyz.basiclib.mvp.BaseView;
-
 import com.muugi.riot.news.bean.HotMatch;
 import com.muugi.riot.news.bean.News;
+import com.muugi.riot.news.presenter.BaseNewsPresenter;
+import com.xyz.basiclib.mvp.BaseView;
 
 import java.util.List;
 
@@ -25,10 +24,10 @@ public interface ColumnListDetailContract {
         void showMoreHotMatchList(List<HotMatch> hotMatches);
     }
 
-    abstract class Presenter extends BasePresenter<View> {
-        public abstract void refreshNews(String cid);
-
-        public abstract void loadMoreNews(String cid);
+    abstract class Presenter extends BaseNewsPresenter<View> {
+        public Presenter(String cid) {
+            super(cid);
+        }
 
         public abstract void refreshHotMatch(String cid);
 

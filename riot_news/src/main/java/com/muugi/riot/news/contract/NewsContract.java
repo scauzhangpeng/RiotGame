@@ -2,7 +2,7 @@ package com.muugi.riot.news.contract;
 
 
 import com.muugi.riot.news.bean.News;
-import com.xyz.basiclib.mvp.BasePresenter;
+import com.muugi.riot.news.presenter.BaseNewsPresenter;
 import com.xyz.riotcommon.SimpleRefreshView;
 
 import java.util.List;
@@ -17,10 +17,11 @@ public interface NewsContract {
         void showBannerNewsList(List<News> bannerNews);
     }
 
-    abstract class Presenter extends BasePresenter<View> {
-        public abstract void refreshNews();
+    abstract class Presenter extends BaseNewsPresenter<View> {
 
-        public abstract void loadMoreNews();
+        public Presenter(String cid) {
+            super(cid);
+        }
 
         public abstract void refreshBannerNews();
     }

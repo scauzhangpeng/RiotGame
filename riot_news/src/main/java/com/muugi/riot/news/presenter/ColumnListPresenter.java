@@ -22,6 +22,10 @@ public class ColumnListPresenter extends ColumnContract.Presenter {
 
     private int mCurrentPage = 0;
 
+    public ColumnListPresenter(String cid) {
+        super(cid);
+    }
+
     @Override
     public void refreshNews() {
         mCurrentPage = 0;

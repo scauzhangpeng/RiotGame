@@ -23,14 +23,12 @@ import com.muugi.riot.news.bean.NewVersionListBean;
 import com.muugi.riot.news.contract.NewVersionContract;
 import com.muugi.riot.news.presenter.NewVersionPresenter;
 import com.muugi.riot.news.utils.FormatUtil;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.xyz.basiclib.recyclerview.AbstractImageLoader;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.BasicViewHolder;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.riotcommon.ImageLoadUtil;
 import com.xyz.riotcommon.RouterConstants;
-import com.xyz.riotcommon.SimpleRefreshFragment;
 import com.xyz.riotcommon.webview.WebViewActivity;
 
 import java.util.ArrayList;
@@ -41,7 +39,7 @@ import java.util.List;
  * Created by ZP on 2018/1/24.
  */
 @Route(path = RouterConstants.NEWS_VERSION)
-public class NewVersionFragment extends SimpleRefreshFragment<NewVersionListBean, NewVersionContract.View, NewVersionContract.Presenter> implements NewVersionContract.View {
+public class NewVersionFragment extends BaseNewsFragment<NewVersionListBean, NewVersionContract.View, NewVersionContract.Presenter> implements NewVersionContract.View {
 
     /**
      * 新版本英雄
@@ -131,13 +129,7 @@ public class NewVersionFragment extends SimpleRefreshFragment<NewVersionListBean
 
     @Override
     protected NewVersionContract.Presenter initPresenter() {
-        return new NewVersionPresenter();
-    }
-
-    @Override
-    protected void requestData() {
-        super.requestData();
-        mSmartRefreshLayout.autoRefresh();
+        return new NewVersionPresenter("367");
     }
 
     @Override
@@ -268,17 +260,6 @@ public class NewVersionFragment extends SimpleRefreshFragment<NewVersionListBean
 
             }
         };
-    }
-
-    @Override
-    public void onRefresh(RefreshLayout refreshlayout) {
-        super.onRefresh(refreshlayout);
-        mPresenter.requestNewVersionNews();
-    }
-
-    @Override
-    public void onLoadmore(RefreshLayout refreshlayout) {
-        mPresenter.loadMoreNewVersionNews();
     }
 
     @Override

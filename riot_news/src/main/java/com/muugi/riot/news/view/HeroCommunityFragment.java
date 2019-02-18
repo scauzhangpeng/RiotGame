@@ -325,7 +325,7 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
 
     @Override
     protected HeroCommunityContract.Presenter initPresenter() {
-        return new HeroCommunityPresenter();
+        return new HeroCommunityPresenter("");
     }
 
     @Override

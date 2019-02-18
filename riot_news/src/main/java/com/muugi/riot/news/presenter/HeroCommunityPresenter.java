@@ -24,6 +24,11 @@ import retrofit2.Response;
 
 public class HeroCommunityPresenter extends HeroCommunityContract.Presenter {
     private int mCurrentPage = 0;
+
+    public HeroCommunityPresenter(String cid) {
+        super(cid);
+    }
+
     @Override
     public void refreshNews() {
         mCurrentPage = 0;

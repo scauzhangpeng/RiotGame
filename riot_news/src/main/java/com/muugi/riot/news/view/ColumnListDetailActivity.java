@@ -99,7 +99,7 @@ public class ColumnListDetailActivity extends CommonActivity<ColumnListDetailCon
 
     @Override
     protected ColumnListDetailContract.Presenter initPresenter() {
-        return new ColumnListDetailPresenter();
+        return new ColumnListDetailPresenter(cid);
     }
 
     @Override
@@ -205,7 +205,7 @@ public class ColumnListDetailActivity extends CommonActivity<ColumnListDetailCon
         if (isVideo) {
             mPresenter.refreshHotMatch(cid);
         } else {
-            mPresenter.refreshNews(cid);
+            mPresenter.refreshNews();
         }
     }
 
@@ -214,7 +214,7 @@ public class ColumnListDetailActivity extends CommonActivity<ColumnListDetailCon
         if (isVideo) {
             mPresenter.loadMoreHotMatch(cid);
         } else {
-            mPresenter.loadMoreNews(cid);
+            mPresenter.loadMoreNews();
         }
     }
 

@@ -244,7 +244,7 @@ public class MatchFragment extends CommonFragment<MatchContract.View, MatchContr
 
     @Override
     protected MatchContract.Presenter initPresenter() {
-        return new MatchPresenter();
+        return new MatchPresenter("73");
     }
 
     @Override
@@ -257,7 +257,7 @@ public class MatchFragment extends CommonFragment<MatchContract.View, MatchContr
     @Override
     public void onRefresh(RefreshLayout refreshlayout) {
         mPresenter.gameCenterData();
-        mPresenter.getNews();
+        mPresenter.refreshNews();
     }
 
     @Override

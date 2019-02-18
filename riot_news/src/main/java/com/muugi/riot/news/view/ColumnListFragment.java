@@ -1,9 +1,7 @@
 package com.muugi.riot.news.view;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.muugi.riot.news.R;
@@ -11,13 +9,11 @@ import com.muugi.riot.news.adapter.ColumnListAdapter;
 import com.muugi.riot.news.bean.SpecialColumnListBean;
 import com.muugi.riot.news.contract.ColumnContract;
 import com.muugi.riot.news.presenter.ColumnListPresenter;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.riotcommon.RouterConstants;
-import com.xyz.riotcommon.SimpleRefreshFragment;
 
 /**
  * Created by ZP on 2018/1/24.
@@ -26,13 +22,7 @@ import com.xyz.riotcommon.SimpleRefreshFragment;
  * </p>
  */
 @Route(path = RouterConstants.NEWS_COLUMN_LIST)
-public class ColumnListFragment extends SimpleRefreshFragment<SpecialColumnListBean, ColumnContract.View, ColumnContract.Presenter> implements ColumnContract.View, OnRefreshListener, OnLoadmoreListener {
-
-
-    @Override
-    protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        super.initViewsAndEvents(inflater, container, savedInstanceState);
-    }
+public class ColumnListFragment extends BaseNewsFragment<SpecialColumnListBean, ColumnContract.View, ColumnContract.Presenter> implements ColumnContract.View, OnRefreshListener, OnLoadmoreListener {
 
     @Override
     protected BasicAdapter<SpecialColumnListBean> getAdapter() {
@@ -59,23 +49,7 @@ public class ColumnListFragment extends SimpleRefreshFragment<SpecialColumnListB
 
     @Override
     protected ColumnContract.Presenter initPresenter() {
-        return new ColumnListPresenter();
-    }
-
-    @Override
-    public void onRefresh(RefreshLayout refreshlayout) {
-        mPresenter.refreshNews();
-    }
-
-    @Override
-    public void onLoadmore(RefreshLayout refreshlayout) {
-        mPresenter.loadMoreNews();
-    }
-
-    @Override
-    protected void requestData() {
-        super.requestData();
-        mSmartRefreshLayout.autoRefresh();
+        return new ColumnListPresenter("");
     }
 
     @Override

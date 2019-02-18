@@ -2,7 +2,7 @@ package com.muugi.riot.news.contract;
 
 import com.muugi.riot.news.bean.NewVersionCardItem;
 import com.muugi.riot.news.bean.NewVersionListBean;
-import com.xyz.basiclib.mvp.BasePresenter;
+import com.muugi.riot.news.presenter.BaseNewsPresenter;
 import com.xyz.riotcommon.SimpleRefreshView;
 
 
@@ -21,10 +21,11 @@ public interface NewVersionContract {
         void updateCardItem(int position, NewVersionListBean bean);
     }
 
-    abstract class Presenter extends BasePresenter<View> {
-        public abstract void requestNewVersionNews();
+    abstract class Presenter extends BaseNewsPresenter<View> {
 
-        public abstract void loadMoreNewVersionNews();
+        public Presenter(String cid) {
+            super(cid);
+        }
 
         public abstract void requestNewVersionCard();
     }

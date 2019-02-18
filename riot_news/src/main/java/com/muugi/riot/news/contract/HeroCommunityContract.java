@@ -3,7 +3,7 @@ package com.muugi.riot.news.contract;
 
 import com.muugi.riot.news.bean.CardItem;
 import com.muugi.riot.news.bean.HeroGroupListBean;
-import com.xyz.basiclib.mvp.BasePresenter;
+import com.muugi.riot.news.presenter.BaseNewsPresenter;
 import com.xyz.basiclib.mvp.BaseView;
 
 import java.util.List;
@@ -32,10 +32,11 @@ public interface HeroCommunityContract {
         void updateCardItem(int position, HeroGroupListBean bean);
     }
 
-    abstract class Presenter extends BasePresenter<View> {
-        public abstract void refreshNews();
+    abstract class Presenter extends BaseNewsPresenter<View> {
 
-        public abstract void loadMoreNews();
+        public Presenter(String cid) {
+            super(cid);
+        }
 
         public abstract void refreshCardsData();
     }

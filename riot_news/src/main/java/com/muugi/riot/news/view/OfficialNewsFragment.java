@@ -8,18 +8,16 @@ import com.muugi.riot.news.adapter.HotNewsAdapter;
 import com.muugi.riot.news.bean.News;
 import com.muugi.riot.news.contract.OfficialNewsContract.View;
 import com.muugi.riot.news.presenter.OfficialNewsPresenter;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.riotcommon.RouterConstants;
-import com.xyz.riotcommon.SimpleRefreshFragment;
 import com.xyz.riotcommon.webview.WebViewActivity;
 
 /**
  * Created by ZP on 2018/11/11.
  */
 @Route(path = RouterConstants.NEWS_OFFICIAL)
-public class OfficialNewsFragment extends SimpleRefreshFragment<News, View, OfficialNewsPresenter> implements View {
+public class OfficialNewsFragment extends BaseNewsFragment<News, View, OfficialNewsPresenter> implements View {
 
     private MultipleTypeSupport<News> mMultipleTypeSupport = new MultipleTypeSupport<News>() {
         @Override
@@ -41,19 +39,8 @@ public class OfficialNewsFragment extends SimpleRefreshFragment<News, View, Offi
     }
 
     @Override
-    public void onRefresh(RefreshLayout refreshlayout) {
-        super.onRefresh(refreshlayout);
-        mPresenter.refreshNews();
-    }
-
-    @Override
-    public void onLoadmore(RefreshLayout refreshlayout) {
-        mPresenter.loadMoreNews();
-    }
-
-    @Override
     protected OfficialNewsPresenter initPresenter() {
-        return new OfficialNewsPresenter();
+        return new OfficialNewsPresenter("3");
     }
 
     @Override
@@ -61,11 +48,5 @@ public class OfficialNewsFragment extends SimpleRefreshFragment<News, View, Offi
         Bundle bundle = new Bundle();
         bundle.putString("url", mData.get(position).getArticle_url());
         openActivity(WebViewActivity.class, bundle);
-    }
-
-    @Override
-    protected void requestData() {
-        super.requestData();
-        mSmartRefreshLayout.autoRefresh();
     }
 }
