@@ -1,5 +1,9 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.jakewharton.butterknife'
+if (isNewsLibrary.toBoolean()) {
+    apply plugin: 'com.android.library'
+    apply plugin: 'com.jakewharton.butterknife'
+} else {
+    apply plugin: 'com.android.application'
+}
 
 android {
     compileSdkVersion var.compileSdkVersion
@@ -7,6 +11,9 @@ android {
 
 
     defaultConfig {
+        if (isNewsLibrary.toBoolean()) {
+            applicationId "org.scau.riotnews"
+        }
         minSdkVersion var.minSdkVersion
         targetSdkVersion var.targetSdkVersion
         versionCode 1
@@ -18,6 +25,21 @@ android {
             annotationProcessorOptions {
                 includeCompileClasspath true
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+        sourceSets {
+            main {
+                if (isNewsLibrary.toBoolean()) {
+                    manifest.srcFile 'src/main/AndroidManifest.xml'
+                    java {
+                        exclude 'src/main/debug/AndroidManifest.xml'
+                        exclude 'src/main/debug/com.muugi.riot.news.NewsMainActivity.java'
+                    }
+                } else {
+                    manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+                }
+                java.srcDirs = ['src/main/java', 'src/main/debug']
             }
         }
     }
@@ -34,6 +56,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(':riot_common')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor "com.alibaba:arouter-compiler:$ARouterCompiler"
     annotationProcessor "com.jakewharton:butterknife-compiler:$Butterknife"
 }

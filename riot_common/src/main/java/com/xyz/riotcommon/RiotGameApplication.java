@@ -1,6 +1,5 @@
-package org.scau.riotgame;
+package com.xyz.riotcommon;
 
-import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 

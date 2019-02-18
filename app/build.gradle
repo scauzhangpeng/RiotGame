@@ -90,7 +90,9 @@ dependencies {
 
 
     implementation project(':riot_common')
-    implementation project(':riot_news')
+    if(isNewsLibrary.toBoolean()) {
+        implementation project(':riot_news')
+    }
     implementation project(':riot_discovery')
     implementation project(':CaptureLibrary')
     api lib.Design

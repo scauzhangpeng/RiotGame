@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.muugi.debugtools.helper.ToolsHelper;
 
-import org.scau.riotgame.RiotGameApplication;
+import com.xyz.riotcommon.RiotGameApplication;
 
 /**
  * Created by ZP on 2018/7/11.
