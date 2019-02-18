@@ -3,9 +3,7 @@ package com.muugi.riot.news.contract;
 import com.muugi.riot.news.bean.NewVersionCardItem;
 import com.muugi.riot.news.bean.NewVersionListBean;
 import com.xyz.basiclib.mvp.BasePresenter;
-import com.xyz.basiclib.mvp.BaseView;
-
-import java.util.List;
+import com.xyz.riotcommon.SimpleRefreshView;
 
 
 /**
@@ -14,10 +12,7 @@ import java.util.List;
 
 public interface NewVersionContract {
 
-    interface View extends BaseView {
-        void showNewVersionNews(List<NewVersionListBean> news);
-
-        void showMoreNewVersionNews(int currentPage, List<NewVersionListBean> news);
+    interface View extends SimpleRefreshView<NewVersionListBean> {
 
         void showNewVersionHero(NewVersionCardItem cards);
 

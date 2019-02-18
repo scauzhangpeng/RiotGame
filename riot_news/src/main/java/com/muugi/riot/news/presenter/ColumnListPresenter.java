@@ -63,9 +63,9 @@ public class ColumnListPresenter extends ColumnContract.Presenter {
 
 
                 if (mCurrentPage == 0) {
-                    getView().showColumnList(wrappers);
+                    getView().showListData(wrappers);
                 } else {
-                    getView().showMoreColumnList(mCurrentPage, wrappers);
+                    getView().showMoreListData(mCurrentPage, wrappers);
                 }
                 if ("1".equals(pageColumnList.getHasnext())) {
                     mCurrentPage++;

@@ -35,11 +35,11 @@ public class HotNewsPresenter extends HotNewsContract.Presenter {
                 }
                 if (mCurrentPage == 0) {
                     if (getView() != null) {
-                        getView().showHotNewsList(newsPageResponse.getList());
+                        getView().showListData(newsPageResponse.getList());
                     }
                 } else {
                     if (getView() != null) {
-                        getView().showMoreHotNewsList(mCurrentPage, newsPageResponse.getList());
+                        getView().showMoreListData(mCurrentPage, newsPageResponse.getList());
                     }
                 }
 

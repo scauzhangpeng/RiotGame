@@ -35,9 +35,9 @@ public class NewsPresenter extends NewsContract.Presenter {
                 List<News> list = newsPageResponse.getList();
                 if (list != null && list.size() != 0) {
                     if (mCurrentPage == 0) {
-                        getView().showNewsList(list);
+                        getView().showListData(list);
                     } else {
-                        getView().showMoreNewsList(mCurrentPage, list);
+                        getView().showMoreListData(mCurrentPage, list);
                     }
                     mCurrentPage++;
                 } else {

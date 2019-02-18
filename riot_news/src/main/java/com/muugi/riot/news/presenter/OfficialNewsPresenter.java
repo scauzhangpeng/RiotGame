@@ -35,11 +35,11 @@ public class OfficialNewsPresenter extends OfficialNewsContract.Presenter {
                 }
                 if (mCurrentPage == 0) {
                     if (getView() != null) {
-                        getView().showOfficialNewsList(newsPageResponse.getList());
+                        getView().showListData(newsPageResponse.getList());
                     }
                 } else {
                     if (getView() != null) {
-                        getView().showMoreOfficialNewsList(mCurrentPage, newsPageResponse.getList());
+                        getView().showMoreListData(mCurrentPage, newsPageResponse.getList());
                     }
                 }
 

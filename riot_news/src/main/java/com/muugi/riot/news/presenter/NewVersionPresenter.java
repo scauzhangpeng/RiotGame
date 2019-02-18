@@ -45,9 +45,9 @@ public class NewVersionPresenter extends NewVersionContract.Presenter {
                             beans.add(new NewVersionListBean(news, "news"));
                         }
                         if (mCurrentPage == 0) {
-                            getView().showNewVersionNews(beans);
+                            getView().showListData(beans);
                         } else {
-                            getView().showMoreNewVersionNews(mCurrentPage, beans);
+                            getView().showMoreListData(mCurrentPage, beans);
                         }
                     }
                     if ("True".equals(newsPageResponse.getNext())) {

@@ -58,7 +58,7 @@ public class NewsFragment extends SimpleRefreshFragment<News, NewsContract.View,
     };
 
     @Override
-    public void showNewsList(List<News> news) {
+    public void showListData(List<News> news) {
         mData.clear();
         mData.addAll(news);
         mWrapperAdapter.notifyDataSetChanged();
@@ -66,7 +66,7 @@ public class NewsFragment extends SimpleRefreshFragment<News, NewsContract.View,
     }
 
     @Override
-    public void showMoreNewsList(int currentPage, List<News> news) {
+    public void showMoreListData(int currentPage, List<News> news) {
         mData.addAll(news);
         mWrapperAdapter.notifyDataSetChanged();
         mSmartRefreshLayout.finishLoadmore();

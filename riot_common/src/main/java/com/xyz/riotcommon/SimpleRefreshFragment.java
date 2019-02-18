@@ -20,7 +20,7 @@ import java.util.List;
  * Created by ZP on 2018/2/8.
  */
 
-public abstract class SimpleRefreshFragment<T, V, P extends BasePresenter<V>> extends CommonFragment<V, P> implements OnRefreshListener, OnLoadmoreListener, BasicAdapter.OnItemClickListener {
+public abstract class SimpleRefreshFragment<T, V, P extends BasePresenter<V>> extends CommonFragment<V, P> implements OnRefreshListener, OnLoadmoreListener, BasicAdapter.OnItemClickListener, SimpleRefreshView<T> {
 
     protected RecyclerView mRecyclerView;
     protected SmartRefreshLayout mSmartRefreshLayout;
@@ -72,5 +72,20 @@ public abstract class SimpleRefreshFragment<T, V, P extends BasePresenter<V>> ex
 
     protected RecyclerView getRecyclerView() {
         return mRecyclerView;
+    }
+
+    @Override
+    public void showListData(List<T> data) {
+        mData.clear();
+        mData.addAll(data);
+        mAdapter.notifyDataSetChanged();
+        mSmartRefreshLayout.finishRefresh();
+    }
+
+    @Override
+    public void showMoreListData(int currentPage, List<T> data) {
+        mData.addAll(data);
+        mAdapter.notifyDataSetChanged();
+        mSmartRefreshLayout.finishLoadmore();
     }
 }

@@ -292,18 +292,11 @@ public class NewVersionFragment extends SimpleRefreshFragment<NewVersionListBean
     }
 
     @Override
-    public void showNewVersionNews(List<NewVersionListBean> news) {
+    public void showListData(List<NewVersionListBean> data) {
         mData.clear();
-        mData.addAll(news);
+        mData.addAll(data);
         mAdapter.notifyDataSetChanged();
         mPresenter.requestNewVersionCard();
-    }
-
-    @Override
-    public void showMoreNewVersionNews(int currentPage, List<NewVersionListBean> news) {
-        mData.addAll(news);
-        mAdapter.notifyDataSetChanged();
-        mSmartRefreshLayout.finishLoadmore();
     }
 
     @Override

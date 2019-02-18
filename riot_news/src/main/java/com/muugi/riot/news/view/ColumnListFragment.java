@@ -19,8 +19,6 @@ import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.riotcommon.RouterConstants;
 import com.xyz.riotcommon.SimpleRefreshFragment;
 
-import java.util.List;
-
 /**
  * Created by ZP on 2018/1/24.
  * <p>
@@ -30,21 +28,6 @@ import java.util.List;
 @Route(path = RouterConstants.NEWS_COLUMN_LIST)
 public class ColumnListFragment extends SimpleRefreshFragment<SpecialColumnListBean, ColumnContract.View, ColumnContract.Presenter> implements ColumnContract.View, OnRefreshListener, OnLoadmoreListener {
 
-
-    @Override
-    public void showColumnList(List<SpecialColumnListBean> news) {
-        mData.clear();
-        mData.addAll(news);
-        mAdapter.notifyDataSetChanged();
-        mSmartRefreshLayout.finishRefresh();
-    }
-
-    @Override
-    public void showMoreColumnList(int currentPage, List<SpecialColumnListBean> news) {
-        mData.addAll(news);
-        mAdapter.notifyDataSetChanged();
-        mSmartRefreshLayout.finishLoadmore();
-    }
 
     @Override
     protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

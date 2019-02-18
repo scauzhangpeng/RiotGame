@@ -16,8 +16,6 @@ import com.xyz.riotcommon.RouterConstants;
 import com.xyz.riotcommon.SimpleRefreshFragment;
 import com.xyz.riotcommon.webview.WebViewActivity;
 
-import java.util.List;
-
 /**
  * Created by ZP on 2018/11/10.
  */
@@ -72,20 +70,5 @@ public class HotNewsFragment extends SimpleRefreshFragment<News, HotNewsContract
     protected void requestData() {
         super.requestData();
         mSmartRefreshLayout.autoRefresh();
-    }
-
-    @Override
-    public void showHotNewsList(List<News> news) {
-        mData.clear();
-        mData.addAll(news);
-        mAdapter.notifyDataSetChanged();
-        mSmartRefreshLayout.finishRefresh();
-    }
-
-    @Override
-    public void showMoreHotNewsList(int currentPage, List<News> news) {
-        mData.addAll(news);
-        mAdapter.notifyDataSetChanged();
-        mSmartRefreshLayout.finishLoadmore();
     }
 }
