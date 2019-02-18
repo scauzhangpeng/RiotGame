@@ -1,6 +1,5 @@
 package com.muugi.riot.news.view;
 
-import android.os.Bundle;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -12,7 +11,6 @@ import com.muugi.riot.news.presenter.HotNewsPresenter;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.riotcommon.RouterConstants;
-import com.xyz.riotcommon.webview.WebViewActivity;
 
 /**
  * Created by ZP on 2018/11/10.
@@ -48,8 +46,6 @@ public class HotNewsFragment extends BaseNewsFragment<News, HotNewsContract.View
 
     @Override
     public void onItemClick(View view, int position) {
-        Bundle bundle = new Bundle();
-        bundle.putString("url", mData.get(position).getArticle_url());
-        openActivity(WebViewActivity.class, bundle);
+        openWebView(mData.get(position).getArticle_url());
     }
 }

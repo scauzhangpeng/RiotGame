@@ -29,7 +29,6 @@ import com.xyz.basiclib.recyclerview.BasicViewHolder;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.riotcommon.ImageLoadUtil;
 import com.xyz.riotcommon.RouterConstants;
-import com.xyz.riotcommon.webview.WebViewActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -266,9 +265,7 @@ public class NewVersionFragment extends BaseNewsFragment<NewVersionListBean, New
     public void onItemClick(View view, int position) {
         NewVersionListBean newVersionListBean = mData.get(position);
         if ("news".equals(newVersionListBean.getType())) {
-            Bundle bundle = new Bundle();
-            bundle.putString("url", newVersionListBean.getNews().getArticle_url());
-            openActivity(WebViewActivity.class, bundle);
+            openWebView(newVersionListBean.getNews().getArticle_url());
         }
     }
 

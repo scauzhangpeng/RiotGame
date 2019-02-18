@@ -1,7 +1,6 @@
 package com.muugi.riot.news.view;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,7 +20,6 @@ import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.basiclib.recyclerview.WrapperAdapter;
 import com.xyz.riotcommon.ImageLoadUtil;
 import com.xyz.riotcommon.RouterConstants;
-import com.xyz.riotcommon.webview.WebViewActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
@@ -94,9 +92,7 @@ public class NewsFragment extends BaseNewsFragment<News, NewsContract.View, News
 
     @Override
     public void onItemClick(View view, int position) {
-        Intent intent = new Intent(getActivity(), WebViewActivity.class);
-        intent.putExtra("url", mData.get(position).getArticle_url());
-        startActivity(intent);
+        openWebView(mData.get(position).getArticle_url());
     }
 
     @Override
