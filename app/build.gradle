@@ -86,8 +86,15 @@ dependencies {
     if(isNewsLibrary.toBoolean()) {
         implementation project(':riot_news')
     }
-    implementation project(':riot_discovery')
-    implementation project(':CaptureLibrary')
+    if (isCaptureLibrary.toBoolean()) {
+        implementation project(':CaptureLibrary')
+    }
+    if (isDiscoveryLibrary.toBoolean()) {
+        implementation project(':riot_discovery')
+    }
+    if (isAlbumLibrary.toBoolean()) {
+        implementation project(':Album')
+    }
     api lib.Design
     debugImplementation project(':DebugTools')
     annotationProcessor "com.jakewharton:butterknife-compiler:$Butterknife"

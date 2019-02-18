@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.muugi.riot.news.R;
 import com.muugi.riot.news.R2;
 import com.muugi.riot.news.adapter.WholeVideoAdapter;
@@ -31,6 +32,7 @@ import com.xyz.basiclib.recyclerview.BasicViewHolder;
 import com.xyz.basiclib.util.ScreenUtil;
 import com.xyz.riotcommon.CommonFragment;
 import com.xyz.riotcommon.ImageLoadUtil;
+import com.xyz.riotcommon.RouterConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +43,7 @@ import butterknife.BindView;
 /**
  * Created by ZP on 2018/1/24.
  */
-
+@Route(path = RouterConstants.NEWS_VIDEO)
 public class VideoFragment extends CommonFragment<VideoContract.View, VideoContract.Presenter> implements VideoContract.View, OnRefreshListener, OnLoadmoreListener {
 
     @BindView(R2.id.rv_hot_author)

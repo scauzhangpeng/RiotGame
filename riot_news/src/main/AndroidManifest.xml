@@ -3,7 +3,6 @@
     package="com.muugi.riot.news">
 
     <application
-        android:name="com.xyz.riotcommon.RiotGameApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

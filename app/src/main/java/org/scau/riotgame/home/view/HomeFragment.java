@@ -17,19 +17,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.muugi.riot.news.view.NewsFragment;
-import com.muugi.riot.news.view.ColumnListFragment;
-import com.muugi.riot.news.view.HeroCommunityFragment;
-import com.muugi.riot.news.view.HotNewsFragment;
-import com.muugi.riot.news.view.NewVersionFragment;
-import com.muugi.riot.news.view.OfficialNewsFragment;
-import com.muugi.riot.news.view.VideoFragment;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.muugi.riot.discovery.hero.adapter.HeroPageAdapter;
 import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.CommonFragment;
+import com.xyz.riotcommon.RouterConstants;
 
 import org.scau.riotgame.R;
-
-import com.muugi.riot.discovery.hero.adapter.HeroPageAdapter;
 
 import butterknife.BindView;
 
@@ -127,13 +121,13 @@ public class HomeFragment extends CommonFragment implements RadioGroup.OnChecked
         mRgMainTab.setOnCheckedChangeListener(this);
 
         mPages = new SparseArray<>();
-        mPages.put(PAGE_LAST, new NewsFragment());
-        mPages.put(PAGE_HOT, new HotNewsFragment());
-        mPages.put(PAGE_COLUMN, new ColumnListFragment());
-        mPages.put(PAGE_VIDEO, new VideoFragment());
-        mPages.put(PAGE_NEW_VERSION, new NewVersionFragment());
-        mPages.put(PAGE_OFFICE, new OfficialNewsFragment());
-        mPages.put(PAGE_HERO, new HeroCommunityFragment());
+        mPages.put(PAGE_LAST, (Fragment) ARouter.getInstance().build(RouterConstants.NEWS_RECOMMEND).navigation());
+        mPages.put(PAGE_HOT, (Fragment) ARouter.getInstance().build(RouterConstants.NEWS_HOT).navigation());
+        mPages.put(PAGE_COLUMN, (Fragment) ARouter.getInstance().build(RouterConstants.NEWS_COLUMN_LIST).navigation());
+        mPages.put(PAGE_VIDEO, (Fragment) ARouter.getInstance().build(RouterConstants.NEWS_VIDEO).navigation());
+        mPages.put(PAGE_NEW_VERSION, (Fragment) ARouter.getInstance().build(RouterConstants.NEWS_VERSION).navigation());
+        mPages.put(PAGE_OFFICE, (Fragment) ARouter.getInstance().build(RouterConstants.NEWS_OFFICIAL).navigation());
+        mPages.put(PAGE_HERO, (Fragment) ARouter.getInstance().build(RouterConstants.NEWS_HERO_COMMUNITY).navigation());
         mAdapter = new HeroPageAdapter(getActivity().getSupportFragmentManager(), mPages);
         mVpMain.setAdapter(mAdapter);
         mVpMain.addOnPageChangeListener(mOnPageChangeListener);

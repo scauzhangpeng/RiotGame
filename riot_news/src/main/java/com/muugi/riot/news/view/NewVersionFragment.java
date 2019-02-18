@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.muugi.riot.news.R;
@@ -28,6 +29,7 @@ import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.BasicViewHolder;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.riotcommon.ImageLoadUtil;
+import com.xyz.riotcommon.RouterConstants;
 import com.xyz.riotcommon.SimpleRefreshFragment;
 import com.xyz.riotcommon.webview.WebViewActivity;
 
@@ -38,7 +40,7 @@ import java.util.List;
 /**
  * Created by ZP on 2018/1/24.
  */
-
+@Route(path = RouterConstants.NEWS_VERSION)
 public class NewVersionFragment extends SimpleRefreshFragment<NewVersionListBean, NewVersionContract.View, NewVersionContract.Presenter> implements NewVersionContract.View {
 
     /**

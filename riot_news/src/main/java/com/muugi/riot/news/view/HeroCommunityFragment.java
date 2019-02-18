@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.muugi.riot.news.R;
 import com.muugi.riot.news.R2;
 import com.muugi.riot.news.bean.Card;
@@ -28,6 +29,7 @@ import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.basiclib.util.DateUtil;
 import com.xyz.riotcommon.CommonFragment;
 import com.xyz.riotcommon.ImageLoadUtil;
+import com.xyz.riotcommon.RouterConstants;
 import com.xyz.riotcommon.webview.WebViewActivity;
 
 import java.util.ArrayList;
@@ -44,7 +46,7 @@ import static com.xyz.basiclib.util.DateUtil.DATE_FORMAT_SEC;
 /**
  * Created by ZP on 2018/1/24.
  */
-
+@Route(path = RouterConstants.NEWS_HERO_COMMUNITY)
 public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.View, HeroCommunityContract.Presenter> implements HeroCommunityContract.View, OnRefreshListener, OnLoadmoreListener {
 
 

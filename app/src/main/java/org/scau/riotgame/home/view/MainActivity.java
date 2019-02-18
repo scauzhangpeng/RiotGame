@@ -17,11 +17,12 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.muugi.riot.discovery.main.view.DiscoveryFragment;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.basiclib.util.SPUtil;
 import com.xyz.riotcommon.CommonActivity;
 import com.xyz.riotcommon.ImageLoadUtil;
+import com.xyz.riotcommon.RouterConstants;
 
 import org.scau.riotgame.R;
 import org.scau.riotgame.act.ActCenterActivity;
@@ -165,7 +166,7 @@ public class MainActivity extends CommonActivity implements RadioGroup.OnChecked
                 break;
             case 3:
                 if (mDiscoveryFragment == null) {
-                    mDiscoveryFragment = new DiscoveryFragment();
+                    mDiscoveryFragment = (Fragment) ARouter.getInstance().build(RouterConstants.DISCOVERY_MAIN).navigation();
                     transaction.add(R.id.tabcontent, mDiscoveryFragment);
                 } else {
                     transaction.show(mDiscoveryFragment);

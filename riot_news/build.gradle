@@ -11,7 +11,7 @@ android {
 
 
     defaultConfig {
-        if (isNewsLibrary.toBoolean()) {
+        if (!isNewsLibrary.toBoolean()) {
             applicationId "org.scau.riotnews"
         }
         minSdkVersion var.minSdkVersion

@@ -75,15 +75,16 @@ public class LoginActivity extends CommonActivity {
     @OnClick(R.id.ll_login)
     public void goLogin(View view) {
 
-        if (mTencent == null) {
-            mTencent = Tencent.createInstance(app_id, this);
-        }
-        if (!mTencent.isSessionValid()) {
-            mTencent.login(this, "all", mLoginListener);
-        } else {
-            //mTencent.logout(this);
-            updateUserInfo();
-        }
+//        if (mTencent == null) {
+//            mTencent = Tencent.createInstance(app_id, this);
+//        }
+//        if (!mTencent.isSessionValid()) {
+//            mTencent.login(this, "all", mLoginListener);
+//        } else {
+//            //mTencent.logout(this);
+//            updateUserInfo();
+//        }
+        openActivity(MainActivity.class);
 
     }
 

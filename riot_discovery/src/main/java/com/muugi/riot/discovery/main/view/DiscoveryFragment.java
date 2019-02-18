@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.muugi.riot.discovery.R;
 import com.muugi.riot.discovery.R2;
@@ -48,7 +49,7 @@ import butterknife.OnClick;
  * 发现界面
  * </p>
  */
-
+@Route(path = RouterConstants.DISCOVERY_MAIN)
 public class DiscoveryFragment extends CommonFragment<DiscoveryContract.View, DiscoveryContract.Presenter> implements DiscoveryContract.View {
 
     private static final String TAG = "DiscoveryFragment";

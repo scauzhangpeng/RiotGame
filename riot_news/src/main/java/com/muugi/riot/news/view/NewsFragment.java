@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.muugi.riot.news.R;
 import com.muugi.riot.news.adapter.HotNewsAdapter;
 import com.muugi.riot.news.bean.News;
@@ -19,6 +20,7 @@ import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.basiclib.recyclerview.WrapperAdapter;
 import com.xyz.riotcommon.ImageLoadUtil;
+import com.xyz.riotcommon.RouterConstants;
 import com.xyz.riotcommon.SimpleRefreshFragment;
 import com.xyz.riotcommon.webview.WebViewActivity;
 import com.youth.banner.Banner;
@@ -30,7 +32,7 @@ import java.util.List;
 /**
  * Created by ZP on 2017/7/27.
  */
-
+@Route(path = RouterConstants.NEWS_RECOMMEND)
 public class NewsFragment extends SimpleRefreshFragment<News, NewsContract.View, NewsContract.Presenter> implements NewsContract.View {
 
     private Banner mBanner;

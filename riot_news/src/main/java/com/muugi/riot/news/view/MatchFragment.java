@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.muugi.riot.news.R;
 import com.muugi.riot.news.R2;
 import com.muugi.riot.news.bean.Feature;
@@ -29,6 +30,7 @@ import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.basiclib.recyclerview.WrapperAdapter;
 import com.xyz.riotcommon.CommonFragment;
 import com.xyz.riotcommon.ImageLoadUtil;
+import com.xyz.riotcommon.RouterConstants;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
@@ -43,7 +45,7 @@ import butterknife.BindView;
  * 赛事
  * </p>
  */
-
+@Route(path = RouterConstants.NEWS_MATCH)
 public class MatchFragment extends CommonFragment<MatchContract.View, MatchContract.Presenter> implements MatchContract.View, OnRefreshListener, OnLoadmoreListener {
 
 
