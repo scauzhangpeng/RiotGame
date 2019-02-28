@@ -6,6 +6,7 @@ import com.muugi.riot.news.bean.ColumnList;
 import com.muugi.riot.news.bean.PageColumnList;
 import com.muugi.riot.news.bean.SpecialColumnListBean;
 import com.muugi.riot.news.contract.ColumnContract;
+import com.muugi.riot.news.model.NewsRepository;
 import com.muugi.riot.news.model.RequestManager;
 import com.xyz.riotcommon.net.HttpCallback;
 
@@ -20,16 +21,9 @@ import retrofit2.Response;
 
 public class ColumnListPresenter extends ColumnContract.Presenter {
 
-    private int mCurrentPage = 0;
 
-    public ColumnListPresenter(String cid) {
-        super(cid);
-    }
-
-    @Override
-    public void refreshNews() {
-        mCurrentPage = 0;
-        loadMoreNews();
+    public ColumnListPresenter(String cid, NewsRepository mNewsRepository) {
+        super(cid, mNewsRepository);
     }
 
     @Override
@@ -74,7 +68,7 @@ public class ColumnListPresenter extends ColumnContract.Presenter {
                 if ("1".equals(pageColumnList.getHasnext())) {
                     mCurrentPage++;
                 } else {
-
+                    getView().setEnableLoadMore(false);
                 }
             }
 

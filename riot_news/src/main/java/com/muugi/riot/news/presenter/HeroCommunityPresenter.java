@@ -7,6 +7,7 @@ import com.muugi.riot.news.bean.CardsResponse;
 import com.muugi.riot.news.bean.HeroGroupListBean;
 import com.muugi.riot.news.bean.News;
 import com.muugi.riot.news.contract.HeroCommunityContract;
+import com.muugi.riot.news.model.NewsRepository;
 import com.muugi.riot.news.model.RequestManager;
 import com.xyz.riotcommon.bean.PageResponse;
 import com.xyz.riotcommon.net.HttpCallback;
@@ -23,10 +24,9 @@ import retrofit2.Response;
  */
 
 public class HeroCommunityPresenter extends HeroCommunityContract.Presenter {
-    private int mCurrentPage = 0;
 
-    public HeroCommunityPresenter(String cid) {
-        super(cid);
+    public HeroCommunityPresenter(String cid, NewsRepository mNewsRepository) {
+        super(cid, mNewsRepository);
     }
 
     @Override
@@ -48,9 +48,9 @@ public class HeroCommunityPresenter extends HeroCommunityContract.Presenter {
                         heroGroupListBeans.add(bean);
                     }
                     if (mCurrentPage == 0) {
-                        getView().showNewsList(heroGroupListBeans);
+                        getView().showListData(heroGroupListBeans);
                     } else {
-                        getView().showMoreNewsList(mCurrentPage, heroGroupListBeans);
+                        getView().showMoreListData(mCurrentPage, heroGroupListBeans);
                     }
                     mCurrentPage++;
                 } else {
@@ -112,6 +112,13 @@ public class HeroCommunityPresenter extends HeroCommunityContract.Presenter {
                                 getView().updateCardItem(Integer.valueOf(list.get(i).getPosition()) - 1, bean);
                                 CardItem playerShow = list.get(i);
                                 getView().showPlayerShowCard(playerShow);
+                            }
+
+                            if ("WeekFreeHeroCard".equals(list.get(i).getNewstypeid())) {
+                                HeroGroupListBean bean = new HeroGroupListBean(null, "WeekFreeHeroCard");
+                                getView().updateCardItem(Integer.valueOf(list.get(i).getPosition()) - 1, bean);
+                                CardItem weekFreeHero = list.get(i);
+                                getView().showWeekFreeHero(weekFreeHero);
                             }
 
                         }

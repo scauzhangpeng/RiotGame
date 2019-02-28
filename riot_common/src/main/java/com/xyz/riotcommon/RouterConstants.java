@@ -12,7 +12,7 @@ public class RouterConstants {
 
     public static final String NEWS_RECOMMEND = "/news/recommend";
     public static final String NEWS_HOT = "/news/hot";
-    public static final String NEWS_MATCH = "/news/hot";
+    public static final String NEWS_MATCH = "/news/match";
     public static final String NEWS_VERSION = "/news/version";
     public static final String NEWS_OFFICIAL = "/news/official";
     public static final String NEWS_VIDEO = "/news/video";

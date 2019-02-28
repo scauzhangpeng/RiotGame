@@ -1,12 +1,10 @@
 package com.muugi.riot.news.contract;
 
 
+import com.muugi.riot.news.base.BaseNewsContract;
 import com.muugi.riot.news.bean.CardItem;
 import com.muugi.riot.news.bean.HeroGroupListBean;
-import com.muugi.riot.news.presenter.BaseNewsPresenter;
-import com.xyz.basiclib.mvp.BaseView;
-
-import java.util.List;
+import com.muugi.riot.news.model.NewsRepository;
 
 
 /**
@@ -16,10 +14,7 @@ import java.util.List;
 public interface HeroCommunityContract {
 
 
-    interface View extends BaseView {
-        void showNewsList(List<HeroGroupListBean> news);
-
-        void showMoreNewsList(int currentPage, List<HeroGroupListBean> news);
+    interface View extends BaseNewsContract.View<HeroGroupListBean> {
 
         void showBattleVideoCard(CardItem battleVideoCard);
 
@@ -29,13 +24,14 @@ public interface HeroCommunityContract {
 
         void showPlayerShowCard(CardItem playerShow);
 
+        void showWeekFreeHero(CardItem weekFreeHero);
+
         void updateCardItem(int position, HeroGroupListBean bean);
     }
 
-    abstract class Presenter extends BaseNewsPresenter<View> {
-
-        public Presenter(String cid) {
-            super(cid);
+    abstract class Presenter extends BaseNewsContract.Presenter<View> {
+        public Presenter(String cid, NewsRepository mNewsRepository) {
+            super(cid, mNewsRepository);
         }
 
         public abstract void refreshCardsData();

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="132dp"
+    android:layout_height="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ImageView
+        android:scaleType="centerCrop"
+        android:id="@+id/iv_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_hero_icon"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="25dp"
+        app:civ_border_color="@color/colorMainGold"
+        app:civ_border_width="1dp"
+        android:layout_height="25dp" />
+
+    <TextView
+        android:id="@+id/tv_hero_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/iv_hero_icon"
+        android:textColor="@color/colorMainText"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        tools:text="寒冰射手 艾希"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/tv_hero_nickname">
+        <TextView
+            android:id="@+id/tv_hero_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            tools:text="55%"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorSubText"
+            android:textSize="14sp"
+            android:text="国服胜率"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

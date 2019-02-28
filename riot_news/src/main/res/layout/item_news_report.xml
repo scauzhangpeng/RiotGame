@@ -23,6 +23,8 @@
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/iv_article"
         android:includeFontPadding="false"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:textColor="#121212"
         android:textSize="16.0sp"/>
 

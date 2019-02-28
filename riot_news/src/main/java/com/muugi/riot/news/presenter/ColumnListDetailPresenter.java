@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import com.muugi.riot.news.bean.HotMatch;
 import com.muugi.riot.news.bean.News;
 import com.muugi.riot.news.contract.ColumnListDetailContract;
+import com.muugi.riot.news.model.NewsRepository;
 import com.muugi.riot.news.model.RequestManager;
 import com.xyz.riotcommon.bean.PageResponse;
 import com.xyz.riotcommon.net.HttpCallback;
@@ -18,19 +19,16 @@ public class ColumnListDetailPresenter extends ColumnListDetailContract.Presente
 
     private int mCurrentPage = 0;
 
-    public ColumnListDetailPresenter(String cid) {
-        super(cid);
-    }
 
     @Override
-    public void refreshNews() {
+    public void refreshNews(String cid) {
         mCurrentPage = 0;
         getView().setEnableLoadMore(true);
-        loadMoreNews();
+        loadMoreNews(cid);
     }
 
     @Override
-    public void loadMoreNews() {
+    public void loadMoreNews(String cid) {
         RequestManager.getInstance().getColumnListNews(cid, mCurrentPage, new HttpCallback<PageResponse<News>>() {
             @Override
             public void doOnSuccess(@NonNull PageResponse<News> newsPageResponse, Response<PageResponse<News>> response) {

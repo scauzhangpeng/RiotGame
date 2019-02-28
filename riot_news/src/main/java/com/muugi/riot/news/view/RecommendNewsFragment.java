@@ -11,9 +11,11 @@ import android.widget.ImageView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.muugi.riot.news.R;
 import com.muugi.riot.news.adapter.HotNewsAdapter;
+import com.muugi.riot.news.base.BaseNewsFragment;
 import com.muugi.riot.news.bean.News;
-import com.muugi.riot.news.contract.NewsContract;
-import com.muugi.riot.news.presenter.NewsPresenter;
+import com.muugi.riot.news.contract.RecommendNewsContract;
+import com.muugi.riot.news.model.Injection;
+import com.muugi.riot.news.presenter.RecommendNewsPresenter;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
@@ -27,10 +29,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 资讯 - 最新.
+ * 顶部一个Banner，采用{@link WrapperAdapter} 进行对原来{@link android.widget.Adapter} 进行包装.
  * Created by ZP on 2017/7/27.
  */
 @Route(path = RouterConstants.NEWS_RECOMMEND)
-public class NewsFragment extends BaseNewsFragment<News, NewsContract.View, NewsContract.Presenter> implements NewsContract.View {
+public class RecommendNewsFragment extends BaseNewsFragment<News, RecommendNewsContract.View, RecommendNewsContract.Presenter> implements RecommendNewsContract.View {
 
     private Banner mBanner;
     private List<String> images;
@@ -121,8 +125,8 @@ public class NewsFragment extends BaseNewsFragment<News, NewsContract.View, News
     }
 
     @Override
-    protected NewsContract.Presenter initPresenter() {
-        return new NewsPresenter("12");
+    protected RecommendNewsContract.Presenter initPresenter() {
+        return new RecommendNewsPresenter("12", Injection.provideNewsRepository());
     }
 
     private View initHeaderBanner(LayoutInflater inflater, ViewGroup container) {

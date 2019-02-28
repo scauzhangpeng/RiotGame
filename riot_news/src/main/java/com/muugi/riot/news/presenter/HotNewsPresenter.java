@@ -1,65 +1,53 @@
 package com.muugi.riot.news.presenter;
 
-import android.support.annotation.NonNull;
-
 import com.muugi.riot.news.bean.News;
 import com.muugi.riot.news.contract.HotNewsContract;
-import com.muugi.riot.news.model.RequestManager;
+import com.muugi.riot.news.model.NewsDataSource;
+import com.muugi.riot.news.model.NewsRepository;
 import com.xyz.riotcommon.bean.PageResponse;
-import com.xyz.riotcommon.net.HttpCallback;
 
-import retrofit2.Response;
+import java.util.List;
 
 /**
  * Created by ZP on 2018/11/10.
  */
 public class HotNewsPresenter extends HotNewsContract.Presenter {
 
-    private int mCurrentPage = 0;
-
-    public HotNewsPresenter(String cid) {
-        super(cid);
-    }
-
-    @Override
-    public void refreshNews() {
-        mCurrentPage = 0;
-        loadMoreNews();
+    public HotNewsPresenter(String cid, NewsRepository newsRepository) {
+        super(cid, newsRepository);
     }
 
     @Override
     public void loadMoreNews() {
-        RequestManager.getInstance().getHotNews(cid, mCurrentPage, new HttpCallback<PageResponse<News>>() {
+        mNewsRepository.loadNewsData(cid, mCurrentPage, new NewsDataSource.LoadNewsCallback() {
             @Override
-            public void doOnSuccess(@NonNull PageResponse<News> newsPageResponse, Response<PageResponse<News>> response) {
-                if (newsPageResponse.getCode() != 0) {
-                    doOnError(response, String.valueOf(newsPageResponse.getCode()), newsPageResponse.getMsg());
-                    return;
-                }
+            public void onNewsLoadSuccess(List<News> data, PageResponse<News> pageResponse, int type) {
                 if (mCurrentPage == 0) {
-                    if (getView() != null) {
-                        getView().showListData(newsPageResponse.getList());
+                    if (isViewAttach()) {
+                        getView().showListData(data);
                     }
                 } else {
-                    if (getView() != null) {
-                        getView().showMoreListData(mCurrentPage, newsPageResponse.getList());
+                    if (isViewAttach()) {
+                        getView().showMoreListData(mCurrentPage, data);
                     }
                 }
 
-                if ("True".equals(newsPageResponse.getNext())) {
+                if ("True".equals(pageResponse.getNext())) {
                     mCurrentPage++;
                 } else {
-
+                    if (isViewAttach()) {
+                        getView().setEnableLoadMore(false);
+                    }
                 }
             }
 
             @Override
-            public void doOnError(Response<PageResponse<News>> response, String statusCode, String message) {
+            public void onNewsLoadEmpty(int type) {
 
             }
 
             @Override
-            public void doOnFailure(int httpCode, String message) {
+            public void onNewsLoadError(String code, String message, int type) {
 
             }
         });

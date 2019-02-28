@@ -6,6 +6,7 @@ import com.muugi.riot.news.bean.Feature;
 import com.muugi.riot.news.bean.GameCenterData;
 import com.muugi.riot.news.bean.News;
 import com.muugi.riot.news.contract.MatchContract;
+import com.muugi.riot.news.model.NewsRepository;
 import com.muugi.riot.news.model.RequestManager;
 import com.xyz.riotcommon.bean.PageResponse;
 import com.xyz.riotcommon.net.HttpCallback;
@@ -19,10 +20,8 @@ import retrofit2.Response;
  */
 
 public class MatchPresenter extends MatchContract.Presenter {
-    private int mCurrentPage = 0;
-
-    public MatchPresenter(String cid) {
-        super(cid);
+    public MatchPresenter(String cid, NewsRepository mNewsRepository) {
+        super(cid, mNewsRepository);
     }
 
     @Override
@@ -68,9 +67,9 @@ public class MatchPresenter extends MatchContract.Presenter {
                 List<News> list = newsPageResponse.getList();
                 if (list != null && list.size() != 0) {
                     if (mCurrentPage == 0) {
-                        getView().showRefreshMatchNews(list);
+                        getView().showListData(list);
                     } else {
-                        getView().showMoreMatchNews(list);
+                        getView().showMoreListData(mCurrentPage, list);
                     }
                     mCurrentPage++;
                 } else {

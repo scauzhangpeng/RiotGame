@@ -9,26 +9,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.muugi.riot.news.R;
-import com.muugi.riot.news.R2;
+import com.muugi.riot.news.adapter.MatchHeaderMenuAdapter;
+import com.muugi.riot.news.base.BaseNewsFragment;
 import com.muugi.riot.news.bean.Feature;
 import com.muugi.riot.news.bean.News;
 import com.muugi.riot.news.contract.MatchContract;
+import com.muugi.riot.news.model.Injection;
 import com.muugi.riot.news.presenter.MatchPresenter;
 import com.muugi.riot.news.utils.FormatUtil;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.xyz.basiclib.recyclerview.AbstractImageLoader;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.BasicViewHolder;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.basiclib.recyclerview.WrapperAdapter;
-import com.xyz.riotcommon.CommonFragment;
 import com.xyz.riotcommon.ImageLoadUtil;
 import com.xyz.riotcommon.RouterConstants;
 import com.youth.banner.Banner;
@@ -37,8 +34,6 @@ import com.youth.banner.loader.ImageLoader;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-
 /**
  * Created by ZP on 2018/1/24.
  * <p>
@@ -46,36 +41,17 @@ import butterknife.BindView;
  * </p>
  */
 @Route(path = RouterConstants.NEWS_MATCH)
-public class MatchFragment extends CommonFragment<MatchContract.View, MatchContract.Presenter> implements MatchContract.View, OnRefreshListener, OnLoadmoreListener {
+public class MatchFragment extends BaseNewsFragment<News, MatchContract.View, MatchContract.Presenter> implements MatchContract.View {
 
-
-    @BindView(R2.id.rv_layout_refresh)
-    RecyclerView mRvLayoutRefresh;
-    @BindView(R2.id.refreshLayout)
-    SmartRefreshLayout mRefreshLayout;
 
     private WrapperAdapter<News> mWrapperAdapter;
-    private BasicAdapter<News> mAdapter;
-    private List<News> mNewses;
 
     private Banner mBanner;
     private List<String> images;
 
-    ImageView mIvMenu0;
-
-    TextView mTvMenu0;
-
-    ImageView mIvMenu1;
-
-    TextView mTvMenu1;
-
-    ImageView mIvMenu2;
-
-    TextView mTvMenu2;
-
-    ImageView mIvMenu3;
-
-    TextView mTvMenu3;
+    private RecyclerView mHeaderMenu;
+    private List<Feature> mHeaderMenuData;
+    private MatchHeaderMenuAdapter mMatchHeaderMenuAdapter;
 
     private MultipleTypeSupport<News> mMultipleTypeSupport = new MultipleTypeSupport<News>() {
         @Override
@@ -94,14 +70,9 @@ public class MatchFragment extends CommonFragment<MatchContract.View, MatchContr
 
     @Override
     public void showMatchHeaderMenu(List<Feature> features) {
-        mTvMenu0.setText(features.get(0).getName());
-        mTvMenu1.setText(features.get(1).getName());
-        mTvMenu2.setText(features.get(2).getName());
-        mTvMenu3.setText(features.get(3).getName());
-        ImageLoadUtil.loadImage(getActivity(), features.get(0).getIconUrl(), R.drawable.default_lol_ex, mIvMenu0);
-        ImageLoadUtil.loadImage(getActivity(), features.get(1).getIconUrl(), R.drawable.default_lol_ex, mIvMenu1);
-        ImageLoadUtil.loadImage(getActivity(), features.get(2).getIconUrl(), R.drawable.default_lol_ex, mIvMenu2);
-        ImageLoadUtil.loadImage(getActivity(), features.get(3).getIconUrl(), R.drawable.default_lol_ex, mIvMenu3);
+        mHeaderMenuData.clear();
+        mHeaderMenuData.addAll(features);
+        mMatchHeaderMenuAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -115,25 +86,24 @@ public class MatchFragment extends CommonFragment<MatchContract.View, MatchContr
     }
 
     @Override
-    public void showRefreshMatchNews(List<News> news) {
-        mNewses.clear();
-        mNewses.addAll(news);
+    public void showListData(List<News> news) {
+        mData.clear();
+        mData.addAll(news);
         mWrapperAdapter.notifyDataSetChanged();
-        mRefreshLayout.finishRefresh();
+        mSmartRefreshLayout.finishRefresh();
     }
 
     @Override
-    public void showMoreMatchNews(List<News> news) {
-        mNewses.addAll(news);
+    public void showMoreListData(int currentPage, List<News> news) {
+        mData.addAll(news);
         mWrapperAdapter.notifyDataSetChanged();
-        mRefreshLayout.finishLoadmore();
+        mSmartRefreshLayout.finishLoadmore();
     }
 
+
     @Override
-    protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        super.initViewsAndEvents(inflater, container, savedInstanceState);
-        mNewses = new ArrayList<>();
-        mAdapter = new BasicAdapter<News>(mNewses, getActivity(), mMultipleTypeSupport) {
+    public BasicAdapter<News> getAdapter() {
+        return new BasicAdapter<News>(mData, getActivity(), mMultipleTypeSupport) {
             @Override
             protected void bindData(BasicViewHolder holder, News news, int position) {
                 if ("ordinary".equals(news.getNewstypeid())) {
@@ -200,10 +170,42 @@ public class MatchFragment extends CommonFragment<MatchContract.View, MatchContr
 
             }
         };
+    }
+
+    @Override
+    protected void initRecycleView() {
+        mData = new ArrayList<>();
+        mAdapter = getAdapter();
+        mRecyclerView = (RecyclerView) mView.findViewById(com.xyz.riotcommon.R.id.rv_base);
+        mRecyclerView.setLayoutManager(getLayoutManager());
+//        setRecyclerViewAdapter(mAdapter);
+        if (mAdapter != null) {
+            mAdapter.setOnItemClickListener(this);
+        }
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+
+    }
+
+    @Override
+    protected void initViewsAndEvents(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.initViewsAndEvents(inflater, container, savedInstanceState);
         mWrapperAdapter = new WrapperAdapter<>(mAdapter);
 
-        LayoutInflater inflaterHeader = LayoutInflater.from(getActivity());
-        View header = inflaterHeader.inflate(R.layout.header_match_gallery, container, false);
+        View header = initHeaderBanner(inflater, container);
+        images = new ArrayList<>();
+        mWrapperAdapter.addHeaderView(header);
+
+        View headerMenu = initHeaderMenu(inflater, container);
+        mWrapperAdapter.addHeaderView(headerMenu);
+
+        mRecyclerView.setAdapter(mWrapperAdapter);
+    }
+
+    private View initHeaderBanner(LayoutInflater inflater, ViewGroup container) {
+        View header = inflater.inflate(R.layout.header_match_gallery, container, false);
         mBanner = (Banner) header.findViewById(R.id.banner_match);
         mBanner.setImageLoader(new ImageLoader() {
             @Override
@@ -211,57 +213,26 @@ public class MatchFragment extends CommonFragment<MatchContract.View, MatchContr
                 ImageLoadUtil.loadImage(context, path.toString(), R.drawable.default_lol_ex, imageView);
             }
         });
-        images = new ArrayList<>();
-        mWrapperAdapter.addHeaderView(header);
-
-        View headerMenu = initHeaderMenu(inflater, container);
-        mWrapperAdapter.addHeaderView(headerMenu);
-
-        mRvLayoutRefresh.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRvLayoutRefresh.setAdapter(mWrapperAdapter);
-
-        mRefreshLayout.setOnRefreshListener(this);
-        mRefreshLayout.setOnLoadmoreListener(this);
+        return header;
     }
-
     private View initHeaderMenu(LayoutInflater inflater, ViewGroup container) {
         View headerMenu = inflater.inflate(R.layout.header_match_menu, container, false);
-        mTvMenu0 = (TextView) headerMenu.findViewById(R.id.tv_menu_0);
-        mTvMenu1 = (TextView) headerMenu.findViewById(R.id.tv_menu_1);
-        mTvMenu2 = (TextView) headerMenu.findViewById(R.id.tv_menu_2);
-        mTvMenu3 = (TextView) headerMenu.findViewById(R.id.tv_menu_3);
-        mIvMenu0 = (ImageView) headerMenu.findViewById(R.id.iv_menu_0);
-        mIvMenu1 = (ImageView) headerMenu.findViewById(R.id.iv_menu_1);
-        mIvMenu2 = (ImageView) headerMenu.findViewById(R.id.iv_menu_2);
-        mIvMenu3 = (ImageView) headerMenu.findViewById(R.id.iv_menu_3);
+        mHeaderMenu = headerMenu.findViewById(R.id.rv_match_menu);
+        mHeaderMenu.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        mHeaderMenuData = new ArrayList<>();
+        mMatchHeaderMenuAdapter = new MatchHeaderMenuAdapter(mHeaderMenuData, getActivity());
+        mHeaderMenu.setAdapter(mMatchHeaderMenuAdapter);
         return headerMenu;
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.layout_refresh;
-    }
-
-    @Override
     protected MatchContract.Presenter initPresenter() {
-        return new MatchPresenter("73");
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        if (isVisibleToUser) {
-            mRefreshLayout.autoRefresh();
-        }
+        return new MatchPresenter("73", Injection.provideNewsRepository());
     }
 
     @Override
     public void onRefresh(RefreshLayout refreshlayout) {
         mPresenter.gameCenterData();
         mPresenter.refreshNews();
-    }
-
-    @Override
-    public void onLoadmore(RefreshLayout refreshlayout) {
-        mPresenter.loadMoreNews();
     }
 }

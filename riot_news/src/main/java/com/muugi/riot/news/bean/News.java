@@ -1,10 +1,13 @@
 package com.muugi.riot.news.bean;
 
+import org.litepal.annotation.Column;
+import org.litepal.crud.LitePalSupport;
+
 /**
  * Created by ZP on 2017/8/16.
  */
 
-public class News {
+public class News extends LitePalSupport {
 
 
     /**
@@ -45,6 +48,7 @@ public class News {
      * task_id : 138749
      */
 
+    @Column(unique = true)
     private String article_id;
     private String content_id;
     private String newstype;

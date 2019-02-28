@@ -90,4 +90,14 @@ public abstract class SimpleRefreshFragment<T, V, P extends BasePresenter<V>> ex
         mAdapter.notifyDataSetChanged();
         mSmartRefreshLayout.finishLoadmore();
     }
+
+    @Override
+    public void setEnableLoadMore(boolean enableLoadMore) {
+        mSmartRefreshLayout.setEnableLoadmore(enableLoadMore);
+    }
+
+    @Override
+    public void setEnableRefresh(boolean enableRefresh) {
+        mSmartRefreshLayout.setEnableRefresh(enableRefresh);
+    }
 }

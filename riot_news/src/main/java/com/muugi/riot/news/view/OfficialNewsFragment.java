@@ -3,14 +3,17 @@ package com.muugi.riot.news.view;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.muugi.riot.news.R;
 import com.muugi.riot.news.adapter.HotNewsAdapter;
+import com.muugi.riot.news.base.BaseNewsFragment;
 import com.muugi.riot.news.bean.News;
 import com.muugi.riot.news.contract.OfficialNewsContract.View;
+import com.muugi.riot.news.model.Injection;
 import com.muugi.riot.news.presenter.OfficialNewsPresenter;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.riotcommon.RouterConstants;
 
 /**
+ * 官方资讯.
  * Created by ZP on 2018/11/11.
  */
 @Route(path = RouterConstants.NEWS_OFFICIAL)
@@ -37,7 +40,7 @@ public class OfficialNewsFragment extends BaseNewsFragment<News, View, OfficialN
 
     @Override
     protected OfficialNewsPresenter initPresenter() {
-        return new OfficialNewsPresenter("3");
+        return new OfficialNewsPresenter("3", Injection.provideNewsRepository());
     }
 
     @Override

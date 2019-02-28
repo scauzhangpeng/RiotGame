@@ -17,10 +17,12 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.muugi.riot.news.R;
+import com.muugi.riot.news.base.BaseNewsFragment;
 import com.muugi.riot.news.bean.NewVersionCard;
 import com.muugi.riot.news.bean.NewVersionCardItem;
 import com.muugi.riot.news.bean.NewVersionListBean;
 import com.muugi.riot.news.contract.NewVersionContract;
+import com.muugi.riot.news.model.Injection;
 import com.muugi.riot.news.presenter.NewVersionPresenter;
 import com.muugi.riot.news.utils.FormatUtil;
 import com.xyz.basiclib.recyclerview.AbstractImageLoader;
@@ -35,6 +37,9 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
+ * 新版本资讯.
+ * "新版本英雄"、"新版本皮肤" 与 "版本改动总览"、"版本改动焦点"不同时出现.
+ *
  * Created by ZP on 2018/1/24.
  */
 @Route(path = RouterConstants.NEWS_VERSION)
@@ -54,6 +59,20 @@ public class NewVersionFragment extends BaseNewsFragment<NewVersionListBean, New
     private BasicAdapter<NewVersionCard> mNewVersionSkinAdapter;
     private List<NewVersionCard> mNewVersionSkin;
 
+    /**
+     * 版本改动总览
+     */
+    private RecyclerView mRvNewsVersionScan;
+    private BasicAdapter<NewVersionCard> mNewVersionScanAdapter;
+    private List<NewVersionCard> mNewVersionScan;
+
+    /**
+     * 版本改动焦点
+     */
+    private RecyclerView mRvNewsVersionAbout;
+    private BasicAdapter<NewVersionCard> mNewVersionAboutAdapter;
+    private List<NewVersionCard> mNewVersionAbout;
+
     private MultipleTypeSupport<NewVersionListBean> mMultipleTypeSupport = new MultipleTypeSupport<NewVersionListBean>() {
         @Override
         public int getLayoutId(NewVersionListBean heroGroupListBean, int position) {
@@ -63,6 +82,14 @@ public class NewVersionFragment extends BaseNewsFragment<NewVersionListBean, New
 
             if ("newverskin".equals(heroGroupListBean.getType())) {
                 return R.layout.layout_version_skin;
+            }
+
+            if ("newverscan".equals(heroGroupListBean.getType())) {
+                return R.layout.layout_version_scan;
+            }
+
+            if ("newverabout".equals(heroGroupListBean.getType())) {
+                return R.layout.layout_version_about;
             }
 
             return R.layout.item_news_default;
@@ -123,12 +150,42 @@ public class NewVersionFragment extends BaseNewsFragment<NewVersionListBean, New
                 });
             }
         };
+
+        mNewVersionScan = new ArrayList<>();
+        mNewVersionScanAdapter = new BasicAdapter<NewVersionCard>(R.layout.item_version_scan, mNewVersionScan, getActivity()) {
+            @Override
+            protected void bindData(BasicViewHolder holder, NewVersionCard card, int position) {
+                holder.setText(R.id.tv_change_type, card.getChange_type());
+                holder.setText(R.id.tv_num, getString(R.string.vserion_scan_num, card.getNum()));
+                holder.setImagePath(R.id.iv_scan_icon, new AbstractImageLoader(card.getChange_type_img()) {
+                    @Override
+                    public void loadImage(ImageView imageView, String path) {
+                        ImageLoadUtil.loadImage(mContext, path, R.drawable.default_lol_ex, imageView);
+                    }
+                });
+            }
+        };
+
+        mNewVersionAbout = new ArrayList<>();
+        mNewVersionAboutAdapter = new BasicAdapter<NewVersionCard>(R.layout.item_version_about, mNewVersionAbout, getActivity()) {
+            @Override
+            protected void bindData(BasicViewHolder holder, NewVersionCard card, int position) {
+                holder.setText(R.id.iv_about_pv, FormatUtil.unitToTenThousand(card.getPv()));
+                holder.setText(R.id.tv_about_title, card.getTitle());
+                holder.setImagePath(R.id.iv_about_icon, new AbstractImageLoader(card.getImage_url_small()) {
+                    @Override
+                    public void loadImage(ImageView imageView, String path) {
+                        ImageLoadUtil.loadImage(mContext, path, R.drawable.default_lol_ex, imageView);
+                    }
+                });
+            }
+        };
         super.initViewsAndEvents(inflater, container, savedInstanceState);
     }
 
     @Override
     protected NewVersionContract.Presenter initPresenter() {
-        return new NewVersionPresenter("367");
+        return new NewVersionPresenter("367", Injection.provideNewsRepository());
     }
 
     @Override
@@ -159,6 +216,32 @@ public class NewVersionFragment extends BaseNewsFragment<NewVersionListBean, New
                     linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                     mRvNewVersionSkin.setLayoutManager(linearLayoutManager);
                     mRvNewVersionSkin.setAdapter(mNewVersionSkinAdapter);
+                    return;
+                }
+
+                if ("newverscan".equals(newVersionListBean.getType())) {
+                    HashMap<String, String> header = newVersionListBean.getHeader();
+                    holder.setText(R.id.tv_change_scan_ver, header.get("ver"));
+                    holder.setText(R.id.tv_change_scan_desc, header.get("desc"));
+                    holder.setText(R.id.tv_change_scan_num, header.get("num"));
+                    mRvNewsVersionScan = holder.getView(R.id.rv_version_scan);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                    linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    mRvNewsVersionScan.setLayoutManager(linearLayoutManager);
+                    mRvNewsVersionScan.setAdapter(mNewVersionScanAdapter);
+                    return;
+                }
+
+                if ("newverabout".equals(newVersionListBean.getType())) {
+                    HashMap<String, String> header = newVersionListBean.getHeader();
+                    holder.setText(R.id.tv_change_about_ver, header.get("ver"));
+                    holder.setText(R.id.tv_change_about_desc, header.get("desc"));
+                    holder.setText(R.id.tv_change_about_num, header.get("num"));
+                    mRvNewsVersionAbout = holder.getView(R.id.rv_version_about);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                    linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    mRvNewsVersionAbout.setLayoutManager(linearLayoutManager);
+                    mRvNewsVersionAbout.setAdapter(mNewVersionAboutAdapter);
                     return;
                 }
                 if ("news".equals(newVersionListBean.getType())) {
@@ -290,6 +373,22 @@ public class NewVersionFragment extends BaseNewsFragment<NewVersionListBean, New
         mNewVersionSkin.clear();
         mNewVersionSkin.addAll(cards.getCardlist());
         mNewVersionSkinAdapter.notifyDataSetChanged();
+        mSmartRefreshLayout.finishRefresh();
+    }
+
+    @Override
+    public void showNewsVersionScan(NewVersionCardItem cards) {
+        mNewVersionScan.clear();
+        mNewVersionScan.addAll(cards.getCardlist());
+        mNewVersionScanAdapter.notifyDataSetChanged();
+        mSmartRefreshLayout.finishRefresh();
+    }
+
+    @Override
+    public void showNewsVersionAbout(NewVersionCardItem cards) {
+        mNewVersionAbout.clear();
+        mNewVersionAbout.addAll(cards.getCardlist());
+        mNewVersionAboutAdapter.notifyDataSetChanged();
         mSmartRefreshLayout.finishRefresh();
     }
 

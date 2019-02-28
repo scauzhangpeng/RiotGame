@@ -52,6 +52,21 @@ public class NewVersionCardItem {
     private String change_skin_ver;
     private String change_skin_num_desc;
     private String change_skin_desc;
+    /**
+     * change_scan_ver : 版本改动总览：
+     * change_scan_num_desc : 1次
+     * change_scan_desc : 距上局游戏共更新
+     */
+
+    private String change_scan_ver;
+    private String change_scan_num_desc;
+    private String change_scan_desc;
+    /**
+     * change_about_ver : 版本改动焦点
+     */
+
+    private String change_about_ver;
+
 
     public String getIntent() {
         return intent;
@@ -211,5 +226,37 @@ public class NewVersionCardItem {
 
     public void setChange_skin_desc(String change_skin_desc) {
         this.change_skin_desc = change_skin_desc;
+    }
+
+    public String getChange_scan_ver() {
+        return change_scan_ver;
+    }
+
+    public void setChange_scan_ver(String change_scan_ver) {
+        this.change_scan_ver = change_scan_ver;
+    }
+
+    public String getChange_scan_num_desc() {
+        return change_scan_num_desc;
+    }
+
+    public void setChange_scan_num_desc(String change_scan_num_desc) {
+        this.change_scan_num_desc = change_scan_num_desc;
+    }
+
+    public String getChange_scan_desc() {
+        return change_scan_desc;
+    }
+
+    public void setChange_scan_desc(String change_scan_desc) {
+        this.change_scan_desc = change_scan_desc;
+    }
+
+    public String getChange_about_ver() {
+        return change_about_ver;
+    }
+
+    public void setChange_about_ver(String change_about_ver) {
+        this.change_about_ver = change_about_ver;
     }
 }

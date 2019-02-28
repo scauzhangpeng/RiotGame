@@ -51,6 +51,7 @@ android {
         }
     }
 
+    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
 }
 
 dependencies {
@@ -59,4 +60,5 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor "com.alibaba:arouter-compiler:$ARouterCompiler"
     annotationProcessor "com.jakewharton:butterknife-compiler:$Butterknife"
+    api 'org.litepal.android:java:3.0.0'
 }

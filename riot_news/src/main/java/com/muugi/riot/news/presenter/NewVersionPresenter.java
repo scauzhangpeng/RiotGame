@@ -1,12 +1,15 @@
 package com.muugi.riot.news.presenter;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.muugi.riot.news.bean.NewVersionCardItem;
 import com.muugi.riot.news.bean.NewVersionListBean;
 import com.muugi.riot.news.bean.News;
 import com.muugi.riot.news.bean.PageRespNewVersionCard;
 import com.muugi.riot.news.contract.NewVersionContract;
+import com.muugi.riot.news.model.NewsDataSource;
+import com.muugi.riot.news.model.NewsRepository;
 import com.muugi.riot.news.model.RequestManager;
 import com.xyz.riotcommon.bean.PageResponse;
 import com.xyz.riotcommon.net.HttpCallback;
@@ -23,49 +26,41 @@ import retrofit2.Response;
 
 public class NewVersionPresenter extends NewVersionContract.Presenter {
 
-    private int mCurrentPage;
-
-    public NewVersionPresenter(String cid) {
-        super(cid);
+    public NewVersionPresenter(String cid, NewsRepository mNewsRepository) {
+        super(cid, mNewsRepository);
     }
 
-    @Override
-    public void refreshNews() {
-        mCurrentPage = 0;
-        loadMoreNews();
-    }
 
     @Override
     public void loadMoreNews() {
-        RequestManager.getInstance().getNewVersionNews(cid, mCurrentPage, new HttpCallback<PageResponse<News>>() {
+        mNewsRepository.loadNewsData(cid, mCurrentPage, new NewsDataSource.LoadNewsCallback() {
             @Override
-            public void doOnSuccess(@NonNull PageResponse<News> newsPageResponse, Response<PageResponse<News>> response) {
-                if (newsPageResponse.getCode() == 0) {
-                    List<News> list = newsPageResponse.getList();
-                    if (getView() != null) {
-                        List<NewVersionListBean> beans = new ArrayList<>();
-                        for (News news : list) {
-                            beans.add(new NewVersionListBean(news, "news"));
-                        }
-                        if (mCurrentPage == 0) {
-                            getView().showListData(beans);
-                        } else {
-                            getView().showMoreListData(mCurrentPage, beans);
-                        }
+            public void onNewsLoadSuccess(List<News> data, PageResponse<News> pageResponse, int type) {
+                if (isViewAttach()) {
+                    List<NewVersionListBean> beans = new ArrayList<>();
+                    for (News news : data) {
+                        beans.add(new NewVersionListBean(news, "news"));
                     }
-                    if ("True".equals(newsPageResponse.getNext())) {
+                    if (mCurrentPage == 0) {
+                        getView().showListData(beans);
+                    } else {
+                        getView().showMoreListData(mCurrentPage, beans);
+                    }
+                    if ("True".equals(pageResponse.getNext())) {
                         mCurrentPage++;
+                    } else {
+                        getView().setEnableLoadMore(false);
                     }
                 }
             }
 
             @Override
-            public void doOnError(Response<PageResponse<News>> response, String statusCode, String message) {
+            public void onNewsLoadEmpty(int type) {
 
             }
 
             @Override
-            public void doOnFailure(int httpCode, String message) {
+            public void onNewsLoadError(String code, String message, int type) {
 
             }
         });
@@ -102,18 +97,40 @@ public class NewVersionPresenter extends NewVersionContract.Presenter {
                             getView().updateCardItem(Integer.valueOf(newVersionCardItem.getPosition()) - 1, bean);
                             getView().showNewVersionSkin(newVersionCardItem);
                         }
+
+                        if ("newverscan".equals(newstypeid)) {
+                            NewVersionListBean bean = new NewVersionListBean(null, "newverscan");
+                            HashMap<String, String> header = new HashMap<>();
+                            header.put("ver", newVersionCardItem.getChange_scan_ver());
+                            header.put("desc", newVersionCardItem.getChange_scan_desc());
+                            header.put("num", newVersionCardItem.getChange_scan_num_desc());
+                            bean.setHeader(header);
+                            getView().updateCardItem(Integer.valueOf(newVersionCardItem.getPosition()) - 1, bean);
+                            getView().showNewsVersionScan(newVersionCardItem);
+                        }
+
+                        if ("newverabout".equals(newstypeid)) {
+                            NewVersionListBean bean = new NewVersionListBean(null, "newverabout");
+                            HashMap<String, String> header = new HashMap<>();
+                            header.put("ver", newVersionCardItem.getChange_about_ver());
+//                            header.put("desc", newVersionCardItem.getChange_scan_desc());
+//                            header.put("num", newVersionCardItem.getChange_scan_num_desc());
+                            bean.setHeader(header);
+                            getView().updateCardItem(Integer.valueOf(newVersionCardItem.getPosition()) - 1, bean);
+                            getView().showNewsVersionAbout(newVersionCardItem);
+                        }
                     }
                 }
             }
 
             @Override
             public void doOnError(Response<PageRespNewVersionCard> response, String statusCode, String message) {
-
+                Log.d("TAG", "doOnError: ");
             }
 
             @Override
             public void doOnFailure(int httpCode, String message) {
-
+                Log.d("TAG", "doOnFailure: ");
             }
         });
     }

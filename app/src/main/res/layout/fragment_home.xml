@@ -53,6 +53,11 @@
                 style="@style/tab_indicator"
                 android:text="英雄圈" />
 
+            <RadioButton
+                android:id="@+id/rbtn_match"
+                style="@style/tab_indicator"
+                android:text="赛事" />
+
             <!--<RadioButton-->
             <!--android:id="@+id/rbtn_match"-->
             <!--style="@style/tab_indicator"-->

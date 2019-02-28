@@ -35,6 +35,84 @@ public class NewVersionCard {
     private String hero_bg_img_url;
     private String hero_desc;
     private String hero_tag;
+    /**
+     * num : 25
+     * change_type_key : hero2
+     * change_type_img : http://ossweb-img.qq.com/images/qqtalk/act/qtl/newver/hero2.png
+     * change_type : 英雄改动
+     */
+
+    private int num;
+    private String change_type_key;
+    private String change_type_img;
+    private String change_type;
+    /**
+     * article_url : http://qt.qq.com/php_cgi/news/php/varcache_article.php?id=58576&version=$PROTO_VERSION$&areaid=$REGION$
+     * image_url_big : http://gpcd.gtimg.cn/upload/qqtalk/news/201902/25181222811994_480.jpg
+     * actnews_reward :
+     * actnews_enddate :
+     * is_direct : False
+     * is_hot : 0
+     * publication_date : 2019-02-25 18:12:14
+     * targetid : 1
+     * bmatchid : 0
+     * title : 懒人一图看版本 暴击装备全面改动
+     * image_with_btn : False
+     * newstype :
+     * is_act : 0
+     * about_ver : 20190226
+     * is_top : False
+     * newstypeid : ordinary
+     * pics_id : 0
+     * score : 3
+     * summary : 懒人一图看版本 暴击装备全面改动
+     * is_report : True
+     * pv : 71082
+     * image_url_small : http://gpcd.gtimg.cn/upload/qqtalk/news/201902/25181222811994_282.jpg
+     * is_subject : 0
+     * is_purchase : 0
+     * image_spec : 1
+     * channel_id : <2>:<367>
+     * v_len :
+     * is_new : 0
+     * article_id : 58576
+     * content_id : 58576
+     * insert_date : 2019-02-25 18:12:22
+     * channel_desc :
+     */
+
+    private String article_url;
+    private String image_url_big;
+    private String actnews_reward;
+    private String actnews_enddate;
+    private String is_direct;
+    private String is_hot;
+    private String publication_date;
+    private String targetid;
+    private String bmatchid;
+    private String title;
+    private String image_with_btn;
+    private String newstype;
+    private String is_act;
+    private String about_ver;
+    private String is_top;
+    private String newstypeid;
+    private String pics_id;
+    private String score;
+    private String summary;
+    private String is_report;
+    private String pv;
+    private String image_url_small;
+    private String is_subject;
+    private String is_purchase;
+    private String image_spec;
+    private String channel_id;
+    private String v_len;
+    private String is_new;
+    private String article_id;
+    private String content_id;
+    private String insert_date;
+    private String channel_desc;
 
 
     public String getIntent() {
@@ -124,5 +202,293 @@ public class NewVersionCard {
 
     public void setHero_tag(String hero_tag) {
         this.hero_tag = hero_tag;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public String getChange_type_key() {
+        return change_type_key;
+    }
+
+    public void setChange_type_key(String change_type_key) {
+        this.change_type_key = change_type_key;
+    }
+
+    public String getChange_type_img() {
+        return change_type_img;
+    }
+
+    public void setChange_type_img(String change_type_img) {
+        this.change_type_img = change_type_img;
+    }
+
+    public String getChange_type() {
+        return change_type;
+    }
+
+    public void setChange_type(String change_type) {
+        this.change_type = change_type;
+    }
+
+    public String getArticle_url() {
+        return article_url;
+    }
+
+    public void setArticle_url(String article_url) {
+        this.article_url = article_url;
+    }
+
+    public String getImage_url_big() {
+        return image_url_big;
+    }
+
+    public void setImage_url_big(String image_url_big) {
+        this.image_url_big = image_url_big;
+    }
+
+    public String getActnews_reward() {
+        return actnews_reward;
+    }
+
+    public void setActnews_reward(String actnews_reward) {
+        this.actnews_reward = actnews_reward;
+    }
+
+    public String getActnews_enddate() {
+        return actnews_enddate;
+    }
+
+    public void setActnews_enddate(String actnews_enddate) {
+        this.actnews_enddate = actnews_enddate;
+    }
+
+    public String getIs_direct() {
+        return is_direct;
+    }
+
+    public void setIs_direct(String is_direct) {
+        this.is_direct = is_direct;
+    }
+
+    public String getIs_hot() {
+        return is_hot;
+    }
+
+    public void setIs_hot(String is_hot) {
+        this.is_hot = is_hot;
+    }
+
+    public String getPublication_date() {
+        return publication_date;
+    }
+
+    public void setPublication_date(String publication_date) {
+        this.publication_date = publication_date;
+    }
+
+    public String getTargetid() {
+        return targetid;
+    }
+
+    public void setTargetid(String targetid) {
+        this.targetid = targetid;
+    }
+
+    public String getBmatchid() {
+        return bmatchid;
+    }
+
+    public void setBmatchid(String bmatchid) {
+        this.bmatchid = bmatchid;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getImage_with_btn() {
+        return image_with_btn;
+    }
+
+    public void setImage_with_btn(String image_with_btn) {
+        this.image_with_btn = image_with_btn;
+    }
+
+    public String getNewstype() {
+        return newstype;
+    }
+
+    public void setNewstype(String newstype) {
+        this.newstype = newstype;
+    }
+
+    public String getIs_act() {
+        return is_act;
+    }
+
+    public void setIs_act(String is_act) {
+        this.is_act = is_act;
+    }
+
+    public String getAbout_ver() {
+        return about_ver;
+    }
+
+    public void setAbout_ver(String about_ver) {
+        this.about_ver = about_ver;
+    }
+
+    public String getIs_top() {
+        return is_top;
+    }
+
+    public void setIs_top(String is_top) {
+        this.is_top = is_top;
+    }
+
+    public String getNewstypeid() {
+        return newstypeid;
+    }
+
+    public void setNewstypeid(String newstypeid) {
+        this.newstypeid = newstypeid;
+    }
+
+    public String getPics_id() {
+        return pics_id;
+    }
+
+    public void setPics_id(String pics_id) {
+        this.pics_id = pics_id;
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getIs_report() {
+        return is_report;
+    }
+
+    public void setIs_report(String is_report) {
+        this.is_report = is_report;
+    }
+
+    public String getPv() {
+        return pv;
+    }
+
+    public void setPv(String pv) {
+        this.pv = pv;
+    }
+
+    public String getImage_url_small() {
+        return image_url_small;
+    }
+
+    public void setImage_url_small(String image_url_small) {
+        this.image_url_small = image_url_small;
+    }
+
+    public String getIs_subject() {
+        return is_subject;
+    }
+
+    public void setIs_subject(String is_subject) {
+        this.is_subject = is_subject;
+    }
+
+    public String getIs_purchase() {
+        return is_purchase;
+    }
+
+    public void setIs_purchase(String is_purchase) {
+        this.is_purchase = is_purchase;
+    }
+
+    public String getImage_spec() {
+        return image_spec;
+    }
+
+    public void setImage_spec(String image_spec) {
+        this.image_spec = image_spec;
+    }
+
+    public String getChannel_id() {
+        return channel_id;
+    }
+
+    public void setChannel_id(String channel_id) {
+        this.channel_id = channel_id;
+    }
+
+    public String getV_len() {
+        return v_len;
+    }
+
+    public void setV_len(String v_len) {
+        this.v_len = v_len;
+    }
+
+    public String getIs_new() {
+        return is_new;
+    }
+
+    public void setIs_new(String is_new) {
+        this.is_new = is_new;
+    }
+
+    public String getArticle_id() {
+        return article_id;
+    }
+
+    public void setArticle_id(String article_id) {
+        this.article_id = article_id;
+    }
+
+    public String getContent_id() {
+        return content_id;
+    }
+
+    public void setContent_id(String content_id) {
+        this.content_id = content_id;
+    }
+
+    public String getInsert_date() {
+        return insert_date;
+    }
+
+    public void setInsert_date(String insert_date) {
+        this.insert_date = insert_date;
+    }
+
+    public String getChannel_desc() {
+        return channel_desc;
+    }
+
+    public void setChannel_desc(String channel_desc) {
+        this.channel_desc = channel_desc;
     }
 }

@@ -1,9 +1,9 @@
 package com.muugi.riot.news.contract;
 
 
+import com.muugi.riot.news.base.BaseNewsContract;
 import com.muugi.riot.news.bean.SpecialColumnListBean;
-import com.muugi.riot.news.presenter.BaseNewsPresenter;
-import com.xyz.riotcommon.SimpleRefreshView;
+import com.muugi.riot.news.model.NewsRepository;
 
 
 /**
@@ -12,12 +12,12 @@ import com.xyz.riotcommon.SimpleRefreshView;
 
 public interface ColumnContract {
 
-    interface View extends SimpleRefreshView<SpecialColumnListBean> {
+    interface View extends BaseNewsContract.View<SpecialColumnListBean> {
     }
 
-    abstract class Presenter extends BaseNewsPresenter<View> {
-        public Presenter(String cid) {
-            super(cid);
+    abstract class Presenter extends BaseNewsContract.Presenter<View> {
+        public Presenter(String cid, NewsRepository mNewsRepository) {
+            super(cid, mNewsRepository);
         }
     }
 }

@@ -52,6 +52,8 @@ public class HomeFragment extends CommonFragment implements RadioGroup.OnChecked
     RadioButton mRbtnHot;
     @BindView(R.id.rbtn_office)
     RadioButton mRbtnOffice;
+    @BindView(R.id.rbtn_match)
+    RadioButton mRbtnMatch;
 
     @BindView(R.id.vp_main)
     ViewPager mVpMain;
@@ -70,6 +72,7 @@ public class HomeFragment extends CommonFragment implements RadioGroup.OnChecked
     public static final int PAGE_NEW_VERSION = 4;
     public static final int PAGE_OFFICE = 5;
     public static final int PAGE_HERO = 6;
+    public static final int PAGE_MATCH = 7;
 
     private ViewPager.OnPageChangeListener mOnPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
@@ -100,6 +103,10 @@ public class HomeFragment extends CommonFragment implements RadioGroup.OnChecked
                     break;
                 case PAGE_HERO:
                     mRbtnHero.setChecked(true);
+                    break;
+                case PAGE_MATCH:
+                    mRbtnMatch.setChecked(true);
+                    break;
             }
         }
 
@@ -128,10 +135,13 @@ public class HomeFragment extends CommonFragment implements RadioGroup.OnChecked
         mPages.put(PAGE_NEW_VERSION, (Fragment) ARouter.getInstance().build(RouterConstants.NEWS_VERSION).navigation());
         mPages.put(PAGE_OFFICE, (Fragment) ARouter.getInstance().build(RouterConstants.NEWS_OFFICIAL).navigation());
         mPages.put(PAGE_HERO, (Fragment) ARouter.getInstance().build(RouterConstants.NEWS_HERO_COMMUNITY).navigation());
+        mPages.put(PAGE_MATCH, (Fragment) ARouter.getInstance().build(RouterConstants.NEWS_MATCH).navigation());
         mAdapter = new HeroPageAdapter(getActivity().getSupportFragmentManager(), mPages);
         mVpMain.setAdapter(mAdapter);
         mVpMain.addOnPageChangeListener(mOnPageChangeListener);
-        mVpMain.setOffscreenPageLimit(6);
+        if (mPages.size() > 1) {
+            mVpMain.setOffscreenPageLimit(mPages.size() - 1);
+        }
     }
 
     private void initTopBar() {
@@ -181,6 +191,9 @@ public class HomeFragment extends CommonFragment implements RadioGroup.OnChecked
                 break;
             case R.id.rbtn_office:
                 mVpMain.setCurrentItem(PAGE_OFFICE);
+                break;
+            case R.id.rbtn_match:
+                mVpMain.setCurrentItem(PAGE_MATCH);
                 break;
         }
     }

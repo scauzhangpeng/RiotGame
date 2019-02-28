@@ -11,23 +11,19 @@ import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.muugi.riot.news.R;
-import com.muugi.riot.news.R2;
+import com.muugi.riot.news.base.BaseNewsFragment;
 import com.muugi.riot.news.bean.Card;
 import com.muugi.riot.news.bean.CardItem;
 import com.muugi.riot.news.bean.HeroGroupListBean;
 import com.muugi.riot.news.contract.HeroCommunityContract;
+import com.muugi.riot.news.model.Injection;
 import com.muugi.riot.news.presenter.HeroCommunityPresenter;
 import com.muugi.riot.news.utils.FormatUtil;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.xyz.basiclib.recyclerview.AbstractImageLoader;
 import com.xyz.basiclib.recyclerview.BasicAdapter;
 import com.xyz.basiclib.recyclerview.BasicViewHolder;
 import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.basiclib.util.DateUtil;
-import com.xyz.riotcommon.CommonFragment;
 import com.xyz.riotcommon.ImageLoadUtil;
 import com.xyz.riotcommon.RouterConstants;
 import com.xyz.riotcommon.webview.WebViewActivity;
@@ -35,8 +31,6 @@ import com.xyz.riotcommon.webview.WebViewActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import butterknife.BindView;
 
 import static com.xyz.basiclib.util.DateUtil.DATE_FORMAT_DAY;
 import static com.xyz.basiclib.util.DateUtil.DATE_FORMAT_MONTH_DAY;
@@ -47,16 +41,8 @@ import static com.xyz.basiclib.util.DateUtil.DATE_FORMAT_SEC;
  * Created by ZP on 2018/1/24.
  */
 @Route(path = RouterConstants.NEWS_HERO_COMMUNITY)
-public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.View, HeroCommunityContract.Presenter> implements HeroCommunityContract.View, OnRefreshListener, OnLoadmoreListener {
+public class HeroCommunityFragment extends BaseNewsFragment<HeroGroupListBean, HeroCommunityContract.View, HeroCommunityContract.Presenter> implements HeroCommunityContract.View {
 
-
-    @BindView(R2.id.rv_layout_refresh)
-    RecyclerView mRvLayoutRefresh;
-    @BindView(R2.id.refreshLayout)
-    SmartRefreshLayout mRefreshLayout;
-
-    private BasicAdapter<HeroGroupListBean> mAdapter;
-    private List<HeroGroupListBean> mNews;
 
     /**
      * 英雄时刻
@@ -86,6 +72,13 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
     private BasicAdapter<Card> mPlayShowAdapter;
     private List<Card> mPlayShowCard;
 
+    /**
+     * 本周限免
+     */
+    private RecyclerView mRvWeekFreeHero;
+    private BasicAdapter<Card> mWeekFreeHeroAdapter;
+    private List<Card> mWeekFreeHeroCard;
+
     private MultipleTypeSupport<HeroGroupListBean> mMultipleTypeSupport = new MultipleTypeSupport<HeroGroupListBean>() {
         @Override
         public int getLayoutId(HeroGroupListBean heroGroupListBean, int position) {
@@ -105,23 +98,96 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
                 return R.layout.layout_battle_video;
             }
 
+            if ("WeekFreeHeroCard".equals(heroGroupListBean.getType())) {
+                return R.layout.layout_hero_community_week_free;
+            }
+
             return R.layout.item_hero_group;
         }
     };
 
     @Override
-    public void showNewsList(List<HeroGroupListBean> news) {
-        mNews.clear();
-        mNews.addAll(news);
-        mAdapter.notifyDataSetChanged();
-        mPresenter.refreshCardsData();
+    public BasicAdapter<HeroGroupListBean> getAdapter() {
+        return new BasicAdapter<HeroGroupListBean>(mData, getActivity(), mMultipleTypeSupport) {
+            @Override
+            protected void bindData(BasicViewHolder holder, HeroGroupListBean bean, int position) {
+                if ("RecentHeroCard".equals(bean.getType())) {
+                    mRvRecentHero = holder.getView(R.id.rv_recent_hero);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                    linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    mRvRecentHero.setLayoutManager(linearLayoutManager);
+                    mRvRecentHero.setAdapter(mRecentHeroAdapter);
+                    return;
+                }
+                if ("RecommendStrategyCard".equals(bean.getType())) {
+                    HashMap<String, String> header = bean.getHeader();
+                    holder.setText(R.id.tv_hero_desc, getString(R.string.hero_time_desc, header.get("hero")));
+                    mRvRecommendStrategy = holder.getView(R.id.rv_recommend_strategy);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                    linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    mRvRecommendStrategy.setLayoutManager(linearLayoutManager);
+                    mRvRecommendStrategy.setAdapter(mRecommendStrategyAdapter);
+                    return;
+                }
+                if ("PlayerShowCard".equals(bean.getType())) {
+                    HashMap<String, String> header = bean.getHeader();
+                    holder.setText(R.id.tv_hero_desc, getString(R.string.hero_time_desc, header.get("hero")));
+                    mRvPlayShow = holder.getView(R.id.rv_player_show);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                    linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    mRvPlayShow.setLayoutManager(linearLayoutManager);
+                    mRvPlayShow.setAdapter(mPlayShowAdapter);
+                    return;
+                }
+                if ("BattleVideosCard".equals(bean.getType())) {
+                    HashMap<String, String> header = bean.getHeader();
+                    holder.setText(R.id.tv_hero_desc, getString(R.string.hero_time_desc, header.get("hero")));
+                    mRvBattleVideo = holder.getView(R.id.rv_hero_battle_video);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                    linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    mRvBattleVideo.setLayoutManager(linearLayoutManager);
+                    mRvBattleVideo.setAdapter(mBattleVideoAdapter);
+                    return;
+                }
+
+                if ("WeekFreeHeroCard".equals(bean.getType())) {
+                    mRvWeekFreeHero = holder.getView(R.id.rv_community_hero_week_free);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                    linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    mRvWeekFreeHero.setLayoutManager(linearLayoutManager);
+                    mRvWeekFreeHero.setAdapter(mWeekFreeHeroAdapter);
+                    return;
+                }
+
+                holder.setText(R.id.tv_article_title, bean.getNews().getTitle());
+                holder.setText(R.id.tv_article_summary, bean.getNews().getSummary());
+                holder.setText(R.id.tv_article_pv, FormatUtil.unitToTenThousand(bean.getNews().getPv()));
+                holder.setImagePath(R.id.iv_article, new AbstractImageLoader(bean.getNews().getImage_url_small()) {
+                    @Override
+                    public void loadImage(ImageView imageView, String path) {
+                        ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
+                    }
+                });
+
+            }
+        };
     }
 
     @Override
-    public void showMoreNewsList(int currentPage, List<HeroGroupListBean> news) {
-        mNews.addAll(news);
+    public void onItemClick(View view, int position) {
+        if ("news".equals(mData.get(position).getType())) {
+            Bundle bundle = new Bundle();
+            bundle.putString("url", mData.get(position).getNews().getArticle_url());
+            openActivity(WebViewActivity.class, bundle);
+        }
+    }
+
+    @Override
+    public void showListData(List<HeroGroupListBean> data) {
+        mData.clear();
+        mData.addAll(data);
         mAdapter.notifyDataSetChanged();
-        mRefreshLayout.finishLoadmore();
+        mPresenter.refreshCardsData();
     }
 
     @Override
@@ -129,7 +195,7 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
         mBattleVideoCard.clear();
         mBattleVideoCard.addAll(battleVideoCard.getData());
         mBattleVideoAdapter.notifyDataSetChanged();
-        mRefreshLayout.finishRefresh();
+        mSmartRefreshLayout.finishRefresh();
     }
 
     @Override
@@ -137,7 +203,7 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
         mRecentHeroCard.clear();
         mRecentHeroCard.addAll(recentHero.getData());
         mRecentHeroAdapter.notifyDataSetChanged();
-        mRefreshLayout.finishRefresh();
+        mSmartRefreshLayout.finishRefresh();
     }
 
     @Override
@@ -145,7 +211,7 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
         mPlayShowCard.clear();
         mPlayShowCard.addAll(playerShow.getData());
         mPlayShowAdapter.notifyDataSetChanged();
-        mRefreshLayout.finishRefresh();
+        mSmartRefreshLayout.finishRefresh();
     }
 
     @Override
@@ -153,12 +219,20 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
         mRecommendStrategyCard.clear();
         mRecommendStrategyCard.addAll(recommendStrategy.getData());
         mRecommendStrategyAdapter.notifyDataSetChanged();
-        mRefreshLayout.finishRefresh();
+        mSmartRefreshLayout.finishRefresh();
+    }
+
+    @Override
+    public void showWeekFreeHero(CardItem weekFreeHero) {
+        mWeekFreeHeroCard.clear();
+        mWeekFreeHeroCard.addAll(weekFreeHero.getData());
+        mWeekFreeHeroAdapter.notifyDataSetChanged();
+        mSmartRefreshLayout.finishRefresh();
     }
 
     @Override
     public void updateCardItem(int position, HeroGroupListBean bean) {
-        mNews.add(position, bean);
+        mData.add(position, bean);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -241,107 +315,25 @@ public class HeroCommunityFragment extends CommonFragment<HeroCommunityContract.
             }
         };
 
-
-        mNews = new ArrayList<>();
-        mAdapter = new BasicAdapter<HeroGroupListBean>(mNews, getActivity(), mMultipleTypeSupport) {
+        mWeekFreeHeroCard = new ArrayList<>();
+        mWeekFreeHeroAdapter = new BasicAdapter<Card>(R.layout.item_community_hero_week_free, mWeekFreeHeroCard, getActivity()) {
             @Override
-            protected void bindData(BasicViewHolder holder, HeroGroupListBean bean, int position) {
-                if ("RecentHeroCard".equals(bean.getType())) {
-                    mRvRecentHero = holder.getView(R.id.rv_recent_hero);
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-                    linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-                    mRvRecentHero.setLayoutManager(linearLayoutManager);
-                    mRvRecentHero.setAdapter(mRecentHeroAdapter);
-                    return;
-                }
-                if ("RecommendStrategyCard".equals(bean.getType())) {
-                    HashMap<String, String> header = bean.getHeader();
-                    holder.setText(R.id.tv_hero_desc, getString(R.string.hero_time_desc, header.get("hero")));
-                    mRvRecommendStrategy = holder.getView(R.id.rv_recommend_strategy);
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-                    linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-                    mRvRecommendStrategy.setLayoutManager(linearLayoutManager);
-                    mRvRecommendStrategy.setAdapter(mRecommendStrategyAdapter);
-                    return;
-                }
-                if ("PlayerShowCard".equals(bean.getType())) {
-                    HashMap<String, String> header = bean.getHeader();
-                    holder.setText(R.id.tv_hero_desc, getString(R.string.hero_time_desc, header.get("hero")));
-                    mRvPlayShow = holder.getView(R.id.rv_player_show);
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-                    linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-                    mRvPlayShow.setLayoutManager(linearLayoutManager);
-                    mRvPlayShow.setAdapter(mPlayShowAdapter);
-                    return;
-                }
-                if ("BattleVideosCard".equals(bean.getType())) {
-                    HashMap<String, String> header = bean.getHeader();
-                    holder.setText(R.id.tv_hero_desc, getString(R.string.hero_time_desc, header.get("hero")));
-                    mRvBattleVideo = holder.getView(R.id.rv_hero_battle_video);
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-                    linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-                    mRvBattleVideo.setLayoutManager(linearLayoutManager);
-                    mRvBattleVideo.setAdapter(mBattleVideoAdapter);
-                    return;
-                }
-
-                holder.setText(R.id.tv_article_title, bean.getNews().getTitle());
-                holder.setText(R.id.tv_article_summary, bean.getNews().getSummary());
-                holder.setText(R.id.tv_article_pv, FormatUtil.unitToTenThousand(bean.getNews().getPv()));
-                holder.setImagePath(R.id.iv_article, new AbstractImageLoader(bean.getNews().getImage_url_small()) {
+            protected void bindData(BasicViewHolder holder, Card card, int position) {
+                holder.setText(R.id.tv_hero_nickname, card.getHero_nick() + " " + card.getHero_name());
+                holder.setText(R.id.tv_hero_rank, card.getWin_rate());
+                holder.setImagePath(R.id.iv_hero_icon, new AbstractImageLoader(card.getImage_url_small()) {
                     @Override
                     public void loadImage(ImageView imageView, String path) {
                         ImageLoadUtil.loadImage(getActivity(), path, R.drawable.default_lol_ex, imageView);
                     }
                 });
-
             }
         };
-
-
-        mAdapter.setOnItemClickListener(new BasicAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                if ("news".equals(mNews.get(position).getType())) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("url", mNews.get(position).getNews().getArticle_url());
-                    openActivity(WebViewActivity.class, bundle);
-                }
-            }
-        });
-
-
-        mRvLayoutRefresh.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRvLayoutRefresh.setAdapter(mAdapter);
-
-        mRefreshLayout.setOnRefreshListener(this);
-        mRefreshLayout.setOnLoadmoreListener(this);
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.layout_refresh;
     }
 
     @Override
     protected HeroCommunityContract.Presenter initPresenter() {
-        return new HeroCommunityPresenter("");
-    }
-
-    @Override
-    public void onRefresh(RefreshLayout refreshlayout) {
-        mPresenter.refreshNews();
-    }
-
-    @Override
-    public void onLoadmore(RefreshLayout refreshlayout) {
-        mPresenter.loadMoreNews();
-    }
-
-    @Override
-    protected void requestData() {
-        super.requestData();
-        mRefreshLayout.autoRefresh();
+        return new HeroCommunityPresenter("", Injection.provideNewsRepository());
     }
 
 }

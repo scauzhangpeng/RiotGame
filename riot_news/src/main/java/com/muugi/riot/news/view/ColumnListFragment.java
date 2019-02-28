@@ -6,8 +6,10 @@ import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.muugi.riot.news.R;
 import com.muugi.riot.news.adapter.ColumnListAdapter;
+import com.muugi.riot.news.base.BaseNewsFragment;
 import com.muugi.riot.news.bean.SpecialColumnListBean;
 import com.muugi.riot.news.contract.ColumnContract;
+import com.muugi.riot.news.model.Injection;
 import com.muugi.riot.news.presenter.ColumnListPresenter;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -16,10 +18,9 @@ import com.xyz.basiclib.recyclerview.MultipleTypeSupport;
 import com.xyz.riotcommon.RouterConstants;
 
 /**
+ * 专栏资讯.
+ * 类似 {@link HotNewsFragment}
  * Created by ZP on 2018/1/24.
- * <p>
- * 专栏
- * </p>
  */
 @Route(path = RouterConstants.NEWS_COLUMN_LIST)
 public class ColumnListFragment extends BaseNewsFragment<SpecialColumnListBean, ColumnContract.View, ColumnContract.Presenter> implements ColumnContract.View, OnRefreshListener, OnLoadmoreListener {
@@ -49,7 +50,7 @@ public class ColumnListFragment extends BaseNewsFragment<SpecialColumnListBean, 
 
     @Override
     protected ColumnContract.Presenter initPresenter() {
-        return new ColumnListPresenter("");
+        return new ColumnListPresenter("", Injection.provideNewsRepository());
     }
 
     @Override

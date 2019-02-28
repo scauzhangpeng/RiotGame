@@ -8,7 +8,7 @@ ext {
     ]
 
     SupportVerison = "28.0.0"
-    RetrofitVersion = "2.3.0"
+    RetrofitVersion = "2.5.0"
     GlideVerison = "4.0.0"
     ARouterCompiler = "1.2.2"
     ARouterApi = "1.4.1"
@@ -38,8 +38,9 @@ ext {
             Design :"com.android.support:design:$SupportVerison",
             Circle : "de.hdodenhof:circleimageview:2.2.0",
 
-            RxAndroid :'io.reactivex.rxjava2:rxandroid:2.0.1',
-            RxJava :'io.reactivex.rxjava2:rxjava:2.0.5',
+            RxAndroid :'io.reactivex.rxjava2:rxandroid:2.1.1',
+            RxJava :'io.reactivex.rxjava2:rxjava:2.2.7',
+            RxAdapter :"com.squareup.retrofit2:adapter-rxjava:$RetrofitVersion",
             RxPermission :'com.tbruyelle.rxpermissions2:rxpermissions:0.9.3@aar'
     ]
 }
