@@ -20,4 +20,8 @@ public class RouterConstants {
     public static final String NEWS_COLUMN_LIST = "/news/columnlist";
 
     public static final String DISCOVERY_MAIN = "/discovery/main";
+
+    public static final String NEWS_MAIN = "/news/home";
+
+    public static final String RIOT_NEWS_SERVICE = "/news/service";
 }

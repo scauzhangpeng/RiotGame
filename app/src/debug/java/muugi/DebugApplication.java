@@ -5,7 +5,6 @@ import android.util.Log;
 import com.muugi.debugtools.helper.ToolsHelper;
 import com.xyz.riotcommon.RiotGameApplication;
 
-import org.litepal.LitePal;
 
 /**
  * Created by ZP on 2018/7/11.
@@ -26,7 +25,6 @@ public class DebugApplication extends RiotGameApplication {
         initLeakCanary();
         initBlockCanary();
 //        initGT();
-        LitePal.initialize(this);
     }
 
     /**

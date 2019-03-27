@@ -1,4 +1,4 @@
-package org.scau.riotgame.home.view;
+package com.muugi.riot.news.view;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -17,49 +17,50 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.muugi.riot.discovery.hero.adapter.HeroPageAdapter;
+import com.muugi.riot.news.R;
+import com.muugi.riot.news.R2;
 import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.CommonFragment;
 import com.xyz.riotcommon.RouterConstants;
-
-import org.scau.riotgame.R;
+import com.xyz.riotcommon.SimpleViewPageAdapter;
 
 import butterknife.BindView;
 
 /**
  * Created by ZP on 2018/1/24.
  */
-
+@Route(path = RouterConstants.NEWS_MAIN)
 public class HomeFragment extends CommonFragment implements RadioGroup.OnCheckedChangeListener {
 
 
-    @BindView(R.id.rbtn_last)
+    @BindView(R2.id.rbtn_last)
     RadioButton mRbtnLast;
-    @BindView(R.id.rbtn_new_version)
+    @BindView(R2.id.rbtn_new_version)
     RadioButton mRbtnNewVersion;
-    @BindView(R.id.rbtn_hero)
+    @BindView(R2.id.rbtn_hero)
     RadioButton mRbtnHero;
-    @BindView(R.id.rbtn_video)
+    @BindView(R2.id.rbtn_video)
     RadioButton mRbtnVideo;
-    //    @BindView(R.id.rbtn_match)
+    //    @BindView(R2.id.rbtn_match)
 //    RadioButton mRbtnMatch;
-    @BindView(R.id.rbtn_column)
+    @BindView(R2.id.rbtn_column)
     RadioButton mRbtnColumn;
-    @BindView(R.id.rg_main_tab)
+    @BindView(R2.id.rg_main_tab)
     RadioGroup mRgMainTab;
-    @BindView(R.id.rbtn_hot)
+    @BindView(R2.id.rbtn_hot)
     RadioButton mRbtnHot;
-    @BindView(R.id.rbtn_office)
+    @BindView(R2.id.rbtn_office)
     RadioButton mRbtnOffice;
-    @BindView(R.id.rbtn_match)
+    @BindView(R2.id.rbtn_match)
     RadioButton mRbtnMatch;
 
-    @BindView(R.id.vp_main)
+    @BindView(R2.id.vp_main)
     ViewPager mVpMain;
-    @BindView(R.id.toolbar_title)
+    @BindView(R2.id.toolbar_title)
     TextView mToolbarTitle;
-    @BindView(R.id.toolbar)
+    @BindView(R2.id.toolbar)
     Toolbar mToolbar;
     private SparseArray<Fragment> mPages;
 
@@ -136,7 +137,7 @@ public class HomeFragment extends CommonFragment implements RadioGroup.OnChecked
         mPages.put(PAGE_OFFICE, (Fragment) ARouter.getInstance().build(RouterConstants.NEWS_OFFICIAL).navigation());
         mPages.put(PAGE_HERO, (Fragment) ARouter.getInstance().build(RouterConstants.NEWS_HERO_COMMUNITY).navigation());
         mPages.put(PAGE_MATCH, (Fragment) ARouter.getInstance().build(RouterConstants.NEWS_MATCH).navigation());
-        mAdapter = new HeroPageAdapter(getActivity().getSupportFragmentManager(), mPages);
+        mAdapter = new SimpleViewPageAdapter(getActivity().getSupportFragmentManager(), mPages);
         mVpMain.setAdapter(mAdapter);
         mVpMain.addOnPageChangeListener(mOnPageChangeListener);
         if (mPages.size() > 1) {
@@ -170,31 +171,30 @@ public class HomeFragment extends CommonFragment implements RadioGroup.OnChecked
 
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-        switch (checkedId) {
-            case R.id.rbtn_last:
-                mVpMain.setCurrentItem(PAGE_LAST);
-                break;
-            case R.id.rbtn_new_version:
-                mVpMain.setCurrentItem(PAGE_NEW_VERSION);
-                break;
-            case R.id.rbtn_hero:
-                mVpMain.setCurrentItem(PAGE_HERO);
-                break;
-            case R.id.rbtn_video:
-                mVpMain.setCurrentItem(PAGE_VIDEO);
-                break;
-            case R.id.rbtn_hot:
-                mVpMain.setCurrentItem(PAGE_HOT);
-                break;
-            case R.id.rbtn_column:
-                mVpMain.setCurrentItem(PAGE_COLUMN);
-                break;
-            case R.id.rbtn_office:
-                mVpMain.setCurrentItem(PAGE_OFFICE);
-                break;
-            case R.id.rbtn_match:
-                mVpMain.setCurrentItem(PAGE_MATCH);
-                break;
+        if (checkedId == R.id.rbtn_last) {
+            mVpMain.setCurrentItem(PAGE_LAST);
+
+        } else if (checkedId == R.id.rbtn_new_version) {
+            mVpMain.setCurrentItem(PAGE_NEW_VERSION);
+
+        } else if (checkedId == R.id.rbtn_hero) {
+            mVpMain.setCurrentItem(PAGE_HERO);
+
+        } else if (checkedId == R.id.rbtn_video) {
+            mVpMain.setCurrentItem(PAGE_VIDEO);
+
+        } else if (checkedId == R.id.rbtn_hot) {
+            mVpMain.setCurrentItem(PAGE_HOT);
+
+        } else if (checkedId == R.id.rbtn_column) {
+            mVpMain.setCurrentItem(PAGE_COLUMN);
+
+        } else if (checkedId == R.id.rbtn_office) {
+            mVpMain.setCurrentItem(PAGE_OFFICE);
+
+        } else if (checkedId == R.id.rbtn_match) {
+            mVpMain.setCurrentItem(PAGE_MATCH);
+
         }
     }
 

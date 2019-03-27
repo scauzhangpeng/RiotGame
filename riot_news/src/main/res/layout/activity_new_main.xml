@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".NewsMainActivity">
 
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_news_main"
+        android:name="com.muugi.riot.news.view.HomeFragment"/>
+
 </android.support.constraint.ConstraintLayout>

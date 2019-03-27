@@ -142,7 +142,7 @@ public class MainActivity extends CommonActivity implements RadioGroup.OnChecked
         switch (i) {
             case 0:
                 if (mNewsFragment == null) {
-                    mNewsFragment = new HomeFragment();
+                    mNewsFragment = (Fragment) ARouter.getInstance().build(RouterConstants.NEWS_MAIN).navigation();
                     transaction.add(R.id.tabcontent, mNewsFragment);
                 } else {
                     transaction.show(mNewsFragment);

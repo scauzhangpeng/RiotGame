@@ -6,7 +6,7 @@ android {
         muugi {
             keyAlias 'riotgame'
             keyPassword '123456'
-            storeFile file('/Applications/Android Studio.app/Contents/bin/muugi.keystore')
+            storeFile file('/Users/kevin/muugi.keystore')
             storePassword '123456'
         }
     }
@@ -54,20 +54,17 @@ android {
 //            //dirs '../riot_common/libs'
 //        }
 //    }
-    sourceSets {
-        main {
-            if (isDebug.toBoolean()) {
-                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
-            } else {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-                java {
-                    exclude 'muugi/**'//包名
-                    exclude 'src/main/debug/AndroidManifest.xml'
-                }
-            }
-            java.srcDirs = ['src/main/java', 'src/main/debug']
-        }
-    }
+//    sourceSets {
+//        main {
+//            java.srcDirs = ['src/main/java']
+//            manifest.srcFile 'src/main/AndroidManifest.xml'
+//        }
+//
+//        debug {
+//            java.srcDirs = ['src/debug/java']
+//            manifest.srcFile 'src/debug/AndroidManifest.xml'
+//        }
+//    }
 
     //multiDex的一些相关配置，这样配置可以让你的编译速度更快
     dexOptions {
@@ -101,3 +98,31 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
 
 }
+
+//def apkFilePath = "${projectDir.absolutePath}/build/outputs/apk/release/app-release.apk"
+//
+//task uploadOnlineApk(dependsOn: 'assembleRelease') {
+//    group = "pgy_release"
+//    doLast {
+//        uploadPGY(apkFilePath)
+//    }
+//}
+//
+//private def uploadPGY(String filePath) {
+//    def stdout = new ByteArrayOutputStream()
+//    exec {
+//        println "apikey = " + rootProject.ext.pgy["apiKey"]
+//        println "url = " + rootProject.ext.pgy["uploadUrl"]
+//        executable = 'curl'
+//        args = ['-F', "file=@${filePath}",
+//                '-F', "uKey=${rootProject.ext.pgy["userKey"]}",
+//                '-F', "_api_key=${rootProject.ext.pgy["apiKey"]}",
+//                '-F', "updateDescription=test test",
+//                rootProject.ext.pgy["uploadUrl"]]
+//        standardOutput = stdout
+//    }
+//    String output = stdout.toString()
+//    def parsedJson = new groovy.json.JsonSlurper().parseText(output)
+//    println groovy.json.JsonOutput.prettyPrint(output)
+//    File file = new File()
+//}
