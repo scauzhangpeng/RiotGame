@@ -12,8 +12,7 @@ import java.util.List;
 
 public interface CheckPermission {
 
-    public void showRationaleDialog(Context context, List<String> permissions,
-                                    AndRequestExecutorAdapter andRequestExecutorAdapter);
+    void showRationaleDialog(Context context, List<String> permissions, AndRequestExecutorAdapter andRequestExecutorAdapter);
 
-    public void showAlwaysDeniedRationale(List<String> permissions);
+    void showAlwaysDeniedRationale(List<String> permissions);
 }

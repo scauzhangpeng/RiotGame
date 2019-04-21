@@ -348,17 +348,17 @@ public class CaptureActivity extends SimpleTopBarActivity implements SurfaceHold
 //        Toast.makeText(this, rawResult.getText(), Toast.LENGTH_LONG).show();
 //        ResultHandler resultHandler = ResultHandlerFactory.makeResultHandler(this, rawResult);
 
-        boolean fromLiveScan = barcode != null;
-        if (fromLiveScan) {
+//        boolean fromLiveScan = barcode != null;
+//        if (fromLiveScan) {
 //            historyManager.addHistoryItem(rawResult, resultHandler);
             // Then not from history, so beep/vibrate and we have an image to draw on
 //      beepManager.playBeepSoundAndVibrate();
-            drawResultPoints(barcode, scaleFactor, rawResult);
-        }
+//            drawResultPoints(barcode, scaleFactor, rawResult);
+//        }
 
-        if (barcode != null) {
-            viewfinderView.drawResultBitmap(barcode);
-        }
+//        if (barcode != null) {
+//            viewfinderView.drawResultBitmap(barcode);
+//        }
 
         openScanTip(rawResult, barcode);
 

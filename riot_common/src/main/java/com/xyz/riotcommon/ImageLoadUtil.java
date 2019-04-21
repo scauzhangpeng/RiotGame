@@ -45,9 +45,9 @@ public class ImageLoadUtil {
     }
 
     public interface SimpleTargetCallback {
-        public void onResourceReady(Bitmap resource);
+        void onResourceReady(Bitmap resource);
 
-        public void onLoadFailed(@Nullable Drawable errorDrawable);
+        void onLoadFailed(@Nullable Drawable errorDrawable);
     }
 
     /**

@@ -6,11 +6,11 @@ package com.muugi.album;
 
 public interface AlbumCallbackContract {
 
-    public interface AlbumListItemClickListener {
+    interface AlbumListItemClickListener {
         void onClick(String dir, String name);
     }
 
-    public interface AlbumDetailSelectClickListener {
+    interface AlbumDetailSelectClickListener {
         void onClick(String dir, String path, String fileSize);
 
         void onUnSelected();

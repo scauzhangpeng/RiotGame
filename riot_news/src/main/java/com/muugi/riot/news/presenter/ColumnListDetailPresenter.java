@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import com.muugi.riot.news.bean.HotMatch;
 import com.muugi.riot.news.bean.News;
 import com.muugi.riot.news.contract.ColumnListDetailContract;
-import com.muugi.riot.news.model.NewsRepository;
 import com.muugi.riot.news.model.RequestManager;
 import com.xyz.riotcommon.bean.PageResponse;
 import com.xyz.riotcommon.net.HttpCallback;

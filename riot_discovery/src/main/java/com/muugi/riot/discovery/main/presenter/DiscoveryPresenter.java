@@ -17,7 +17,6 @@ import java.util.List;
 
 import retrofit2.Response;
 
-;
 
 /**
  * Created by ZP on 2018/1/24.

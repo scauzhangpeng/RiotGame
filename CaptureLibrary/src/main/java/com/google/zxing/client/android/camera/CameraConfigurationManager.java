@@ -29,6 +29,7 @@ import android.view.WindowManager;
 import com.google.zxing.client.android.camera.open.CameraFacing;
 import com.google.zxing.client.android.camera.open.OpenCamera;
 import com.muugi.capture.ScanClient;
+import com.xyz.basiclib.util.ScreenUtil;
 
 /**
  * A class which deals with reading, parsing, and setting the camera parameters which are used to
@@ -121,6 +122,7 @@ final class CameraConfigurationManager {
         Point theScreenResolution = new Point();
         display.getSize(theScreenResolution);
         screenResolution = theScreenResolution;
+        screenResolution.y = screenResolution.y - ScreenUtil.dp2px(context,120);
         Log.i(TAG, "Screen resolution in current orientation: " + screenResolution);
         cameraResolution = CameraConfigurationUtils.findBestPreviewSizeValue(parameters, screenResolution);
         Log.i(TAG, "Camera resolution: " + cameraResolution);

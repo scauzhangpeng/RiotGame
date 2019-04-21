@@ -193,28 +193,44 @@ public final class ViewfinderView extends View {
 
         corWidth = corWidth > 15 ? 15 : corWidth;
 
+        corLength = 60;
+        corWidth = 10;
 
-        /*角在线外*/
-        // 左上角
-        canvas.drawRect(frame.left - corWidth, frame.top, frame.left, frame.top
-                + corLength, paint);
-        canvas.drawRect(frame.left - corWidth, frame.top - corWidth, frame.left
-                + corLength, frame.top, paint);
-        // 右上角
-        canvas.drawRect(frame.right, frame.top, frame.right + corWidth,
-                frame.top + corLength, paint);
-        canvas.drawRect(frame.right - corLength, frame.top - corWidth,
-                frame.right + corWidth, frame.top, paint);
-        // 左下角
-        canvas.drawRect(frame.left - corWidth, frame.bottom - corLength,
-                frame.left, frame.bottom, paint);
-        canvas.drawRect(frame.left - corWidth, frame.bottom, frame.left
-                + corLength, frame.bottom + corWidth, paint);
-        // 右下角
-        canvas.drawRect(frame.right, frame.bottom - corLength, frame.right
-                + corWidth, frame.bottom, paint);
-        canvas.drawRect(frame.right - corLength, frame.bottom, frame.right
-                + corWidth, frame.bottom + corWidth, paint);
+
+//        /*角在线外*/
+//        // 左上角
+//        canvas.drawRect(frame.left - corWidth, frame.top, frame.left, frame.top
+//                + corLength, paint);
+//        canvas.drawRect(frame.left - corWidth, frame.top - corWidth, frame.left
+//                + corLength, frame.top, paint);
+//        // 右上角
+//        canvas.drawRect(frame.right, frame.top, frame.right + corWidth,
+//                frame.top + corLength, paint);
+//        canvas.drawRect(frame.right - corLength, frame.top - corWidth,
+//                frame.right + corWidth, frame.top, paint);
+//        // 左下角
+//        canvas.drawRect(frame.left - corWidth, frame.bottom - corLength,
+//                frame.left, frame.bottom, paint);
+//        canvas.drawRect(frame.left - corWidth, frame.bottom, frame.left
+//                + corLength, frame.bottom + corWidth, paint);
+//        // 右下角
+//        canvas.drawRect(frame.right, frame.bottom - corLength, frame.right
+//                + corWidth, frame.bottom, paint);
+//        canvas.drawRect(frame.right - corLength, frame.bottom, frame.right
+//                + corWidth, frame.bottom + corWidth, paint);
+
+        //左上角
+        canvas.drawRect(frame.left, frame.top, frame.left + corLength, frame.top + corWidth, paint);
+        canvas.drawRect(frame.left, frame.top + corWidth, frame.left + corWidth, frame.top + corLength, paint);
+        //左下角
+        canvas.drawRect(frame.left, frame.bottom - corWidth, frame.left + corLength, frame.bottom, paint);
+        canvas.drawRect(frame.left, frame.bottom - corLength, frame.left + corWidth, frame.bottom - corWidth, paint);
+        //右上角
+        canvas.drawRect(frame.right - corLength, frame.top, frame.right, frame.top + corWidth, paint);
+        canvas.drawRect(frame.right - corWidth, frame.top + corWidth, frame.right, frame.top + corLength, paint);
+        //右下角
+        canvas.drawRect(frame.right - corLength, frame.bottom - corWidth, frame.right, frame.bottom, paint);
+        canvas.drawRect(frame.right - corWidth, frame.bottom - corLength, frame.right, frame.bottom - corWidth, paint);
     }
 
     private int scanLineTop = 0;

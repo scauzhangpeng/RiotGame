@@ -7,12 +7,11 @@ import android.util.SparseArray;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.muugi.riot.discovery.hero.adapter.HeroPageAdapter;
 import com.xyz.basiclib.mvp.BasePresenter;
 import com.xyz.riotcommon.SimpleTopBarActivity;
 
 import org.scau.riotgame.R;
-
-import com.muugi.riot.discovery.hero.adapter.HeroPageAdapter;
 
 import butterknife.BindView;
 
@@ -28,9 +27,9 @@ public class ActCenterActivity extends SimpleTopBarActivity {
     @BindView(R.id.vp_act)
     ViewPager mVpAct;
     @BindView(R.id.rbtn_act_open)
-    RadioButton mRbtnActOpen;
+    RadioButton mBtnActOpen;
     @BindView(R.id.rbtn_act_close)
-    RadioButton mRbtnActClose;
+    RadioButton mBtnActClose;
 
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
@@ -64,10 +63,10 @@ public class ActCenterActivity extends SimpleTopBarActivity {
         public void onPageSelected(int position) {
             switch (position) {
                 case 0:
-                    mRbtnActOpen.setChecked(true);
+                    mBtnActOpen.setChecked(true);
                     break;
                 case 1:
-                    mRbtnActClose.setChecked(true);
+                    mBtnActClose.setChecked(true);
                     break;
             }
         }

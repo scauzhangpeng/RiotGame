@@ -9,5 +9,5 @@ import com.alibaba.android.arouter.facade.template.IProvider;
  */
 public interface RiotNewsService extends IProvider {
 
-    public void initLitePal(Context context);
+    void initLitePal(Context context);
 }

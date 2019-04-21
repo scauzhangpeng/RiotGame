@@ -17,8 +17,8 @@ import java.util.List;
  */
 
 public class ActAdapter extends BasicAdapter<ActDetail> {
-    public ActAdapter(List<ActDetail> datas, Context context) {
-        super(R.layout.item_act_detail, datas, context);
+    public ActAdapter(List<ActDetail> data, Context context) {
+        super(R.layout.item_act_detail, data, context);
     }
 
     @Override
