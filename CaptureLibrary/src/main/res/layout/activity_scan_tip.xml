@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    android:gravity="center">
+    android:gravity="center_horizontal">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="179dp"
         android:text="已扫描到以下内容" />
 
     <TextView
         android:id="@+id/tv_scan_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="45dp"
+        android:gravity="center"
+        tools:text="scan_result"
+        android:textColor="@color/colorMainText"
+        android:background="@drawable/bg_scan_result_seletor"
+        android:layout_marginTop="15dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="扫描所得内容并非英雄联盟提供，谨慎使用" />
+        android:gravity="center"
+        android:text="扫描所得内容并非英雄联盟提供，谨慎使用\n如需使用，可通过复制操作获取内容"
+        android:layout_marginTop="15dp"/>
 
 </LinearLayout>

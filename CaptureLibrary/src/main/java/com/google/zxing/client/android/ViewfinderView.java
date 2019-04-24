@@ -24,6 +24,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -63,6 +64,9 @@ public final class ViewfinderView extends View {
     private int mLastWidth;
     private int mLastHeight;
 
+    private Drawable mFrameDrawable;
+    private Drawable mScanLineDrawbale;
+
     // This constructor is used when the class is built from an XML resource.
     public ViewfinderView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -79,6 +83,8 @@ public final class ViewfinderView extends View {
         scannerAlpha = 0;
         possibleResultPoints = new ArrayList<>(5);
         lastPossibleResultPoints = null;
+        mFrameDrawable = getResources().getDrawable(R.drawable.camera_focus);
+        mScanLineDrawbale = getResources().getDrawable(R.drawable.camera_scan);
     }
 
     public void setCameraManager(CameraManager cameraManager) {
@@ -195,7 +201,8 @@ public final class ViewfinderView extends View {
 
         corLength = 60;
         corWidth = 10;
-
+        mFrameDrawable.setBounds(frame);
+        mFrameDrawable.draw(canvas);
 
 //        /*角在线外*/
 //        // 左上角
@@ -220,17 +227,17 @@ public final class ViewfinderView extends View {
 //                + corWidth, frame.bottom + corWidth, paint);
 
         //左上角
-        canvas.drawRect(frame.left, frame.top, frame.left + corLength, frame.top + corWidth, paint);
-        canvas.drawRect(frame.left, frame.top + corWidth, frame.left + corWidth, frame.top + corLength, paint);
+//        canvas.drawRect(frame.left, frame.top, frame.left + corLength, frame.top + corWidth, paint);
+//        canvas.drawRect(frame.left, frame.top + corWidth, frame.left + corWidth, frame.top + corLength, paint);
         //左下角
-        canvas.drawRect(frame.left, frame.bottom - corWidth, frame.left + corLength, frame.bottom, paint);
-        canvas.drawRect(frame.left, frame.bottom - corLength, frame.left + corWidth, frame.bottom - corWidth, paint);
+//        canvas.drawRect(frame.left, frame.bottom - corWidth, frame.left + corLength, frame.bottom, paint);
+//        canvas.drawRect(frame.left, frame.bottom - corLength, frame.left + corWidth, frame.bottom - corWidth, paint);
         //右上角
-        canvas.drawRect(frame.right - corLength, frame.top, frame.right, frame.top + corWidth, paint);
-        canvas.drawRect(frame.right - corWidth, frame.top + corWidth, frame.right, frame.top + corLength, paint);
+//        canvas.drawRect(frame.right - corLength, frame.top, frame.right, frame.top + corWidth, paint);
+//        canvas.drawRect(frame.right - corWidth, frame.top + corWidth, frame.right, frame.top + corLength, paint);
         //右下角
-        canvas.drawRect(frame.right - corLength, frame.bottom - corWidth, frame.right, frame.bottom, paint);
-        canvas.drawRect(frame.right - corWidth, frame.bottom - corLength, frame.right, frame.bottom - corWidth, paint);
+//        canvas.drawRect(frame.right - corLength, frame.bottom - corWidth, frame.right, frame.bottom, paint);
+//        canvas.drawRect(frame.right - corWidth, frame.bottom - corLength, frame.right, frame.bottom - corWidth, paint);
     }
 
     private int scanLineTop = 0;
